@@ -1,0 +1,16 @@
+@import "global-variables";
+@import "global-mixins";
+@import "global-functions";
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+div {
+    background-color: black;
+    height: 100px;
+    width: calc(((9vw + 9vh) / 2) + 2em);
+}
