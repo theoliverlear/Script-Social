@@ -1,0 +1,39 @@
+
+$snowflake: #FAFDFE;
+$cloudy: #D6E4EA;
+$pure-grey: #d7d7d7;
+$fog-grey: #B9CFD7;
+$aqua-splash: #8DD8DA;
+$steel-teal: #5E8998;
+$twilight-velvet: #53436B;
+$night-velvet: #2B314F;
+$midnight-tide: #021F32;
+$black-navy: #000E1A;
+$thin-border: calc(((0.05vw + 0.05vh) / 2) + 0.05em);
+/*---------------------------------Borders----------------------------------*/
+$thinnest-border: min(calc(((0.025vw + 0.025vh) / 2) + 0.025rem), 2px);
+$very-thin-border: calc(((0.05vw + 0.05vh) / 2) + 0.05em);
+$thin-border: calc(((0.1vw + 0.1vh) / 2) + 0.1em);
+/*----------------------------------Sizes-----------------------------------*/
+$zero: 0;
+$eighth-percent: calc(((0.125vw + 0.125vh) / 2) + 0.0625em);
+$quarter-percent: calc(((0.25vw + 0.25vh) / 2) + 0.125em);
+$half-percent: calc(((0.5vw + 0.5vh) / 2) + 0.25em);
+$one-percent: calc(((1vw + 1vh) / 2) + 0.25em);
+$one-half-percent: calc(((1.5vw + 1.5vh) / 2) + 0.5em);
+$two-percent: calc(((2vw + 2vh) / 2) + 0.5em);
+$two-half-percent: calc(((2.5vw + 2.5vh) / 2) + 0.75em);
+$three-percent: calc(((3vw + 3vh) / 2) + 1em);
+$three-half-percent: calc(((3.5vw + 3.5vh) / 2) + 1.25em);
+$four-percent: calc(((4vw + 4vh) / 2) + 1.5em);
+$five-percent: calc(((5vw + 5vh) / 2) + 2em);
+$six-percent: calc(((6vw + 6vh) / 2) + 2.5em);
+$ten-percent: calc(((10vw + 10vh) / 2) + 3em);
+$twelve-percent: calc(((12vw + 12vh) / 2) + 5em);
+$fourteen-percent: calc(((14vw + 14vh) / 2) + 6em);
+$fifteen-percent: calc(((15vw + 15vh) / 2) + 7em);
+$twenty-percent: calc(((20vw + 20vh) / 2) + 8em);
+$twenty-five-percent: calc(((25vw + 25vh) / 2) + 9em);
+$thirty-percent: calc(((30vw + 30vh) / 2) + 10em);
+$fifty-percent: calc(((50vw + 50vh) / 2) + 15em);
+$seventy-five-percent: calc(((75vw + 75vh) / 2) + 30em);
