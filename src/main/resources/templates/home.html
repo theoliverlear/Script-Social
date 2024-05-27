@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html"
+      dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Script Social</title>
+    <link rel="stylesheet" href="../static/style/global-style.css"
+          th:href="@{/style/global-style.css}"/>
+    <link rel="stylesheet" href="../static/style/home-style.css"
+            th:href="@{/style/home-style.css}"/>
+</head>
+<body>
+<h2 id="size-text"></h2>
+<div id="size-div">
+
+</div>
+<script>
+    let sizeDiv = document.getElementById('size-div');
+    let sizeText = document.getElementById('size-text');
+    let bodyWidth = document.body.offsetWidth;
+    let sizeDivWidth = sizeDiv.offsetWidth;
+    let percentageWidth = (sizeDivWidth / bodyWidth) * 100;
+    sizeText.innerHTML = percentageWidth.toFixed(2) + '%';
+</script>
+</body>
+</html>
