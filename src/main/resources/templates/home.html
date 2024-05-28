@@ -8,20 +8,82 @@
     <link rel="stylesheet" href="../static/style/global-style.css"
           th:href="@{/style/global-style.css}"/>
     <link rel="stylesheet" href="../static/style/home-style.css"
-            th:href="@{/style/home-style.css}"/>
+          th:href="@{/style/home-style.css}"/>
+    <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
+          th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
 </head>
-<body>
-<h2 id="size-text"></h2>
-<div id="size-div">
-
-</div>
-<script>
-    let sizeDiv = document.getElementById('size-div');
-    let sizeText = document.getElementById('size-text');
-    let bodyWidth = document.body.offsetWidth;
-    let sizeDivWidth = sizeDiv.offsetWidth;
-    let percentageWidth = (sizeDivWidth / bodyWidth) * 100;
-    sizeText.innerHTML = percentageWidth.toFixed(2) + '%';
-</script>
+<body data-page="home">
+<header>
+    <div>
+        <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
+             th:src="@{/image/icon/hamburger_menu.svg}">
+    </div>
+    <nav id="nav-bar">
+        <div class="nav-item">
+            <h4 class="nav-text"></h4>
+        </div>
+        <div class="nav-item" id="nav-search-div">
+            <div id="search-icon-div">
+                <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
+                     th:src="@{/image/icon/search_icon.png}">
+            </div>
+            <div>
+                <h4 class="nav-text"></h4>
+            </div>
+            <div id="nav-search-input-div">
+                <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
+            </div>
+        </div>
+        <div class="nav-item">
+            <h4 class="nav-text"></h4>
+        </div>
+    </nav>
+    <div>
+        <!-- Insert logo here -->
+    </div>
+</header>
+<main>
+    <section id="introduction-section">
+        <div id="title-div">
+            <span class="title-curly-brace">&#123;</span>
+            <h1 id="title-text"></h1>
+            <span id="title-blinking-cursor" class="blinking-cursor">|</span>
+            <span class="title-curly-brace">&#125;</span>
+        </div>
+        <div id="logo-with-text">
+            <div id="intro-text-div">
+                <div id="intro-headline-div">
+                    <h3>Connect with Developers</h3>
+                </div>
+                <div>
+                    <p class="indented-text">
+                        Connect with your fellow developers and share your code,
+                        thoughts, and ideas with the world. Script Social is a tool
+                        for those with established teams looking for easy
+                        communication and integration with version control, as well as
+                        those looking create communities and teams of their own. Sign
+                        up for a free account today and start sharing, connecting, and
+                        collaborating with other developers.
+                    </p>
+                </div>
+            </div>
+            <div id="intro-logo-div">
+                <img id="intro-logo" src="../static/image/logo/script_social_cropped.png" alt="Script Social Logo"
+                     th:src="@{/image/logo/script_social_cropped.png}">
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <section id="footer-small-text-section">
+        <div id="footer-left-text-item" class="footer-item">
+            <h6>&copy 2024 Sigwarth Software</h6>
+        </div>
+        <div id="footer-right-text-item" class="footer-item">
+            <h6>Terms of Service</h6>
+        </div>
+    </section>
+</footer>
+<script src="../static/script/bundle.js" type="application/javascript"
+        th:src="@{/script/bundle.js}"></script>
 </body>
-</html>
