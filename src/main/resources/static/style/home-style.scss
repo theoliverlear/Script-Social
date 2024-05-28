@@ -1,0 +1,79 @@
+@import "global-variables";
+@import "global-mixins";
+@import "global-functions";
+
+#introduction-section {
+    width: 100%;
+    margin: $one-half-percent $zero $zero $zero;
+    color: $pristine-white;
+    @include flex(center, center, column);
+    #title-div {
+        width: 70%;
+        border-radius: $one-percent;
+        margin: $zero $zero $one-half-percent $zero;
+        @include flex(center, center, row);
+        padding: $one-percent $two-percent;
+        background-color: $pure-orange;
+        #title-text {
+            text-align: center;
+            text-decoration: underline;
+        }
+        .blinking-cursor {
+            font-size: $h2-font-size;
+            animation: blink 1s infinite;
+        }
+
+        .title-curly-brace {
+            text-decoration: none;
+            font-size: $h1-font-size;
+        }
+    }
+    #logo-with-text {
+        @include flex(center, center, row);
+        width: 100%;
+        #intro-logo-div {
+            margin: $zero $three-percent;
+            @include size($twelve-percent, $twelve-percent);
+            @include flex(center, center, row);
+
+            border-radius: $one-percent;
+            img {
+                border-radius: inherit;
+                @include size(100%, 100%);
+            }
+        }
+        #intro-text-div {
+            width: 50%;
+            @include flex(center, center, column);
+            #intro-headline-div {
+                margin: $zero $zero $one-percent $zero;
+            }
+            p {
+
+            }
+        }
+    }
+}
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@media screen and (max-width: 751px) {
+    #introduction-section {
+        #title-div {
+            #title-text {
+                //font-size: $h2-font-size;
+            }
+        }
+    }
+    #title-blinking-cursor {
+        display: none;
+    }
+}
