@@ -2,15 +2,168 @@
 @import "global-mixins";
 @import "global-functions";
 
-body {
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
-    margin: 0;
-    padding: 0;
+h1 {
+    font-size: $h1-font-size;
+    @include basic-margin-padding(0, 0);
 }
-div {
-    background-color: black;
-    height: 100px;
-    width: calc(((9vw + 9vh) / 2) + 2em);
+h2 {
+    font-size: $h2-font-size;
+    @include basic-margin-padding(0, 0);
+}
+h3 {
+    font-size: $h3-font-size;
+    @include basic-margin-padding(0, 0);
+}
+h4 {
+    font-size: $h4-font-size;
+    @include basic-margin-padding(0, 0);
+}
+h5 {
+    font-size: $h5-font-size;
+    @include basic-margin-padding(0, 0);
+}
+h6 {
+    font-size: $h6-font-size;
+    @include basic-margin-padding(0, 0);
+}
+p {
+    font-size: $p-font-size;
+    @include basic-margin-padding(0, 0);
+}
+span {
+    font-size: $p-font-size;
+    @include basic-margin-padding(0, 0);
+}
+body {
+    min-height: 100vh;
+    background-color: $charcoal;
+    @include basic-margin-padding(0, 0);
+    font-family: $jetbrains-mono-font;
+    @include flex(center, center, column);
+    main {
+        width: 100%;
+        @include flex(center, center, column);
+    }
+}
+header {
+    width: 100%;
+    height: calc-size(7, 4, 2);
+    background-color: $apricot-glow;
+    //border-bottom: $thinnest-border solid $alabaster-stone;
+    box-shadow: $apricot-glow 0 0 $eighth-percent $eighth-percent;
+    @include basic-margin-padding(0, 0);
+    @include flex(center, center, row);
+    nav {
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        display: none;
+        @include size(50%, 100%);
+        > div {
+            height: 30%;
+            //border-left: $very-thin-border solid $charcoal;
+            padding: $zero $one-percent;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            display: none;
+        }
+        .nav-item {
+            transition: width, height, 0.15s;
+            height: 100%;
+            @include flex(center, center, row);
+            &:hover .nav-text {
+                font-size: $h4-quarter-font-size;
+            }
+            .nav-text {
+                transition: font-size, 0.15s;
+            }
+        }
+        & > div:last-child {
+            //border-right: $very-thin-border solid $charcoal;
+        }
+        #nav-search-div {
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            display: flex;
+            #search-icon-div {
+                @include flex(center, center, row);
+                @include size($one-half-percent, $one-half-percent);
+                margin-right: $quarter-percent;
+                img {
+                    @include size(100%, 100%);
+                }
+            }
+            &:hover {
+                font-size: $h4-quarter-font-size;
+                #search-icon-div {
+                    @include size(calc($two-percent * 0.85), calc($two-percent * 0.85));
+                }
+            }
+        }
+    }
+    #nav-hamburger-menu {
+        transition: width, height, 0.15s;
+        @include size($three-percent, $three-percent);
+        img {
+            @include size(100%, 100%);
+        }
+        &:hover {
+            @include size($three-half-percent, $three-half-percent);
+        }
+    }
+}
+.general-input {
+    border-radius: $quarter-percent;
+    border: $thinnest-border solid $charcoal;
+    background-color: $tangerine;
+}
+#nav-search-input {
+    @extend .general-input;
+    @include size($five-percent, $two-percent);
+    padding: $zero $one-percent;
+    display: none;
+}
+.indented-text {
+    text-indent: $two-percent;
+}
+.being-typed::after {
+    text-decoration: none;
+    content: "_";
+}
+.typing-completed:after {
+    content: "";
+}
+footer {
+    background-color: $charcoal;
+    width: 100%;
+    padding: 0;
+    bottom: 0;
+    left: 0;
+    @include flex(center, center, row);
+    margin-top: auto;
+    margin-bottom: 0;
+    #footer-small-text-section {
+        @include size(100%, 100%);
+        padding: $half-percent $zero;
+        @include flex(center, center, row);
+        h6 {
+            @include basic-margin-padding(0, 0);
+            color: $pristine-white;
+        }
+        div {
+            @include flex(center, center, row);
+            @include size(100%, 100%);
+            flex: 1;
+            padding: $zero $one-percent;
+            .footer-item {
+                text-align: center;
+                @include flex(center, center, row);
+            }
+        }
+        #footer-left-text-item {
+            border-right: $thin-border solid $pristine-white;
+        }
+    }
 }
