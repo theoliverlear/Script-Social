@@ -41,6 +41,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _glo
 
 /***/ }),
 
+/***/ "./src/main/resources/static/script/newProfileScript.ts":
+/*!**************************************************************!*\
+  !*** ./src/main/resources/static/script/newProfileScript.ts ***!
+  \**************************************************************/
+/***/ (() => {
+
+eval("\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/newProfileScript.ts?");
+
+/***/ }),
+
 /***/ "./src/main/resources/static/script/profileScript.ts":
 /*!***********************************************************!*\
   !*** ./src/main/resources/static/script/profileScript.ts ***!
@@ -124,7 +134,8 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /******/ 	__webpack_require__("./src/main/resources/static/script/globalScript.ts");
 /******/ 	__webpack_require__("./src/main/resources/static/script/homeScript.ts");
 /******/ 	__webpack_require__("./src/main/resources/static/script/authorizeScript.ts");
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/main/resources/static/script/profileScript.ts");
+/******/ 	__webpack_require__("./src/main/resources/static/script/profileScript.ts");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/main/resources/static/script/newProfileScript.ts");
 /******/ 	
 /******/ })()
 ;
