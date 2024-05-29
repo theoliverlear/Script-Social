@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html"
+      dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup | Login | Script Social</title>
+    <link rel="stylesheet" href="../static/style/global-style.css"
+          th:href="@{/style/global-style.css}"/>
+    <link rel="stylesheet" href="../static/style/authorize-style.css"
+          th:href="@{/style/authorize-style.css}"/>
+    <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
+          th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
+</head>
+<body data-page="authorize">
+<main>
+    <header>
+        <div>
+            <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
+                 th:src="@{/image/icon/hamburger_menu.svg}">
+        </div>
+        <nav id="nav-bar">
+            <div class="nav-item">
+                <h4 class="nav-text"></h4>
+            </div>
+            <div class="nav-item" id="nav-search-div">
+                <div id="search-icon-div">
+                    <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
+                         th:src="@{/image/icon/search_icon.png}">
+                </div>
+                <div>
+                    <h4 class="nav-text"></h4>
+                </div>
+                <div id="nav-search-input-div">
+                    <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="nav-item">
+                <h4 class="nav-text"></h4>
+            </div>
+        </nav>
+        <div>
+            <!-- Insert logo here -->
+        </div>
+    </header>
+</main>
+<footer>
+    <section id="footer-small-text-section">
+        <div id="footer-left-text-item" class="footer-item">
+            <h6>&copy 2024 Sigwarth Software</h6>
+        </div>
+        <div id="footer-right-text-item" class="footer-item">
+            <h6>Terms of Service</h6>
+        </div>
+    </section>
+</footer>
+<script src="../static/script/bundle.js" type="application/javascript"
+        th:src="@{/script/bundle.js}"></script>
+</body>
+</html>
