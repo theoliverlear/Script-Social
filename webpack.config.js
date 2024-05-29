@@ -6,7 +6,8 @@ module.exports = {
         './src/main/resources/static/script/globalScript.ts',
         './src/main/resources/static/script/homeScript.ts',
         './src/main/resources/static/script/authorizeScript.ts',
-        './src/main/resources/static/script/profileScript.ts'
+        './src/main/resources/static/script/profileScript.ts',
+        './src/main/resources/static/script/newProfileScript.ts'
     ],
     module: {
         rules: [
