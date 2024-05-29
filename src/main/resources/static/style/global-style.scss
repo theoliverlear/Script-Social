@@ -119,6 +119,20 @@ header {
     border: $thinnest-border solid $charcoal;
     background-color: $tangerine;
 }
+.general-button {
+    color: $pristine-white;
+    background-color: $charcoal;
+    transition: color, background-color, 0.15s;
+    margin: $eighth-percent;
+    &:hover {
+        color: $charcoal;
+        background-color: $pristine-white;
+    }
+    &:active {
+        color: $pristine-white;
+        background-color: $charcoal;
+    }
+}
 #nav-search-input {
     @extend .general-input;
     @include size($five-percent, $two-percent);
