@@ -9,6 +9,16 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/main/resources/static/script/authorizeScript.ts":
+/*!*************************************************************!*\
+  !*** ./src/main/resources/static/script/authorizeScript.ts ***!
+  \*************************************************************/
+/***/ (() => {
+
+eval("\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/authorizeScript.ts?");
+
+/***/ }),
+
 /***/ "./src/main/resources/static/script/globalScript.ts":
 /*!**********************************************************!*\
   !*** ./src/main/resources/static/script/globalScript.ts ***!
@@ -27,7 +37,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _globalScript__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./globalScript */ \"./src/main/resources/static/script/globalScript.ts\");\n/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n\nvar titleBlinkingCursor = $('#title-blinking-cursor');\nvar titleText = $('#title-text');\nvar titleString = 'Script Social';\nfunction typeTitleText() {\n  // titleText.addClass('being-typed');\n  (0,_globalScript__WEBPACK_IMPORTED_MODULE_0__.typeNavText)(titleText, titleString).then(function () {\n    // titleText.removeClass('being-typed');\n    //titleBlinkingCursor.fadeIn(100);\n  });\n}\nif ((0,_globalScript__WEBPACK_IMPORTED_MODULE_0__.loadPage)(document.body, 'home')) {\n  typeTitleText();\n}\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/homeScript.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _globalScript__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./globalScript */ \"./src/main/resources/static/script/globalScript.ts\");\n/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n\nvar titleBlinkingCursor = $('#title-blinking-cursor');\nvar titleText = $('#title-text');\nvar titleString = 'Script Social';\nvar popupAndConfirmDiv = $('#popup-and-confirm-div');\nvar popupDiv = $('#popup-div');\nvar popupText = $('#popup-text');\nfunction typeTitleText() {\n  // titleText.addClass('being-typed');\n  (0,_globalScript__WEBPACK_IMPORTED_MODULE_0__.typeNavText)(titleText, titleString).then(function () {\n    // titleText.removeClass('being-typed');\n    //titleBlinkingCursor.fadeIn(100);\n  });\n}\nfunction applyPopupAndConfirmDivContainer() {\n  if (popupDiv.css('display') === 'none') {\n    popupAndConfirmDiv.css('justify-content', 'flex-end');\n  } else {\n    popupAndConfirmDiv.css('justify-content', 'space-between');\n  }\n}\nvar usernameInput = $('#join-console-username-input');\nvar passwordInput = $('#join-console-password-input');\nfunction sendSignupToServer() {\n  fetch('/authorize/signup', {\n    method: 'POST',\n    headers: {\n      'Content-Type': 'application/json'\n    },\n    body: JSON.stringify({\n      username: usernameInput.val(),\n      password: passwordInput.val()\n    })\n  }).then(function (response) {\n    return response.json();\n  }).then(function (responseJson) {\n    console.log(responseJson);\n    var isAuthorized = responseJson.authorized;\n    console.log('Is authorized: ', isAuthorized);\n    if (isAuthorized) {\n      window.location.href = '/profile/';\n    } else {\n      popupDiv.fadeIn(100);\n      popupText.text('Username or email already exists');\n    }\n  })[\"catch\"](function (error) {\n    console.error('Error: ', error);\n  });\n}\nvar confirmJoinButton = $('#confirm-join-button');\nif ((0,_globalScript__WEBPACK_IMPORTED_MODULE_0__.loadPage)(document.body, 'home')) {\n  typeTitleText();\n  applyPopupAndConfirmDivContainer();\n  confirmJoinButton.on('click', sendSignupToServer);\n}\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/homeScript.ts?");
+
+/***/ }),
+
+/***/ "./src/main/resources/static/script/profileScript.ts":
+/*!***********************************************************!*\
+  !*** ./src/main/resources/static/script/profileScript.ts ***!
+  \***********************************************************/
+/***/ (() => {
+
+eval("\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/profileScript.ts?");
 
 /***/ }),
 
@@ -102,7 +122,9 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	__webpack_require__("./src/main/resources/static/script/globalScript.ts");
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/main/resources/static/script/homeScript.ts");
+/******/ 	__webpack_require__("./src/main/resources/static/script/homeScript.ts");
+/******/ 	__webpack_require__("./src/main/resources/static/script/authorizeScript.ts");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/main/resources/static/script/profileScript.ts");
 /******/ 	
 /******/ })()
 ;
