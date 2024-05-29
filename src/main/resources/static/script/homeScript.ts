@@ -42,7 +42,7 @@ function sendSignupToServer() {
             popupDiv.fadeIn(100);
             popupText.text('Username or email already exists');
         }
-    }).catch(function(error) {
+    }).catch(error => {
         console.error('Error: ', error);
     });
 }
