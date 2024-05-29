@@ -13,10 +13,11 @@
         margin: $zero $zero $one-half-percent $zero;
         @include flex(center, center, row);
         padding: $one-percent $two-percent;
-        background-color: $pure-orange;
+        background-color: $apricot-glow;
         #title-text {
             text-align: center;
             text-decoration: underline;
+            color: $charcoal;
         }
         .blinking-cursor {
             font-size: $h2-font-size;
@@ -26,6 +27,7 @@
         .title-curly-brace {
             text-decoration: none;
             font-size: $h1-font-size;
+            color: $charcoal;
         }
     }
     #logo-with-text {
@@ -50,6 +52,42 @@
             }
             p {
 
+            }
+        }
+    }
+}
+#join-section {
+    width: 100%;
+    margin: $one-half-percent $zero;
+    color: $pristine-white;
+    @include flex(center, center, column);
+    #join-console {
+        box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+        width: auto;
+        padding: $one-percent;
+        border: $thin-border solid $alabaster-stone;
+        border-radius: $one-percent;
+        .join-input-title-field {
+            @include flex(center, center, row);
+            .join-title-field {
+                margin-right: $one-percent;
+                flex: 1;
+            }
+            .join-input {
+                width: $fifteen-percent;
+                font-family: $source-code-font;
+                color: $pure-orange;
+                border-bottom: $thin-border solid $alabaster-stone;
+                background-color: $charcoal;
+                flex: 1;
+                padding: $zero $one-percent;
+            }
+        }
+        #popup-and-confirm-div {
+            margin: $half-percent $zero $zero $zero;
+            @include flex(flex-end, center, row);
+            #popup-div {
+                display: none;
             }
         }
     }
