@@ -62,18 +62,26 @@ header {
         > div {
             height: 30%;
             //border-left: $very-thin-border solid $charcoal;
-            padding: $zero $one-percent;
+            padding: $quarter-percent $one-percent;
             justify-content: center;
             align-items: center;
             flex-direction: row;
             display: none;
         }
         .nav-item {
-            transition: width, height, 0.15s;
-            height: 100%;
+            transition: width, height, color, background-color, 0.15s;
+            border-radius: $quarter-percent;
             @include flex(center, center, row);
+            &:hover {
+                background-color: $bright-sunset;
+                color: $pristine-white;
+            }
+            &:active {
+                background-color: $charcoal;
+                color: $bright-sunset;
+            }
             &:hover .nav-text {
-                font-size: $h4-quarter-font-size;
+                //font-size: $h4-quarter-font-size;
             }
             .nav-text {
                 transition: font-size, 0.15s;
@@ -96,9 +104,15 @@ header {
                 }
             }
             &:hover {
-                font-size: $h4-quarter-font-size;
+                //font-size: $h4-quarter-font-size;
                 #search-icon-div {
                     @include size(calc($two-percent * 0.85), calc($two-percent * 0.85));
+                }
+            }
+            &:active {
+                //font-size: $h4-half-font-size;
+                #search-icon-div {
+                    filter: invert(1);
                 }
             }
         }
