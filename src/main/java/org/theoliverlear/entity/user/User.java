@@ -29,6 +29,11 @@ public class User {
             column = @Column(name = "password"))
     @Embedded
     private SafePassword safePassword;
+    /*
+    TODO: Add top programming languages
+    TODO: Add top frameworks
+    TODO: Make Profile Class which contains information about what the user is and has displayed
+     */
     @OneToMany(mappedBy = "poster", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Post> posts;
     public User() {
