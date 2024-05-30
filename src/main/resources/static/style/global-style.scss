@@ -128,6 +128,63 @@ header {
         }
     }
 }
+.general-console-container {
+    margin: $one-half-percent $zero;
+    color: $pristine-white;
+    @include flex(center, center, column);
+    .general-console {
+        box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+        width: auto;
+        padding: $one-percent;
+        border: $thin-border solid $alabaster-stone;
+        border-radius: $one-percent;
+
+        .console-input-title-field {
+            @include flex(center, center, row);
+
+            .console-title-field {
+                margin-right: $one-percent;
+                flex: 1;
+            }
+
+            .console-input {
+                border: none;
+                width: $fifteen-percent;
+                font-family: $source-code-font;
+                font-size: $p-font-size;
+                color: $pure-orange;
+                border-bottom: $thin-border solid $alabaster-stone;
+                background-color: $charcoal;
+                flex: 1;
+                padding: $zero $one-percent;
+            }
+        }
+        .console-popup-and-confirm-div {
+            margin: $half-percent $zero $zero $zero;
+            @include flex(space-between, center, row);
+
+            .console-popup-div {
+                display: none;
+            }
+        }
+    }
+}
+.general-hover {
+    transition: color, background-color, 0.15s;
+    &:hover {
+        color: $charcoal;
+        background-color: $pristine-white;
+    }
+    &:active {
+        color: $pristine-white;
+        background-color: $charcoal;
+    }
+}
+.general-select {
+    border-radius: $quarter-percent;
+    border: $thinnest-border solid $alabaster-stone;
+    padding: $quarter-percent;
+}
 .general-input {
     border-radius: $quarter-percent;
     border: $thinnest-border solid $charcoal;
