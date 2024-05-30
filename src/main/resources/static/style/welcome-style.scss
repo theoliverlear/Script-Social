@@ -1,0 +1,39 @@
+@import "global-variables";
+@import "global-mixins";
+@import "global-functions";
+@import "global-style";
+
+#title-section {
+    @include flex(center, center, column);
+    margin: $two-percent $zero;
+    color: $pristine-white;
+    background-color: $tangerine;
+    padding: $one-percent;
+    border-radius: $one-percent;
+    #subtext-div {
+        padding: $half-percent;
+        background-color: $charcoal;
+        border-radius: $one-percent;
+        color: $pristine-white;
+    }
+    > div {
+        @include flex(center, center, column);
+    }
+}
+#inputs-section {
+    #title-question {
+        @include flex(center, center, column);
+        #title-question-text {
+            color: $pristine-white;
+        }
+    }
+    #interest-bubble-div {
+        display: none;
+        .interest-item {
+            @extend .general-hover;
+            &:active {
+                @extend .general-select;
+            }
+        }
+    }
+}
