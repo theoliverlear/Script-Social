@@ -9,6 +9,28 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/main/resources/static/script/ProfileIntention.ts":
+/*!**************************************************************!*\
+  !*** ./src/main/resources/static/script/ProfileIntention.ts ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   ProfileIntention: () => (/* binding */ ProfileIntention)\n/* harmony export */ });\nvar ProfileIntention;\n(function (ProfileIntention) {\n  ProfileIntention[\"NETWORKING\"] = \"Networking\";\n  ProfileIntention[\"GETTING_INVOLVED\"] = \"Getting Involved\";\n  ProfileIntention[\"CONNECT_TEAM\"] = \"Connect with Team\";\n  ProfileIntention[\"FIND_TEAM\"] = \"Find a Team\";\n})(ProfileIntention || (ProfileIntention = {}));\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/ProfileIntention.ts?");
+
+/***/ }),
+
+/***/ "./src/main/resources/static/script/WelcomeProfile.ts":
+/*!************************************************************!*\
+  !*** ./src/main/resources/static/script/WelcomeProfile.ts ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   WelcomeProfile: () => (/* binding */ WelcomeProfile)\n/* harmony export */ });\nfunction _typeof(o) { \"@babel/helpers - typeof\"; return _typeof = \"function\" == typeof Symbol && \"symbol\" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && \"function\" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? \"symbol\" : typeof o; }, _typeof(o); }\nfunction _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, \"value\" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }\nfunction _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, \"prototype\", { writable: !1 }), e; }\nfunction _toPropertyKey(t) { var i = _toPrimitive(t, \"string\"); return \"symbol\" == _typeof(i) ? i : i + \"\"; }\nfunction _toPrimitive(t, r) { if (\"object\" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || \"default\"); if (\"object\" != _typeof(i)) return i; throw new TypeError(\"@@toPrimitive must return a primitive value.\"); } return (\"string\" === r ? String : Number)(t); }\nfunction _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError(\"Cannot call a class as a function\"); }\nvar WelcomeProfile = /*#__PURE__*/_createClass(function WelcomeProfile() {\n  _classCallCheck(this, WelcomeProfile);\n});\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/WelcomeProfile.ts?");
+
+/***/ }),
+
 /***/ "./src/main/resources/static/script/authorizeScript.ts":
 /*!*************************************************************!*\
   !*** ./src/main/resources/static/script/authorizeScript.ts ***!
@@ -41,16 +63,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _glo
 
 /***/ }),
 
-/***/ "./src/main/resources/static/script/newProfileScript.ts":
-/*!**************************************************************!*\
-  !*** ./src/main/resources/static/script/newProfileScript.ts ***!
-  \**************************************************************/
-/***/ (() => {
-
-eval("\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/newProfileScript.ts?");
-
-/***/ }),
-
 /***/ "./src/main/resources/static/script/profileScript.ts":
 /*!***********************************************************!*\
   !*** ./src/main/resources/static/script/profileScript.ts ***!
@@ -58,6 +70,17 @@ eval("\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/scri
 /***/ (() => {
 
 eval("\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/profileScript.ts?");
+
+/***/ }),
+
+/***/ "./src/main/resources/static/script/welcomeScript.ts":
+/*!***********************************************************!*\
+  !*** ./src/main/resources/static/script/welcomeScript.ts ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _globalScript__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./globalScript */ \"./src/main/resources/static/script/globalScript.ts\");\n/* harmony import */ var _WelcomeProfile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WelcomeProfile */ \"./src/main/resources/static/script/WelcomeProfile.ts\");\n/* provided dependency */ var $ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n\n\nvar firstInput = $('#first-input');\nvar welcomeButtons = $('#welcome-buttons');\nvar secondInput = $('#second-input');\nvar confirmButton = $('#confirm-button');\nvar backButton = $('#back-button');\nvar interestItems = $('.interest-item');\nvar interestItemsSelected = [];\nvar builtProfile = new _WelcomeProfile__WEBPACK_IMPORTED_MODULE_1__.WelcomeProfile();\nvar titleSection = $('#title-section');\nvar currentQuestionIndex = 0;\nfunction showCorrectButton() {\n  if (currentQuestionIndex === 0) {\n    backButton.hide();\n    welcomeButtons.css('justify-content', 'flex-end');\n  } else {\n    backButton.show();\n    welcomeButtons.css('justify-content', 'space-between');\n  }\n}\nfunction floatTitleSectionFromBottom() {\n  titleSection.css('bottom', '0');\n}\nfunction nameSection() {\n  var bothInputsFilled = !hasEmptyInput(firstInput) && !hasEmptyInput(secondInput);\n}\nfunction hasEmptyInput(inputElement) {\n  return inputElement.val() === '';\n}\nfunction selectInterestItem() {\n  var interestItem = $(this);\n  if (interestItem.hasClass('general-select')) {\n    deselectInterestItem(interestItem);\n  } else {\n    interestItemsSelected.push(interestItem);\n    interestItem.fadeIn().toggleClass('general-select');\n  }\n}\nfunction deselectInterestItem(element) {\n  element.toggleClass('general-select');\n  interestItemsSelected = interestItemsSelected.filter(function (item) {\n    return item.text() === element.text();\n  });\n}\nfunction confirmSelection() {}\nfunction backSelection() {\n  showCorrectButton();\n}\nfunction moveSelectionForward() {}\nfunction moveSelectionBackward() {}\n// Maybe add \"What features would you like to see?\" as a question.\nvar titleQuestions = ['What\\'s your name?', 'Select your interests.'];\nvar shouldLoadPage = (0,_globalScript__WEBPACK_IMPORTED_MODULE_0__.loadPage)(document.body, 'welcome');\nif (shouldLoadPage) {\n  interestItems.on('click', selectInterestItem);\n  confirmButton.on('click', confirmSelection);\n  backButton.on('click', backSelection);\n  floatTitleSectionFromBottom();\n  showCorrectButton();\n}\n\n//# sourceURL=webpack://script-social/./src/main/resources/static/script/welcomeScript.ts?");
 
 /***/ }),
 
@@ -135,7 +158,9 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /******/ 	__webpack_require__("./src/main/resources/static/script/homeScript.ts");
 /******/ 	__webpack_require__("./src/main/resources/static/script/authorizeScript.ts");
 /******/ 	__webpack_require__("./src/main/resources/static/script/profileScript.ts");
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/main/resources/static/script/newProfileScript.ts");
+/******/ 	__webpack_require__("./src/main/resources/static/script/welcomeScript.ts");
+/******/ 	__webpack_require__("./src/main/resources/static/script/WelcomeProfile.ts");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/main/resources/static/script/ProfileIntention.ts");
 /******/ 	
 /******/ })()
 ;
