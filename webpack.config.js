@@ -9,7 +9,9 @@ module.exports = {
         './src/main/resources/static/script/profileScript.ts',
         './src/main/resources/static/script/welcomeScript.ts',
         './src/main/resources/static/script/WelcomeProfile.ts',
-        './src/main/resources/static/script/ProfileIntention.ts'
+        './src/main/resources/static/script/ProfileIntention.ts',
+        './src/main/resources/static/script/EmploymentStatus.ts',
+        './src/main/resources/static/script/PromptMovement.ts'
     ],
     module: {
         rules: [
