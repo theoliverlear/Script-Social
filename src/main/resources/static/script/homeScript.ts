@@ -1,4 +1,4 @@
-import {loadPage, typeNavText} from "./globalScript";
+import {loadPage, typeText} from "./globalScript";
 
 let titleBlinkingCursor: JQuery<HTMLElement> = $('#title-blinking-cursor');
 let titleText: JQuery<HTMLElement> = $('#title-text');
@@ -8,7 +8,7 @@ let popupDiv = $('#popup-div');
 let popupText = $('#popup-text');
 function typeTitleText(): void {
     // titleText.addClass('being-typed');
-    typeNavText(titleText, titleString).then(function(): void {
+    typeText(titleText, titleString).then(function(): void {
         // titleText.removeClass('being-typed');
         //titleBlinkingCursor.fadeIn(100);
     });
