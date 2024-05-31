@@ -22,21 +22,21 @@ async function toggleDesktopTypedNavText(): Promise<void> {
                     nextElement.hide();
                 }
             });
-            await typeNavText(element.find('.nav-text'), navBarItemsTexts[i]);
+            await typeText(element.find('.nav-text'), navBarItemsTexts[i]);
             element.find('.nav-text').removeClass('being-typed');
         }
     } else {
         for(let i = 0; i < navItems.length; i++) {
             let element = $(navItems[i]);
             element.find('.nav-text').removeClass('typing-completed');
-            await deleteNavText(element.find('.nav-text'));
+            await deleteText(element.find('.nav-text'));
             // Add a delay of 200 ms before hiding the element
             setTimeout(() => element.hide(), 200);
         }
         hideNavBar();
     }
 }
-async function typeNavText(element: JQuery<HTMLElement>, text: string, speed: number = 150): Promise<void> {
+async function typeText(element: JQuery<HTMLElement>, text: string, speed: number = 150): Promise<void> {
     let currentCharIndex = 0;
     return new Promise((resolve) => {
         function typeChar(): void {
@@ -44,14 +44,14 @@ async function typeNavText(element: JQuery<HTMLElement>, text: string, speed: nu
                 element.append(text.charAt(currentCharIndex));
                 currentCharIndex++;
                 setTimeout(typeChar, 150);
-            }else {
+            } else {
                 resolve();
             }
         }
         typeChar();
     });
 }
-async function deleteNavText(element: JQuery<HTMLElement>, speed: number = 150): Promise<void> {
+async function deleteText(element: JQuery<HTMLElement>, speed: number = 150): Promise<void> {
     return new Promise((resolve) => {
         function deleteChar(): void {
             let text = element.text();
@@ -135,5 +135,5 @@ function toggleDesktopNavItems(): void {
 function loadPage(bodyElement: HTMLElement, pageName: string): boolean {
     return bodyElement.getAttribute('data-page') === pageName;
 }
-export { loadPage, typeNavText };
+export { loadPage, typeText };
 hamburgerMenuDiv.on('click', toggleNavItems);
