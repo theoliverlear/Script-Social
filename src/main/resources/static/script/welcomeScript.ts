@@ -1,5 +1,6 @@
 import {loadPage, typeText} from "./globalScript";
 import {WelcomeProfile} from "./WelcomeProfile";
+import confetti from 'canvas-confetti';
 
 let body: JQuery<HTMLElement> = $('body');
 let inputsSection = $('#inputs-section');
@@ -15,6 +16,8 @@ let titleQuestionDiv = $('#title-question-div');
 let titleQuestionText = $('#title-question-text');
 let titleSection = $('#title-section');
 let currentQuestionIndex: number = 0;
+
+let titleQuestions: string[] = ['What\'s your name?', 'Select your interests.', "How do you plan to use Script Social?"];
 function showCorrectButton() {
     if (currentQuestionIndex === 0) {
         backButton.hide();
@@ -82,17 +85,29 @@ function moveSelectionBackward() {
 async function typeSectionQuestion() {
     await typeText(titleQuestionText, titleQuestions[currentQuestionIndex]);
 }
-// Maybe add "What features would you like to see?" as a question.
-let titleQuestions: string[] = ['What\'s your name?', 'Select your interests.'];
+async function confettiBursts(): Promise<void> {
+    return new Promise(resolve => {
+        confetti({
+            particleCount: 100,
+            spread: 150,
+            origin: {y: 0.6}
+        }).then(() => {
+            resolve();
+        });
+    });
+}
 
 let shouldLoadPage = loadPage(document.body, 'welcome');
 if (shouldLoadPage) {
     interestItems.on('click', selectInterestItem);
     confirmButton.on('click', confirmSelection);
     backButton.on('click', backSelection);
+    showCorrectButton();
+    confettiBursts();
     floatTitleSectionFromBottom().then(async () => {
         showInputsSection();
+        await new Promise(resolve => setTimeout(resolve, 250));
         await typeSectionQuestion();
-        showCorrectButton();
+
     });
 }
