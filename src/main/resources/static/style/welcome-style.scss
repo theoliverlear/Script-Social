@@ -21,7 +21,8 @@
     }
 }
 #inputs-section {
-    #title-question {
+    display: none;
+    #title-question-div {
         @include flex(center, center, column);
         #title-question-text {
             color: $pristine-white;
