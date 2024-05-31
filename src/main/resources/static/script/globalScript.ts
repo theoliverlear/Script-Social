@@ -49,7 +49,13 @@ async function toggleDesktopTypedNavText(): Promise<void> {
     }
 }
 //---------------------------------Type-Text----------------------------------
-async function typeText(element: JQuery<HTMLElement>, text: string, speed: number = 150): Promise<void> {
+async function typeText(element: JQuery<HTMLElement>,
+                        text: string,
+                        speed: number = 150,
+                        addBeingTypedStyle: boolean = false): Promise<void> {
+    if (addBeingTypedStyle) {
+        element.addClass('being-typed');
+    }
     let currentCharIndex = 0;
     return new Promise((resolve) => {
         function typeChar(): void {
@@ -58,6 +64,9 @@ async function typeText(element: JQuery<HTMLElement>, text: string, speed: numbe
                 currentCharIndex++;
                 setTimeout(typeChar, speed);
             } else {
+                if (addBeingTypedStyle) {
+                    element.removeClass('being-typed');
+                }
                 resolve();
             }
         }
@@ -157,4 +166,4 @@ function loadPage(bodyElement: HTMLElement, pageName: string): boolean {
 //=============================-Event-Listeners-==============================
 hamburgerMenuDiv.on('click', toggleNavItems);
 //==================================-Export-==================================
-export { loadPage, typeText };
+export { loadPage, typeText, deleteText };
