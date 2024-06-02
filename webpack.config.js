@@ -11,7 +11,8 @@ module.exports = {
         './src/main/resources/static/script/WelcomeProfile.ts',
         './src/main/resources/static/script/ProfileIntention.ts',
         './src/main/resources/static/script/EmploymentStatus.ts',
-        './src/main/resources/static/script/PromptMovement.ts'
+        './src/main/resources/static/script/PromptMovement.ts',
+        './src/main/resources/static/script/imageUploadScript.ts'
     ],
     module: {
         rules: [
@@ -20,7 +21,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'babel-loader', // Add Babel Loader
+                        loader: 'babel-loader',
                         options: {
                             presets: [
                                 '@babel/preset-env',
@@ -28,8 +29,12 @@ module.exports = {
                             ]
                         }
                     },
-                    'ts-loader' // Keep using ts-loader for TypeScript transpilation
+                    'ts-loader'
                 ]
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
             },
         ],
     },
