@@ -174,10 +174,12 @@ header {
     &:hover {
         color: $charcoal;
         background-color: $pristine-white;
+        cursor: pointer;
     }
     &:active {
         color: $pristine-white;
         background-color: $charcoal;
+        cursor: pointer;
     }
 }
 .general-select {
