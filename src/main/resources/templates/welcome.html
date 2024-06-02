@@ -74,36 +74,63 @@
                             <input class="console-input" id="second-input" type="text">
                         </div>
                     </div>
-                    <div id="interest-bubble-div">
-                        <div class="interest-item">
-                            <h5>Software Development</h5>
+                    <div id="bubble-selection-div">
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
                         </div>
-                        <div class="interest-item">
-                            <h5>Web Development</h5>
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
                         </div>
-                        <div class="interest-item">
-                            <h5>Mobile Development</h5>
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
                         </div>
-                        <div class="interest-item">
-                            <h5>Game Development</h5>
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
                         </div>
-                        <div class="interest-item">
-                            <h5>Team Building</h5>
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
                         </div>
-                        <div class="interest-item">
-                            <h5>Project Management</h5>
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
                         </div>
-                        <div class="interest-item">
-                            <h5>Artificial Intelligence</h5>
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
                         </div>
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
+                        </div>
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
+                        </div>
+                        <div class="bubble-item">
+                            <h5 class="bubble-item-text"></h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="profile-picture-div">
+                    <div id="image-editor"></div>
+                    <div id="status-bar"></div>
+                    <div id="default-profile-picture-div">
+                        <img id="default-profile-picture-img" src="../static/image/icon/default_avatar.svg"
+                             alt="Default Avatar"
+                             th:src="@{/image/icon/default_avatar.svg}">
+                    </div>
+                    <div id="file-upload-div">
+                        <label for="file-upload-input" id="file-upload-label">
+                            Upload Profile Picture
+                        </label>
+                        <input type="file" id="file-upload-input" accept="image/*">
                     </div>
                 </div>
                 <div id="welcome-buttons" class="console-popup-and-confirm-div">
                     <div id="back-button" class="general-button user-info-button">
                         <h5>BACK</h5>
                     </div>
+                    <div id="skip-button" class="general-button user-info-button">
+                        <h5>SKIP</h5>
+                    </div>
                     <div id="confirm-button" class="general-button user-info-button">
-                        <h5>CONFIRM</h5>
+                        <h5 id="confirm-button-text">CONFIRM</h5>
                     </div>
                 </div>
             </div>
