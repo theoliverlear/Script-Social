@@ -21,6 +21,7 @@
     }
 }
 #inputs-section {
+    @include flex(center, center, column);
     display: none;
     #title-question-div {
         @include flex(center, center, column);
@@ -28,16 +29,64 @@
             color: $pristine-white;
         }
     }
-    #interest-bubble-div {
+    #bubble-selection-div {
         display: none;
-        .interest-item {
+        .bubble-item {
             @extend .general-hover;
             &:active {
                 @extend .general-select;
             }
         }
     }
-    #console-popup-container {
+    #profile-picture-div {
+        @include flex(center, center, column);
         display: none;
+        @include size(auto, auto);
+        margin: $one-percent;
+        #status-bar {
+            width: 100%;
+        }
+        #default-profile-picture-div {
+            margin: $one-half-percent;
+            @include flex(center, center, column);
+            @include size($twenty-percent, $twenty-percent);
+            border-radius: $fifty-percent;
+            border: $thinnest-border solid $pristine-white;
+        }
+        #file-upload-div {
+            font-family: $source-code-font;
+            color: $pristine-white;
+            background-color: $charcoal;
+            border: $thinnest-border solid $alabaster-stone;
+            border-radius: $half-percent;
+            padding: $half-percent $three-quarter-percent;
+            #file-upload-label {
+                font-family: $source-code-font;
+                color: $pristine-white;
+                background-color: $charcoal;
+                @include size(100%, 100%);
+                text-decoration: underline;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: $alabaster-stone;
+                color: $charcoal;
+                #file-upload-label {
+                    background-color: $alabaster-stone;
+                    color: $charcoal;
+                }
+            }
+            #file-upload-input {
+                display: none;
+            }
+        }
+    }
+    #skip-button {
+        display: none;
+    }
+    #console-popup-container {
+        @include flex(center, center, column);
+        display: none;
+        max-width: 40vw;
     }
 }
