@@ -3,6 +3,10 @@ import {deleteText, loadPage, typeText} from "./globalScript";
 import {WelcomeProfile} from "./WelcomeProfile";
 import confetti from 'canvas-confetti';
 import {PromptMovement} from "./PromptMovement";
+import {ProfileIntention} from "./ProfileIntention";
+import {createUppy} from "./imageUploadScript";
+import Uppy from "@uppy/core";
+import {EmploymentStatus} from "./EmploymentStatus";
 //================================-Variables-=================================
 
 //------------------------------General-Content-------------------------------
@@ -18,10 +22,39 @@ let secondInputTitleDiv: JQuery<HTMLElement> = $('#second-input-title-div');
 //----------------------------------Buttons-----------------------------------
 let welcomeButtons: JQuery<HTMLElement> = $('#welcome-buttons');
 let confirmButton: JQuery<HTMLElement> = $('#confirm-button');
+let confirmButtonText: JQuery<HTMLElement> = $('#confirm-button-text');
 let backButton: JQuery<HTMLElement> = $('#back-button');
+let skipButton: JQuery<HTMLElement> = $('#skip-button');
 //------------------------------Interest-Section------------------------------
-let interestItems: JQuery<HTMLElement> = $('.interest-item');
+let bubbleItems: JQuery<HTMLElement> = $('.bubble-item');
+let bubbleItemsText: JQuery<HTMLElement> = $('.bubble-item-text');
+const interestsOptions: string[] = ['Software Development',
+    'Web Development',
+    'Mobile Development',
+    'Database Management',
+    'Cybersecurity',
+    'Data Science',
+    'Game Development',
+    'Team Building',
+    'Project Management',
+    'Artificial Intelligence'];
+const numInterests: number = interestsOptions.length;
+
+const profileIntentionsOptions: string[] = [ProfileIntention.NETWORKING,
+    ProfileIntention.GETTING_INVOLVED,
+    ProfileIntention.CONNECT_TEAM,
+    ProfileIntention.FIND_TEAM,
+    ProfileIntention.SOCIALIZE];
+const numProfileIntentions: number = profileIntentionsOptions.length;
 let interestItemsSelected: JQuery<Element>[] = [];
+const employmentStatusOptions: string[] = [EmploymentStatus.INDEPENDENT,
+    EmploymentStatus.EMPLOYED,
+    EmploymentStatus.SEEKING_EMPLOYMENT,
+    EmploymentStatus.STUDENT,
+    EmploymentStatus.HOBBYIST,
+    EmploymentStatus.BUILDING_TEAM];
+let numEmploymentStatusOptions = employmentStatusOptions.length;
+let bubbleDiv: JQuery<HTMLElement> = $('#bubble-selection-div');
 //-------------------------------Title-Section--------------------------------
 let titleQuestionDiv: JQuery<HTMLElement> = $('#title-question-div');
 let titleQuestionText: JQuery<HTMLElement> = $('#title-question-text');
@@ -30,21 +63,39 @@ let currentQuestionIndex: number = 0;
 let titleQuestions: string[] = ['What\'s your name?',
     'When were you born?',
     'Select your interests.',
-    'How do you plan to use Script Social?'];
+    'How do you plan to use Script Social?',
+    'Tell us about your employment.',
+'Let\'s put a face to the name!'];
 //-------------------------------Popup-Content--------------------------------
 let consolePopupContainer: JQuery<HTMLElement> = $('#console-popup-container');
 let consolePopupText: JQuery<HTMLElement> = $('#console-popup-text');
+
+// profile picture
+let profilePictureDiv: JQuery<HTMLElement> = $('#profile-picture-div');
+let defaultProfilePictureDiv: JQuery<HTMLElement> = $('#default-profile-picture-div');
+let uploadUploadProfilePictureImage: JQuery<HTMLElement> = $('#upload-profile-picture-img');
+let fileUploadDiv: JQuery<HTMLElement> = $('#file-upload-div');
+let fileUploadInput: JQuery<HTMLElement> = $('#file-upload-input');
 //----------------------------------Profile-----------------------------------
 let builtProfile: WelcomeProfile = new WelcomeProfile();
 //=============================-Server-Functions-=============================
 
 //=============================-Client-Functions-=============================
 
+function isOptionalSection(): boolean {
+    return currentQuestionIndex === 3 || currentQuestionIndex === 4 || currentQuestionIndex === 5;
+}
 //----------------------------Show-Correct-Button-----------------------------
 function showCorrectButton(): void {
     if (currentQuestionIndex === 0) {
         backButton.hide();
+        skipButton.hide();
         welcomeButtons.css('justify-content', 'flex-end');
+    } else if (isOptionalSection() && currentQuestionIndex !== titleQuestions.length - 1) {
+        skipButton.show();
+    } else if (currentQuestionIndex === titleQuestions.length - 1) {
+        skipButton.hide();
+        confirmButtonText.text('Finish');
     } else {
         backButton.show();
         welcomeButtons.css('justify-content', 'space-between');
@@ -60,12 +111,25 @@ function showCorrectInputTitle(): void {
         case 1:
             firstInputText.text('Birthdate: ');
             break;
+        case 2:
+            firstInputText.text('Interests: ');
+            break;
+        case 3:
+            firstInputText.text('Profile Intention: ');
+            break;
+        case 4:
+            firstInputText.text('Employment Status: ');
+            break;
+        case 5:
+            firstInputText.text('Profile Picture: ');
+            break;
     }
 }
 //--------------------------------Clear-Inputs--------------------------------
 function clearInputs(): void {
     firstInput.val('');
     secondInput.val('');
+    resetBubbleSelection();
 }
 //-----------------------Show-Correct-Inputs-And-Title------------------------
 function showCorrectInputsAndTitle() {
@@ -81,7 +145,49 @@ function showCorrectInputsAndTitle() {
             showCorrectInputTitle();
             showBirthdateSection();
             break;
+        case 2:
+            showCorrectInputs();
+            showCorrectInputTitle();
+            showInterestSection();
+            break;
+        case 3:
+            showOptionalInputPopup();
+            showCorrectInputs();
+            showCorrectInputTitle();
+            showProfileIntentionSection();
+            break;
+        case 4:
+            showOptionalInputPopup();
+            showCorrectInputs();
+            showCorrectInputTitle();
+            showEmploymentSection();
+            break;
+        case 5:
+            showOptionalInputPopup();
+            showCorrectInputs();
+            showCorrectInputTitle();
+            showProfilePictureSection();
+            break;
     }
+}
+// TODO: Fix issue with typing and deleting text when a button is clicked
+//       while the text is still typing.
+function showEmploymentSection(): void {
+    if (!bubbleDiv.is(':visible')) {
+        bubbleDiv.fadeIn();
+    }
+    bubbleItemsText.each((index: number, element: Element): void => {
+        if (index < numEmploymentStatusOptions) {
+            $(element).text(employmentStatusOptions[index]);
+        } else {
+            $(element).hide();
+        }
+    });
+}
+function showProfilePictureSection(): void {
+    profilePictureDiv.fadeIn();
+    defaultProfilePictureDiv.fadeIn();
+    fileUploadDiv.css('display', 'flex').fadeIn();
 }
 //----------------------Float-Title-Section-From-Bottom-----------------------
 async function floatTitleSectionFromBottom(): Promise<void> {
@@ -97,7 +203,7 @@ async function floatTitleSectionFromBottom(): Promise<void> {
 }
 //----------------------------Show-Inputs-Section-----------------------------
 function showInputsSection(): void {
-    inputsSection.fadeIn();
+    inputsSection.css('display', 'flex').fadeIn();
     //titleSection.fadeOut();
 }
 //----------------------------Show-Correct-Inputs-----------------------------
@@ -109,7 +215,48 @@ function showCorrectInputs(): void {
         case 1:
             setDateInput();
             break;
+        case 2:
+            setInterestInputs();
+            break;
+        case 3:
+            setProfileIntentionInputs();
+            break;
+        case 4:
+            setEmploymentInputs();
+            break;
+        case 5:
+            setProfilePictureInputs();
+            break;
     }
+}
+function setProfilePictureInputs(): void {
+    if (firstInput.is(':visible')) {
+        firstInput.fadeOut();
+    }
+    if (bubbleDiv.is(':visible')) {
+        bubbleDiv.fadeOut();
+    }
+    if (firstInputTitleDiv.is(':visible')) {
+        firstInputTitleDiv.fadeOut();
+    }
+}
+function setProfileIntentionInputs(): void {
+    bubbleDiv.fadeIn();
+    bubbleItemsText.each((index: number, element: Element): void => {
+        if (index < numProfileIntentions) {
+            $(element).text(profileIntentionsOptions[index]);
+        } else {
+            $(element).hide();
+        }
+    });
+}
+function setEmploymentInputs(): void {
+    bubbleDiv.fadeIn();
+    bubbleItemsText.each((index: number, element: Element): void => {
+        if (index < numEmploymentStatusOptions) {
+            $(element).text(employmentStatusOptions[index]);
+        }
+    });
 }
 //------------------------------Set-Name-Inputs-------------------------------
 function setNameInputs(): void {
@@ -137,6 +284,9 @@ function setDateInput(): void {
     if (secondInputTitleDiv.is(':visible')) {
         secondInputTitleDiv.fadeOut();
     }
+    if (bubbleDiv.is(':visible')) {
+        bubbleDiv.fadeOut();
+    }
 }
 //-----------------------------Show-Name-Section------------------------------
 function showNameSection() {
@@ -151,6 +301,18 @@ function showCorrectPopupMessage(): void {
         case 1:
             showPopupMessage('Please fill out the input.');
             break;
+        case 2:
+            showPopupMessage('Please select at least one interest.');
+            break;
+        case 3:
+            showPopupMessage('This is optional.');
+            break;
+        case 4:
+            showPopupMessage('This is optional.');
+            break;
+        case 5:
+            showPopupMessage('This is optional.');
+            break;
     }
 }
 //---------------------------Show-Birthdate-Section---------------------------
@@ -159,6 +321,28 @@ function showBirthdateSection() {
     secondInputTitleDiv.fadeOut();
     firstInput.attr('type', 'date');
     console.log(firstInput.val());
+}
+function showInterestSection(): void {
+    bubbleDiv.fadeIn();
+    bubbleItemsText.each((index: number, element: Element): void => {
+        $(element).text(interestsOptions[index]);
+    });
+}
+
+function showProfileIntentionSection(): void {
+    bubbleDiv.fadeIn();
+    bubbleItemsText.each((index: number, element: Element): void => {
+        if (index < numProfileIntentions) {
+            $(element).text(profileIntentionsOptions[index]);
+        } else {
+            $(element).hide();
+        }
+    });
+}
+function setInterestInputs() {
+    if (firstInput.is(':visible')) {
+        firstInput.fadeOut();
+    }
 }
 //-----------------------------Show-Popup-Message-----------------------------
 function showPopupMessage(message: string): void {
@@ -174,13 +358,56 @@ function hasEmptyInput(inputElement: JQuery<HTMLElement>): boolean {
     return inputElement.val() === '';
 }
 //----------------------------Select-Interest-Item----------------------------
-function selectInterestItem(): void {
-    let interestItem: JQuery<any> = $(this);
+function selectBubbleItem(): void {
+    switch (currentQuestionIndex) {
+        case 2:
+            selectInterest($(this));
+            break;
+        case 3:
+            selectProfileIntention($(this));
+            break;
+        case 4:
+            selectEmploymentStatus($(this));
+            break;
+
+    }
+}
+function selectEmploymentStatus(employmentItem: JQuery<Element>): void {
+    let indexOfEmployment: number = employmentItem.index();
+    employmentItem.fadeIn().toggleClass('general-select');
+    builtProfile.setEmployment(EmploymentStatus.from(employmentStatusOptions[indexOfEmployment]));
+    for (let i: number = 0; i < employmentStatusOptions.length; i++) {
+        if (i !== indexOfEmployment) {
+            bubbleItems.eq(i).removeClass('general-select');
+        }
+    }
+}
+function resetBubbleSelection(): void {
+    bubbleItems.removeClass('general-select');
+    interestItemsSelected = [];
+    builtProfile.setInterests([]);
+    builtProfile.setProfileIntention(null);
+}
+function selectInterest(interestItem: JQuery<Element>): void {
     if (interestItem.hasClass('general-select')) {
         deselectInterestItem(interestItem);
     } else {
         interestItemsSelected.push(interestItem);
         interestItem.fadeIn().toggleClass('general-select');
+    }
+}
+function selectProfileIntention(intentionItem: JQuery<Element>): void {
+    if (intentionItem.hasClass('general-select')) {
+        intentionItem.removeClass('general-select');
+    } else {
+        let indexOfIntention: number = intentionItem.index();
+        intentionItem.addClass('general-select');
+        builtProfile.setProfileIntention(ProfileIntention.from(profileIntentionsOptions[indexOfIntention]));
+        for (let i: number = 0; i < numProfileIntentions; i++) {
+            if (i !== indexOfIntention) {
+                bubbleItems.eq(i).removeClass('general-select');
+            }
+        }
     }
 }
 //---------------------------Deselect-Interest-Item---------------------------
@@ -229,6 +456,11 @@ function moveSection(promptMovement: PromptMovement): void {
         }
     }
 }
+function showOptionalInputPopup(): void {
+    if (consolePopupContainer.is(':hidden')) {
+        showPopupMessage('This is optional.');
+    }
+}
 //------------------------------Has-Valid-Inputs------------------------------
 function hasValidInputs(): boolean {
     let validInputs: boolean;
@@ -239,6 +471,18 @@ function hasValidInputs(): boolean {
         case 1:
             validInputs = !hasEmptyInput(firstInput);
             break;
+        case 2:
+            validInputs = hasInterestSelected();
+            break;
+        case 3:
+            validInputs = true;
+            break;
+        case 4:
+            validInputs = true;
+            break;
+        case 5:
+            validInputs = true;
+            break;
     }
     if (!validInputs) {
         showCorrectPopupMessage();
@@ -247,17 +491,20 @@ function hasValidInputs(): boolean {
     }
     return validInputs;
 }
+function hasInterestSelected(): boolean {
+    return interestItemsSelected.length > 0;
+}
 //--------------------------Delete-Section-Question---------------------------
 async function deleteSectionQuestion(): Promise<void> {
     return new Promise((resolve): void => {
-        deleteText(titleQuestionText).then((): void => {
+        deleteText(titleQuestionText, 90).then((): void => {
             resolve();
         });
     });
 }
 //--------------------------------Move-Section--------------------------------
 async function typeSectionQuestion(): Promise<void> {
-    await typeText(titleQuestionText, titleQuestions[currentQuestionIndex], 100, true);
+    await typeText(titleQuestionText, titleQuestions[currentQuestionIndex], 90, true);
 }
 //------------------------------Confetti-Bursts-------------------------------
 async function confettiBursts(): Promise<void> {
@@ -269,6 +516,17 @@ async function confettiBursts(): Promise<void> {
         }).then((): void => {
             resolve();
         });
+    });
+}
+function uploadImage(uploadEvent: Event): void {
+    defaultProfilePictureDiv.hide();
+    fileUploadDiv.hide();
+    let uploadFile: File = (uploadEvent.target as HTMLInputElement).files[0];
+    let uppy: Uppy = createUppy('#image-editor', '#status-bar');
+    uppy.addFile({
+        name: uploadFile.name,
+        type: uploadFile.type,
+        data: uploadFile
     });
 }
 //================================-Init-Load-=================================
@@ -285,7 +543,9 @@ if (shouldLoadPage) {
 }
 //=============================-Event-Listeners-==============================
 if (shouldLoadPage) {
-    interestItems.on('click', selectInterestItem);
+    bubbleItems.on('click', selectBubbleItem);
+    skipButton.on('click', confirmButtonPressed);
     confirmButton.on('click', confirmButtonPressed);
     backButton.on('click', backButtonPressed);
+    fileUploadInput.on('change', uploadImage);
 }
