@@ -1,10 +1,13 @@
 package org.theoliverlear.entity.user;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.theoliverlear.entity.Post;
+import org.theoliverlear.entity.content.Post;
+import org.theoliverlear.entity.user.personal.EmploymentStatus;
+import org.theoliverlear.entity.user.personal.Interests;
+import org.theoliverlear.entity.user.personal.Profile;
+import org.theoliverlear.entity.user.personal.ProfileIntention;
 
 import java.util.List;
 
@@ -24,6 +27,11 @@ public class User {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    // TODO: Add bio to welcome section and say "Tell us about yourself". Make
+    //       it optional. Maybe include favorite languages with bubble choices
+    //       by images of the logos.
+    @Column(name = "bio", columnDefinition = "TEXT")
+    private String bio;
     @AttributeOverride(
             name = "encodedPassword",
             column = @Column(name = "password"))
@@ -34,14 +42,31 @@ public class User {
     TODO: Add top frameworks
     TODO: Make Profile Class which contains information about what the user is and has displayed
      */
+    @OneToOne(mappedBy = "user")
+    private Profile profile;
     @OneToMany(mappedBy = "poster", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Post> posts;
+    @Column(name = "completed_welcome_survey")
+    private boolean completedWelcomeSurvey;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "interests_id")
+    private Interests interests;
+    @Embedded
+    BirthDate birthDate;
+    @Embedded
+    ProfileIntention profileIntention;
+    @Embedded
+    EmploymentStatus employmentStatus;
+    @OneToOne
+    @JoinColumn(name = "profile_picture_id")
+    private ProfilePicture profilePicture;
     public User() {
         this.username = "";
         this.email = "";
         this.firstName = "";
         this.lastName = "";
         this.safePassword = new SafePassword();
+        this.profile = new Profile();
     }
     public User(String username, String unencodedPassword) {
         this.username = username;
@@ -49,6 +74,7 @@ public class User {
         this.firstName = "";
         this.lastName = "";
         this.safePassword = new SafePassword(unencodedPassword);
+        this.profile = new Profile();
     }
     public User(String username, String email, String firstName, String lastName, SafePassword safePassword) {
         this.username = username;
@@ -56,6 +82,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.safePassword = safePassword;
+        this.profile = new Profile();
     }
     public User(String username, String email, String firstName, String lastName, SafePassword safePassword, List<Post> posts) {
         this.username = username;
@@ -64,5 +91,6 @@ public class User {
         this.lastName = lastName;
         this.safePassword = safePassword;
         this.posts = posts;
+        this.profile = new Profile();
     }
 }
