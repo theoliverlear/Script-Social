@@ -1,3 +1,4 @@
+import * as CryptoJS from 'crypto-js';
 //================================-Variables-=================================
 
 //------------------------------General-Content-------------------------------
@@ -12,7 +13,15 @@ let navBarItemsTexts: string[] = ['Home', 'Search', 'Account'];
 
 
 //=============================-Server-Functions-=============================
-
+async function getCurrentUserIdFromServer(): Promise<number> {
+    let response: Response = await fetch('/user/get/current/id');
+    if (!response.ok) {
+        let responseJson: any = await response.json();
+        return responseJson.userId;
+    } else {
+        return -1;
+    }
+}
 //=============================-Client-Functions-=============================
 
 //--------------------------Disable-Draggable-Images--------------------------
@@ -157,6 +166,11 @@ function toggleDesktopNavItems(): void {
         });
     }
 }
+//-------------------------------Hash-Password--------------------------------
+function hashPassword(password: string): string {
+    let hashedPassword = CryptoJS.SHA256(password);
+    return hashedPassword.toString();
+}
 //================================-Init-Load-=================================
 disableDraggableImages();
 //-------------------------------Load-Page------------------------------------
@@ -166,4 +180,4 @@ function loadPage(bodyElement: HTMLElement, pageName: string): boolean {
 //=============================-Event-Listeners-==============================
 hamburgerMenuDiv.on('click', toggleNavItems);
 //==================================-Export-==================================
-export { loadPage, typeText, deleteText };
+export { loadPage, typeText, deleteText, getCurrentUserIdFromServer, hashPassword };
