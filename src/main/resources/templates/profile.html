@@ -42,6 +42,10 @@
         <!-- Insert logo here -->
     </div>
 </header>
+<main>
+    <h1 th:text="${profile.firstName} + ' ' + ${profile.lastName}"></h1>
+    <p th:if="${profile.isMe}">This is your profile.</p>
+</main>
 <footer>
     <section id="footer-small-text-section">
         <div id="footer-left-text-item" class="footer-item">
