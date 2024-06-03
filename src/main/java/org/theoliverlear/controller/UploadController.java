@@ -12,15 +12,20 @@ import org.theoliverlear.communication.response.OperationSuccessfulResponse;
 import org.theoliverlear.entity.user.ProfilePicture;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.service.ProfilePictureService;
+import org.theoliverlear.service.UserService;
+
 import java.io.IOException;
 
 @Controller
 @RequestMapping("/upload")
 public class UploadController {
-    private final ProfilePictureService profilePictureService;
+    private ProfilePictureService profilePictureService;
+    private UserService userService;
     @Autowired
-    public UploadController(ProfilePictureService profilePictureService) {
+    public UploadController(ProfilePictureService profilePictureService,
+                            UserService userService) {
         this.profilePictureService = profilePictureService;
+        this.userService = userService;
     }
     // TODO: Add profile/banner/ endpoint
     @RequestMapping("/profile/picture")
@@ -33,7 +38,10 @@ public class UploadController {
         try {
             byte[] fileData = file.getBytes();
             ProfilePicture profilePicture = new ProfilePicture(fileName, fileData, sessionUser);
+            sessionUser.setProfilePicture(profilePicture);
+            profilePicture.setUser(sessionUser);
             this.profilePictureService.saveProfilePicture(profilePicture);
+            this.userService.saveUser(sessionUser);
             return new ResponseEntity<>(new OperationSuccessfulResponse(true), HttpStatus.OK);
         } catch (IOException ex) {
             return new ResponseEntity<>(new OperationSuccessfulResponse(false), HttpStatus.INTERNAL_SERVER_ERROR);
