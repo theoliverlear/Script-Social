@@ -1,5 +1,10 @@
 //=================================-Imports-==================================
-import {deleteText, loadPage, typeText} from "./globalScript";
+import {
+    deleteText,
+    getCurrentUserIdFromServer,
+    loadPage,
+    typeText
+} from "./globalScript";
 import {WelcomeProfile} from "./WelcomeProfile";
 import confetti from 'canvas-confetti';
 import {PromptMovement} from "./PromptMovement";
@@ -7,6 +12,7 @@ import {ProfileIntention} from "./ProfileIntention";
 import {createUppy} from "./imageUploadScript";
 import Uppy from "@uppy/core";
 import {EmploymentStatus} from "./EmploymentStatus";
+import {Interest} from "./Interest";
 //================================-Variables-=================================
 
 //------------------------------General-Content-------------------------------
@@ -28,16 +34,16 @@ let skipButton: JQuery<HTMLElement> = $('#skip-button');
 //------------------------------Interest-Section------------------------------
 let bubbleItems: JQuery<HTMLElement> = $('.bubble-item');
 let bubbleItemsText: JQuery<HTMLElement> = $('.bubble-item-text');
-const interestsOptions: string[] = ['Software Development',
-    'Web Development',
-    'Mobile Development',
-    'Database Management',
-    'Cybersecurity',
-    'Data Science',
-    'Game Development',
-    'Team Building',
-    'Project Management',
-    'Artificial Intelligence'];
+const interestsOptions: string[] = [Interest.SOFTWARE_DEVELOPMENT,
+    Interest.WEB_DEVELOPMENT,
+    Interest.MOBILE_DEVELOPMENT,
+    Interest.DATABASE_MANAGEMENT,
+    Interest.CYBERSECURITY,
+    Interest.DATA_SCIENCE,
+    Interest.GAME_DEVELOPMENT,
+    Interest.TEAM_BUILDING,
+    Interest.PROJECT_MANAGEMENT,
+    Interest.ARTIFICIAL_INTELLIGENCE];
 const numInterests: number = interestsOptions.length;
 
 const profileIntentionsOptions: string[] = [ProfileIntention.NETWORKING,
@@ -79,7 +85,30 @@ let fileUploadInput: JQuery<HTMLElement> = $('#file-upload-input');
 //----------------------------------Profile-----------------------------------
 let builtProfile: WelcomeProfile = new WelcomeProfile();
 //=============================-Server-Functions-=============================
-
+async function sendProfileToServer(): Promise<void> {
+    let response: Response = await fetch('/welcome/profile/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName: builtProfile.firstName,
+            lastName: builtProfile.lastName,
+            birthDate: builtProfile.birthDate.toDateString(),
+            interests: builtProfile.interests.map((interest: Interest): string => interest.toString()),
+            employment: builtProfile.employment.toString(),
+            profileIntention: builtProfile.profileIntention.toString()
+        })
+    });
+    if (response.ok) {
+        let userId: number = await getCurrentUserIdFromServer();
+        if (userId !== -1) {
+            window.location.href = '/profile/' + userId;
+        }
+    } else {
+        console.log('Error sending profile to server.');
+    }
+}
 //=============================-Client-Functions-=============================
 
 function isOptionalSection(): boolean {
@@ -168,12 +197,15 @@ function showCorrectInputsAndTitle() {
             showCorrectInputTitle();
             showProfilePictureSection();
             break;
+        case 6:
+            sendProfileToServer();
+            break;
     }
 }
 // TODO: Fix issue with typing and deleting text when a button is clicked
 //       while the text is still typing.
 function showEmploymentSection(): void {
-    if (!bubbleDiv.is(':visible')) {
+    if (bubbleDiv.is(':hidden')) {
         bubbleDiv.fadeIn();
     }
     bubbleItemsText.each((index: number, element: Element): void => {
@@ -343,6 +375,29 @@ function setInterestInputs() {
     if (firstInput.is(':visible')) {
         firstInput.fadeOut();
     }
+    if (secondInput.is(':visible')) {
+        secondInput.fadeOut();
+    }
+    if (bubbleDiv.is(':hidden')) {
+        bubbleDiv.fadeIn();
+    }
+    bubbleItemsText.each((index: number, element: Element): void => {
+        $(element).text(interestsOptions[index]);
+        if (index < numInterests) {
+            $(element).fadeIn();
+        }
+    });
+}
+function saveInputsOnMovement(): void {
+    switch (currentQuestionIndex) {
+        case 0:
+            builtProfile.setFirstName(String(firstInput.val()));
+            builtProfile.setLastName(String(secondInput.val()));
+            break;
+        case 1:
+            builtProfile.setBirthDate(new Date(String(firstInput.val())));
+            break;
+    }
 }
 //-----------------------------Show-Popup-Message-----------------------------
 function showPopupMessage(message: string): void {
@@ -351,7 +406,9 @@ function showPopupMessage(message: string): void {
 }
 //-----------------------------Hide-Popup-Message-----------------------------
 function hidePopupMessage(): void {
-    consolePopupContainer.fadeOut();
+    if (consolePopupContainer.is(':visible')) {
+        consolePopupContainer.fadeOut();
+    }
 }
 //------------------------------Has-Empty-Input-------------------------------
 function hasEmptyInput(inputElement: JQuery<HTMLElement>): boolean {
@@ -392,17 +449,19 @@ function selectInterest(interestItem: JQuery<Element>): void {
     if (interestItem.hasClass('general-select')) {
         deselectInterestItem(interestItem);
     } else {
-        interestItemsSelected.push(interestItem);
+        builtProfile.addInterest(interestsOptions[interestItem.index()]);
         interestItem.fadeIn().toggleClass('general-select');
     }
 }
 function selectProfileIntention(intentionItem: JQuery<Element>): void {
     if (intentionItem.hasClass('general-select')) {
+        builtProfile.setProfileIntention(null);
         intentionItem.removeClass('general-select');
     } else {
         let indexOfIntention: number = intentionItem.index();
         intentionItem.addClass('general-select');
         builtProfile.setProfileIntention(ProfileIntention.from(profileIntentionsOptions[indexOfIntention]));
+        console.log(builtProfile.profileIntention);
         for (let i: number = 0; i < numProfileIntentions; i++) {
             if (i !== indexOfIntention) {
                 bubbleItems.eq(i).removeClass('general-select');
@@ -413,9 +472,8 @@ function selectProfileIntention(intentionItem: JQuery<Element>): void {
 //---------------------------Deselect-Interest-Item---------------------------
 function deselectInterestItem(element: JQuery<Element>): void {
     element.toggleClass('general-select');
-    interestItemsSelected = interestItemsSelected.filter((item: JQuery<Element>): boolean => {
-        return item.text() === element.text();
-    });
+    let indexOfInterest: number = element.index();
+    builtProfile.removeInterest(interestsOptions[indexOfInterest]);
 }
 //---------------------------Confirm-Button-Pressed---------------------------
 function confirmButtonPressed(): void {
@@ -427,7 +485,10 @@ function backButtonPressed(): void {
 }
 //--------------------------------Move-Section--------------------------------
 function moveSection(promptMovement: PromptMovement): void {
+    saveInputsOnMovement();
+    console.log(builtProfile);
     if (promptMovement === PromptMovement.BACKWARD) {
+        hidePopupMessage();
         deleteSectionQuestion().then((): void => {
             clearInputs();
             currentQuestionIndex--;
@@ -439,6 +500,7 @@ function moveSection(promptMovement: PromptMovement): void {
         let previousIndex: number = currentQuestionIndex;
         let inputsAreValid: boolean = hasValidInputs();
         if (inputsAreValid) {
+            hidePopupMessage();
             currentQuestionIndex++;
         }
         let sectionHasChanged: boolean = previousIndex !== currentQuestionIndex;
@@ -492,7 +554,7 @@ function hasValidInputs(): boolean {
     return validInputs;
 }
 function hasInterestSelected(): boolean {
-    return interestItemsSelected.length > 0;
+    return builtProfile.interests.length > 0;
 }
 //--------------------------Delete-Section-Question---------------------------
 async function deleteSectionQuestion(): Promise<void> {
