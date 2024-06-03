@@ -4,7 +4,9 @@ export enum ProfileIntention {
     GETTING_INVOLVED = 'Getting Involved',
     CONNECT_TEAM = 'Connect with Team',
     FIND_TEAM = 'Find a Team',
-    SOCIALIZE = 'Socialize'
+    SOCIALIZE = 'Socialize',
+    JOB_SEARCH = 'Job Search',
+    LEARN = 'Learn'
 }
 export namespace ProfileIntention {
     export function from(profileIntentionString: string): ProfileIntention {
