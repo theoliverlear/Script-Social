@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class ProfileResponse {
-    String firstName;
-    String lastName;
-    boolean isMe;
+    private String firstName;
+    private String lastName;
+    private boolean isMe;
     public ProfileResponse(String firstName, String lastName, boolean isMe) {
         this.firstName = firstName;
         this.lastName = lastName;
