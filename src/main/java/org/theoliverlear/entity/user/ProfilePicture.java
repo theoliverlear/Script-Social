@@ -10,7 +10,7 @@ import lombok.Setter;
 @Table(name = "profile_pictures")
 public class ProfilePicture {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "file_name")
     private String fileName;
@@ -24,6 +24,10 @@ public class ProfilePicture {
         this.fileName = "";
         this.fileData = new byte[0];
         this.user = new User();
+    }
+    public ProfilePicture(String fileName, byte[] fileData) {
+        this.fileName = fileName;
+        this.fileData = fileData;
     }
     public ProfilePicture(String fileName, byte[] fileData, User user) {
         this.fileName = fileName;
