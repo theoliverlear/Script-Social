@@ -16,16 +16,20 @@ public class Profile {
     @MapsId
     @JoinColumn(name = "user_id")
     User user;
+    @Column(name = "is_public")
     boolean isPublic;
+    @Column(name = "display_profile_intention")
     boolean displayProfileIntention;
+    @Column(name = "display_employment_status")
     boolean displayEmploymentStatus;
+    @Column(name = "display_interests")
     boolean displayInterests;
     public Profile() {
         this.isPublic = false;
         this.displayProfileIntention = false;
         this.displayEmploymentStatus = false;
         this.displayInterests = false;
-        this.user = new User();
+        this.user = null;
     }
     public Profile(User user) {
         this.isPublic = false;
