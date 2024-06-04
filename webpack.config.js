@@ -13,7 +13,8 @@ module.exports = {
         './src/main/resources/static/script/EmploymentStatus.ts',
         './src/main/resources/static/script/PromptMovement.ts',
         './src/main/resources/static/script/imageUploadScript.ts',
-        './src/main/resources/static/script/Interest.ts'
+        './src/main/resources/static/script/Interest.ts',
+        './src/main/resources/static/script/UserProfile.ts'
     ],
     module: {
         rules: [
