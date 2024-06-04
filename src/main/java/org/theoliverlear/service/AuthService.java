@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.theoliverlear.communication.request.AuthRequest;
 import org.theoliverlear.entity.user.User;
+import org.theoliverlear.entity.user.personal.Profile;
 
 @Service
 @Getter
@@ -20,6 +21,8 @@ public class AuthService {
             return false;
         }
         User user = new User(authRequest.getUsername(), authRequest.getPassword());
+        Profile profile = new Profile(user);
+        user.setProfile(profile);
         this.userService.saveUser(user);
         User userWithId = this.userService.findByUsername(authRequest.getUsername());
         session.setAttribute("user", userWithId);
@@ -46,5 +49,7 @@ public class AuthService {
             return true;
         }
     }
-
+    public boolean isLoggedIn(HttpSession session) {
+        return session.getAttribute("user") != null;
+    }
 }
