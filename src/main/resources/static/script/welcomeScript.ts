@@ -49,6 +49,7 @@ const numInterests: number = interestsOptions.length;
 const profileIntentionsOptions: string[] = [ProfileIntention.NETWORKING,
     ProfileIntention.GETTING_INVOLVED,
     ProfileIntention.CONNECT_TEAM,
+    ProfileIntention.CREATE_TEAM,
     ProfileIntention.FIND_TEAM,
     ProfileIntention.SOCIALIZE];
 const numProfileIntentions: number = profileIntentionsOptions.length;
@@ -82,7 +83,7 @@ let defaultProfilePictureDiv: JQuery<HTMLElement> = $('#default-profile-picture-
 let uploadUploadProfilePictureImage: JQuery<HTMLElement> = $('#upload-profile-picture-img');
 let fileUploadDiv: JQuery<HTMLElement> = $('#file-upload-div');
 let fileUploadInput: JQuery<HTMLElement> = $('#file-upload-input');
-//----------------------------------Profile-----------------------------------
+//----------------------------------UserProfile-----------------------------------
 let builtProfile: WelcomeProfile = new WelcomeProfile();
 //=============================-Server-Functions-=============================
 async function sendProfileToServer(): Promise<void> {
@@ -144,7 +145,7 @@ function showCorrectInputTitle(): void {
             firstInputText.text('Interests: ');
             break;
         case 3:
-            firstInputText.text('Profile Intention: ');
+            firstInputText.text('UserProfile Intention: ');
             break;
         case 4:
             firstInputText.text('Employment Status: ');
