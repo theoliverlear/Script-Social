@@ -23,11 +23,12 @@ public class ProfilePicture {
     public ProfilePicture() {
         this.fileName = "";
         this.fileData = new byte[0];
-        this.user = new User();
+        this.user = null;
     }
     public ProfilePicture(String fileName, byte[] fileData) {
         this.fileName = fileName;
         this.fileData = fileData;
+        this.user = null;
     }
     public ProfilePicture(String fileName, byte[] fileData, User user) {
         this.fileName = fileName;
