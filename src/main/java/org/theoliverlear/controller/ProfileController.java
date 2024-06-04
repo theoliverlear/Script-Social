@@ -26,12 +26,20 @@ public class ProfileController {
         if (sessionUser == null) {
            return "redirect:/";
         }
-        Long idLong = Long.parseLong(id);
-        boolean isMe = sessionUser.getId().equals(idLong);
-        String firstName = sessionUser.getFirstName();
-        String lastName = sessionUser.getLastName();
-        ProfileResponse response = new ProfileResponse(firstName, lastName, isMe);
-        model.addAttribute("profile", response);
+        model.addAttribute("userId", id);
         return "profile";
+    }
+    @RequestMapping("/get/{id}")
+    public ResponseEntity<ProfileResponse> getProfile(@PathVariable String id, HttpSession session, Model model) {
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        if (sessionUser.getId().toString().equals(id)) {
+            model.addAttribute("username", sessionUser.getUsername());
+            return ResponseEntity.ok(new ProfileResponse(sessionUser.getFirstName(), sessionUser.getLastName(), true));
+        } else {
+            return ResponseEntity.ok(new ProfileResponse("John", "Doe", false));
+        }
     }
 }
