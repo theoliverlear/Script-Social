@@ -4,14 +4,18 @@ import * as CryptoJS from 'crypto-js';
 //------------------------------General-Content-------------------------------
 let body = $('body');
 const allImages: HTMLCollectionOf<HTMLImageElement> = document.getElementsByTagName('img');
+export let isLoggedIn: boolean = false;
+export let currentUsername: string = '';
 //----------------------------------Nav-Bar-----------------------------------
 let hamburgerMenuDiv = $('#nav-hamburger-menu');
 let navItems = $('.nav-item');
 let navBar = $('#nav-bar');
 let navBarDisplayed: boolean = false;
 let navBarItemsTexts: string[] = ['Home', 'Search', 'Account'];
-
-
+let accountNavItem: JQuery<HTMLElement> = $('#account-nav-item');
+let logoutButton: JQuery<HTMLElement> = $('#logout-button');
+let accountAndLogoutDiv = $('#account-and-logout-div');
+let accountNameText: JQuery<HTMLElement> = $('#account-name-text');
 //=============================-Server-Functions-=============================
 async function getCurrentUserIdFromServer(): Promise<number> {
     let response: Response = await fetch('/user/get/current/id');
@@ -20,6 +24,24 @@ async function getCurrentUserIdFromServer(): Promise<number> {
         return responseJson.userId;
     } else {
         return -1;
+    }
+}
+async function setIsLoggedInFromServer(): Promise<void> {
+    let response: Response = await fetch('/user/loggedin');
+    if (response.ok) {
+        let responseJson: any = await response.json();
+        isLoggedIn = Boolean(responseJson.loggedIn);
+    } else {
+        isLoggedIn = false;
+    }
+}
+async function setCurrentUsernameFromServer(): Promise<void> {
+    let response: Response = await fetch('/user/get/current/username');
+    if (response.ok) {
+        let responseJson: any = await response.json();
+        currentUsername = responseJson.username;
+    } else {
+        currentUsername = '';
     }
 }
 //=============================-Client-Functions-=============================
@@ -138,6 +160,7 @@ function toggleMobileNavItems(): void {
         navBar.fadeOut(200).css('display', 'none');
     }
 }
+
 //--------------------------Toggle-Desktop-Nav-Items--------------------------
 function toggleDesktopNavItems(): void {
     let navBarItem: JQuery<any> = $(this);
@@ -171,13 +194,65 @@ function hashPassword(password: string): string {
     let hashedPassword = CryptoJS.SHA256(password);
     return hashedPassword.toString();
 }
+function setNavBarNameAndFunction(): void {
+    if (isLoggedIn) {
+        if (navElementIsTyped(accountNavItem)) {
+            if (!navElementIsAccountName()) {
+                accountNameText.text(currentUsername);
+            }
+        } else {
+            navBarItemsTexts[2] = currentUsername;
+        }
+        accountNavItem.on('click', function(): void {
+            window.location.href = '/account';
+        });
+    } else {
+        if (navElementIsTyped(accountNavItem)) {
+            accountNameText.text('Account');
+        }
+        navBarItemsTexts[2] = 'Account';
+        accountNavItem.on('click', function(): void {
+            window.location.href = '/authorize';
+        });
+    }
+}
+function showLogoutButton(): void {
+    if (isLoggedIn) {
+        logoutButton.fadeIn();
+    }
+}
+function hideLogoutButton(): void {
+    logoutButton.fadeOut();
+}
+function navElementIsTyped(element: JQuery<HTMLElement>): boolean {
+    if (element.hasClass('nav-text')) {
+        return element.text() !== '';
+    } else {
+        let textElement = element.find('.nav-text');
+        return textElement.text() !== '';
+    }
+}
+function navElementIsAccountName() {
+    return accountNameText.text() === currentUsername;
+}
 //================================-Init-Load-=================================
 disableDraggableImages();
+setIsLoggedInFromServer().then(() => {
+    if (isLoggedIn) {
+        setCurrentUsernameFromServer().then(() => {
+            setNavBarNameAndFunction();
+        });
+    } else {
+        setNavBarNameAndFunction();
+    }
+});
 //-------------------------------Load-Page------------------------------------
 function loadPage(bodyElement: HTMLElement, pageName: string): boolean {
     return bodyElement.getAttribute('data-page') === pageName;
 }
 //=============================-Event-Listeners-==============================
 hamburgerMenuDiv.on('click', toggleNavItems);
+accountAndLogoutDiv.on('mouseover', showLogoutButton);
+accountAndLogoutDiv.on('mouseleave', hideLogoutButton);
 //==================================-Export-==================================
 export { loadPage, typeText, deleteText, getCurrentUserIdFromServer, hashPassword };
