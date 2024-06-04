@@ -1,0 +1,24 @@
+@import "global-variables";
+@import "global-mixins";
+@import "global-functions";
+
+#headline-section {
+    #profile-picture-with-name {
+        #profile-picture-div {
+            @include flex(center, center, row);
+            @include size($twelve-percent, $twelve-percent);
+            border-radius: 50%;
+
+            #profile-picture-img {
+                @include size(100%, 100%);
+                border-radius: inherit;
+            }
+        }
+        #profile-name-div {
+            @include flex(center, center, column);
+            .profile-name-headline-text {
+                color: $pristine-white;
+            }
+        }
+    }
+}
