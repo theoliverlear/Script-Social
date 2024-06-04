@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="../static/style/global-style.css"
           th:href="@{/style/global-style.css}"/>
     <link rel="stylesheet" href="../static/style/profile-style.css"
-            th:href="@{/style/profile-style.css}"/>
+          th:href="@{/style/profile-style.css}"/>
     <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
           th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
 </head>
-<body>
+<body data-page="profile" th:user-id="${userId}">
 <header>
     <div>
         <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
@@ -43,8 +43,41 @@
     </div>
 </header>
 <main>
-    <h1 th:text="${profile.firstName} + ' ' + ${profile.lastName}"></h1>
-    <p th:if="${profile.isMe}">This is your profile.</p>
+    <section id="banner-section">
+
+    </section>
+    <section id="user-tabs-section">
+
+    </section>
+    <section id="headline-section">
+        <div id="profile-picture-with-name">
+            <div id="profile-picture-div">
+                <img id="profile-picture-img" src="../static/image/icon/default_avatar.svg" alt="Profile Image"
+                     th:src="@{/image/icon/default_avatar.svg}">
+            </div>
+            <div id="profile-name-div">
+                <div id="profile-first-name">
+                    <h5 class="profile-name-headline-text" id="first-name-headline-text">Oliver</h5>
+                </div>
+                <div id="profile-last-name">
+                    <h5 class="profile-name-headline-text" id="last-name-headline-text">Sigwarth</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="write-post-section">
+        <div id="write-post-div">
+            <div id="write-post-textarea-div">
+                <textarea id="write-post-textarea" placeholder="What's on your mind?"></textarea>
+            </div>
+            <div id="write-post-button-div">
+                <button id="write-post-button">Post</button>
+            </div>
+        </div>
+    </section>
+    <section id="activity-section">
+
+    </section>
 </main>
 <footer>
     <section id="footer-small-text-section">
