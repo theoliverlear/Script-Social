@@ -42,7 +42,7 @@ public class User {
     TODO: Add top frameworks
     TODO: Make Profile Class which contains information about what the user is and has displayed
      */
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Profile profile;
     @OneToMany(mappedBy = "poster", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Post> posts;
