@@ -42,4 +42,10 @@ public class AuthController {
         HttpStatus status = isLoggedOut ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(new LogoutResponse(isLoggedOut), status);
     }
+    @RequestMapping("/isloggedin")
+    public ResponseEntity<AuthResponse> isLoggedIn(HttpSession session) {
+        boolean isLoggedIn = this.authService.isLoggedIn(session);
+        HttpStatus status = isLoggedIn ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+        return new ResponseEntity<>(new AuthResponse(isLoggedIn), status);
+    }
 }
