@@ -25,4 +25,12 @@ public class UserController {
         }
         return new ResponseEntity<>(new UserIdResponse(userId), HttpStatus.OK);
     }
+    @RequestMapping("/get/current/username")
+    public ResponseEntity<String> getCurrentUsername(HttpSession session) {
+        String username = this.userService.getCurrentUsername(session);
+        if (username == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<>(username, HttpStatus.OK);
+    }
 }
