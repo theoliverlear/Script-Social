@@ -18,10 +18,12 @@ public class Post {
     @ManyToOne()
     @JoinColumn(name = "user_id")
     private User poster;
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
+    @Column(name = "time_posted")
     private LocalDateTime timePosted;
     public Post() {
-        this.poster = new User();
+        this.poster = null;
         this.content = "";
         this.timePosted = LocalDateTime.now();
     }
