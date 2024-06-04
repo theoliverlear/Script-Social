@@ -46,6 +46,8 @@ body {
     }
 }
 header {
+    top: 0;
+    left: 0;
     width: 100%;
     height: calc-size(7, 4, 2);
     background-color: $apricot-glow;
@@ -72,11 +74,11 @@ header {
             transition: width, height, color, background-color, 0.15s;
             border-radius: $quarter-percent;
             @include flex(center, center, row);
-            &:hover {
-                background-color: $bright-sunset;
+            &:hover:not(#account-and-logout-div) {
+                background-color: $charcoal;
                 color: $pristine-white;
             }
-            &:active {
+            &:active:not(#account-and-logout-div) {
                 background-color: $charcoal;
                 color: $bright-sunset;
             }
@@ -85,6 +87,32 @@ header {
             }
             .nav-text {
                 transition: font-size, 0.15s;
+            }
+        }
+        #account-and-logout-div {
+            @include flex(center, center, column);
+            position: relative;
+            #logout-button {
+                position: absolute;
+                top: $three-percent;
+                background-color: $tangerine;
+                color: $pristine-white;
+                padding: $half-percent $one-percent;
+                border-radius: $quarter-percent;
+                &:hover {
+                    background-color: $bright-sunset;
+                }
+                &:active {
+                    background-color: $charcoal;
+                }
+            }
+            &:hover {
+                background-color: $charcoal;
+                color: $pristine-white;
+            }
+            &:active {
+                background-color: $charcoal;
+                color: $bright-sunset;
             }
         }
         & > div:last-child {
@@ -106,14 +134,17 @@ header {
             &:hover {
                 //font-size: $h4-quarter-font-size;
                 #search-icon-div {
-                    @include size(calc($two-percent * 0.85), calc($two-percent * 0.85));
+                    //@include size(calc($two-percent * 0.85), calc($two-percent * 0.85));
+                }
+                #search-icon-div {
+                    filter: invert(1);
                 }
             }
             &:active {
                 //font-size: $h4-half-font-size;
-                #search-icon-div {
-                    filter: invert(1);
-                }
+                //#search-icon-div {
+                //    filter: invert(1);
+                //}
             }
         }
     }
