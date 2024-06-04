@@ -204,7 +204,7 @@ function setNavBarNameAndFunction(): void {
             navBarItemsTexts[2] = currentUsername;
         }
         accountNavItem.on('click', function(): void {
-            window.location.href = '/account';
+            window.location.href = '/account/';
         });
     } else {
         if (navElementIsTyped(accountNavItem)) {
@@ -212,7 +212,7 @@ function setNavBarNameAndFunction(): void {
         }
         navBarItemsTexts[2] = 'Account';
         accountNavItem.on('click', function(): void {
-            window.location.href = '/authorize';
+            window.location.href = '/authorize/';
         });
     }
 }
