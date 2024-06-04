@@ -26,6 +26,7 @@ public class WelcomeService {
         user.setEmploymentStatus(employmentStatus);
         ProfileIntention profileIntention = new ProfileIntention(welcomeUserRequest.getProfileIntention());
         user.setProfileIntention(profileIntention);
+        user.setCompletedWelcomeSurvey(true);
         return user;
     }
 
