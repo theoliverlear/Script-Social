@@ -46,7 +46,7 @@ export function createUppy(dashboardSelector: string, statusBarSelector: string)
             }
         })
         .use(XHRUpload, {
-            endpoint: '/upload/picture',  // your server upload endpoint
+            endpoint: '/upload/profile/picture',  // your server upload endpoint
         })
         .on('file-editor:complete', () => {
             uppy.upload();
