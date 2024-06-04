@@ -42,7 +42,7 @@ function sendSignupToServer() {
         console.log(responseJson);
         let isAuthorized: boolean = responseJson.authorized;
         if (isAuthorized) {
-            window.location.href = '/profile/';
+            window.location.href = '/welcome/';
         } else {
             popupDiv.fadeIn(100);
             popupText.text('Username or email already exists');
