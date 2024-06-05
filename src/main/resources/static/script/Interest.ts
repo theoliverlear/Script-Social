@@ -49,4 +49,7 @@ export namespace Interest {
         }
         return interest;
     }
+    export function toString() {
+        return this.toString();
+    }
 }
