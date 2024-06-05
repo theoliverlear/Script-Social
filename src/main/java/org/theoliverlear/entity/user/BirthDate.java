@@ -5,21 +5,24 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
 @Embeddable
 public class BirthDate {
     @Column(name = "birth_date")
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
     public BirthDate() {
         this.birthDate = null;
     }
-    public BirthDate(LocalDateTime birthDate) {
+    public BirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
     public BirthDate(String birthDate) {
-        this.birthDate = LocalDateTime.parse(birthDate);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE MMM dd yyyy");
+        this.birthDate = LocalDate.parse(birthDate, dateFormatter);
     }
 }
