@@ -7,7 +7,7 @@
         #profile-picture-div {
             @include flex(center, center, row);
             @include size($twelve-percent, $twelve-percent);
-            border-radius: 50%;
+            border-radius: $one-half-percent;
 
             #profile-picture-img {
                 @include size(100%, 100%);
