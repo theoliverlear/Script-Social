@@ -14,6 +14,8 @@ public class ProfilePicture {
     private Long id;
     @Column(name = "file_name")
     private String fileName;
+    @Column(name = "file_type")
+    private String fileType;
     @Lob
     @Column(name = "file_data")
     private byte[] fileData;
@@ -28,11 +30,29 @@ public class ProfilePicture {
     public ProfilePicture(String fileName, byte[] fileData) {
         this.fileName = fileName;
         this.fileData = fileData;
+        this.fetchFileType();
         this.user = null;
     }
     public ProfilePicture(String fileName, byte[] fileData, User user) {
         this.fileName = fileName;
         this.fileData = fileData;
+        this.fetchFileType();
         this.user = user;
+    }
+    public void fetchFileType() {
+        String fileExtension = this.fileName.substring(this.fileName.lastIndexOf(".") + 1);
+        switch (fileExtension) {
+            case "jpg", "jpeg" -> this.fileType = "image/jpeg";
+            case "png" -> this.fileType = "image/png";
+            case "gif" -> this.fileType = "image/gif";
+            case "bmp" -> this.fileType = "image/bmp";
+            case "webp" -> this.fileType = "image/webp";
+            case "svg" -> this.fileType = "image/svg+xml";
+            default -> throw new IllegalArgumentException("Invalid file type");
+        }
+    }
+    public String setFileName(String fileName) {
+        this.fetchFileType();
+        return this.fileName = fileName;
     }
 }
