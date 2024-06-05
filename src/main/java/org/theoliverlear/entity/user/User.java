@@ -93,4 +93,16 @@ public class User {
         this.posts = posts;
         this.profile = new Profile();
     }
+    @Override
+    public String toString() {
+        return "User{" +
+                ", username='" + this.username + '\'' +
+                ", email='" + this.email + '\'' +
+                ", firstName='" + this.firstName + '\'' +
+                ", lastName='" + this.lastName + '\'' +
+                ", completedWelcomeSurvey=" + this.completedWelcomeSurvey +
+                ", interests=" + this.interests +
+                ", birthDate=" + this.birthDate +
+                '}';
+    }
 }
