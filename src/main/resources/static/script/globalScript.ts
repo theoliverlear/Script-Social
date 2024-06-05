@@ -2,24 +2,24 @@ import * as CryptoJS from 'crypto-js';
 //================================-Variables-=================================
 
 //------------------------------General-Content-------------------------------
-let body = $('body');
+let body: JQuery<HTMLElement> = $('body');
 const allImages: HTMLCollectionOf<HTMLImageElement> = document.getElementsByTagName('img');
 export let isLoggedIn: boolean = false;
 export let currentUsername: string = '';
 //----------------------------------Nav-Bar-----------------------------------
-let hamburgerMenuDiv = $('#nav-hamburger-menu');
-let navItems = $('.nav-item');
-let navBar = $('#nav-bar');
+let hamburgerMenuDiv: JQuery<HTMLElement> = $('#nav-hamburger-menu');
+let navItems: JQuery<HTMLElement> = $('.nav-item');
+let navBar: JQuery<HTMLElement> = $('#nav-bar');
 let navBarDisplayed: boolean = false;
 let navBarItemsTexts: string[] = ['Home', 'Search', 'Account'];
 let accountNavItem: JQuery<HTMLElement> = $('#account-nav-item');
 let logoutButton: JQuery<HTMLElement> = $('#logout-button');
-let accountAndLogoutDiv = $('#account-and-logout-div');
+let accountAndLogoutDiv: JQuery<HTMLElement> = $('#account-and-logout-div');
 let accountNameText: JQuery<HTMLElement> = $('#account-name-text');
 //=============================-Server-Functions-=============================
 async function getCurrentUserIdFromServer(): Promise<number> {
     let response: Response = await fetch('/user/get/current/id');
-    if (!response.ok) {
+    if (response.ok) {
         let responseJson: any = await response.json();
         return responseJson.userId;
     } else {
@@ -27,7 +27,7 @@ async function getCurrentUserIdFromServer(): Promise<number> {
     }
 }
 async function setIsLoggedInFromServer(): Promise<void> {
-    let response: Response = await fetch('/user/loggedin');
+    let response: Response = await fetch('/authorize/isloggedin');
     if (response.ok) {
         let responseJson: any = await response.json();
         isLoggedIn = Boolean(responseJson.loggedIn);
