@@ -99,6 +99,7 @@ header {
                 color: $pristine-white;
                 padding: $half-percent $one-percent;
                 border-radius: $quarter-percent;
+                display: none;
                 &:hover {
                     background-color: $bright-sunset;
                 }
