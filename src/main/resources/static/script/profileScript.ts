@@ -1,9 +1,10 @@
 import {loadPage} from "./globalScript";
 import {UserProfile} from "./UserProfile";
 
-let body = $('body');
+let body: JQuery<HTMLElement> = $('body');
 let userProfile: UserProfile = new UserProfile();
 let userId: number = Number(document.body.getAttribute('user-id'));
+let profilePictureImage: JQuery<HTMLElement> = $('#profile-picture-img');
 
 let firstNameHeadlineText = $('#first-name-headline-text');
 let lastNameHeadlineText = $('#last-name-headline-text');
@@ -22,6 +23,26 @@ async function getUserDataFromServer(): Promise<void> {
         buildUserProfile(user);
     }
 }
+async function hasProfilePictureFromServer(): Promise<boolean> {
+    let response = await fetch(`/profile/get/${userId}/has-profile-picture`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    if (response.ok) {
+        let responseJson = await response.json();
+        return responseJson.hasProfilePicture;
+    } else {
+        return false;
+    }
+}
+async function getProfilePictureSequence() {
+    let hasProfilePicture: boolean = await hasProfilePictureFromServer();
+    if (hasProfilePicture) {
+        profilePictureImage.attr('src', `/profile/get/${userId}/profile-picture`);
+    }
+}
 function buildUserProfile(serverResponse: any) {
     userProfile.setFirstName(serverResponse.firstName);
     userProfile.setLastName(serverResponse.lastName);
@@ -35,7 +56,9 @@ function applyUserProfileToPage() {
 }
 let shouldLoad: boolean = loadPage(document.body, 'profile');
 if (shouldLoad) {
-    getUserDataFromServer().then(() => {
+    getProfilePictureSequence();
+    getUserDataFromServer().then((): void => {
         applyUserProfileToPage();
+
     });
 }
