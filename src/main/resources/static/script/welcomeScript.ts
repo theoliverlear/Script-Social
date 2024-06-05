@@ -72,7 +72,7 @@ let titleQuestions: string[] = ['What\'s your name?',
     'Select your interests.',
     'How do you plan to use Script Social?',
     'Tell us about your employment.',
-'Let\'s put a face to the name!'];
+    'Let\'s put a face to the name!'];
 //-------------------------------Popup-Content--------------------------------
 let consolePopupContainer: JQuery<HTMLElement> = $('#console-popup-container');
 let consolePopupText: JQuery<HTMLElement> = $('#console-popup-text');
@@ -83,26 +83,35 @@ let defaultProfilePictureDiv: JQuery<HTMLElement> = $('#default-profile-picture-
 let uploadUploadProfilePictureImage: JQuery<HTMLElement> = $('#upload-profile-picture-img');
 let fileUploadDiv: JQuery<HTMLElement> = $('#file-upload-div');
 let fileUploadInput: JQuery<HTMLElement> = $('#file-upload-input');
-//----------------------------------UserProfile-----------------------------------
+//----------------------------------Profile-----------------------------------
 let builtProfile: WelcomeProfile = new WelcomeProfile();
 //=============================-Server-Functions-=============================
 async function sendProfileToServer(): Promise<void> {
+    console.log('Called sendProfileToServer()');
+    console.log('Built profile: ', builtProfile);
+    console.log('Built profile profile intention: ', builtProfile.profileIntention);
+    let interestsString: string = builtProfile.interests.map((interest: Interest): string => interest.toString()).join(', ');
+    if (builtProfile.profileIntention === null) {
+        builtProfile.setProfileIntention(ProfileIntention.SOCIALIZE);
+    }
     let response: Response = await fetch('/welcome/profile/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          firstName: builtProfile.firstName,
+            firstName: builtProfile.firstName,
             lastName: builtProfile.lastName,
             birthDate: builtProfile.birthDate.toDateString(),
-            interests: builtProfile.interests.map((interest: Interest): string => interest.toString()),
+            interests: interestsString,
             employment: builtProfile.employment.toString(),
-            profileIntention: builtProfile.profileIntention.toString()
+            profileIntention: builtProfile.profileIntention || ''
         })
     });
     if (response.ok) {
+        console.log('Profile sent to server.');
         let userId: number = await getCurrentUserIdFromServer();
+        console.log('User id: ', userId);
         if (userId !== -1) {
             window.location.href = '/profile/' + userId;
         }
@@ -145,7 +154,7 @@ function showCorrectInputTitle(): void {
             firstInputText.text('Interests: ');
             break;
         case 3:
-            firstInputText.text('UserProfile Intention: ');
+            firstInputText.text('Profile Intention: ');
             break;
         case 4:
             firstInputText.text('Employment Status: ');
@@ -162,7 +171,7 @@ function clearInputs(): void {
     resetBubbleSelection();
 }
 //-----------------------Show-Correct-Inputs-And-Title------------------------
-function showCorrectInputsAndTitle() {
+async function showCorrectInputsAndTitle() {
     console.log(currentQuestionIndex);
     switch (currentQuestionIndex) {
         case 0:
@@ -199,7 +208,7 @@ function showCorrectInputsAndTitle() {
             showProfilePictureSection();
             break;
         case 6:
-            sendProfileToServer();
+            await sendProfileToServer();
             break;
     }
 }
@@ -461,14 +470,16 @@ function selectProfileIntention(intentionItem: JQuery<Element>): void {
     } else {
         let indexOfIntention: number = intentionItem.index();
         intentionItem.addClass('general-select');
+        console.log(profileIntentionsOptions[indexOfIntention]);
         builtProfile.setProfileIntention(ProfileIntention.from(profileIntentionsOptions[indexOfIntention]));
-        console.log(builtProfile.profileIntention);
+        console.log("Profile intention: ", builtProfile.profileIntention);
         for (let i: number = 0; i < numProfileIntentions; i++) {
             if (i !== indexOfIntention) {
                 bubbleItems.eq(i).removeClass('general-select');
             }
         }
     }
+    console.log("End result intention: ", builtProfile.profileIntention);
 }
 //---------------------------Deselect-Interest-Item---------------------------
 function deselectInterestItem(element: JQuery<Element>): void {
@@ -484,6 +495,11 @@ function confirmButtonPressed(): void {
 function backButtonPressed(): void {
     moveSection(PromptMovement.BACKWARD);
 }
+
+function isLastSection() {
+    return currentQuestionIndex === 6;
+}
+
 //--------------------------------Move-Section--------------------------------
 function moveSection(promptMovement: PromptMovement): void {
     saveInputsOnMovement();
@@ -504,16 +520,25 @@ function moveSection(promptMovement: PromptMovement): void {
             hidePopupMessage();
             currentQuestionIndex++;
         }
+        console.log('Current question index: ', currentQuestionIndex);
         let sectionHasChanged: boolean = previousIndex !== currentQuestionIndex;
+        if (isLastSection()) {
+            showCorrectInputsAndTitle();
+        }
         if (sectionHasChanged) {
-            deleteSectionQuestion().then((): void => {
-                if (inputsAreValid) {
-                    clearInputs();
-                }
+            if (isLastSection()) {
                 showCorrectInputsAndTitle();
-                typeSectionQuestion();
                 showCorrectButton();
-            });
+            } else {
+                deleteSectionQuestion().then((): void => {
+                    if (inputsAreValid) {
+                        clearInputs();
+                    }
+                    showCorrectInputsAndTitle();
+                    typeSectionQuestion();
+                    showCorrectButton();
+                });
+            }
         } else {
             showCorrectPopupMessage();
         }
