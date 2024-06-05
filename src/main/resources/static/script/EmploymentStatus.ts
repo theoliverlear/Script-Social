@@ -34,4 +34,7 @@ export namespace EmploymentStatus {
         }
         return employmentStatus;
     }
+    export function toString() {
+        return this.toString();
+    }
 }
