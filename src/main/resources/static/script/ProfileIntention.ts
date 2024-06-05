@@ -22,6 +22,9 @@ export namespace ProfileIntention {
             case ProfileIntention.CONNECT_TEAM:
                 profileIntention = ProfileIntention.CONNECT_TEAM;
                 break;
+            case ProfileIntention.CREATE_TEAM:
+                profileIntention = ProfileIntention.CREATE_TEAM;
+                break;
             case ProfileIntention.FIND_TEAM:
                 profileIntention = ProfileIntention.FIND_TEAM;
                 break;
@@ -32,5 +35,8 @@ export namespace ProfileIntention {
                 throw new Error('Invalid Profile Intention');
         }
         return profileIntention;
+    }
+    export function toString() {
+        return this.toString();
     }
 }
