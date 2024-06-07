@@ -72,7 +72,10 @@ let titleQuestions: string[] = ['What\'s your name?',
     'Select your interests.',
     'How do you plan to use Script Social?',
     'Tell us about your employment.',
-    'Let\'s put a face to the name!'];
+    'Let\'s put a face to the name!',
+    'Tell the world about yourself!'];
+let bioDiv: JQuery<HTMLElement> = $('#bio-div');
+let userBioInput: JQuery<HTMLElement> = $('#user-bio-input');
 //-------------------------------Popup-Content--------------------------------
 let consolePopupContainer: JQuery<HTMLElement> = $('#console-popup-container');
 let consolePopupText: JQuery<HTMLElement> = $('#console-popup-text');
@@ -122,22 +125,40 @@ async function sendProfileToServer(): Promise<void> {
 //=============================-Client-Functions-=============================
 
 function isOptionalSection(): boolean {
-    return currentQuestionIndex === 3 || currentQuestionIndex === 4 || currentQuestionIndex === 5;
+    let isOptional: boolean;
+    switch (currentQuestionIndex) {
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+            isOptional = true;
+            break;
+        default:
+            isOptional = false;
+            break;
+    }
+    return isOptional;
 }
 //----------------------------Show-Correct-Button-----------------------------
 function showCorrectButton(): void {
-    if (currentQuestionIndex === 0) {
-        backButton.hide();
-        skipButton.hide();
-        welcomeButtons.css('justify-content', 'flex-end');
-    } else if (isOptionalSection() && currentQuestionIndex !== titleQuestions.length - 1) {
-        skipButton.show();
-    } else if (currentQuestionIndex === titleQuestions.length - 1) {
-        skipButton.hide();
-        confirmButtonText.text('Finish');
-    } else {
-        backButton.show();
-        welcomeButtons.css('justify-content', 'space-between');
+    switch (currentQuestionIndex) {
+        case 0:
+            backButton.hide();
+            skipButton.hide();
+            welcomeButtons.css('justify-content', 'flex-end');
+            break;
+        case titleQuestions.length - 1:
+            skipButton.hide();
+            confirmButtonText.text('Finish');
+            break;
+        default:
+            if (isOptionalSection()) {
+                skipButton.show();
+            } else {
+                backButton.show();
+                welcomeButtons.css('justify-content', 'space-between');
+            }
+            break;
     }
 }
 //--------------------------Show-Correct-Input-Title--------------------------
@@ -162,12 +183,16 @@ function showCorrectInputTitle(): void {
         case 5:
             firstInputText.text('Profile Picture: ');
             break;
+        case 6:
+            firstInputText.text('Your Bio: ');
+            break;
     }
 }
 //--------------------------------Clear-Inputs--------------------------------
 function clearInputs(): void {
     firstInput.val('');
     secondInput.val('');
+    userBioInput.val('');
     resetBubbleSelection();
 }
 //-----------------------Show-Correct-Inputs-And-Title------------------------
@@ -208,8 +233,19 @@ async function showCorrectInputsAndTitle() {
             showProfilePictureSection();
             break;
         case 6:
+            showOptionalInputPopup();
+            showCorrectInputs();
+            showCorrectInputTitle();
+            showBioSection();
+            break;
+        case 7:
             await sendProfileToServer();
             break;
+    }
+}
+function showBioSection(): void {
+    if (bioDiv.is(':hidden')) {
+        bioDiv.fadeIn();
     }
 }
 // TODO: Fix issue with typing and deleting text when a button is clicked
@@ -269,9 +305,58 @@ function showCorrectInputs(): void {
         case 5:
             setProfilePictureInputs();
             break;
+        case 6:
+            setBioInputs();
+            break;
+        case 7:
+            hideAllInputs();
+            break;
+    }
+}
+function hideAllInputs(): void {
+    if (firstInputTitleDiv.is(':visible')) {
+        firstInputTitleDiv.fadeOut();
+    }
+    if (firstInputText.is(':visible')) {
+        firstInputText.fadeOut();
+    }
+    if (firstInput.is(':visible')) {
+        firstInput.fadeOut();
+    }
+    if (secondInputTitleDiv.is(':visible')) {
+        secondInputTitleDiv.fadeOut();
+    }
+    if (secondInputText.is(':visible')) {
+        secondInputText.fadeOut();
+    }
+    if (secondInput.is(':visible')) {
+        secondInput.fadeOut();
+    }
+    if (bubbleDiv.is(':visible')) {
+        bubbleDiv.fadeOut();
+    }
+    if (bioDiv.is(':visible')) {
+        bioDiv.fadeOut();
+    }
+    if (profilePictureDiv.is(':visible')) {
+        profilePictureDiv.fadeOut();
+    }
+}
+function setBioInputs(): void {
+    if (firstInput.is(':visible')) {
+        firstInput.fadeOut();
+    }
+    if (bubbleDiv.is(':visible')) {
+        bubbleDiv.fadeOut();
+    }
+    if (profilePictureDiv.is(':visible')) {
+        profilePictureDiv.fadeOut();
     }
 }
 function setProfilePictureInputs(): void {
+    if (bioDiv.is(':visible')) {
+        bioDiv.fadeOut();
+    }
     if (firstInput.is(':visible')) {
         firstInput.fadeOut();
     }
@@ -406,6 +491,9 @@ function saveInputsOnMovement(): void {
             break;
         case 1:
             builtProfile.setBirthDate(new Date(String(firstInput.val())));
+            break;
+        case 6:
+            builtProfile.setBio(String(userBioInput.val()));
             break;
     }
 }
@@ -571,6 +659,15 @@ function hasValidInputs(): boolean {
         case 5:
             validInputs = true;
             break;
+        case 6:
+            validInputs = true;
+            break;
+        case 7:
+            validInputs = true;
+            break;
+        default:
+            validInputs = false;
+            break;
     }
     if (!validInputs) {
         showCorrectPopupMessage();
@@ -585,7 +682,7 @@ function hasInterestSelected(): boolean {
 //--------------------------Delete-Section-Question---------------------------
 async function deleteSectionQuestion(): Promise<void> {
     return new Promise((resolve): void => {
-        deleteText(titleQuestionText, 90).then((): void => {
+        deleteText(titleQuestionText, 90, true).then((): void => {
             resolve();
         });
     });
