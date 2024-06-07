@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.theoliverlear.communication.request.AuthRequest;
+import org.theoliverlear.communication.request.SignupRequest;
 import org.theoliverlear.communication.response.AuthResponse;
 import org.theoliverlear.communication.response.LogoutResponse;
 import org.theoliverlear.service.AuthService;
@@ -25,8 +26,8 @@ public class AuthController {
         return "authorize";
     }
     @RequestMapping("/signup")
-    public ResponseEntity<AuthResponse> signup(@RequestBody AuthRequest authRequest, HttpSession session) {
-        boolean isAuthorized = this.authService.signup(authRequest, session);
+    public ResponseEntity<AuthResponse> signup(@RequestBody SignupRequest signupRequest, HttpSession session) {
+        boolean isAuthorized = this.authService.signup(signupRequest, session);
         HttpStatus status = isAuthorized ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(new AuthResponse(isAuthorized), status);
     }
