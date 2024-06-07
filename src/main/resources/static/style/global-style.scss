@@ -224,6 +224,40 @@ header {
     border: $thinnest-border solid $charcoal;
     background-color: $tangerine;
 }
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+::-webkit-scrollbar {
+    width: $half-percent;
+    height: 75%;
+    background: $alabaster-stone;
+    border-radius: $one-percent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: $charcoal;
+    border-radius: $one-percent;
+    border: $thinnest-border solid $alabaster-stone;
+    &:active {
+        border: $thin-border solid $alabaster-stone;
+    }
+}
+::-webkit-scrollbar-track {
+
+}
+
+.general-text-area {
+    width: $fifteen-percent;
+    height: auto;
+    border-radius: $one-percent;
+    border: $thinnest-border solid $alabaster-stone;
+    background-color: $charcoal;
+    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+    //text-decoration: underline;
+    color: $pristine-white;
+    font-size: $p-font-size;
+    padding: $one-percent;
+    resize: vertical;
+}
 .general-button {
     color: $pristine-white;
     background-color: $charcoal;
