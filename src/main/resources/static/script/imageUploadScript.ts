@@ -46,12 +46,12 @@ export function createUppy(dashboardSelector: string, statusBarSelector: string)
             }
         })
         .use(XHRUpload, {
-            endpoint: '/upload/profile/picture',  // your server upload endpoint
+            endpoint: '/upload/profile/picture',
         })
         .on('file-editor:complete', () => {
             uppy.upload();
         })
-        .on('complete', (result) => {
+        .on('complete', (result): void => {
             console.log('Upload result:', result);
         });
     return uppy;
