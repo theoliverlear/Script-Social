@@ -2,8 +2,6 @@ package org.theoliverlear.communication.request;
 
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 public class WelcomeUserRequest {
     private String firstName;
