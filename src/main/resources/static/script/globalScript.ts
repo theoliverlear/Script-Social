@@ -105,7 +105,10 @@ async function typeText(element: JQuery<HTMLElement>,
     });
 }
 //--------------------------------Delete-Text---------------------------------
-async function deleteText(element: JQuery<HTMLElement>, speed: number = 150): Promise<void> {
+async function deleteText(element: JQuery<HTMLElement>, speed: number = 150, addBeingTypedStyle: boolean = false): Promise<void> {
+    if (addBeingTypedStyle) {
+        element.addClass('being-typed');
+    }
     return new Promise((resolve): void => {
         function deleteChar(): void {
             let text = element.text();
@@ -113,6 +116,9 @@ async function deleteText(element: JQuery<HTMLElement>, speed: number = 150): Pr
                 element.text(text.slice(0, -1));
                 setTimeout(deleteChar, speed);
             } else {
+                if (addBeingTypedStyle) {
+                    element.removeClass('being-typed');
+                }
                 resolve();
             }
         }
