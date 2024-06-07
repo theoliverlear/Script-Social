@@ -23,20 +23,32 @@
 #inputs-section {
     @include flex(center, center, column);
     display: none;
+    .welcome-input-title-text {
+        //text-decoration: underline;
+        //text-underline-offset: simplest-calc(0.05);
+        //text-decoration-thickness: simplest-calc(0.05);
+    }
     #title-question-div {
         @include flex(center, center, column);
         #title-question-text {
+            font-size: calc($h4-font-size * 1.15);
             color: $pristine-white;
         }
     }
     #bubble-selection-div {
         display: none;
         .bubble-item {
+            margin: $half-percent 0;
             @extend .general-hover;
             &:active {
                 @extend .general-select;
             }
         }
+    }
+    #bio-div {
+        @include flex(center, center, column);
+        display: none;
+        margin: $one-percent $zero;
     }
     #profile-picture-div {
         @include flex(center, center, column);
