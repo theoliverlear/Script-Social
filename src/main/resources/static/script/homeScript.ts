@@ -35,6 +35,7 @@ function sendSignupToServer() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
+            email: emailInput.val(),
             username: usernameInput.val(),
             password: hashedPassword
         })
@@ -128,7 +129,7 @@ function typeTitleText(): void {
 }
 //-------------------Apply-Popup-And-Confirm-Div-Container--------------------
 function applyPopupAndConfirmDivContainer() {
-    if (popupDiv.css('display') === 'none') {
+    if (popupDiv.is(':hidden')) {
         popupAndConfirmDiv.css('justify-content', 'flex-end');
     } else {
         popupAndConfirmDiv.css('justify-content', 'space-between');
