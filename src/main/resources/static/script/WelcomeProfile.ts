@@ -11,19 +11,22 @@ export class WelcomeProfile {
     private _interests: Interest[];
     private _employment: EmploymentStatus;
     private _profileIntention: ProfileIntention;
+    private _bio: string;
     //===========================-Constructors-===============================
     constructor(firstName: string = '',
                 lastName: string = '',
                 birthDate: Date = new Date(),
                 interests: Interest[] = [],
                 employment: EmploymentStatus = EmploymentStatus.INDEPENDENT,
-                profileIntention: ProfileIntention = ProfileIntention.SOCIALIZE) {
+                profileIntention: ProfileIntention = ProfileIntention.SOCIALIZE,
+                bio: string = '') {
         this._firstName = firstName;
         this._lastName = lastName;
         this._birthDate = birthDate;
         this._interests = interests;
         this._employment = employment;
         this._profileIntention = profileIntention;
+        this._bio = bio;
     }
     //=============================-Methods-==================================
 
@@ -67,6 +70,9 @@ export class WelcomeProfile {
     get profileIntention(): ProfileIntention {
         return this._profileIntention;
     }
+    get bio(): string {
+        return this._bio;
+    }
     //=============================-Setters-==================================
     setFirstName(firstName: string): void {
         this._firstName = firstName;
@@ -86,5 +92,7 @@ export class WelcomeProfile {
     setProfileIntention(profileIntention: ProfileIntention): void {
         this._profileIntention = profileIntention;
     }
-
+    setBio(bio: string): void {
+        this._bio = bio;
+    }
 }
