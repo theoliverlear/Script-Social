@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.theoliverlear.communication.request.AuthRequest;
+import org.theoliverlear.communication.request.SignupRequest;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.entity.user.personal.Profile;
 
@@ -16,15 +17,15 @@ public class AuthService {
     public AuthService(UserService userService) {
         this.userService = userService;
     }
-    public boolean signup(AuthRequest authRequest, HttpSession session) {
-        if (this.userService.userExistsByUsername(authRequest.getUsername())) {
+    public boolean signup(SignupRequest signupRequest, HttpSession session) {
+        if (this.userService.userExistsByUsername(signupRequest.getUsername())) {
             return false;
         }
-        User user = new User(authRequest.getUsername(), authRequest.getPassword());
+        User user = new User(signupRequest.getUsername(), signupRequest.getPassword(), signupRequest.getEmail());
         Profile profile = new Profile(user);
         user.setProfile(profile);
         this.userService.saveUser(user);
-        User userWithId = this.userService.findByUsername(authRequest.getUsername());
+        User userWithId = this.userService.findByUsername(signupRequest.getUsername());
         session.setAttribute("user", userWithId);
         return true;
     }
