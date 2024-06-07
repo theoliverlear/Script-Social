@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.theoliverlear.entity.content.Post;
-import org.theoliverlear.entity.user.personal.EmploymentStatus;
-import org.theoliverlear.entity.user.personal.Interests;
-import org.theoliverlear.entity.user.personal.Profile;
-import org.theoliverlear.entity.user.personal.ProfileIntention;
+import org.theoliverlear.entity.user.personal.*;
 
 import java.util.List;
 
@@ -30,8 +27,8 @@ public class User {
     // TODO: Add bio to welcome section and say "Tell us about yourself". Make
     //       it optional. Maybe include favorite languages with bubble choices
     //       by images of the logos.
-    @Column(name = "bio", columnDefinition = "TEXT")
-    private String bio;
+    @Embedded
+    private Bio bio;
     @AttributeOverride(
             name = "encodedPassword",
             column = @Column(name = "password"))
@@ -71,6 +68,14 @@ public class User {
     public User(String username, String unencodedPassword) {
         this.username = username;
         this.email = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.safePassword = new SafePassword(unencodedPassword);
+        this.profile = new Profile();
+    }
+    public User(String username, String unencodedPassword, String email) {
+        this.username = username;
+        this.email = email;
         this.firstName = "";
         this.lastName = "";
         this.safePassword = new SafePassword(unencodedPassword);
