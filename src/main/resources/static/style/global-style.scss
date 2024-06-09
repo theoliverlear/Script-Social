@@ -1,6 +1,7 @@
 @import "global-variables";
 @import "global-mixins";
 @import "global-functions";
+@import "global-placeholders";
 
 h1 {
     font-size: $h1-font-size;
@@ -165,20 +166,14 @@ header {
     color: $pristine-white;
     @include flex(center, center, column);
     .general-console {
-        box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
         width: auto;
-        padding: $one-percent;
-        border: $thin-border solid $alabaster-stone;
-        border-radius: $one-percent;
-
+        @extend %console;
         .console-input-title-field {
             @include flex(center, center, row);
-
             .console-title-field {
                 margin-right: $one-percent;
                 flex: 1;
             }
-
             .console-input {
                 border: none;
                 width: $fifteen-percent;
@@ -241,10 +236,16 @@ header {
         border: $thin-border solid $alabaster-stone;
     }
 }
-::-webkit-scrollbar-track {
-
+.general-post {
+    @include flex(center, center, column);
+    width: $fifteen-percent;
+    @extend %console;
+    margin: $one-percent $zero;
+    p {
+        color: $pristine-white;
+        font-size: $p-font-size;
+    }
 }
-
 .general-text-area {
     width: $fifteen-percent;
     height: auto;
