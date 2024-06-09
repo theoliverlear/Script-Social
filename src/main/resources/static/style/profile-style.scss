@@ -3,7 +3,16 @@
 @import "global-functions";
 
 #headline-section {
+    @include flex(center, center, row);
+    background-image: url("../image/alt_default_banner.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    margin-top: $one-percent;
     #profile-picture-with-name {
+        margin: $one-percent 0 0 0;
+        @include flex(center, center, column);
         #profile-picture-div {
             @include flex(center, center, row);
             @include size($twelve-percent, $twelve-percent);
@@ -12,12 +21,18 @@
             #profile-picture-img {
                 @include size(100%, 100%);
                 border-radius: inherit;
+                background-color: $absolute-black;
             }
         }
-        #profile-name-div {
+        #profile-name-and-bio-div {
             @include flex(center, center, column);
             .profile-name-headline-text {
                 color: $pristine-white;
+            }
+            #profile-bio {
+                #profile-bio-text {
+                    color: $pure-orange;
+                }
             }
         }
     }
