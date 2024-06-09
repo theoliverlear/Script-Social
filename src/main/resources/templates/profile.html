@@ -62,12 +62,17 @@
                 <img id="profile-picture-img" src="../static/image/icon/default_avatar.svg" alt="Profile Image"
                      th:src="@{/image/icon/default_avatar.svg}">
             </div>
-            <div id="profile-name-div">
-                <div id="profile-first-name">
-                    <h5 class="profile-name-headline-text" id="first-name-headline-text">Oliver</h5>
+            <div id="profile-name-and-bio-div">
+                <div id="profile-name">
+                    <div id="profile-first-name">
+                        <h5 class="profile-name-headline-text" id="first-name-headline-text">Oliver</h5>
+                    </div>
+                    <div id="profile-last-name">
+                        <h5 class="profile-name-headline-text" id="last-name-headline-text">Sigwarth</h5>
+                    </div>
                 </div>
-                <div id="profile-last-name">
-                    <h5 class="profile-name-headline-text" id="last-name-headline-text">Sigwarth</h5>
+                <div id="profile-bio">
+                    <p id="profile-bio-text">I'm a software developer who loves to code!</p>
                 </div>
             </div>
         </div>
@@ -75,14 +80,30 @@
     <section id="write-post-section">
         <div id="write-post-div">
             <div id="write-post-textarea-div">
-                <textarea id="write-post-textarea" placeholder="What's on your mind?"></textarea>
+                <textarea class="general-text-area" id="write-post-textarea" placeholder="What's on your mind?"></textarea>
             </div>
-            <div id="write-post-button-div">
-                <button id="write-post-button">Post</button>
+            <div id="write-post-button-div" class="general-button">
+                <h5>POST</h5>
             </div>
         </div>
     </section>
     <section id="activity-section">
+        <div class="general-post">
+            <div>
+                <p>
+                    When I think about computer science, I think about
+                    computers. When I think about computers, I think about
+                    robots. When I think about robots, I think about
+                    electricity. When I think about electricity, I think of
+                    the universe. When I think of the universe, I think of
+                    omniscience. Basically, computer science is everything. I
+                    just proved the matrix. Totally flawless logic.
+                </p>
+            </div>
+        </div>
+        <!-- TODO: When someone hovers over an icon which is charcoal colored
+                   by default, it should turn apricot or orange when hovered
+                   and then filled that color when selected. -->
 
     </section>
 </main>
