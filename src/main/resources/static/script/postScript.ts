@@ -1,0 +1,1 @@
+// Methods for making posts throughout the program
