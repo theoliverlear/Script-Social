@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     private UserRepository userRepository;
@@ -21,6 +23,9 @@ public class UserService {
     }
     public Long getCurrentUserId(HttpSession session) {
         User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return null;
+        }
         return user.getId();
     }
     public User findByUsername(String username) {
@@ -29,5 +34,9 @@ public class UserService {
     public String getCurrentUsername(HttpSession session) {
         User user = (User) session.getAttribute("user");
         return user.getUsername();
+    }
+    public User getUserById(Long id) {
+        Optional<User> user = this.userRepository.findById(id);
+        return user.orElse(null);
     }
 }
