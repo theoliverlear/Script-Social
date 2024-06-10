@@ -9,3 +9,6 @@
     box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
     padding: $one-percent;
 }
+%indented-text {
+    text-indent: $two-percent;
+}
