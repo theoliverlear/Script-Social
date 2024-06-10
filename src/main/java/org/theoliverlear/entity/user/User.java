@@ -98,6 +98,9 @@ public class User {
         this.posts = posts;
         this.profile = new Profile();
     }
+    public void addPost(Post post) {
+        this.posts.add(post);
+    }
     @Override
     public String toString() {
         return "User{" +
