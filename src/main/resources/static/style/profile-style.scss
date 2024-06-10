@@ -1,6 +1,7 @@
 @import "global-variables";
 @import "global-mixins";
 @import "global-functions";
+@import "global-placeholders";
 
 #headline-section {
     @include flex(center, center, row);
@@ -17,7 +18,7 @@
             @include flex(center, center, row);
             @include size($twelve-percent, $twelve-percent);
             border-radius: $one-half-percent;
-
+            border: $thin-border solid $sandstone;
             #profile-picture-img {
                 @include size(100%, 100%);
                 border-radius: inherit;
@@ -26,14 +27,57 @@
         }
         #profile-name-and-bio-div {
             @include flex(center, center, column);
-            .profile-name-headline-text {
-                color: $pristine-white;
+            #profile-name {
+                margin: $one-percent $one-percent $one-percent calc($one-percent + $half-percent);
+                @include flex(center, center, row);
+                .profile-name-headline-text {
+                    color: $charcoal;
+                    &:first-child {
+                        margin-right: $half-percent;
+                    }
+                }
+
             }
             #profile-bio {
+                background-color: $apricot-glow;
+                border-radius: $one-percent;
+                padding: $one-percent;
                 #profile-bio-text {
-                    color: $pure-orange;
+                    //color: $pure-orange;
+                    color: $charcoal;
                 }
             }
+        }
+    }
+}
+#activity-section {
+    #activity-title-div {
+        @include flex(center, center, row);
+        margin: $one-percent 0;
+        #activity-title-text {
+            color: $pristine-white;
+        }
+    }
+}
+#write-post-section {
+    #write-post-div {
+        @include flex(center, center, column);
+        width: $fifteen-percent;
+        height: $ten-percent;
+        @extend %console;
+        textarea {
+            width: $fourteen-percent;
+            height: $six-percent;
+            background-color: $charcoal;
+            color: $pristine-white;
+            border-radius: $one-percent;
+            padding: $one-percent;
+            margin: $one-percent $zero;
+            resize: none;
+        }
+        #write-post-button-div {
+            align-self: flex-end;
+            margin-bottom: $half-percent;
         }
     }
 }
