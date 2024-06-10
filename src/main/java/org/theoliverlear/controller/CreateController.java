@@ -18,12 +18,14 @@ import org.theoliverlear.service.UserService;
 @RequestMapping("/create")
 public class CreateController {
     private ScriptSocialService scriptSocialService;
+    private UserService userService;
     private PostService postService;
     @Autowired
     public CreateController(ScriptSocialService scriptSocialService,
                             UserService userService,
                             PostService postService) {
         this.scriptSocialService = scriptSocialService;
+        this.userService = userService;
         this.postService = postService;
     }
     @RequestMapping("/")
@@ -40,6 +42,18 @@ public class CreateController {
     }
     @RequestMapping("/post/comment")
     public ResponseEntity<OperationSuccessfulResponse> createComment(@RequestBody CommentRequest commentRequest, HttpSession session) {
-        return null;
+        if (!this.scriptSocialService.userInSession(session)) {
+            return new ResponseEntity<>(new OperationSuccessfulResponse(false), HttpStatus.UNAUTHORIZED);
+        }
+        boolean userExists = this.userService.userExistsById(commentRequest.getUserId());
+        if (!userExists) {
+            return new ResponseEntity<>(new OperationSuccessfulResponse(false), HttpStatus.NOT_FOUND);
+        }
+        boolean postExists = this.postService.postExistsById(commentRequest.getPostId());
+        if (!postExists) {
+            return new ResponseEntity<>(new OperationSuccessfulResponse(false), HttpStatus.NOT_FOUND);
+        }
+        boolean commentCreated = this.postService.addComment(commentRequest);
+        return new ResponseEntity<>(new OperationSuccessfulResponse(commentCreated), HttpStatus.OK);
     }
 }
