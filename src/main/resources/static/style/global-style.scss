@@ -244,6 +244,7 @@ header {
     p {
         color: $pristine-white;
         font-size: $p-font-size;
+        @extend %indented-text;
     }
 }
 .general-text-area {
@@ -278,9 +279,6 @@ header {
     @include size($five-percent, $two-percent);
     padding: $zero $one-percent;
     display: none;
-}
-.indented-text {
-    text-indent: $two-percent;
 }
 .being-typed::after {
     text-decoration: none;
