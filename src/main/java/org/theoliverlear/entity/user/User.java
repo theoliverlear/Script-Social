@@ -101,6 +101,9 @@ public class User {
     public void addPost(Post post) {
         this.posts.add(post);
     }
+    public void removePost(Post post) {
+        this.posts.remove(post);
+    }
     @Override
     public String toString() {
         return "User{" +
@@ -112,5 +115,32 @@ public class User {
                 ", interests=" + this.interests +
                 ", birthDate=" + this.birthDate +
                 '}';
+    }
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
+        }
+        if (object instanceof User comparedUser) {
+            boolean sameUsername = this.username.equals(comparedUser.username);
+            boolean sameEmail = this.email.equals(comparedUser.email);
+            boolean sameFirstName = this.firstName.equals(comparedUser.firstName);
+            boolean sameLastName = this.lastName.equals(comparedUser.lastName);
+            boolean sameSafePassword = this.safePassword.equals(comparedUser.safePassword);
+            boolean sameProfile = this.profile.equals(comparedUser.profile);
+            boolean sameCompletedWelcomeSurvey = this.completedWelcomeSurvey == comparedUser.completedWelcomeSurvey;
+            boolean sameInterests = this.interests.equals(comparedUser.interests);
+            boolean sameBirthDate = this.birthDate.equals(comparedUser.birthDate);
+            boolean sameProfileIntention = this.profileIntention.equals(comparedUser.profileIntention);
+            boolean sameEmploymentStatus = this.employmentStatus.equals(comparedUser.employmentStatus);
+            boolean sameProfilePicture = this.profilePicture.equals(comparedUser.profilePicture);
+            if (this.id == null) {
+                return sameUsername && sameEmail && sameFirstName && sameLastName && sameSafePassword && sameProfile && sameCompletedWelcomeSurvey && sameInterests && sameBirthDate && sameProfileIntention && sameEmploymentStatus && sameProfilePicture;
+            } else {
+                boolean sameId = this.id.equals(comparedUser.id);
+                return sameId && sameUsername && sameEmail && sameFirstName && sameLastName && sameSafePassword && sameProfile && sameCompletedWelcomeSurvey && sameInterests && sameBirthDate && sameProfileIntention && sameEmploymentStatus && sameProfilePicture;
+            }
+        }
+        return false;
     }
 }
