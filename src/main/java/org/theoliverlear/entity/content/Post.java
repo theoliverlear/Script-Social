@@ -16,7 +16,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User poster;
     @Column(name = "content", columnDefinition = "TEXT")
@@ -39,6 +39,9 @@ public class Post {
         this.poster = poster;
         this.content = content;
         this.timePosted = timePosted;
+    }
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
     }
     @Override
     public boolean equals(Object object) {
