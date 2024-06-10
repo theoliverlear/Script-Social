@@ -21,6 +21,9 @@ public class UserService {
     public boolean userExistsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
+    public boolean userExistsById(Long id) {
+        return this.userRepository.existsById(id);
+    }
     public Long getCurrentUserId(HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user == null) {
