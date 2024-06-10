@@ -1,7 +1,9 @@
 package org.theoliverlear.service;
 
 import org.springframework.stereotype.Service;
+import org.theoliverlear.communication.request.CommentRequest;
 import org.theoliverlear.communication.request.PostRequest;
+import org.theoliverlear.entity.content.Comment;
 import org.theoliverlear.entity.content.Post;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.repository.PostRepository;
@@ -41,5 +43,23 @@ public class PostService {
             this.userService.saveUser(user);
             return true;
         }
+    }
+    public boolean addComment(CommentRequest commentRequest) {
+        Long postId = commentRequest.getPostId();
+        Post post = this.postRepository.findById(postId).orElse(null);
+        if (post == null) {
+            return false;
+        }
+        User user = this.userService.getUserById(commentRequest.getUserId());
+        if (user == null) {
+            return false;
+        }
+        Comment comment = new Comment(user, commentRequest.getContent());
+        post.addComment(comment);
+        this.postRepository.save(post);
+        return true;
+    }
+    public boolean postExistsById(Long postId) {
+        return this.postRepository.existsById(postId);
     }
 }
