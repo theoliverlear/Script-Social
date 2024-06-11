@@ -39,7 +39,8 @@ public class UserService {
         return user.getUsername();
     }
     public User getUserById(Long id) {
-        Optional<User> user = this.userRepository.findById(id);
-        return user.orElse(null);
+//        Optional<User> user = this.userRepository.findById(id);
+        User user = this.userRepository.findUserById(id);
+        return user;
     }
 }
