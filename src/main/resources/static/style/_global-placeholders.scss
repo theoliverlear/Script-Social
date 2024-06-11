@@ -12,3 +12,8 @@
 %indented-text {
     text-indent: $two-percent;
 }
+%selected-auth {
+    background-color: $apricot-glow;
+    border: $thin-border solid $alabaster-stone;
+    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+}
