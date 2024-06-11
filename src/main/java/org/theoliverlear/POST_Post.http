@@ -2,6 +2,6 @@ POST localhost:8080/create/post
 content-type: application/json
 
 {
-  "userId": 967,
+  "userId": 8,
   "content": "this is a test"
 }
