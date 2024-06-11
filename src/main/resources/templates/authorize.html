@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Signup | Login | Script Social</title>
-    <link rel="stylesheet" href="../static/style/universal-style.css"
-          th:href="@{/style/universal-style.css}"/>
+    <link rel="stylesheet" href="../static/style/global-style.css"
+          th:href="@{/style/global-style.css}"/>
     <link rel="stylesheet" href="../static/style/authorize-style.css"
           th:href="@{/style/authorize-style.css}"/>
     <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
@@ -48,6 +48,93 @@
     </div>
 </header>
 <main>
+    <section id="choose-auth-type-section">
+        <div id="signup-button" class="auth-type-button">
+            <h3>Signup</h3>
+        </div>
+        <div id="login-button" class="auth-type-button">
+            <h3>Login</h3>
+        </div>
+    </section>
+    <section id="auth-input-section">
+        <div id="signup-div" class="general-console-container">
+            <div class="general-console">
+                <div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Email: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="join-console-email-input" type="email">
+                        </div>
+                    </div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Username: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="join-console-username-input" type="text">
+                        </div>
+                    </div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Password: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="join-console-password-input" type="password">
+                        </div>
+                    </div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Confirm Password: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="join-console-confirm-password-input" type="password">
+                        </div>
+                    </div>
+                    <!-- TODO: Add agree to terms checkbox -->
+                </div>
+                <div id="signup-popup-confirm-div" class="console-popup-and-confirm-div">
+                    <div id="signup-popup-div" class="console-popup-div">
+                        <p id="signup-popup-text">Please enter an email.</p>
+                    </div>
+                    <div id="confirm-signup-button" class="general-button">
+                        <h5 class="general-button-text">CONFIRM</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="login-div" class="general-console-container">
+            <div class="general-console">
+                <div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Username: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="login-console-username-input" type="text">
+                        </div>
+                    </div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Password: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="login-console-password-input" type="password">
+                        </div>
+                    </div>
+                </div>
+                <div id="login-popup-confirm-div" class="console-popup-and-confirm-div">
+                    <div id="login-popup-div" class="console-popup-div">
+                        <p id="popup-login-text">Please enter a username.</p>
+                    </div>
+                    <div id="confirm-login-button" class="general-button">
+                        <h5 class="general-button-text">CONFIRM</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 <footer>
     <section id="footer-small-text-section">
