@@ -40,6 +40,7 @@ public class ProfileController {
         model.addAttribute("userId", id);
         return "profile";
     }
+    //TODO delete unnecessary get in path: it isn't restful
     @RequestMapping("/get/{id}")
     public ResponseEntity<ProfileResponse> getProfile(@PathVariable String id, HttpSession session, Model model) {
         User sessionUser = (User) session.getAttribute("user");
