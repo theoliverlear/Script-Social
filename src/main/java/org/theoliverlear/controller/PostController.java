@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.theoliverlear.entity.content.Post;
 import org.theoliverlear.service.PostService;
+import org.theoliverlear.service.UserService;
 
 import java.util.List;
 
@@ -16,12 +17,17 @@ import java.util.List;
 @RequestMapping("/post")
 public class PostController {
     private PostService postService;
+    private UserService userService;
     @Autowired
-    public PostController(PostService postService) {
+    public PostController(PostService postService,UserService userService) {
         this.postService = postService;
+        this.userService = userService;
     }
     @RequestMapping("/get/{userId}")
     public ResponseEntity<List<Post>> getAllPostsByPosterId(@PathVariable Long userId) {
+        if(!userService.userExistsById(userId)) {
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        }
         List<Post> posts = this.postService.getAllPostsByPosterId(userId);
         HttpStatus status = posts == null ? HttpStatus.NOT_FOUND : HttpStatus.OK;
         return new ResponseEntity<>(posts, status);
