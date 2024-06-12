@@ -3,10 +3,9 @@ package org.theoliverlear.service;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.repository.UserRepository;
-
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -31,6 +30,7 @@ public class UserService {
         }
         return user.getId();
     }
+    @Transactional
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
@@ -38,8 +38,8 @@ public class UserService {
         User user = (User) session.getAttribute("user");
         return user.getUsername();
     }
+    @Transactional
     public User getUserById(Long id) {
-//        Optional<User> user = this.userRepository.findById(id);
         User user = this.userRepository.findUserById(id);
         return user;
     }
