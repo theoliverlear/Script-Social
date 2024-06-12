@@ -1,5 +1,12 @@
 //=================================-Imports-==================================
-import {hashPassword, loadPage, typeText} from "./globalScript";
+import {
+    emailIsValid,
+    hashPassword,
+    inputIsEmpty,
+    loadPage,
+    removeTextArtifacts,
+    typeText
+} from "./globalScript";
 //================================-Variables-=================================
 
 //-------------------------------Title-Content--------------------------------
@@ -60,21 +67,12 @@ function containsEmptyFields(): boolean {
            inputIsEmpty(confirmPasswordInput) ||
            inputIsEmpty(emailInput);
 }
-function removeArtifacts(event: JQuery.KeyDownEvent): void {
-    if (event.key === ' ') {
-        event.preventDefault();
-    }
-}
+
 function passwordsMatch(): boolean {
     return passwordInput.val() === confirmPasswordInput.val();
 }
-function emailIsValid(): boolean {
-    return emailInput.val().toString().includes('@') &&
-           emailInput.val().toString().includes('.');
-}
-function inputIsEmpty(input: JQuery<HTMLElement>): boolean {
-    return input.val().toString().trim() === '';
-}
+
+
 function showCorrectMessageForTypingInput(): void {
     if (!passwordsMatch()) {
         showPopupMessage(passwordsDoNotMatchMessage);
@@ -83,7 +81,7 @@ function showCorrectMessageForTypingInput(): void {
     hidePopupMessage();
 }
 function showCorrectMessageForConfirmJoin(): void {
-    if (!emailIsValid()) {
+    if (!emailIsValid(emailInput)) {
         showPopupMessage(invalidEmailMessage);
         return;
     }
@@ -96,7 +94,7 @@ function typeInputSequence(): void {
     showCorrectMessageForTypingInput();
 }
 function allValidInputs(): boolean {
-    return passwordsMatch() && emailIsValid() && !containsEmptyFields();
+    return passwordsMatch() && emailIsValid(emailInput) && !containsEmptyFields();
 }
 function confirmJoinSequence(): void {
     let validInputs: boolean = allValidInputs();
@@ -144,10 +142,10 @@ if (shouldLoadPage) {
 //=============================-Event-Listeners-==============================
 if (shouldLoadPage) {
     confirmJoinButton.on('click', confirmJoinSequence);
-    joinInputs.forEach((inputElement: JQuery<HTMLElement>) => {
-        inputElement.on('keydown', removeArtifacts);
+    joinInputs.forEach((inputElement: JQuery<HTMLElement>): void => {
+        inputElement.on('keydown', removeTextArtifacts);
     });
-    passwordInputs.forEach((inputElement: JQuery<HTMLElement>) => {
+    passwordInputs.forEach((inputElement: JQuery<HTMLElement>): void => {
         inputElement.on('input', typeInputSequence);
     });
 
