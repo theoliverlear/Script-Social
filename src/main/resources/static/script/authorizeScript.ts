@@ -2,7 +2,7 @@
 import {AuthType} from "./AuthType";
 import {
     clearInputs,
-    getCurrentUserIdFromServer, hasEmptyInputs,
+    getCurrentUserIdFromServer, hasEmptyInputs, hashPassword,
     loadPage,
     removeTextArtifacts
 } from "./globalScript";
@@ -33,6 +33,7 @@ let signupInputs: JQuery<HTMLElement>[] = [signupEmailInput, signupUsernameInput
 let loginInputs: JQuery<HTMLElement>[] = [loginUsernameInput, loginPasswordInput];
 //=============================-Server-Functions-=============================
 async function sendSignupRequest(): Promise<void> {
+    let hashedPassword: string = hashPassword(signupPasswordInput.val() as string);
     let response: void | Response = await fetch('/authorize/signup', {
         method: 'POST',
         headers: {
@@ -41,7 +42,7 @@ async function sendSignupRequest(): Promise<void> {
         body: JSON.stringify({
             email: signupEmailInput.val(),
             username: signupUsernameInput.val(),
-            password: signupPasswordInput.val()
+            password: hashedPassword
         })
     }).catch((error): void => {
         console.error('Error: ', error);
@@ -60,6 +61,7 @@ async function sendSignupRequest(): Promise<void> {
     }
 }
 async function sendLoginRequest(): Promise<void> {
+    let hashedPassword: string = hashPassword(loginPasswordInput.val() as string);
     let response: void | Response  = await fetch('/authorize/login', {
         method: 'POST',
         headers: {
@@ -67,7 +69,7 @@ async function sendLoginRequest(): Promise<void> {
         },
         body: JSON.stringify({
             username: loginUsernameInput.val(),
-            password: loginPasswordInput.val()
+            password: hashedPassword
         })
     }).catch((error): void => {
         console.error('Error: ', error);
@@ -77,7 +79,10 @@ async function sendLoginRequest(): Promise<void> {
             let responseJson = await response.json();
             let isAuthorized: boolean = responseJson.authorized;
             if (isAuthorized) {
-                let isWelcomeCompleted: boolean = responseJson.welcomeCompleted;
+                let isWelcomeCompleted: boolean = responseJson.completedWelcome;
+                console.log('responseJson: ', responseJson);
+                console.log(responseJson.completedWelcome);
+                console.log('isWelcomeCompleted: ', isWelcomeCompleted);
                 if (!isWelcomeCompleted) {
                     window.location.href = '/welcome/';
                 } else {
