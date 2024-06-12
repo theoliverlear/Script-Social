@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class AuthResponse {
     private boolean isAuthorized;
-    public AuthResponse(boolean isAuthorized) {
+    private boolean completedWelcome;
+    public AuthResponse(boolean isAuthorized, boolean completedWelcome) {
         this.isAuthorized = isAuthorized;
     }
 }
