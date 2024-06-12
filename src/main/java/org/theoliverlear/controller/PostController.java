@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.theoliverlear.communication.response.OperationSuccessfulResponse;
 import org.theoliverlear.entity.content.Post;
 import org.theoliverlear.service.PostService;
 
@@ -27,9 +28,9 @@ public class PostController {
         return new ResponseEntity<>(posts, status);
     }
     @DeleteMapping("/delete/{postId}")
-    public ResponseEntity<Boolean> deletePost(@PathVariable Long postId) {
+    public ResponseEntity<OperationSuccessfulResponse> deletePost(@PathVariable Long postId) {
         boolean postDeleted = this.postService.deletePost(postId);
-        return new ResponseEntity<>(postDeleted, postDeleted ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        HttpStatus status = postDeleted ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(new OperationSuccessfulResponse(postDeleted), status);
     }
-
 }
