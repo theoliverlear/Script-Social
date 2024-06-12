@@ -32,4 +32,10 @@
     .console-popup-and-confirm-div {
         justify-content: flex-end;
     }
+    #popup-div {
+        @extend %console;
+        color: $pristine-white;
+        text-align: center;
+        display: none;
+    }
 }
