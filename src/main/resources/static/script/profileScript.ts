@@ -1,5 +1,6 @@
-import {loadPage} from "./globalScript";
+import {getCurrentUserIdFromServer, loadPage} from "./globalScript";
 import {UserProfile} from "./UserProfile";
+import {sendPostToServer} from "./postScript";
 
 let body: JQuery<HTMLElement> = $('body');
 let userProfile: UserProfile = new UserProfile();
@@ -8,6 +9,15 @@ let profilePictureImage: JQuery<HTMLElement> = $('#profile-picture-img');
 
 let firstNameHeadlineText = $('#first-name-headline-text');
 let lastNameHeadlineText = $('#last-name-headline-text');
+
+let writePostButton: JQuery<HTMLElement> = $('#write-post-button-div');
+let writePostTextArea: JQuery<HTMLElement> = $('#write-post-textarea');
+
+async function makePost(): Promise<void> {
+    let postMessage: string = writePostTextArea.val() as string;
+    let userId: number = await getCurrentUserIdFromServer();
+    sendPostToServer(userId, postMessage);
+}
 
 async function getUserDataFromServer(): Promise<void> {
     let response = await fetch(`/profile/get/${userId}`, {
@@ -59,6 +69,6 @@ if (shouldLoad) {
     getProfilePictureSequence();
     getUserDataFromServer().then((): void => {
         applyUserProfileToPage();
-
     });
+    writePostButton.on('click', makePost);
 }
