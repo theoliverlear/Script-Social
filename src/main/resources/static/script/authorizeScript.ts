@@ -1,80 +1,177 @@
+//=================================-Imports-==================================
 import {AuthType} from "./AuthType";
-import {loadPage} from "./globalScript";
+import {
+    clearInputs,
+    getCurrentUserIdFromServer, hasEmptyInputs,
+    loadPage,
+    removeTextArtifacts
+} from "./globalScript";
+import {AuthPopup} from "./AuthPopup";
+//================================-Variables-=================================
+let currentAuthType: AuthType = AuthType.SIGNUP;
+let signupButton: JQuery<HTMLElement> = $('#signup-button');
+let loginButton: JQuery<HTMLElement> = $('#login-button');
+let authTypeButtons: JQuery<HTMLElement> = $('.auth-type-button');
+let signupDiv: JQuery<HTMLElement> = $('#signup-div');
+let loginDiv: JQuery<HTMLElement> = $('#login-div');
+let signupPasswordInputs: JQuery<HTMLElement> = $('.signup-password-inputs');
+let signupPopupConfirmDiv: JQuery<HTMLElement> = $('#signup-popup-confirm-div');
+let loginPopupConfirmDiv: JQuery<HTMLElement> = $('#login-popup-confirm-div');
+let popupDiv: JQuery<HTMLElement> = $('#popup-div');
+let popupText: JQuery<HTMLElement> = $('#popup-text');
+let confirmLoginButton: JQuery<HTMLElement> = $('#confirm-login-button');
+let confirmSignupButton: JQuery<HTMLElement> = $('#confirm-signup-button');
+let signupEmailInput: JQuery<HTMLElement> = $('#signup-email-input');
+let signupUsernameInput: JQuery<HTMLElement> = $('#signup-username-input');
+let signupPasswordInput: JQuery<HTMLElement> = $('#signup-password-input');
+let signupConfirmPasswordInput: JQuery<HTMLElement> = $('#signup-confirm-password-input');
+let confirmButtons: JQuery<HTMLElement> = $('.confirm-button');
 
-let currentAuthType = AuthType.SIGNUP;
-let signupButton= $('#signup-button');
-let loginButton= $('#login-button');
-let authTypeButtons= $('.auth-type-button');
-let signupDiv= $('#signup-div');
-let loginDiv= $('#login-div');
-let signupPopupConfirmDiv= $('#signup-popup-confirm-div');
-let loginPopupConfirmDiv= $('#login-popup-confirm-div');
-let signupPopupDiv= $('#signup-popup-div');
-let loginPopupDiv= $('#login-popup-div');
-
-function applySelectTypeStyle() {
+let loginUsernameInput: JQuery<HTMLElement> = $('#login-username-input');
+let loginPasswordInput: JQuery<HTMLElement> = $('#login-password-input');
+let signupInputs: JQuery<HTMLElement>[] = [signupEmailInput, signupUsernameInput, signupPasswordInput, signupConfirmPasswordInput];
+let loginInputs: JQuery<HTMLElement>[] = [loginUsernameInput, loginPasswordInput];
+//=============================-Server-Functions-=============================
+async function sendSignupRequest(): Promise<void> {
+    let response: void | Response = await fetch('/authorize/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: signupEmailInput.val(),
+            username: signupUsernameInput.val(),
+            password: signupPasswordInput.val()
+        })
+    }).catch((error): void => {
+        console.error('Error: ', error);
+    });
+    if (response) {
+        if (response.ok) {
+            let responseJson = await response.json();
+            let isAuthorized: boolean = responseJson.authorized;
+            if (isAuthorized) {
+                window.location.href = '/welcome/';
+            } else {
+                popupDiv.fadeIn(100);
+                popupText.text(AuthPopup.USERNAME_OR_EMAIL_EXISTS);
+            }
+        }
+    }
+}
+async function sendLoginRequest(): Promise<void> {
+    let response: void | Response  = await fetch('/authorize/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username: loginUsernameInput.val(),
+            password: loginPasswordInput.val()
+        })
+    }).catch((error): void => {
+        console.error('Error: ', error);
+    });
+    if (response) {
+        if (response.ok) {
+            let responseJson = await response.json();
+            let isAuthorized: boolean = responseJson.authorized;
+            if (isAuthorized) {
+                let isWelcomeCompleted: boolean = responseJson.welcomeCompleted;
+                if (!isWelcomeCompleted) {
+                    window.location.href = '/welcome/';
+                } else {
+                    let currentUser: number = await getCurrentUserIdFromServer();
+                    if (currentUser) {
+                        window.location.href = '/profile/' + currentUser;
+                    }
+                }
+            } else {
+                showPopupDivMessage(AuthPopup.INVALID_USERNAME_OR_PASSWORD);
+            }
+        }
+    }
+}
+//=============================-Client-Functions-=============================
+function applySelectTypeStyle(): void {
     let clickedElementId = this.id;
     if (clickedElementId === 'signup-button' && currentAuthType !== AuthType.SIGNUP) {
         currentAuthType = AuthType.SIGNUP;
-        styleCorrectPopupDiv();
         deselectAuthBubble(loginButton);
         selectAuthBubble(signupButton);
         loginDiv.hide();
-        signupDiv.fadeIn('fast', function() {
+        signupDiv.fadeIn('fast', function(): void {
             signupDiv.css('display', 'flex');
         });
+        clearInputs(loginInputs);
+        hidePopupDiv();
     } else if (clickedElementId === 'login-button' && currentAuthType !== AuthType.LOGIN) {
         currentAuthType = AuthType.LOGIN;
-        styleCorrectPopupDiv();
         deselectAuthBubble(signupButton);
         selectAuthBubble(loginButton);
         signupDiv.hide();
-        loginDiv.fadeIn('fast', function() {
+        loginDiv.fadeIn('fast', function(): void {
             loginDiv.css('display', 'flex');
         });
+        clearInputs(signupInputs);
+        hidePopupDiv();
     }
 }
-
-function styleCorrectPopupDiv() {
+function hidePopupDiv(): void {
+    if (popupDiv.is(':visible')) {
+        popupDiv.fadeOut(100);
+    }
+}
+function showPopupDivMessage(message: string): void {
+    if (popupDiv.is(':hidden')) {
+        popupDiv.fadeIn(100);
+    }
+    popupText.text(message);
+}
+async function sendAuthRequest(): Promise<void> {
     if (currentAuthType === AuthType.SIGNUP) {
-        if (signupPopupDiv.is(':hidden')) {
-            signupPopupConfirmDiv.css('justify-content', 'flex-end');
+        if (hasEmptyInputs(signupInputs)) {
+            popupDiv.fadeIn(100);
+            popupText.text(AuthPopup.FILL_ALL_FIELDS);
+        } else if (!passwordsMatch()) {
+            popupDiv.fadeIn(100);
+            popupText.text(AuthPopup.PASSWORDS_DONT_MATCH);
         } else {
-            signupPopupConfirmDiv.css('justify-content', 'space-between');
+        await sendSignupRequest();
         }
     } else if (currentAuthType === AuthType.LOGIN) {
-        if (loginPopupDiv.is(':hidden')) {
-            loginPopupConfirmDiv.css('justify-content', 'flex-end');
+        if (hasEmptyInputs(loginInputs)) {
+            popupDiv.fadeIn(100);
+            popupText.text(AuthPopup.FILL_ALL_FIELDS);
         } else {
-            loginPopupConfirmDiv.css('justify-content', 'space-between');
+            await sendLoginRequest();
         }
     }
 }
-
-function sendAuthRequest() {
-    if (currentAuthType === AuthType.SIGNUP) {
-        sendSignupRequest();
-    } else if (currentAuthType === AuthType.LOGIN) {
-        sendLoginRequest();
-
+function passwordsMatch(): boolean {
+    let passwordsMatch: boolean = signupPasswordInput.val() === signupConfirmPasswordInput.val();
+    return passwordsMatch;
+}
+function showPasswordPopupType(): void {
+    if (!passwordsMatch()) {
+        showPopupDivMessage(AuthPopup.PASSWORDS_DONT_MATCH);
+    } else {
+        hidePopupDiv();
     }
 }
-function sendSignupRequest() {
 
-}
-function sendLoginRequest() {
-
-}
-function deselectAuthBubble(authBubbleElement: JQuery<HTMLElement>) {
+function deselectAuthBubble(authBubbleElement: JQuery<HTMLElement>): void {
     authBubbleElement.removeClass('selected-auth');
 }
 
-function selectAuthBubble(authBubbleElement: JQuery<HTMLElement>) {
+function selectAuthBubble(authBubbleElement: JQuery<HTMLElement>): void {
     authBubbleElement.addClass('selected-auth');
 }
 
-
-let shouldLoadPage = loadPage(document.body, 'authorize');
+let shouldLoadPage: boolean = loadPage(document.body, 'authorize');
 if (shouldLoadPage) {
     authTypeButtons.on('click', applySelectTypeStyle);
+    $('#auth-input-section .console-input').on('keydown', removeTextArtifacts);
+    signupPasswordInputs.on('input', showPasswordPopupType);
+    confirmButtons.on('click', sendAuthRequest);
 }
