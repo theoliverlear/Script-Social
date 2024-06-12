@@ -1,6 +1,7 @@
 package org.theoliverlear.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.theoliverlear.communication.request.CommentRequest;
 import org.theoliverlear.communication.request.PostRequest;
 import org.theoliverlear.entity.content.Comment;
@@ -18,6 +19,7 @@ public class PostService {
         this.postRepository = postRepository;
         this.userService = userService;
     }
+    @Transactional
     public boolean createPost(PostRequest postRequest) {
         User user = this.userService.getUserById(postRequest.getUserId());
         if (user == null) {
@@ -44,6 +46,7 @@ public class PostService {
             return true;
         }
     }
+    @Transactional
     public boolean addComment(CommentRequest commentRequest) {
         Long postId = commentRequest.getPostId();
         Post post = this.postRepository.findById(postId).orElse(null);
