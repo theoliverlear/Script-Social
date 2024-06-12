@@ -56,12 +56,12 @@ function disableDraggableImages(): void {
 async function toggleDesktopTypedNavText(): Promise<void> {
     if (!navBarDisplayed) {
         displayNavBar();
-        for(let i = 0; i < navItems.length; i++) {
-            let element = $(navItems[i]);
+        for(let i: number = 0; i < navItems.length; i++) {
+            let element: JQuery<HTMLElement> = $(navItems[i]);
             element.find('.nav-text').addClass('being-typed');
             element.show().promise().done( function() {
-                for (let j = i + 1; j < navItems.length; j++) {
-                    let nextElement = $(navItems[j]);
+                for (let j: number = i + 1; j < navItems.length; j++) {
+                    let nextElement: JQuery<HTMLElement> = $(navItems[j]);
                     nextElement.hide();
                 }
             });
@@ -70,10 +70,9 @@ async function toggleDesktopTypedNavText(): Promise<void> {
         }
     } else {
         for (let i: number = 0; i < navItems.length; i++) {
-            let element = $(navItems[i]);
+            let element: JQuery<HTMLElement> = $(navItems[i]);
             element.find('.nav-text').removeClass('typing-completed');
             await deleteText(element.find('.nav-text'));
-            // Add a delay of 200 ms before hiding the element
             setTimeout(() => element.hide(), 200);
         }
         hideNavBar();
@@ -105,7 +104,9 @@ async function typeText(element: JQuery<HTMLElement>,
     });
 }
 //--------------------------------Delete-Text---------------------------------
-async function deleteText(element: JQuery<HTMLElement>, speed: number = 150, addBeingTypedStyle: boolean = false): Promise<void> {
+async function deleteText(element: JQuery<HTMLElement>,
+                          speed: number = 150,
+                          addBeingTypedStyle: boolean = false): Promise<void> {
     if (addBeingTypedStyle) {
         element.addClass('being-typed');
     }
@@ -130,7 +131,7 @@ function isMobileView(): boolean {
     return window.innerWidth < 500;
 }
 //------------------------------Display-Nav-Bar-------------------------------
-function displayNavBar() {
+function displayNavBar(): void {
     if (isMobileView()) {
 
     } else {
@@ -140,7 +141,7 @@ function displayNavBar() {
     }
 }
 //--------------------------------Hide-Nav-Bar--------------------------------
-function hideNavBar() {
+function hideNavBar(): void {
     if (isMobileView()) {
 
     } else {
@@ -241,11 +242,36 @@ function navElementIsTyped(element: JQuery<HTMLElement>): boolean {
 function navElementIsAccountName() {
     return accountNameText.text() === currentUsername;
 }
+function inputIsEmpty(input: JQuery<HTMLElement>): boolean {
+    return input.val().toString().trim() === '';
+}
+function removeTextArtifacts(event: JQuery.KeyDownEvent): void {
+    if (event.key === ' ') {
+        event.preventDefault();
+    }
+}
+function emailIsValid(emailInput: JQuery<HTMLElement>): boolean {
+    return emailInput.val().toString().includes('@') &&
+        emailInput.val().toString().includes('.');
+}
+function hasEmptyInputs(inputs: JQuery<HTMLElement>[]): boolean {
+    for (let input of inputs) {
+        if (inputIsEmpty(input)) {
+            return true;
+        }
+    }
+    return false;
+}
+function clearInputs(inputElements: JQuery<HTMLElement>[]): void {
+    inputElements.forEach((inputElement: JQuery<HTMLElement>): void => {
+        inputElement.val('');
+    });
+}
 //================================-Init-Load-=================================
 disableDraggableImages();
-setIsLoggedInFromServer().then(() => {
+setIsLoggedInFromServer().then((): void => {
     if (isLoggedIn) {
-        setCurrentUsernameFromServer().then(() => {
+        setCurrentUsernameFromServer().then((): void => {
             setNavBarNameAndFunction();
         });
     } else {
@@ -261,4 +287,6 @@ hamburgerMenuDiv.on('click', toggleNavItems);
 accountAndLogoutDiv.on('mouseover', showLogoutButton);
 accountAndLogoutDiv.on('mouseleave', hideLogoutButton);
 //==================================-Export-==================================
-export { loadPage, typeText, deleteText, getCurrentUserIdFromServer, hashPassword };
+export { loadPage, typeText, deleteText, getCurrentUserIdFromServer,
+         hashPassword, inputIsEmpty, removeTextArtifacts, emailIsValid,
+         hasEmptyInputs, clearInputs };
