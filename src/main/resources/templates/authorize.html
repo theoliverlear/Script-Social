@@ -48,6 +48,90 @@
     </div>
 </header>
 <main>
+    <section id="choose-auth-type-section">
+        <div id="signup-button" class="auth-type-button">
+            <h3>Signup</h3>
+        </div>
+        <div id="login-button" class="auth-type-button">
+            <h3>Login</h3>
+        </div>
+    </section>
+    <section id="auth-input-section">
+        <div id="signup-div" class="general-console-container">
+            <div class="general-console">
+                <div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Email: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="signup-email-input" type="email">
+                        </div>
+                    </div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Username: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="signup-username-input" type="text">
+                        </div>
+                    </div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Password: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input signup-password-inputs" id="signup-password-input" type="password">
+                        </div>
+                    </div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Confirm Password: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input signup-password-inputs" id="signup-confirm-password-input" type="password">
+                        </div>
+                    </div>
+                    <!-- TODO: Add agree to terms checkbox -->
+                </div>
+                <div id="signup-popup-confirm-div" class="console-popup-and-confirm-div">
+                    <div id="confirm-signup-button" class="general-button confirm-button">
+                        <h5 class="general-button-text">CONFIRM</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="login-div" class="general-console-container">
+            <div class="general-console">
+                <div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Username: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="login-username-input" type="text">
+                        </div>
+                    </div>
+                    <div class="console-input-title-field">
+                        <div class="console-title-field">
+                            <h5>Password: </h5>
+                        </div>
+                        <div>
+                            <input class="console-input" id="login-password-input" type="password">
+                        </div>
+                    </div>
+                </div>
+                <div id="login-popup-confirm-div" class="console-popup-and-confirm-div">
+                    <div id="confirm-login-button" class="general-button confirm-button">
+                        <h5 class="general-button-text">CONFIRM</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="popup-div">
+            <h5 id="popup-text"></h5>
+        </div>
+    </section>
 </main>
 <footer>
     <section id="footer-small-text-section">

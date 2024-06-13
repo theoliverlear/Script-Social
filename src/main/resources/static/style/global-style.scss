@@ -196,6 +196,13 @@ header {
         }
     }
 }
+.console {
+    border-radius: $one-percent;
+    border: $thinnest-border solid $alabaster-stone;
+    background-color: $charcoal;
+    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+    padding: $one-percent;
+}
 .general-hover {
     transition: color, background-color, 0.15s;
     &:hover {

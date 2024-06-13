@@ -10,9 +10,10 @@
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
-    margin-top: $one-percent;
+    padding: $one-percent 0;
+    margin: $one-percent 0;
     #profile-picture-with-name {
-        margin: $one-percent 0 0 0;
+        margin: $half-percent 0 0 0;
         @include flex(center, center, column);
         #profile-picture-div {
             @include flex(center, center, row);
@@ -28,20 +29,27 @@
         #profile-name-and-bio-div {
             @include flex(center, center, column);
             #profile-name {
-                margin: $one-percent $one-percent $one-percent calc($one-percent + $half-percent);
+                background-color: $charcoal;
+                border-radius: $quarter-percent;
+                padding: $quarter-percent $half-percent;
+                text-align: center;
+                margin: $half-percent $half-percent $half-percent calc($half-percent + $half-percent);
                 @include flex(center, center, row);
                 .profile-name-headline-text {
-                    color: $charcoal;
-                    &:first-child {
-                        margin-right: $half-percent;
-                    }
+                    color: $pristine-white;
                 }
-
+                #profile-first-name {
+                    margin-right: $half-percent;
+                }
+                .profile-name {
+                    @include basic-margin-padding(0, 0);
+                    text-align: center;
+                }
             }
             #profile-bio {
                 background-color: $apricot-glow;
                 border-radius: $one-percent;
-                padding: $one-percent;
+                padding: $half-percent $one-percent;
                 #profile-bio-text {
                     //color: $pure-orange;
                     color: $charcoal;
