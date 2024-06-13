@@ -20,6 +20,8 @@ async function makePost(): Promise<void> {
     let postMessage: string = writePostTextArea.val() as string;
     let userId: number = await getCurrentUserIdFromServer();
     sendPostToServer(userId, postMessage);
+    // TODO: Make globalScript function called clearInput.
+    writePostTextArea.val('');
 }
 
 async function getUserDataFromServer(): Promise<void> {
