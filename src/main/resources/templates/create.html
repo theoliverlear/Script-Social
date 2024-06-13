@@ -12,7 +12,7 @@
     <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
             th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
 </head>
-<body>
+<body data-page="create">
 <header>
     <div>
         <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
@@ -48,7 +48,16 @@
     </div>
 </header>
 <main>
-
+    <section id="write-post-section">
+        <div id="write-post-div">
+            <div id="write-post-textarea-div">
+                <textarea id="write-post-textarea" placeholder="What's on your mind?"></textarea>
+            </div>
+            <div id="write-post-button-div" class="general-button">
+                <h5>POST</h5>
+            </div>
+        </div>
+    </section>
 </main>
 <footer>
     <section id="footer-small-text-section">
