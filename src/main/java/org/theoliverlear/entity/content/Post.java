@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "posts")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -45,6 +45,14 @@ public class Post {
     }
     public void addComment(Comment comment) {
         this.comments.add(comment);
+    }
+    @Override
+    public String toString() {
+        return "Post{" +
+                ", poster=" + this.poster +
+                ", content='" + this.content + '\'' +
+                ", timePosted=" + this.timePosted +
+                '}';
     }
     @Override
     public boolean equals(Object object) {
