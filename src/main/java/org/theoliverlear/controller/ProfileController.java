@@ -14,6 +14,7 @@ import org.theoliverlear.communication.response.HasProfilePictureResponse;
 import org.theoliverlear.communication.response.ProfileResponse;
 import org.theoliverlear.entity.user.ProfilePicture;
 import org.theoliverlear.entity.user.User;
+import org.theoliverlear.entity.user.personal.Bio;
 import org.theoliverlear.service.ProfilePictureService;
 
 @RequestMapping("/profile")
@@ -47,10 +48,15 @@ public class ProfileController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         if (sessionUser.getId().toString().equals(id)) {
+            if (sessionUser.getBio() == null) {
+                sessionUser.setBio(new Bio());
+            }
             model.addAttribute("username", sessionUser.getUsername());
-            return ResponseEntity.ok(new ProfileResponse(sessionUser.getFirstName(), sessionUser.getLastName(), true));
+            return ResponseEntity.ok(new ProfileResponse(sessionUser.getFirstName(), sessionUser.getLastName(),
+                                                         sessionUser.getBio().getBioText(), true));
         } else {
-            return ResponseEntity.ok(new ProfileResponse("John", "Doe", false));
+            return ResponseEntity.ok(new ProfileResponse("John", "Doe",
+                                                     "Hello, World!", false));
         }
     }
     @RequestMapping("/get/{id}/has-profile-picture")
