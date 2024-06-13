@@ -1,6 +1,7 @@
 package org.theoliverlear.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class User {
     //       by images of the logos.
     @Embedded
     private Bio bio;
+    @JsonIgnore
     @AttributeOverride(
             name = "encodedPassword",
             column = @Column(name = "password"))
@@ -57,6 +59,7 @@ public class User {
     ProfileIntention profileIntention;
     @Embedded
     EmploymentStatus employmentStatus;
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "profile_picture_id")
     private ProfilePicture profilePicture;
@@ -65,6 +68,7 @@ public class User {
         this.email = "";
         this.firstName = "";
         this.lastName = "";
+        this.bio = new Bio();
         this.safePassword = new SafePassword();
         this.profile = new Profile();
     }
@@ -81,6 +85,7 @@ public class User {
         this.email = email;
         this.firstName = "";
         this.lastName = "";
+        this.bio = new Bio();
         this.safePassword = new SafePassword(unencodedPassword);
         this.profile = new Profile();
     }
@@ -89,6 +94,7 @@ public class User {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.bio = new Bio();
         this.safePassword = safePassword;
         this.profile = new Profile();
     }
@@ -97,6 +103,7 @@ public class User {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.bio = new Bio();
         this.safePassword = safePassword;
         this.posts = posts;
         this.profile = new Profile();
