@@ -79,7 +79,7 @@ async function sendLoginRequest(): Promise<void> {
             let responseJson = await response.json();
             let isAuthorized: boolean = responseJson.authorized;
             if (isAuthorized) {
-                let isWelcomeCompleted: boolean = responseJson.completedWelcome;
+                let isWelcomeCompleted: boolean = Boolean(responseJson.completedWelcome);
                 console.log('responseJson: ', responseJson);
                 console.log(responseJson.completedWelcome);
                 console.log('isWelcomeCompleted: ', isWelcomeCompleted);
