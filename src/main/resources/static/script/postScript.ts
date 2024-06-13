@@ -2,7 +2,7 @@
 
 import {Post} from "./Post";
 
-function sendPostToServer(userId: number, message: string) {
+function sendPostToServer(userId: number, message: string): void {
     if (isValidPost(message) && userId !== -1) {
         console.log('userId: ', userId);
         console.log('message: ', message);
@@ -31,13 +31,16 @@ async function getPostsFromServer(userId: number): Promise<any> {
         console.error('Error: ', error);
     });
     if (response) {
-        return await response.json();
+        let responseJson = await response.json();
+        console.log('responseJson: ', responseJson);
+        return responseJson;
     }
 }
 function getPostsFromServerResponse(response: any): Post[] {
     let postsFromServer: Post[] = [];
+    console.log('response: ', response);
     if (Array.isArray(response)) {
-        response.forEach((postJson: any) => {
+        response.forEach((postJson: any): void => {
             let post: Post = new Post(postJson.content, postJson.poster,
                                       postJson.id, postJson.timePosted);
             postsFromServer.push(post);
@@ -51,8 +54,17 @@ function isValidPost(message: string): boolean {
     return !messageIsNull && !messageIsEmpty;
 }
 
-function loadPosts() {
-    //TODO: load posts on successful post save operation
+function loadPosts(rootElement: JQuery<HTMLElement>, userId: number): void {
+    getPostsFromServer(userId).then((response: any): void => {
+        let posts: Post[] = getPostsFromServerResponse(response);
+        posts.forEach((post: Post): void => {
+            console.log(post.message);
+            let postDiv: HTMLDivElement = document.createElement('div');
+            postDiv.classList.add('general-post');
+            postDiv.innerHTML = post.getHtml();
+            rootElement.append(postDiv);
+        });
+    });
 }
 export { sendPostToServer, getPostsFromServer, getPostsFromServerResponse,
          isValidPost, loadPosts };
