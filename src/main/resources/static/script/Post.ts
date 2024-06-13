@@ -9,6 +9,15 @@ export class Post {
         this._postId = postId;
         this._postedDate = postedDate;
     }
+    getHtml(): string {
+        return `
+            <div>
+                <p>
+                    ${this._message}
+                </p>
+            </div>
+        `;
+    }
     get message(): string {
         return this._message;
     }
