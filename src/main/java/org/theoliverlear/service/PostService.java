@@ -31,6 +31,7 @@ public class PostService {
         this.userService.saveUser(user);
         return true;
     }
+    @Transactional
     public List<Post> getAllPostsByPosterId(Long userId) {
         return this.postRepository.findAllByPosterId(userId);
     }
