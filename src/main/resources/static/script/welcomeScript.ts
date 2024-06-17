@@ -97,6 +97,8 @@ async function sendProfileToServer(): Promise<void> {
     if (builtProfile.profileIntention === null) {
         builtProfile.setProfileIntention(ProfileIntention.SOCIALIZE);
     }
+    console.log('Interests: ', builtProfile.interests)
+    console.log('Interests string: ', interestsString);
     let response: Response = await fetch('/welcome/profile/add', {
         method: 'POST',
         headers: {
@@ -189,11 +191,20 @@ function showCorrectInputTitle(): void {
     }
 }
 //--------------------------------Clear-Inputs--------------------------------
-function clearInputs(): void {
+function clearInputs(movement: PromptMovement): void {
     firstInput.val('');
     secondInput.val('');
     userBioInput.val('');
-    resetBubbleSelection();
+    cleerBubblesStyle();
+    if (movement === PromptMovement.BACKWARD) {
+        switch (currentQuestionIndex) {
+            case 2:
+            case 3:
+            case 4:
+                resetBubbleSelection();
+                break;
+        }
+    }
 }
 //-----------------------Show-Correct-Inputs-And-Title------------------------
 async function showCorrectInputsAndTitle() {
@@ -308,9 +319,8 @@ function showCorrectInputs(): void {
         case 6:
             setBioInputs();
             break;
-        case 7:
+        default:
             hideAllInputs();
-            break;
     }
 }
 function hideAllInputs(): void {
@@ -421,6 +431,7 @@ function showNameSection() {
     builtProfile.setLastName(String(secondInput.val()));
 }
 function showCorrectPopupMessage(): void {
+    let optionalFieldMessage: string = 'This is optional.';
     switch (currentQuestionIndex) {
         case 0:
             showPopupMessage('Please fill out both inputs.');
@@ -432,13 +443,13 @@ function showCorrectPopupMessage(): void {
             showPopupMessage('Please select at least one interest.');
             break;
         case 3:
-            showPopupMessage('This is optional.');
+            showPopupMessage(optionalFieldMessage);
             break;
         case 4:
-            showPopupMessage('This is optional.');
+            showPopupMessage(optionalFieldMessage);
             break;
         case 5:
-            showPopupMessage('This is optional.');
+            showPopupMessage(optionalFieldMessage);
             break;
     }
 }
@@ -537,17 +548,30 @@ function selectEmploymentStatus(employmentItem: JQuery<Element>): void {
         }
     }
 }
+function cleerBubblesStyle(): void {
+    bubbleItems.removeClass('general-select');
+}
 function resetBubbleSelection(): void {
     bubbleItems.removeClass('general-select');
-    interestItemsSelected = [];
-    builtProfile.setInterests([]);
-    builtProfile.setProfileIntention(null);
+    switch (currentQuestionIndex) {
+        case 2:
+            builtProfile.clearInterests();
+            break;
+        case 3:
+            builtProfile.setProfileIntention(null);
+            break;
+        case 4:
+            builtProfile.setEmployment(null);
+            break;
+    }
 }
 function selectInterest(interestItem: JQuery<Element>): void {
     if (interestItem.hasClass('general-select')) {
         deselectInterestItem(interestItem);
+        console.log(builtProfile.interests);
     } else {
         builtProfile.addInterest(interestsOptions[interestItem.index()]);
+        console.log(builtProfile.interests);
         interestItem.fadeIn().toggleClass('general-select');
     }
 }
@@ -585,7 +609,7 @@ function backButtonPressed(): void {
 }
 
 function isLastSection() {
-    return currentQuestionIndex === 6;
+    return currentQuestionIndex === 7;
 }
 
 //--------------------------------Move-Section--------------------------------
@@ -595,7 +619,7 @@ function moveSection(promptMovement: PromptMovement): void {
     if (promptMovement === PromptMovement.BACKWARD) {
         hidePopupMessage();
         deleteSectionQuestion().then((): void => {
-            clearInputs();
+            clearInputs(promptMovement);
             currentQuestionIndex--;
             showCorrectInputsAndTitle();
             typeSectionQuestion();
@@ -606,7 +630,10 @@ function moveSection(promptMovement: PromptMovement): void {
         let inputsAreValid: boolean = hasValidInputs();
         if (inputsAreValid) {
             hidePopupMessage();
-            currentQuestionIndex++;
+            if (!isLastSection()) {
+                currentQuestionIndex++;
+            }
+
         }
         console.log('Current question index: ', currentQuestionIndex);
         let sectionHasChanged: boolean = previousIndex !== currentQuestionIndex;
@@ -620,7 +647,7 @@ function moveSection(promptMovement: PromptMovement): void {
             } else {
                 deleteSectionQuestion().then((): void => {
                     if (inputsAreValid) {
-                        clearInputs();
+                        clearInputs(promptMovement);
                     }
                     showCorrectInputsAndTitle();
                     typeSectionQuestion();
