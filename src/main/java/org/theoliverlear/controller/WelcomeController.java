@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.theoliverlear.communication.request.WelcomeUserRequest;
@@ -39,6 +40,7 @@ public class WelcomeController {
             return "welcome";
         }
     }
+    @Transactional
     @RequestMapping("/profile/add")
     public ResponseEntity<OperationSuccessfulResponse> addProfile(@RequestBody WelcomeUserRequest welcomeUserRequest, HttpSession session) {
         User sessionUser = (User) session.getAttribute("user");
