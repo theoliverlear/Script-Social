@@ -1,6 +1,7 @@
 package org.theoliverlear.entity.content;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,10 +22,11 @@ public class Post {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User poster;
     @Column(name = "content", columnDefinition = "TEXT")
     private String content;
-    @OneToMany(mappedBy="post", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
     @Column(name = "time_posted")
     private LocalDateTime timePosted;
