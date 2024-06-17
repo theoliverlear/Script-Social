@@ -25,11 +25,15 @@ public class PostController {
     @Transactional
     @RequestMapping("/get/{userId}")
     public ResponseEntity<List<Post>> getAllPostsByPosterId(@PathVariable Long userId) {
+        long startTime = System.currentTimeMillis();
         List<Post> posts = this.postService.getAllPostsByPosterId(userId);
         HttpStatus status = posts == null ? HttpStatus.NOT_FOUND : HttpStatus.OK;
         if (posts != null) {
             posts.forEach(System.out::println);
         }
+        long endTime = System.currentTimeMillis();
+        long timeInSeconds = (endTime - startTime) / 1000;
+        System.out.println("Time taken to get all posts by user ID: " + timeInSeconds + " seconds");
         return new ResponseEntity<>(posts, status);
     }
     @DeleteMapping("/delete/{postId}")
