@@ -46,7 +46,8 @@ public class User {
      */
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Profile profile;
-    @OneToMany(mappedBy = "poster", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "poster", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Post> posts;
     @Column(name = "completed_welcome_survey")
     private boolean completedWelcomeSurvey;
