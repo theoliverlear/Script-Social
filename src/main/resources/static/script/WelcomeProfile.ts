@@ -46,6 +46,9 @@ export class WelcomeProfile {
         });
         console.log(this._interests);
     }
+    clearInterests(): void {
+        this._interests = [];
+    }
     toString(): string {
         return `First Name: ${this._firstName}, Last Name: ${this._lastName},
                 Interests: ${this._interests}, Employment: ${this._employment},
