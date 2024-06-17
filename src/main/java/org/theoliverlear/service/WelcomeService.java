@@ -24,10 +24,12 @@ public class WelcomeService {
         BirthDate birthDate = new BirthDate(welcomeUserRequest.getBirthDate());
         user.setBirthDate(birthDate);
         Interests interests = new Interests();
+        System.out.println(welcomeUserRequest.getInterests());
         for (String interest : welcomeUserRequest.getInterests().split(",")) {
             interests.addInterest(new Interest(interest.trim()));
             System.out.println(interest.trim());
         }
+        System.out.println(interests.getInterests());
         user.setInterests(interests);
         interests.setUser(user);
         EmploymentStatus employmentStatus = new EmploymentStatus(welcomeUserRequest.getEmploymentStatus());
