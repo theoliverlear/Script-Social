@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.theoliverlear.communication.request.WelcomeUserRequest;
 import org.theoliverlear.communication.response.OperationSuccessfulResponse;
 import org.theoliverlear.entity.user.User;
-import org.theoliverlear.entity.user.personal.Interests;
 import org.theoliverlear.service.InterestsService;
 import org.theoliverlear.service.UserService;
 import org.theoliverlear.service.WelcomeService;
@@ -49,13 +48,7 @@ public class WelcomeController {
         }
         this.currentUser = sessionUser;
         User updatedUser = this.welcomeService.applyWelcomeRequestUserParameters(this.currentUser, welcomeUserRequest);
-        Interests interestsToSave = updatedUser.getInterests();
-        this.interestsService.saveInterests(interestsToSave);
-        Interests interestsWithId = this.interestsService.findByUserId(interestsToSave);
-        updatedUser.setInterests(interestsWithId);
-        this.userService.saveUser(updatedUser);
-        User userWithInterests = this.userService.findByUsername(updatedUser.getUsername());
-        this.currentUser = userWithInterests;
+        this.currentUser = updatedUser;
         session.setAttribute("user", this.currentUser);
         return ResponseEntity.ok(new OperationSuccessfulResponse(true));
     }
