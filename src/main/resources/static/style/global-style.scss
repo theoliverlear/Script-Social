@@ -243,15 +243,49 @@ header {
         border: $thin-border solid $alabaster-stone;
     }
 }
-.general-post {
+.content-box {
     @include flex(center, center, column);
-    width: $fifteen-percent;
+    width: $twenty-percent;
     @extend %console;
     margin: $one-percent $zero;
     p {
         color: $pristine-white;
         font-size: $p-font-size;
-        @extend %indented-text;
+        //@extend %indented-text;
+    }
+}
+.general-post {
+    @extend .content-box;
+}
+.general-write-post-div {
+    @include flex(center, center, column);
+    width: $twenty-percent;
+    height: $ten-percent;
+    @extend %console;
+    .write-post-textarea-div {
+        textarea {
+            width: $nineteen-percent;
+            height: $six-percent;
+            background-color: $charcoal;
+            color: $pristine-white;
+            border-radius: $one-percent;
+            padding: $one-percent;
+            margin: $one-percent $zero $half-percent $zero;
+            resize: none;
+        }
+    }
+    .write-post-button-div {
+        align-self: flex-end;
+        margin-bottom: $half-percent;
+    }
+}
+.hyperlink {
+    color: $apricot-glow;
+    text-decoration: underline;
+    text-decoration-color: $sandstone;
+    text-underline-offset: calc($eighth-percent * 0.75);
+    &:hover {
+        cursor: pointer;
     }
 }
 .general-text-area {
@@ -272,6 +306,7 @@ header {
     background-color: $charcoal;
     transition: color, background-color, 0.15s;
     margin: $eighth-percent;
+    padding: $sixteenth-percent;
     &:hover {
         color: $charcoal;
         background-color: $pristine-white;
@@ -282,6 +317,40 @@ header {
         background-color: $charcoal;
         cursor: pointer;
     }
+}
+.general-project-post {
+    @extend .content-box;
+    hr {
+        width: 90%;
+        margin: $half-percent $zero;
+        @extend %console-box-shadow;
+    }
+    .comments-div {
+        @include flex(center, center, column);
+        .comment-div {
+            margin: $half-percent 0;
+            .commenter-name-div {
+                @include flex(center, center, row);
+                margin: $quarter-percent 0;
+                h5, span {
+                    font-size: $h6-font-size;
+                }
+            }
+        }
+        .comment-info-div {
+            //align-self: flex-end;
+            //justify-self: flex-end;
+            .date-posted-div {
+                p {
+                    font-style: italic;
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+span {
+    @include basic-margin-padding(0, 0);
 }
 #nav-search-input {
     @extend .general-input;
