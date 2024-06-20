@@ -11,7 +11,7 @@ import lombok.Setter;
 @Entity
 public class Interest {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "interest_title")
     private String interestTitle;
