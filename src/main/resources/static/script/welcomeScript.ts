@@ -93,6 +93,7 @@ async function sendProfileToServer(): Promise<void> {
     console.log('Called sendProfileToServer()');
     console.log('Built profile: ', builtProfile);
     console.log('Built profile profile intention: ', builtProfile.profileIntention);
+    console.log('Employment: ', builtProfile.employment);
     let interestsString: string = builtProfile.interests.map((interest: Interest): string => interest.toString()).join(', ');
     if (builtProfile.profileIntention === null) {
         builtProfile.setProfileIntention(ProfileIntention.SOCIALIZE);
@@ -109,8 +110,9 @@ async function sendProfileToServer(): Promise<void> {
             lastName: builtProfile.lastName,
             birthDate: builtProfile.birthDate.toDateString(),
             interests: interestsString,
-            employment: builtProfile.employment.toString(),
-            profileIntention: builtProfile.profileIntention || ''
+            employmentStatus: builtProfile.employment,
+            profileIntention: builtProfile.profileIntention || '',
+            bio: builtProfile.bio
         })
     });
     if (response.ok) {
@@ -418,8 +420,14 @@ function setDateInput(): void {
     if (firstInputTitleDiv.is(':hidden')) {
         firstInputTitleDiv.fadeIn();
     }
+    if (firstInput.is(':hidden')) {
+        firstInput.fadeIn();
+    }
     if (secondInputTitleDiv.is(':visible')) {
         secondInputTitleDiv.fadeOut();
+    }
+    if (secondInput.is(':visible')) {
+        secondInput.fadeOut();
     }
     if (bubbleDiv.is(':visible')) {
         bubbleDiv.fadeOut();
