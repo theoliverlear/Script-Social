@@ -17,3 +17,6 @@
     border: $thin-border solid $alabaster-stone;
     box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
 }
+%console-box-shadow {
+    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+}
