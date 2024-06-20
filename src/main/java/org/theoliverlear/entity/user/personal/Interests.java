@@ -24,6 +24,10 @@ public class Interests {
     public Interests() {
         this.interests = new ArrayList<>();
     }
+    public Interests(User user) {
+        this.user = user;
+        this.interests = new ArrayList<>();
+    }
     public Interests(List<Interest> interests) {
         this.interests = interests;
     }
