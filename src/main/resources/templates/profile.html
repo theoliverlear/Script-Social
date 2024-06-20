@@ -53,9 +53,6 @@
     <section id="banner-section">
 
     </section>
-    <section id="user-tabs-section">
-
-    </section>
     <section id="headline-section">
         <div id="profile-picture-with-name">
             <div id="profile-picture-div">
@@ -76,13 +73,32 @@
                 </div>
             </div>
         </div>
+        <div id="buttons-div">
+            <div id="follow-button" class="general-button profile-button">
+                <h5>Follow</h5>
+            </div>
+            <div id="connection-button" class="general-button profile-button">
+                <h5>Connect</h5>
+            </div>
+            <div id="message-button" class="general-button profile-button">
+                <h5>Message</h5>
+            </div>
+        </div>
+    </section>
+    <section id="user-tabs-section">
+        <!--        <div>-->
+        <!--            <h4>Projects</h4>-->
+        <!--        </div>-->
+        <div>
+
+        </div>
     </section>
     <section id="write-post-section">
-        <div id="write-post-div">
-            <div id="write-post-textarea-div">
+        <div id="write-post-div" class="general-write-post-div">
+            <div id="write-post-textarea-div" class="write-post-textarea-div">
                 <textarea id="write-post-textarea" placeholder="What's on your mind?"></textarea>
             </div>
-            <div id="write-post-button-div" class="general-button">
+            <div id="write-post-button-div" class="general-button write-post-button-div">
                 <h5>POST</h5>
             </div>
         </div>
@@ -103,6 +119,74 @@
                     omniscience. Basically, computer science is everything. I
                     just proved the matrix. Totally flawless logic.
                 </p>
+            </div>
+        </div>
+        <div class="content-box">
+            <div>
+                <p>
+                    <!-- href is set by the data in the backend and routed via
+                         the jQuery in the frontend. -->
+                    <a href="" class="hyperlink">Oliver</a> connected with <a href="" class="hyperlink">Martha Stewart</a>.
+                </p>
+            </div>
+        </div>
+        <div class="general-project-post">
+            <div class="post-info">
+                <p>
+                    Added 55 commits to
+                    <a class="hyperlink" href="">Script Social</a>.
+                </p>
+            </div>
+            <div>
+                <!-- TODO: Add buttons like reactions, commenting, and
+                           sharing. -->
+            </div>
+            <hr />
+            <div class="comments-div">
+                <div class="comment-div">
+                    <a class="hyperlink" href="">
+                        <div class="commenter-name-div">
+                            <h6 class="commenter-name">
+                                Kyle Mark-Stewart
+                            </h6>
+                        </div>
+                    </a>
+                    <div class="commenter-comment-div">
+                        <p class="commenter-comment">
+                            jQuery in 2024? I think maybe we should be looking
+                            forward to state management solutions, not backward.
+                        </p>
+                    </div>
+                    <div class="comment-info-div">
+                        <div class="date-posted-div">
+                            <p class="date-posted">
+                                March 3rd, 3:15 PM
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-div">
+                    <a class="hyperlink" href="">
+                        <div class="commenter-name-div">
+                            <h6 class="commenter-name">
+                                Sally Field
+                            </h6>
+                        </div>
+                    </a>
+                    <div class="commenter-comment-div">
+                        <p class="commenter-comment">
+                            Wow! Looks like a lot of improvements, especially
+                            getting it able to compile.
+                        </p>
+                    </div>
+                    <div class="comment-info-div">
+                        <div class="date-posted-div">
+                            <p class="date-posted">
+                                April 2nd, 1:05 AM
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- TODO: When someone hovers over an icon which is charcoal colored
