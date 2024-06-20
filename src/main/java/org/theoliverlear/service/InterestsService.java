@@ -1,7 +1,10 @@
 package org.theoliverlear.service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.theoliverlear.entity.user.User;
 import org.theoliverlear.entity.user.personal.Interests;
 import org.theoliverlear.repository.InterestsRepository;
 
@@ -17,5 +20,8 @@ public class InterestsService {
     }
     public Interests findByUserId(Interests interests) {
         return this.interestsRepository.findByUserId(interests.getUser().getId());
+    }
+    public Interests findByUserId(User user) {
+        return this.interestsRepository.findByUserId(user.getId());
     }
 }
