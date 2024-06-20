@@ -1,7 +1,0 @@
-POST localhost:8080/create/post
-content-type: application/json
-
-{
-  "userId": 967,
-  "content": "this is a test"
-}
