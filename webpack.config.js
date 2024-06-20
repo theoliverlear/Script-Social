@@ -19,7 +19,8 @@ module.exports = {
         './src/main/resources/static/script/createScript.ts',
         './src/main/resources/static/script/AuthType.ts',
         './src/main/resources/static/script/AuthPopup.ts',
-        './src/main/resources/static/script/Post.ts'
+        './src/main/resources/static/script/Post.ts',
+        './src/main/resources/static/script/Comment.ts'
     ],
     module: {
         rules: [
