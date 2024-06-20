@@ -2,9 +2,10 @@
 @import "global-mixins";
 @import "global-functions";
 @import "global-placeholders";
+@import "global-style";
 
 #headline-section {
-    @include flex(center, center, row);
+    @include flex(center, center, column);
     background-image: url("../image/alt_default_banner.webp");
     background-size: cover;
     background-repeat: no-repeat;
@@ -12,6 +13,11 @@
     width: 100%;
     padding: $one-percent 0;
     margin: $one-percent 0;
+    border : {
+        top: $thinnest-border solid $alabaster-stone;
+        bottom: $thinnest-border solid $alabaster-stone;
+    }
+    @extend %console-box-shadow;
     #profile-picture-with-name {
         margin: $half-percent 0 0 0;
         @include flex(center, center, column);
@@ -30,6 +36,7 @@
             @include flex(center, center, column);
             #profile-name {
                 background-color: $charcoal;
+                border: $thin-border solid $alabaster-stone;
                 border-radius: $quarter-percent;
                 padding: $quarter-percent $half-percent;
                 text-align: center;
@@ -57,6 +64,14 @@
             }
         }
     }
+    #buttons-div {
+        @include flex(space-around, center, row);
+        margin: $one-percent 0 0 0;
+        .profile-button {
+            padding: $eighth-percent;
+            border-radius: calc($quarter-percent * 0.9);
+        }
+    }
 }
 #activity-section {
     #activity-title-div {
@@ -66,26 +81,10 @@
             color: $pristine-white;
         }
     }
+    hr {
+        @extend %console-box-shadow;
+    }
 }
 #write-post-section {
-    #write-post-div {
-        @include flex(center, center, column);
-        width: $fifteen-percent;
-        height: $ten-percent;
-        @extend %console;
-        textarea {
-            width: $fourteen-percent;
-            height: $six-percent;
-            background-color: $charcoal;
-            color: $pristine-white;
-            border-radius: $one-percent;
-            padding: $one-percent;
-            margin: $one-percent $zero;
-            resize: none;
-        }
-        #write-post-button-div {
-            align-self: flex-end;
-            margin-bottom: $half-percent;
-        }
-    }
+    @extend .general-write-post-div;
 }
