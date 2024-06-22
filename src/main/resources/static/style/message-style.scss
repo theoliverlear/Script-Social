@@ -1,0 +1,99 @@
+@import "global-variables";
+@import "global-mixins";
+@import "global-functions";
+@import "global-placeholders";
+
+main {
+    //flex: 1;
+}
+
+#message-section {
+    @include flex(center, center, row);
+    margin: $one-percent 0 0 0;
+    color: $pristine-white;
+    //height: $thirty-percent;
+    @extend %console;
+    #connections-section {
+        padding: 0 $one-percent 0 0;
+        margin: 0 $one-percent 0 0;
+        border : {
+            right: calc($thin-border * 0.75) solid $light-charcoal;
+        }
+        #connections-title-div {
+            @include flex(center, center, row);
+        }
+        #connections-list-div {
+            .connection-item {
+                @include flex(center, center, row);
+                border-radius: $one-percent;
+                background-color: $light-charcoal;
+                padding: $quarter-percent 0;
+                margin: $half-percent 0;
+                transition: box-shadow 0.3s;
+                width: $twelve-percent;
+                .connection-img-div {
+                    flex: 1;
+                    @include square-size($two-percent);
+                    .connection-img {
+                        @include square-size(100%);
+                    }
+                }
+                .connection-name-div {
+                    flex: 3;
+                    padding: $quarter-percent;
+                    .connection-name {
+                        font-size: $h6-font-size;
+                    }
+                }
+                &:hover {
+                    cursor: pointer;
+                    @extend %console-box-shadow;
+                }
+            }
+        }
+    }
+    #messages-section {
+        //height: 100%;
+        #messages-title-div {
+            @include flex(center, center, row);
+        }
+        #messaging-div {
+            margin: $half-percent 0 0 0;
+            #user-messages {
+                max-width: 30vw;
+                .message-item {
+                    border-radius: $one-percent;
+                    background-color: $light-charcoal;
+                    padding: $half-percent;
+                    .message-headline {
+                        @include flex(center, center, column);
+                        .image-with-name-div {
+                            @include flex(center, center, row);
+                            .message-img-div {
+                                margin: 0 $half-percent 0 0;
+                                @include square-size($two-percent);
+
+                                .message-img {
+                                    @include square-size(100%);
+                                }
+                            }
+                        }
+                        .message-time-div {
+                            margin: 0 0 0 $one-half-percent;
+                            p {
+                                font-size: calc($p-font-size * 0.75);
+                                font-style: italic;
+                            }
+                        }
+                    }
+                    .message-content {
+                        padding: $half-percent;
+                        .message-text {
+                            font-size: calc($p-font-size * 0.75);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
