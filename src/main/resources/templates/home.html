@@ -20,9 +20,11 @@
              th:src="@{/image/icon/hamburger_menu.svg}">
     </div>
     <nav id="nav-bar">
-        <div class="nav-item">
-            <h4 class="nav-text"></h4>
-        </div>
+        <a href="/" class="link-no-style">
+            <div class="nav-item">
+                <h4 class="nav-text"></h4>
+            </div>
+        </a>
         <div class="nav-item" id="nav-search-div">
             <div id="search-icon-div">
                 <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
@@ -141,7 +143,7 @@
             </div>
         </div>
     </section>
-<!--    <input type="hidden" id="csrf-token" th:value="${_csrf.token}"/>-->
+    <!--    <input type="hidden" id="csrf-token" th:value="${_csrf.token}"/>-->
 </main>
 <footer>
     <section id="footer-small-text-section">
