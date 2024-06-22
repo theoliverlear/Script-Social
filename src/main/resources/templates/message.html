@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html"
+      dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Message | Script Social</title>
+    <link rel="stylesheet" href="../static/style/global-style.css"
+          th:href="@{/style/global-style.css}"/>
+    <link rel="stylesheet" href="../static/style/message-style.css"
+          th:href="@{/style/message-style.css}"/>
+    <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
+          th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
+</head>
+<body data-page="message">
+<header>
+    <div>
+        <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
+             th:src="@{/image/icon/hamburger_menu.svg}">
+    </div>
+    <nav id="nav-bar">
+        <a href="/" class="link-no-style">
+            <div class="nav-item">
+                <h4 class="nav-text"></h4>
+            </div>
+        </a>
+        <div class="nav-item" id="nav-search-div">
+            <div id="search-icon-div">
+                <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
+                     th:src="@{/image/icon/search_icon.png}">
+            </div>
+            <div>
+                <h4 class="nav-text"></h4>
+            </div>
+            <div id="nav-search-input-div">
+                <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
+            </div>
+        </div>
+        <div id="account-and-logout-div" class="nav-item">
+            <div id="account-nav-item">
+                <h4 id="account-name-text" class="nav-text"></h4>
+            </div>
+            <div id="logout-button">
+                <h5>Logout</h5>
+            </div>
+        </div>
+    </nav>
+    <div>
+        <!-- Insert logo here -->
+    </div>
+</header>
+<main>
+    <section id="message-section">
+        <section id="connections-section">
+            <!-- TODO: Add a compose button icon to send a new message with no
+                       history. -->
+            <div id="connections-title-div">
+                <h5 id="connections-title-text">Connections</h5>
+            </div>
+            <hr />
+            <div id="connections-list-div">
+                <div class="connection-item">
+                    <div class="connection-img-div">
+                        <img class="connection-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
+                             th:src="@{/image/icon/default_avatar.svg}">
+                    </div>
+                    <div class="connection-name-div">
+                        <h6 class="connection-name-text">John Doe</h6>
+                    </div>
+                </div>
+                <div class="connection-item">
+                    <div class="connection-img-div">
+                        <img class="connection-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
+                             th:src="@{/image/icon/default_avatar.svg}">
+                    </div>
+                    <div class="connection-name-div">
+                        <h6 class="connection-name-text">Mary Stevens</h6>
+                    </div>
+                </div>
+                <div class="connection-item">
+                    <div class="connection-img-div">
+                        <img class="connection-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
+                             th:src="@{/image/icon/default_avatar.svg}">
+                    </div>
+                    <div class="connection-name-div">
+                        <h6 class="connection-name-text">Stephan Dumorier</h6>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="messages-section">
+            <div id="messages-title-div">
+                <h5 id="messages-title-text">Messages</h5>
+            </div>
+            <hr />
+            <div id="messaging-div">
+                <div id="user-messages">
+                    <div class="message-item">
+                        <div class="message-headline">
+                            <div class="image-with-name-div">
+                                <div class="message-img-div">
+                                    <img class="message-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
+                                         th:src="@{/image/icon/default_avatar.svg}">
+                                </div>
+                                <div class="message-name-div">
+                                    <h6 class="message-name-text">John Doe</h6>
+                                </div>
+                            </div>
+                            <div class="message-time-div">
+                                <p class="message-time-text">12:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <p class="message-content-text">
+                                Yo Mista White. I see you got the semicolons
+                                bitch. Finally, you stopped the errors, like,
+                                computationally. That's like, science, Mista
+                                White.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- TODO: Insert a textarea that is locked in size. -->
+                </div>
+            </div>
+        </section>
+    </section>
+</main>
+<footer>
+    <section id="footer-small-text-section">
+        <div id="footer-left-text-item" class="footer-item">
+            <h6>&copy 2024 Sigwarth Software</h6>
+        </div>
+        <div id="footer-right-text-item" class="footer-item">
+            <h6>Terms of Service</h6>
+        </div>
+    </section>
+</footer>
+<script src="../static/script/bundle.js" type="application/javascript"
+        th:src="@{/script/bundle.js}"></script>
+</body>
+</html>
