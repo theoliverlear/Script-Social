@@ -257,6 +257,10 @@ header {
 .general-post {
     @extend .content-box;
 }
+.link-no-style {
+    text-decoration: inherit;
+    color: inherit;
+}
 .general-write-post-div {
     @include flex(center, center, column);
     width: $twenty-percent;
