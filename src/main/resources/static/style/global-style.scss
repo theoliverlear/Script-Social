@@ -311,6 +311,7 @@ header {
     transition: color, background-color, 0.15s;
     margin: $eighth-percent;
     padding: $sixteenth-percent;
+    user-select: none;
     &:hover {
         color: $charcoal;
         background-color: $pristine-white;
