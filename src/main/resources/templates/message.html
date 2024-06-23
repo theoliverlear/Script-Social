@@ -120,9 +120,41 @@
                             </p>
                         </div>
                     </div>
+                    <div class="message-item">
+                        <div class="message-headline">
+                            <div class="image-with-name-div">
+                                <div class="message-img-div">
+                                    <img class="message-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
+                                         th:src="@{/image/icon/default_avatar.svg}">
+                                </div>
+                                <div class="message-name-div">
+                                    <h6 class="message-name-text">John Doe</h6>
+                                </div>
+                            </div>
+                            <div class="message-time-div">
+                                <p class="message-time-text">1:07 PM</p>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <p class="message-content-text">
+                                Hi, my name is John. I am a software developer
+                                from the United States. I am interested in
+                                scamming you. Are you interested? Perhaps we
+                                should discuss a reverse mortgage opportunity
+                                to greatly increase my own wealth. Think about
+                                it.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div>
+                <div id="user-message-div">
                     <!-- TODO: Insert a textarea that is locked in size. -->
+                    <div id="send-message-div">
+                        <textarea id="user-message-text"></textarea>
+                    </div>
+                    <div id="user-message-send-button" class="general-button">
+                        <h5>SEND</h5>
+                    </div>
                 </div>
             </div>
         </section>
