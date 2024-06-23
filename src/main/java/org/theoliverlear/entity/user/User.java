@@ -7,8 +7,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.theoliverlear.entity.content.Post;
+import org.theoliverlear.entity.im.Conversation;
 import org.theoliverlear.entity.user.personal.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -64,6 +66,12 @@ public class User {
     @OneToOne
     @JoinColumn(name = "profile_picture_id")
     private ProfilePicture profilePicture;
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(
+            name = "user_conversation",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "conversation_id"))
+    private List<Conversation> conversations;
     public User() {
         this.username = "";
         this.email = "";
@@ -72,6 +80,14 @@ public class User {
         this.bio = new Bio();
         this.safePassword = new SafePassword();
         this.profile = new Profile();
+        this.posts = new ArrayList<>();
+        this.completedWelcomeSurvey = false;
+        this.interests = new Interests();
+        this.birthDate = new BirthDate();
+        this.profileIntention = new ProfileIntention();
+        this.employmentStatus = new EmploymentStatus();
+        this.profilePicture = new ProfilePicture();
+        this.conversations = new ArrayList<>();
     }
     public User(String username, String unencodedPassword) {
         this.username = username;
@@ -80,6 +96,14 @@ public class User {
         this.lastName = "";
         this.safePassword = new SafePassword(unencodedPassword);
         this.profile = new Profile();
+        this.posts = new ArrayList<>();
+        this.completedWelcomeSurvey = false;
+        this.interests = new Interests();
+        this.birthDate = new BirthDate();
+        this.profileIntention = new ProfileIntention();
+        this.employmentStatus = new EmploymentStatus();
+        this.profilePicture = new ProfilePicture();
+        this.conversations = new ArrayList<>();
     }
     public User(String username, String unencodedPassword, String email) {
         this.username = username;
@@ -89,6 +113,14 @@ public class User {
         this.bio = new Bio();
         this.safePassword = new SafePassword(unencodedPassword);
         this.profile = new Profile();
+        this.posts = new ArrayList<>();
+        this.completedWelcomeSurvey = false;
+        this.interests = new Interests();
+        this.birthDate = new BirthDate();
+        this.profileIntention = new ProfileIntention();
+        this.employmentStatus = new EmploymentStatus();
+        this.profilePicture = new ProfilePicture();
+        this.conversations = new ArrayList<>();
     }
     public User(String username, String email, String firstName, String lastName, SafePassword safePassword) {
         this.username = username;
@@ -98,6 +130,14 @@ public class User {
         this.bio = new Bio();
         this.safePassword = safePassword;
         this.profile = new Profile();
+        this.posts = new ArrayList<>();
+        this.completedWelcomeSurvey = false;
+        this.interests = new Interests();
+        this.birthDate = new BirthDate();
+        this.profileIntention = new ProfileIntention();
+        this.employmentStatus = new EmploymentStatus();
+        this.profilePicture = new ProfilePicture();
+        this.conversations = new ArrayList<>();
     }
     public User(String username, String email, String firstName, String lastName, SafePassword safePassword, List<Post> posts) {
         this.username = username;
@@ -108,6 +148,13 @@ public class User {
         this.safePassword = safePassword;
         this.posts = posts;
         this.profile = new Profile();
+        this.completedWelcomeSurvey = false;
+        this.interests = new Interests();
+        this.birthDate = new BirthDate();
+        this.profileIntention = new ProfileIntention();
+        this.employmentStatus = new EmploymentStatus();
+        this.profilePicture = new ProfilePicture();
+        this.conversations = new ArrayList<>();
     }
     public void addPost(Post post) {
         this.posts.add(post);
