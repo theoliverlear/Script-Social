@@ -2,6 +2,7 @@
 @import "global-mixins";
 @import "global-functions";
 @import "global-placeholders";
+@import "global-style";
 
 main {
     //flex: 1;
@@ -12,6 +13,8 @@ main {
     margin: $one-percent 0 0 0;
     color: $pristine-white;
     //height: $thirty-percent;
+    height: $thirty-five-percent;
+    max-height: 80vh;
     @extend %console;
     #connections-section {
         padding: 0 $one-percent 0 0;
@@ -19,8 +22,10 @@ main {
         border : {
             right: calc($thin-border * 0.75) solid $light-charcoal;
         }
+        height: 100%;
         #connections-title-div {
             @include flex(center, center, row);
+
         }
         #connections-list-div {
             .connection-item {
@@ -53,18 +58,25 @@ main {
         }
     }
     #messages-section {
-        //height: 100%;
+        //@include flex(center, center, column);
+        height: 100%;
+
         #messages-title-div {
             @include flex(center, center, row);
         }
         #messaging-div {
             margin: $half-percent 0 0 0;
             #user-messages {
+                width: $thirty-five-percent;
                 max-width: 30vw;
+                height: 49vh;
+                overflow: scroll;
                 .message-item {
+                    max-width: 27.85vw;
                     border-radius: $one-percent;
                     background-color: $light-charcoal;
                     padding: $half-percent;
+                    margin: $one-percent 0;
                     .message-headline {
                         @include flex(center, center, column);
                         .image-with-name-div {
@@ -92,6 +104,25 @@ main {
                             font-size: calc($p-font-size * 0.75);
                         }
                     }
+                }
+            }
+            #user-message-div {
+                margin: $one-percent 0 0 0;
+                align-self: end;
+                @include flex(center, center, column);
+                width: $thirty-five-percent;
+                max-width: 30vw;
+                #send-message-div {
+                    textarea {
+                        width: $thirty-percent;
+                        max-width: 27vw;
+                        @extend .general-text-area;
+                        max-height: $eight-percent;
+                    }
+                }
+                #user-message-send-button {
+                    align-self: end;
+                    justify-self: end;
                 }
             }
         }
