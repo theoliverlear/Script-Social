@@ -19,29 +19,34 @@ public class Conversation {
     @OneToMany(mappedBy = "conversation", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Message> messages;
     @ManyToMany(mappedBy = "conversations", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private List<User> conversationSubscribers;
+    private List<User> subscribers;
     public Conversation() {
         this.messages = new ArrayList<>();
-        this.conversationSubscribers = new ArrayList<>();
+        this.subscribers = new ArrayList<>();
     }
     public Conversation(List<Message> messages) {
         this.messages = messages;
-        this.conversationSubscribers = new ArrayList<>();
+        this.subscribers = new ArrayList<>();
     }
-    public Conversation(List<Message> messages, List<User> conversationSubscribers) {
+    public Conversation(List<Message> messages, List<User> subscribers) {
         this.messages = messages;
-        this.conversationSubscribers = conversationSubscribers;
+        this.subscribers = subscribers;
     }
     public void addMessage(Message message) {
-        if (!this.conversationSubscribers.contains(message.getSender())) {
+        if (!this.subscribers.contains(message.getSender())) {
             this.addUserFromMessage(message);
         }
         this.messages.add(message);
     }
+    public void addUserIfNotPresent(User user) {
+        if (!this.subscribers.contains(user)) {
+            this.subscribers.add(user);
+        }
+    }
     public void addUserFromMessage(Message message) {
-        this.conversationSubscribers.add(message.getSender());
+        this.subscribers.add(message.getSender());
     }
     public boolean containsUser(User user) {
-        return this.conversationSubscribers.contains(user);
+        return this.subscribers.contains(user);
     }
 }
