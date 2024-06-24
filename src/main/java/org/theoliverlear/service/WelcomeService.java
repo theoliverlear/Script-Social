@@ -32,7 +32,8 @@ public class WelcomeService {
         BirthDate birthDate = new BirthDate(welcomeUserRequest.getBirthDate());
         user.setBirthDate(birthDate);
         // GET THE INTERESTS
-        Interests interests = new Interests(user);
+//        Interests interests = new Interests(user);
+        Interests interests = user.getInterests();
 //        System.out.println(welcomeUserRequest.getInterests());
 
 //        System.out.println(interests.getInterests());
