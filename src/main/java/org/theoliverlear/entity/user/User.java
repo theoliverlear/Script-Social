@@ -79,14 +79,14 @@ public class User {
         this.lastName = "";
         this.bio = new Bio();
         this.safePassword = new SafePassword();
-        this.profile = new Profile();
+        this.profile = new Profile(this);
         this.posts = new ArrayList<>();
         this.completedWelcomeSurvey = false;
-        this.interests = new Interests();
+        this.interests = new Interests(this);
         this.birthDate = new BirthDate();
         this.profileIntention = new ProfileIntention();
         this.employmentStatus = new EmploymentStatus();
-        this.profilePicture = new ProfilePicture();
+        this.profilePicture = null;
         this.conversations = new ArrayList<>();
     }
     public User(String username, String unencodedPassword) {
@@ -95,14 +95,14 @@ public class User {
         this.firstName = "";
         this.lastName = "";
         this.safePassword = new SafePassword(unencodedPassword);
-        this.profile = new Profile();
+        this.profile = new Profile(this);
         this.posts = new ArrayList<>();
         this.completedWelcomeSurvey = false;
-        this.interests = new Interests();
+        this.interests = new Interests(this);
         this.birthDate = new BirthDate();
         this.profileIntention = new ProfileIntention();
         this.employmentStatus = new EmploymentStatus();
-        this.profilePicture = new ProfilePicture();
+        this.profilePicture = null;
         this.conversations = new ArrayList<>();
     }
     public User(String username, String unencodedPassword, String email) {
@@ -112,14 +112,14 @@ public class User {
         this.lastName = "";
         this.bio = new Bio();
         this.safePassword = new SafePassword(unencodedPassword);
-        this.profile = new Profile();
+        this.profile = new Profile(this);
         this.posts = new ArrayList<>();
         this.completedWelcomeSurvey = false;
-        this.interests = new Interests();
+        this.interests = new Interests(this);
         this.birthDate = new BirthDate();
         this.profileIntention = new ProfileIntention();
         this.employmentStatus = new EmploymentStatus();
-        this.profilePicture = new ProfilePicture();
+        this.profilePicture = null;
         this.conversations = new ArrayList<>();
     }
     public User(String username, String email, String firstName, String lastName, SafePassword safePassword) {
@@ -129,14 +129,14 @@ public class User {
         this.lastName = lastName;
         this.bio = new Bio();
         this.safePassword = safePassword;
-        this.profile = new Profile();
+        this.profile = new Profile(this);
         this.posts = new ArrayList<>();
         this.completedWelcomeSurvey = false;
-        this.interests = new Interests();
+        this.interests = new Interests(this);
         this.birthDate = new BirthDate();
         this.profileIntention = new ProfileIntention();
         this.employmentStatus = new EmploymentStatus();
-        this.profilePicture = new ProfilePicture();
+        this.profilePicture = null;
         this.conversations = new ArrayList<>();
     }
     public User(String username, String email, String firstName, String lastName, SafePassword safePassword, List<Post> posts) {
@@ -147,13 +147,14 @@ public class User {
         this.bio = new Bio();
         this.safePassword = safePassword;
         this.posts = posts;
-        this.profile = new Profile();
+        this.profile = new Profile(this);
         this.completedWelcomeSurvey = false;
-        this.interests = new Interests();
+        this.interests = new Interests(this);
         this.birthDate = new BirthDate();
         this.profileIntention = new ProfileIntention();
         this.employmentStatus = new EmploymentStatus();
-        this.profilePicture = new ProfilePicture();
+//        this.profilePicture = new ProfilePicture(this);
+        this.profilePicture = null;
         this.conversations = new ArrayList<>();
     }
     public void addPost(Post post) {
