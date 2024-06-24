@@ -17,6 +17,10 @@ public class ProfilePicture extends Picture {
         super();
         this.user = null;
     }
+    public ProfilePicture(User user) {
+        super();
+        this.user = user;
+    }
     public ProfilePicture(String fileName, byte[] fileData) {
         super(fileName, fileData);
         this.user = null;
