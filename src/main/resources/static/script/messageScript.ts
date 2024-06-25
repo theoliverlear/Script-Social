@@ -32,7 +32,7 @@ function sendMessage(): void {
         receiverId: 1,
         message: userMessageText.val() as string
     }
-    stompClient.send('/message/send/', {}, JSON.stringify(messageInfo));
+    stompClient.send('/message/send', {}, JSON.stringify(messageInfo));
 }
 let userMessageSendButton: JQuery<HTMLElement> = $('#user-message-send-button');
 let userMessageText: JQuery<HTMLElement> = $('#user-message-text');
