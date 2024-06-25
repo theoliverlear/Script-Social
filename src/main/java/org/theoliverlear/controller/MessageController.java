@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,7 +56,7 @@ public class MessageController {
     }
     @RequestMapping("/get/{id}")
     public ResponseEntity<List<InstantMessageResponse>> getMessages(@PathVariable Long id, HttpSession session) {
-        if (this.scriptSocialService.userInSession(session))  {
+        if (!this.scriptSocialService.userInSession(session))  {
             return ResponseEntity.badRequest().build();
         } else {
             this.currentUser = (User) session.getAttribute("user");
@@ -84,22 +86,20 @@ public class MessageController {
         return ResponseEntity.ok(messages);
     }
     @MessageMapping("/send")
-    public ResponseEntity<OperationSuccessfulResponse> sendMessage(@RequestBody InstantMessageRequest instantMessageRequest, HttpSession session) {
+    public void sendMessage(@RequestBody InstantMessageRequest instantMessageRequest, HttpSession session) {
         if (this.scriptSocialService.userInSession(session)) {
-            return ResponseEntity.badRequest().build();
+            return;
         } else {
             this.currentUser = (User) session.getAttribute("user");
         }
         Optional<List<Conversation>> conversations = this.conversationService.findByUserIds(this.currentUser.getId(), instantMessageRequest.getReceiverId());
         if (conversations.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return;
         }
         boolean messageAdded = this.conversationService.addMessageToConversation(conversations.get().get(0), this.currentUser, instantMessageRequest);
         if (!messageAdded) {
-            return ResponseEntity.badRequest().build();
+            return;
         }
         this.simpMessagingTemplate.convertAndSend("/message/receiver/" + instantMessageRequest.getReceiverId(), instantMessageRequest.getMessage());
-        return ResponseEntity.ok(new OperationSuccessfulResponse(true));
     }
-
 }
