@@ -37,16 +37,32 @@ public class ConversationService {
         }
     }
     public boolean addMessageToConversation(Conversation conversation, User user, InstantMessageRequest instantMessageRequest) {
+//        if (conversation == null) {
+//            conversation = this.createConversation(user, this.userService.getUserById(instantMessageRequest.getReceiverId()).get());
+//            return true;
+//        }
         Long recipientId = instantMessageRequest.getReceiverId();
-        User recipient = this.userService.getUserById(recipientId);
-        if (recipient == null) {
+        Optional<User> possibleRecipient = this.userService.getUserById(recipientId);
+        if (possibleRecipient.isEmpty()) {
             return false;
         }
+        User recipient = possibleRecipient.get();
         Message message = new Message(user, instantMessageRequest.getMessage());
         conversation.addMessage(message);
-        conversation.addUserIfNotPresent(recipient);
+        conversation.addUser(recipient);
         this.messageService.saveMessage(message);
         this.conversationRepository.save(conversation);
+        this.userService.saveUser(user);
+        this.userService.saveUser(recipient);
         return true;
+    }
+    public Conversation createConversation(User user, User recipient) {
+        Conversation conversation = new Conversation();
+        conversation.addUser(user);
+        conversation.addUser(recipient);
+        this.conversationRepository.save(conversation);
+        this.userService.saveUser(user);
+        this.userService.saveUser(recipient);
+        return conversation;
     }
 }
