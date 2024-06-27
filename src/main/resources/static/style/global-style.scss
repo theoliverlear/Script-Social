@@ -174,18 +174,15 @@ header {
             background-color: $charcoal;
             @extend %console-box-shadow;
             transition: box-shadow, 0.15s;
-
             #user-nav-img {
                 border-radius: inherit;
                 @include size(100%, 100%)
             }
-
             &:hover {
                 box-shadow: $absolute-black $third-percent $third-percent 0 0;
                 cursor: pointer;
             }
-
-            &:hover {
+            &:active {
                 cursor: pointer;
             }
         }
