@@ -10,6 +10,7 @@ import org.theoliverlear.entity.user.User;
 import org.theoliverlear.repository.PostRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -21,14 +22,15 @@ public class PostService {
     }
     @Transactional
     public boolean createPost(PostRequest postRequest) {
-        User user = this.userService.getUserById(postRequest.getUserId());
-        if (user == null) {
+        Optional<User> user = this.userService.getUserById(postRequest.getUserId());
+        if (user.isEmpty()) {
             return false;
         }
-        Post post = new Post(user, postRequest.getContent());
+        User poster = user.get();
+        Post post = new Post(poster, postRequest.getContent());
         this.postRepository.save(post);
-        user.addPost(post);
-        this.userService.saveUser(user);
+        poster.addPost(post);
+        this.userService.saveUser(poster);
         return true;
     }
     @Transactional
@@ -54,11 +56,11 @@ public class PostService {
         if (post == null) {
             return false;
         }
-        User user = this.userService.getUserById(commentRequest.getUserId());
-        if (user == null) {
+        Optional<User> user = this.userService.getUserById(commentRequest.getUserId());
+        if (user.isEmpty()) {
             return false;
         }
-        Comment comment = new Comment(user, commentRequest.getContent());
+        Comment comment = new Comment(user.get(), commentRequest.getContent());
         post.addComment(comment);
         this.postRepository.save(post);
         return true;
