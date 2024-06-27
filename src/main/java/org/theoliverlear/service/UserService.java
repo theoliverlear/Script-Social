@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     private UserRepository userRepository;
@@ -39,8 +41,12 @@ public class UserService {
         return user.getUsername();
     }
     @Transactional
-    public User getUserById(Long id) {
+    public Optional<User> getUserById(Long id) {
         User user = this.userRepository.findUserById(id);
-        return user;
+        if (user == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(user);
+        }
     }
 }
