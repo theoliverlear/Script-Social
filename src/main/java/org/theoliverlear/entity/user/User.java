@@ -11,7 +11,9 @@ import org.theoliverlear.entity.im.Conversation;
 import org.theoliverlear.entity.user.personal.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -71,7 +73,7 @@ public class User {
             name = "user_conversation",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "conversation_id"))
-    private List<Conversation> conversations;
+    private Set<Conversation> conversations;
     public User() {
         this.username = "";
         this.email = "";
@@ -87,7 +89,7 @@ public class User {
         this.profileIntention = new ProfileIntention();
         this.employmentStatus = new EmploymentStatus();
         this.profilePicture = null;
-        this.conversations = new ArrayList<>();
+        this.conversations = new HashSet<>();
     }
     public User(String username, String unencodedPassword) {
         this.username = username;
@@ -103,7 +105,7 @@ public class User {
         this.profileIntention = new ProfileIntention();
         this.employmentStatus = new EmploymentStatus();
         this.profilePicture = null;
-        this.conversations = new ArrayList<>();
+        this.conversations = new HashSet<>();
     }
     public User(String username, String unencodedPassword, String email) {
         this.username = username;
@@ -120,7 +122,7 @@ public class User {
         this.profileIntention = new ProfileIntention();
         this.employmentStatus = new EmploymentStatus();
         this.profilePicture = null;
-        this.conversations = new ArrayList<>();
+        this.conversations = new HashSet<>();
     }
     public User(String username, String email, String firstName, String lastName, SafePassword safePassword) {
         this.username = username;
@@ -137,7 +139,7 @@ public class User {
         this.profileIntention = new ProfileIntention();
         this.employmentStatus = new EmploymentStatus();
         this.profilePicture = null;
-        this.conversations = new ArrayList<>();
+        this.conversations = new HashSet<>();
     }
     public User(String username, String email, String firstName, String lastName, SafePassword safePassword, List<Post> posts) {
         this.username = username;
@@ -155,7 +157,13 @@ public class User {
         this.employmentStatus = new EmploymentStatus();
 //        this.profilePicture = new ProfilePicture(this);
         this.profilePicture = null;
-        this.conversations = new ArrayList<>();
+        this.conversations = new HashSet<>();
+    }
+    public void addConversation(Conversation conversation) {
+        this.conversations.add(conversation);
+    }
+    public void removeConversation(Conversation conversation) {
+        this.conversations.remove(conversation);
     }
     public void addPost(Post post) {
         this.posts.add(post);
