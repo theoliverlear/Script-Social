@@ -15,8 +15,12 @@ function addSelectedStyle(): void {
 }
 
 let webSocket: WebSocket = new SockJS('/ws');
-let stompClient: any = Stomp.over(webSocket);
-
+let stompClient: any;
+try {
+    stompClient = Stomp.over(webSocket);
+} catch (error) {
+    console.error('Failed to create stomp client', error);
+}
 stompClient.connect({}, function(frame: any): void {
     const testId: number = 1;
     const testMessage: string = 'Test message';
