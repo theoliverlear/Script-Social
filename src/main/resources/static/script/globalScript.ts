@@ -16,6 +16,7 @@ let accountNavItem: JQuery<HTMLElement> = $('#account-nav-item');
 let logoutButton: JQuery<HTMLElement> = $('#logout-button');
 let accountAndLogoutDiv: JQuery<HTMLElement> = $('#account-and-logout-div');
 let accountNameText: JQuery<HTMLElement> = $('#account-name-text');
+let userNavMenuDiv: JQuery<HTMLElement> = $('#user-nav-menu-div');
 //=============================-Server-Functions-=============================
 async function getCurrentUserIdFromServer(): Promise<number> {
     let response: Response = await fetch('/user/get/current/id');
@@ -267,16 +268,31 @@ function clearInputs(inputElements: JQuery<HTMLElement>[]): void {
         inputElement.val('');
     });
 }
+function showCorrectUserNavMenu(): void {
+    if (isLoggedIn) {
+        showUserNavMenu();
+    } else {
+        hideUserNavMenu();
+    }
+}
+function showUserNavMenu(): void {
+    userNavMenuDiv.show();
+}
+function hideUserNavMenu(): void {
+    userNavMenuDiv.hide();
+}
 //================================-Init-Load-=================================
 disableDraggableImages();
 setIsLoggedInFromServer().then((): void => {
     if (isLoggedIn) {
         setCurrentUsernameFromServer().then((): void => {
             setNavBarNameAndFunction();
+
         });
     } else {
         setNavBarNameAndFunction();
     }
+    showCorrectUserNavMenu();
 });
 //-------------------------------Load-Page------------------------------------
 function loadPage(bodyElement: HTMLElement, pageName: string): boolean {
