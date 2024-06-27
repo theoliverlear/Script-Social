@@ -57,12 +57,14 @@ header {
     @include basic-margin-padding(0, 0);
     @include flex(center, center, row);
     nav {
+        //margin: 0 0 0 $four-percent;
         justify-content: center;
         align-items: center;
         flex-direction: row;
         display: none;
         @include size(50%, 100%);
-        > div {
+        > div, > a {
+            flex-basis: $eight-percent;
             height: 30%;
             //border-left: $very-thin-border solid $charcoal;
             padding: $quarter-percent $one-percent;
@@ -158,6 +160,34 @@ header {
         }
         &:hover {
             @include size($three-half-percent, $three-half-percent);
+        }
+    }
+    #user-nav-menu-div {
+        display: none;
+        #user-nav-img-div {
+            top: $half-percent;
+            right: $half-percent;
+            position: absolute;
+            @include square-size($four-percent);
+            border: $thin-border solid $sandstone;
+            border-radius: $one-percent;
+            background-color: $charcoal;
+            @extend %console-box-shadow;
+            transition: box-shadow, 0.15s;
+
+            #user-nav-img {
+                border-radius: inherit;
+                @include size(100%, 100%)
+            }
+
+            &:hover {
+                box-shadow: $absolute-black $third-percent $third-percent 0 0;
+                cursor: pointer;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 }
