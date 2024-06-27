@@ -19,8 +19,8 @@
              th:src="@{/image/icon/hamburger_menu.svg}">
     </div>
     <nav id="nav-bar">
-        <a href="/" class="link-no-style">
-            <div class="nav-item">
+        <a href="/" class="link-no-style nav-item">
+            <div>
                 <h4 class="nav-text"></h4>
             </div>
         </a>
@@ -45,8 +45,13 @@
             </div>
         </div>
     </nav>
-    <div>
-        <!-- Insert logo here -->
+    <div id="user-nav-menu-div">
+        <div id="user-nav-img-div">
+            <img id="user-nav-img" src="../static/image/icon/default_avatar.svg" alt="User Avatar"
+                 th:src="@{/image/icon/default_avatar.svg}">
+        </div>
+        <!-- TODO: Add dropdown menu for user settings. This should include a
+                   logout option.-->
     </div>
 </header>
 <main>
