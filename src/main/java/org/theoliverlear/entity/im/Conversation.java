@@ -6,7 +6,9 @@ import lombok.Setter;
 import org.theoliverlear.entity.user.User;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -19,16 +21,16 @@ public class Conversation {
     @OneToMany(mappedBy = "conversation", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Message> messages;
     @ManyToMany(mappedBy = "conversations", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private List<User> subscribers;
+    private Set<User> subscribers;
     public Conversation() {
         this.messages = new ArrayList<>();
-        this.subscribers = new ArrayList<>();
+        this.subscribers = new HashSet<>();
     }
     public Conversation(List<Message> messages) {
         this.messages = messages;
-        this.subscribers = new ArrayList<>();
+        this.subscribers = new HashSet<>();
     }
-    public Conversation(List<Message> messages, List<User> subscribers) {
+    public Conversation(List<Message> messages, HashSet<User> subscribers) {
         this.messages = messages;
         this.subscribers = subscribers;
     }
@@ -38,7 +40,14 @@ public class Conversation {
         }
         this.messages.add(message);
     }
+    public void addUser(User user) {
+        this.addUserIfNotPresent(user);
+        user.addConversation(this);
+    }
     public void addUserIfNotPresent(User user) {
+        // TODO: Phase out method when hashcode and equals are implemented.
+        //       This will phase out the need for checking for duplicates,
+        //       since it is a set.
         if (!this.subscribers.contains(user)) {
             this.subscribers.add(user);
         }
