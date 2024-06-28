@@ -54,6 +54,27 @@
                    logout option.-->
     </div>
 </header>
+<nav id="side-nav-bar">
+    <div id="side-bar-tab-div" class="side-bar-icon-div">
+        <img id="side-bar-tab-img" class="side-bar-icon-img" src="../static/image/icon/white_tab_icon.svg"
+             alt="Tab Icon" th:src="@{/image/icon/white_tab_icon.svg}">
+    </div>
+    <hr />
+    <div id="side-nav-items">
+        <a class="link-no-style" href="/notifications/">
+            <div class="side-bar-icon-div">
+                <img class="side-bar-icon-img" src="../static/image/icon/white_notification_bell_icon.svg"
+                     alt="Notification Bell Icon" th:src="@{/image/icon/white_notification_bell_icon.svg}">
+            </div>
+        </a>
+        <a class="link-no-style" href="/message/">
+            <div class="side-bar-icon-div">
+                <img class="side-bar-icon-img" src="../static/image/icon/white_mail_icon.svg" alt="Mail Icon"
+                     th:src="@{/image/icon/white_mail_icon.svg}">
+            </div>
+        </a>
+    </div>
+</nav>
 <main>
     <!-- TODO: If a user is private, show a message, hide the appropriate
                content, and heavily blur their profile picture. -->
