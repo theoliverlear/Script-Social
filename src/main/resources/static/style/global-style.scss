@@ -47,9 +47,12 @@ body {
     }
 }
 header {
+    z-index: 2;
     top: 0;
     left: 0;
     width: 100%;
+    position: sticky;
+    margin: 0 0 calc-size(7, 4, 2) 0;
     height: calc-size(7, 4, 2);
     background-color: $apricot-glow;
     //border-bottom: $thinnest-border solid $alabaster-stone;
@@ -186,6 +189,38 @@ header {
                 cursor: pointer;
             }
         }
+    }
+}
+#side-nav-bar {
+    z-index: 1;
+    @include flex(flex-start, center, column);
+    @include size($four-percent, 100%);
+    background-color: $light-charcoal;
+    //border-right: $thinnest-border solid $alabaster-stone;
+    box-shadow: $light-charcoal 0 0 $eighth-percent $eighth-percent;
+    top: 0;
+    left: 0;
+    position: fixed;
+    #side-bar-tab-div {
+        margin: calc(calc-size(7, 4, 2) + $one-percent) $zero $quarter-percent $zero;
+    }
+    hr {
+        background-color: $charcoal;
+        width: 70%;
+    }
+    .side-bar-icon-div {
+        background-color: $charcoal;
+        border-radius: $half-percent;
+        padding: $quarter-percent;
+        margin: $half-percent $zero;
+        @include square-size($two-half-percent);
+        @include flex(center, center, row);
+        .side-bar-icon-img {
+            @include size(100%, 100%);
+        }
+    }
+    #side-nav-items {
+        @include flex(center, center, column);
     }
 }
 .general-console-container {
