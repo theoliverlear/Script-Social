@@ -17,6 +17,12 @@ let logoutButton: JQuery<HTMLElement> = $('#logout-button');
 let accountAndLogoutDiv: JQuery<HTMLElement> = $('#account-and-logout-div');
 let accountNameText: JQuery<HTMLElement> = $('#account-name-text');
 let userNavMenuDiv: JQuery<HTMLElement> = $('#user-nav-menu-div');
+//--------------------------------Side-Nav-Bar--------------------------------
+let sideNavBar: JQuery<HTMLElement> = $('#side-nav-bar');
+let sideNavBarExpanded: boolean = false;
+let sideBarTabDiv: JQuery<HTMLElement> = $('#side-bar-tab-div');
+let sideBarTabImg: JQuery<HTMLElement> = $('#side-bar-tab-img');
+let sideBarIconTitleDivs: JQuery<HTMLElement> = $('.side-bar-icon-title-div');
 //=============================-Server-Functions-=============================
 async function getCurrentUserIdFromServer(): Promise<number> {
     let response: Response = await fetch('/user/get/current/id');
@@ -51,6 +57,25 @@ async function setCurrentUsernameFromServer(): Promise<void> {
 function disableDraggableImages(): void {
     for (let image of Array.from(allImages)) {
         image.draggable = false;
+    }
+}
+function toggleSideNavBar(): void {
+    if (sideNavBarExpanded) {
+        sideNavBar.removeClass('side-nav-opened').addClass('side-nav-closed');
+        sideBarIconTitleDivs.fadeOut({duration: 150, queue: false});
+        sideNavBarExpanded = false;
+    } else {
+        sideNavBar.removeClass('side-nav-closed').addClass('side-nav-opened');
+        sideBarIconTitleDivs.fadeIn({duration: 150, queue: false}).css('display', 'flex');
+        sideNavBarExpanded = true;
+    }
+    flipSideBarTabImg();
+}
+function flipSideBarTabImg(): void {
+    if (sideNavBarExpanded) {
+        sideBarTabImg.css('transform', 'rotate(180deg)');
+    } else {
+        sideBarTabImg.css('transform', 'rotate(0deg)');
     }
 }
 //-----------------------Toggle-Desktop-Typed-Nav-Text------------------------
@@ -302,6 +327,7 @@ function loadPage(bodyElement: HTMLElement, pageName: string): boolean {
 hamburgerMenuDiv.on('click', toggleNavItems);
 accountAndLogoutDiv.on('mouseover', showLogoutButton);
 accountAndLogoutDiv.on('mouseleave', hideLogoutButton);
+sideBarTabDiv.on('click', toggleSideNavBar);
 //==================================-Export-==================================
 export { loadPage, typeText, deleteText, getCurrentUserIdFromServer,
          hashPassword, inputIsEmpty, removeTextArtifacts, emailIsValid,
