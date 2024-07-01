@@ -1,4 +1,5 @@
 import * as CryptoJS from 'crypto-js';
+import './sideBarSwipe';
 //================================-Variables-=================================
 
 //------------------------------General-Content-------------------------------
@@ -331,4 +332,4 @@ sideBarTabDiv.on('click', toggleSideNavBar);
 //==================================-Export-==================================
 export { loadPage, typeText, deleteText, getCurrentUserIdFromServer,
          hashPassword, inputIsEmpty, removeTextArtifacts, emailIsValid,
-         hasEmptyInputs, clearInputs };
+         hasEmptyInputs, clearInputs, toggleSideNavBar, sideNavBarExpanded};
