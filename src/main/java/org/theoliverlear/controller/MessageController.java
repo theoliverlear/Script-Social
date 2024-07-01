@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping("/message")
+@RequestMapping("/messages")
 @Controller
 public class MessageController {
     private ScriptSocialService scriptSocialService;
@@ -138,6 +138,6 @@ public class MessageController {
 //        if (!messageAdded) {
 //            return;
 //        }
-        this.simpMessagingTemplate.convertAndSend("/message/receiver/" + instantMessageRequest.getReceiverId(), instantMessageRequest.getMessage());
+        this.simpMessagingTemplate.convertAndSend("/messages/receiver/" + instantMessageRequest.getReceiverId(), instantMessageRequest.getMessage());
     }
 }

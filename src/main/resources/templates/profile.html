@@ -13,6 +13,7 @@
           th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
 </head>
 <body data-page="profile" th:user-id="${userId}">
+<!----------------------------------Nav-Bar---------------------------------->
 <header>
     <div>
         <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
@@ -54,6 +55,34 @@
                    logout option.-->
     </div>
 </header>
+<!-----------------------------Secondary-Nav-Bar----------------------------->
+<nav id="side-nav-bar" class="side-nav-closed">
+    <div id="side-bar-tab-div" class="side-bar-icon-div">
+        <img id="side-bar-tab-img" class="side-bar-icon-img" src="../static/image/icon/white_tab_icon.svg"
+             alt="Tab Icon" th:src="@{/image/icon/white_tab_icon.svg}">
+    </div>
+    <hr />
+    <div id="side-nav-items">
+        <a class="link-no-style side-bar-functionality-div" href="/notifications/">
+            <div class="side-bar-icon-div">
+                <img class="side-bar-icon-img" src="../static/image/icon/white_notification_bell_icon.svg"
+                     alt="Notification Bell Icon" th:src="@{/image/icon/white_notification_bell_icon.svg}">
+            </div>
+            <div class="side-bar-icon-title-div">
+                <h6>Notifications</h6>
+            </div>
+        </a>
+        <a class="link-no-style side-bar-functionality-div" href="/message/">
+            <div class="side-bar-icon-div">
+                <img class="side-bar-icon-img" src="../static/image/icon/white_mail_icon.svg" alt="Mail Icon"
+                     th:src="@{/image/icon/white_mail_icon.svg}">
+            </div>
+            <div class="side-bar-icon-title-div">
+                <h6>Messages</h6>
+            </div>
+        </a>
+    </div>
+</nav>
 <main>
     <!-- TODO: If a user is private, show a message, hide the appropriate
                content, and heavily blur their profile picture. -->

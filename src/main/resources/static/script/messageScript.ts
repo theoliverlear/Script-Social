@@ -24,7 +24,7 @@ try {
 stompClient.connect({}, function(frame: any): void {
     const testId: number = 1;
     const testMessage: string = 'Test message';
-    stompClient.subscribe(`/message/receiver/${testId}`, function(response: any): void {
+    stompClient.subscribe(`/messages/receiver/${testId}`, function(response: any): void {
         console.log(response.body);
     });
 });
@@ -36,7 +36,7 @@ function sendMessage(): void {
         receiverId: 1,
         message: userMessageText.val() as string
     }
-    stompClient.send('/message/send', {}, JSON.stringify(messageInfo));
+    stompClient.send('/messages/send', {}, JSON.stringify(messageInfo));
 }
 let userMessageSendButton: JQuery<HTMLElement> = $('#user-message-send-button');
 let userMessageText: JQuery<HTMLElement> = $('#user-message-text');
