@@ -498,3 +498,10 @@ footer {
         }
     }
 }
+@media screen and (min-width: 500px) {
+    header {
+        nav {
+            width: 70%;
+        }
+    }
+}
