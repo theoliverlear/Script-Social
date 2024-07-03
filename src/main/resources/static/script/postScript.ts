@@ -1,6 +1,6 @@
 // Methods for making posts throughout the program
 
-import {Post} from "./Post";
+import {Post} from "./models/Post";
 
 function sendPostToServer(userId: number, message: string): void {
     if (isValidPost(message) && userId !== -1) {
