@@ -5,14 +5,14 @@ import {
     loadPage,
     typeText
 } from "./globalScript";
-import {WelcomeProfile} from "./WelcomeProfile";
+import {WelcomeProfile} from "./models/WelcomeProfile";
 import confetti from 'canvas-confetti';
-import {PromptMovement} from "./PromptMovement";
-import {ProfileIntention} from "./ProfileIntention";
+import {PromptMovement} from "./models/PromptMovement";
+import {ProfileIntention} from "./models/ProfileIntention";
 import {createUppy} from "./imageUploadScript";
 import Uppy from "@uppy/core";
-import {EmploymentStatus} from "./EmploymentStatus";
-import {Interest} from "./Interest";
+import {EmploymentStatus} from "./models/EmploymentStatus";
+import {Interest} from "./models/Interest";
 //================================-Variables-=================================
 
 //------------------------------General-Content-------------------------------
