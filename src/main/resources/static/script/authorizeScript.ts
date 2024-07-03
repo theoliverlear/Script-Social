@@ -1,12 +1,12 @@
 //=================================-Imports-==================================
-import {AuthType} from "./AuthType";
+import {AuthType} from "./models/AuthType";
 import {
     clearInputs,
     getCurrentUserIdFromServer, hasEmptyInputs, hashPassword,
     loadPage,
     removeTextArtifacts
 } from "./globalScript";
-import {AuthPopup} from "./AuthPopup";
+import {AuthPopup} from "./models/AuthPopup";
 //================================-Variables-=================================
 let currentAuthType: AuthType = AuthType.SIGNUP;
 let signupButton: JQuery<HTMLElement> = $('#signup-button');
