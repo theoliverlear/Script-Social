@@ -79,7 +79,8 @@ public class MessageController {
         for (Conversation conversation : conversations.get()) {
             for (Message message : conversation.getMessages()) {
                 String fullNameOrUsername = message.getSender().getFirstName() + " " + message.getSender().getLastName();
-                if (message.getSender().getId().equals(this.currentUser.getId())) {
+                Long senderId = message.getSender().getId();
+                if (senderId.equals(this.currentUser.getId())) {
                     fullNameOrUsername = "You";
                 } else if (fullNameOrUsername.equals(" ")) {
                     fullNameOrUsername = message.getSender().getUsername();
@@ -88,7 +89,7 @@ public class MessageController {
                 // TODO: Set up date service do we can show time like "5
                 //       minutes ago".
                 String dateSent = message.getDateSent().toString();
-                InstantMessageResponse instantMessageResponse = new InstantMessageResponse(fullNameOrUsername, messageText, dateSent);
+                InstantMessageResponse instantMessageResponse = new InstantMessageResponse(fullNameOrUsername, senderId, messageText, dateSent);
                 messages.add(instantMessageResponse);
             }
         }
@@ -97,20 +98,23 @@ public class MessageController {
     @MessageMapping("/send")
     public void sendMessage(@RequestBody InstantMessageRequest instantMessageRequest, SimpMessageHeaderAccessor headerAccessor) {
         System.out.println("Received message: " + instantMessageRequest.getMessage());
-        if (!this.scriptSocialService.userInSession(headerAccessor)) {
-            System.out.println("User not in session.");
+//        if (!this.scriptSocialService.userInSession(headerAccessor)) {
+//            System.out.println("User not in session.");
+//            return;
+//        } else {
+//            Optional<User> possibleCurrentUser = this.scriptSocialService.getUserFromSession(headerAccessor);
+//            if (possibleCurrentUser.isEmpty()) {
+//                System.out.println("No current user found.");
+//                return;
+//            } else {
+//                System.out.println("Current user found.");
+//                this.currentUser = possibleCurrentUser.get();
+//            }
+//        }
+        if (this.currentUser == null) {
+            System.out.println("No current user found.");
             return;
-        } else {
-            Optional<User> possibleCurrentUser = this.scriptSocialService.getUserFromSession(headerAccessor);
-            if (possibleCurrentUser.isEmpty()) {
-                System.out.println("No current user found.");
-                return;
-            } else {
-                System.out.println("Current user found.");
-                this.currentUser = possibleCurrentUser.get();
-            }
         }
-
         System.out.println("Current user: " + this.currentUser.getUsername());
         Optional<List<Conversation>> conversations = this.conversationService.findByUserIds(this.currentUser.getId(), instantMessageRequest.getReceiverId());
         Optional<User> possibleReceiver = this.userService.getUserById(instantMessageRequest.getReceiverId());
@@ -138,6 +142,11 @@ public class MessageController {
 //        if (!messageAdded) {
 //            return;
 //        }
-        this.simpMessagingTemplate.convertAndSend("/messages/receiver/" + instantMessageRequest.getReceiverId(), instantMessageRequest.getMessage());
+        String fullNameOrUsername = this.currentUser.getFirstName() + " " + this.currentUser.getLastName();
+        if (fullNameOrUsername.equals(" ")) {
+            fullNameOrUsername = this.currentUser.getUsername();
+        }
+        InstantMessageResponse instantMessageResponse = new InstantMessageResponse(fullNameOrUsername, this.currentUser.getId(), instantMessageRequest.getMessage(), LocalDateTime.now().toString());
+        this.simpMessagingTemplate.convertAndSend("/messages/receiver/" + instantMessageRequest.getReceiverId(), instantMessageResponse);
     }
 }
