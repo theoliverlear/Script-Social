@@ -1,10 +1,10 @@
 import {getCurrentUserIdFromServer, loadPage} from "./globalScript";
-import {UserProfile} from "./UserProfile";
+import {UserProfile} from "./models/UserProfile";
 import {loadPosts, sendPostToServer} from "./postScript";
 
 let body: JQuery<HTMLElement> = $('body');
 let userProfile: UserProfile = new UserProfile();
-let userId: number = Number(document.body.getAttribute('user-id'));
+let profileUserId: number = Number(document.body.getAttribute('user-id'));
 let profilePictureImage: JQuery<HTMLElement> = $('#profile-picture-img');
 
 let firstNameHeadlineText: JQuery<HTMLElement> = $('#first-name-headline-text');
@@ -25,7 +25,7 @@ async function makePost(): Promise<void> {
 }
 
 async function getUserDataFromServer(): Promise<void> {
-    let response = await fetch(`/profile/get/${userId}`, {
+    let response = await fetch(`/profile/get/${profileUserId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ async function getUserDataFromServer(): Promise<void> {
         buildUserProfile(user);
     }
 }
-async function hasProfilePictureFromServer(): Promise<boolean> {
+async function hasProfilePictureFromServer(userId: number): Promise<boolean> {
     let response: Response = await fetch(`/profile/get/${userId}/has-profile-picture`, {
         method: 'GET',
         headers: {
@@ -53,9 +53,9 @@ async function hasProfilePictureFromServer(): Promise<boolean> {
     }
 }
 async function getProfilePictureSequence(): Promise<void> {
-    let hasProfilePicture: boolean = await hasProfilePictureFromServer();
+    let hasProfilePicture: boolean = await hasProfilePictureFromServer(profileUserId);
     if (hasProfilePicture) {
-        profilePictureImage.attr('src', `/profile/get/${userId}/profile-picture`);
+        profilePictureImage.attr('src', `/profile/get/${profileUserId}/profile-picture`);
     }
 }
 function buildUserProfile(serverResponse: any): void {
@@ -77,6 +77,7 @@ if (shouldLoad) {
     getUserDataFromServer().then((): void => {
         applyUserProfileToPage();
     });
-    loadPosts(activitySection, userId);
+    loadPosts(activitySection, profileUserId);
     writePostButton.on('click', makePost);
 }
+export {hasProfilePictureFromServer};
