@@ -1,8 +1,10 @@
 import {loadPage} from "./globalScript";
 import SockJS from "sockjs-client";
 import {Client, Stomp} from "@stomp/stompjs";
+import {InstantMessage} from "./models/InstantMessage";
 
 let connectionItems: JQuery<HTMLElement> = $('.connection-item');
+let userMessages: JQuery<HTMLElement> = $('#user-messages');
 function addSelectedStyle(): void {
     if ($(this).hasClass("general-select")) {
         $(this).removeClass("general-select");
@@ -21,11 +23,18 @@ try {
 } catch (error) {
     console.error('Failed to create stomp client', error);
 }
-stompClient.connect({}, function(frame: any): void {
+stompClient.connect({}, async function(frame: any): Promise<void> {
     const testId: number = 1;
     const testMessage: string = 'Test message';
-    stompClient.subscribe(`/messages/receiver/${testId}`, function(response: any): void {
+    stompClient.subscribe(`/messages/receiver/${testId}`, async function(response: any): Promise<void> {
         console.log(response.body);
+        let usernameOrName: string = response.body.fullNameOrUsername;
+        let userId: number = response.body.userId;
+        let message: string = response.body.message;
+        let timestamp: string = response.body.dateSent;
+        let instantMessage: InstantMessage = new InstantMessage(usernameOrName, userId, message, timestamp);
+        let messageItem: HTMLDivElement = await instantMessage.getHtml();
+        userMessages.append(messageItem);
     });
 });
 function sendMessage(): void {
