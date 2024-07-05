@@ -1,5 +1,5 @@
 package org.theoliverlear.entity.content;
-
+//=================================-Imports-==================================
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public abstract class Picture {
+    //============================-Variables-=================================
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +19,7 @@ public abstract class Picture {
     @Lob
     @Column(name = "file_data")
     private byte[] fileData;
+    //===========================-Constructors-===============================
     public Picture() {
         this.fileName = "";
         this.fileData = new byte[0];
@@ -27,6 +29,9 @@ public abstract class Picture {
         this.fileData = fileData;
         this.fetchFileType();
     }
+    //=============================-Methods-==================================
+
+    //--------------------------Fetch-File-Type-------------------------------
     public void fetchFileType() {
         String fileExtension = this.fileName.substring(this.fileName.lastIndexOf(".") + 1);
         switch (fileExtension) {
@@ -39,6 +44,9 @@ public abstract class Picture {
             default -> throw new IllegalArgumentException("Invalid file type");
         }
     }
+    //=============================-Setters-==================================
+
+    //---------------------------Set-File-Name--------------------------------
     public void setFileName(String fileName) {
         this.fileName = fileName;
         this.fetchFileType();
