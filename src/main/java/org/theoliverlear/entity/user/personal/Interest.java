@@ -1,5 +1,5 @@
 package org.theoliverlear.entity.user.personal;
-
+//=================================-Imports-==================================
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,6 +10,7 @@ import lombok.Setter;
 @Table(name = "interests")
 @Entity
 public class Interest {
+    //============================-Variables-=================================
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +19,7 @@ public class Interest {
     @ManyToOne
     @JoinColumn(name = "interests_id")
     private Interests interests;
+    //============================-Constants-=================================
     @Transient
     @JsonIgnore
     public static final Interest SOFTWARE_DEVELOPMENT = new Interest("Software Development");
@@ -48,6 +50,7 @@ public class Interest {
     @Transient
     @JsonIgnore
     public static final Interest ARTIFICIAL_INTELLIGENCE = new Interest("Artificial Intelligence");
+    //===========================-Constructors-===============================
     public Interest() {
         this.interestTitle = null;
     }
@@ -57,6 +60,9 @@ public class Interest {
     public Interest(String interestTitle, Interests interests) {
         this.interestTitle = interestTitle;
     }
+    //============================-Overrides-=================================
+
+    //------------------------------Equals------------------------------------
     @Override
     public boolean equals(Object object) {
         if (object == this) {
@@ -67,6 +73,7 @@ public class Interest {
         }
         return false;
     }
+    //------------------------------Hash-Code---------------------------------
     @Override
     public int hashCode() {
         return this.interestTitle.hashCode();
