@@ -1,5 +1,5 @@
 package org.theoliverlear.controller;
-
+//=================================-Imports-==================================
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +17,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/post")
 public class PostController {
+    //============================-Variables-=================================
     private PostService postService;
+    //===========================-Constructors-===============================
     @Autowired
     public PostController(PostService postService) {
         this.postService = postService;
     }
+    //=============================-Methods-==================================
+
+    //---------------------Get-All-Posts-By-Poster-Id-------------------------
     @Transactional
     @RequestMapping("/get/{userId}")
     public ResponseEntity<List<Post>> getAllPostsByPosterId(@PathVariable Long userId) {
@@ -36,6 +41,7 @@ public class PostController {
         System.out.println("Time taken to get all posts by user ID: " + timeInSeconds + " seconds");
         return new ResponseEntity<>(posts, status);
     }
+    //----------------------------Delete-Post---------------------------------
     @DeleteMapping("/delete/{postId}")
     public ResponseEntity<OperationSuccessfulResponse> deletePost(@PathVariable Long postId) {
         boolean postDeleted = this.postService.deletePost(postId);
