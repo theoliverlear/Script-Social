@@ -1,5 +1,5 @@
 package org.theoliverlear.service;
-
+//=================================-Imports-==================================
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.theoliverlear.communication.request.InstantMessageRequest;
@@ -13,9 +13,11 @@ import java.util.Optional;
 
 @Service
 public class ConversationService {
+    //============================-Variables-=================================
     private ConversationRepository conversationRepository;
     private MessageService messageService;
     private UserService userService;
+    //===========================-Constructors-===============================
     @Autowired
     public ConversationService(ConversationRepository conversationRepository,
                                MessageService messageService,
@@ -24,10 +26,14 @@ public class ConversationService {
         this.messageService = messageService;
         this.userService = userService;
     }
+    //=============================-Methods-==================================
+
+    //--------------------------Find-By-User-Ids------------------------------
     public Optional<List<Conversation>> findByUserIds(Long... userIds) {
         List<Long> userIdsList = List.of(userIds);
         return this.findByUserIds(userIdsList);
     }
+    //--------------------------Find-By-User-Ids------------------------------
     public Optional<List<Conversation>> findByUserIds(List<Long> userIds) {
         List<Conversation> conversations = this.conversationRepository.findByUserIds(userIds);
         if (conversations == null) {
@@ -36,6 +42,7 @@ public class ConversationService {
             return Optional.of(conversations);
         }
     }
+    //--------------------Add-Message-To-Conversation-------------------------
     public boolean addMessageToConversation(Conversation conversation, User user, InstantMessageRequest instantMessageRequest) {
 //        if (conversation == null) {
 //            conversation = this.createConversation(user, this.userService.getUserById(instantMessageRequest.getReceiverId()).get());
@@ -56,6 +63,7 @@ public class ConversationService {
         this.userService.saveUser(recipient);
         return true;
     }
+    //------------------------Create-Conversation-----------------------------
     public Conversation createConversation(User user, User recipient) {
         Conversation conversation = new Conversation();
         conversation.addUser(user);
