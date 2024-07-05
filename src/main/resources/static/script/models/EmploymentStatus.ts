@@ -1,5 +1,5 @@
 export enum EmploymentStatus {
-    //============================-Variables-=================================
+    //============================-Constants-=================================
     INDEPENDENT = 'Independent',
     EMPLOYED = 'Employed',
     SEEKING_EMPLOYMENT = 'Seeking Employment',
@@ -8,6 +8,9 @@ export enum EmploymentStatus {
     BUILDING_TEAM = 'Building Team'
 }
 export namespace EmploymentStatus {
+    //=============================-Methods-==================================
+
+    //--------------------------------From------------------------------------
     export function from(employmentStatusString: string): EmploymentStatus {
         let employmentStatus: EmploymentStatus;
         switch(employmentStatusString) {
@@ -34,6 +37,7 @@ export namespace EmploymentStatus {
         }
         return employmentStatus;
     }
+    //------------------------------To-String---------------------------------
     export function toString() {
         return this.toString();
     }
