@@ -1,5 +1,5 @@
 package org.theoliverlear.config;
-
+//=================================-Imports-==================================
 import jakarta.servlet.http.HttpSession;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.ServerHttpRequest;
@@ -17,6 +17,9 @@ import java.util.Map;
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+    //============================-Overrides-=================================
+
+    //----------------------Register-Stomp-Endpoints--------------------------
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws").setAllowedOriginPatterns("*").setHandshakeHandler(new DefaultHandshakeHandler() {
@@ -29,6 +32,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
             }
         }).withSockJS();
     }
+    //----------------------Configure-Message-Broker--------------------------
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
         config.enableSimpleBroker("/messages/receiver");
