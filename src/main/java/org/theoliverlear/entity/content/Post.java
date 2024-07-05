@@ -1,8 +1,6 @@
 package org.theoliverlear.entity.content;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//=================================-Imports-==================================
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,8 +15,9 @@ import java.util.List;
 @Table(name = "posts")
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Post {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //============================-Variables-=================================
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -30,6 +29,7 @@ public class Post {
     private List<Comment> comments;
     @Column(name = "time_posted")
     private LocalDateTime timePosted;
+    //===========================-Constructors-===============================
     public Post() {
         this.poster = null;
         this.content = "";
@@ -45,9 +45,15 @@ public class Post {
         this.content = content;
         this.timePosted = timePosted;
     }
+    //=============================-Methods-==================================
+
+    //----------------------------Add-Comment---------------------------------
     public void addComment(Comment comment) {
         this.comments.add(comment);
     }
+    //============================-Overrides-=================================
+
+    //------------------------------To-String---------------------------------
     @Override
     public String toString() {
         return "Post{" +
@@ -56,6 +62,7 @@ public class Post {
                 ", timePosted=" + this.timePosted +
                 '}';
     }
+    //------------------------------Equals------------------------------------
     @Override
     public boolean equals(Object object) {
         if (object == this) {
