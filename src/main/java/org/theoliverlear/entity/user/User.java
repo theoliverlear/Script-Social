@@ -1,5 +1,5 @@
 package org.theoliverlear.entity.user;
-
+//=================================-Imports-==================================
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -21,6 +21,7 @@ import java.util.Set;
 @Table(name = "users")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
+    //============================-Variables-=================================
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -59,11 +60,11 @@ public class User {
     @JoinColumn(name = "interests_id")
     private Interests interests;
     @Embedded
-    BirthDate birthDate;
+    private BirthDate birthDate;
     @Embedded
-    ProfileIntention profileIntention;
+    private ProfileIntention profileIntention;
     @Embedded
-    EmploymentStatus employmentStatus;
+    private EmploymentStatus employmentStatus;
     @JsonIgnore
     @OneToOne
     @JoinColumn(name = "profile_picture_id")
@@ -74,6 +75,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "conversation_id"))
     private Set<Conversation> conversations;
+    //===========================-Constructors-===============================
     public User() {
         this.username = "";
         this.email = "";
@@ -159,18 +161,27 @@ public class User {
         this.profilePicture = null;
         this.conversations = new HashSet<>();
     }
+    //=============================-Methods-==================================
+
+    //--------------------------Add-Conversation------------------------------
     public void addConversation(Conversation conversation) {
         this.conversations.add(conversation);
     }
+    //------------------------Remove-Conversation-----------------------------
     public void removeConversation(Conversation conversation) {
         this.conversations.remove(conversation);
     }
+    //------------------------------Add-Post----------------------------------
     public void addPost(Post post) {
         this.posts.add(post);
     }
+    //----------------------------Remove-Post---------------------------------
     public void removePost(Post post) {
         this.posts.remove(post);
     }
+    //============================-Overrides-=================================
+
+    //------------------------------To-String---------------------------------
     @Override
     public String toString() {
         return "User{" +
@@ -183,6 +194,7 @@ public class User {
                 ", birthDate=" + this.birthDate +
                 '}';
     }
+    //------------------------------Equals------------------------------------
     @Override
     public boolean equals(Object object) {
         if (object == this) {
