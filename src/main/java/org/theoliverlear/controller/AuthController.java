@@ -1,5 +1,5 @@
 package org.theoliverlear.controller;
-
+//=================================-Imports-==================================
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,21 +18,28 @@ import org.theoliverlear.service.AuthService;
 @Controller
 @RequestMapping("/authorize")
 public class AuthController {
+    //============================-Variables-=================================
     private AuthService authService;
+    //===========================-Constructors-===============================
     @Autowired
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
+    //=============================-Methods-==================================
+
+    //-----------------------------Authorize----------------------------------
     @RequestMapping("/")
-    public String auth() {
+    public String authorize() {
         return "authorize";
     }
+    //-------------------------------Signup-----------------------------------
     @RequestMapping("/signup")
     public ResponseEntity<AuthResponse> signup(@RequestBody SignupRequest signupRequest, HttpSession session) {
         boolean isAuthorized = this.authService.signup(signupRequest, session);
         HttpStatus status = isAuthorized ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(new AuthResponse(isAuthorized, false), status);
     }
+    //-------------------------------Login------------------------------------
     @Transactional
     @RequestMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest, HttpSession session) {
@@ -45,12 +52,14 @@ public class AuthController {
         }
         return new ResponseEntity<>(new AuthResponse(isAuthorized, welcomeCompleted), status);
     }
+    //-------------------------------Logout-----------------------------------
     @RequestMapping("/logout")
     public ResponseEntity<LogoutResponse> logout(HttpSession session) {
         boolean isLoggedOut = this.authService.logout(session);
         HttpStatus status = isLoggedOut ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return new ResponseEntity<>(new LogoutResponse(isLoggedOut), status);
     }
+    //----------------------------Is-Logged-In--------------------------------
     @RequestMapping("/isloggedin")
     public ResponseEntity<AuthResponse> isLoggedIn(HttpSession session) {
         boolean isLoggedIn = this.authService.isLoggedIn(session);
