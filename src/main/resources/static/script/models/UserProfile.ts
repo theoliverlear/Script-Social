@@ -1,13 +1,16 @@
 export class UserProfile {
+    //============================-Variables-=================================
     private _firstName: string;
     private _lastName: string;
     private _bio: string;
+    //===========================-Constructors-===============================
     constructor(firstName: string = '', lastName: string = '',
                 bio: string = '') {
         this._firstName = firstName;
         this._lastName = lastName;
         this._bio = bio;
     }
+    //=============================-Getters-==================================
     get fullName(): string {
         return `${this._firstName} ${this._lastName}`;
     }
@@ -20,6 +23,7 @@ export class UserProfile {
     get getBio(): string {
         return this._bio;
     }
+    //=============================-Setters-==================================
     setFirstName(firstName: string) {
         this._firstName = firstName;
     }
