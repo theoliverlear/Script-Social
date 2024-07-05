@@ -1,5 +1,5 @@
 package org.theoliverlear.controller;
-
+//=================================-Imports-==================================
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,14 +19,19 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/upload")
 public class UploadController {
+    //============================-Variables-=================================
     private ProfilePictureService profilePictureService;
     private UserService userService;
+    //===========================-Constructors-===============================
     @Autowired
     public UploadController(ProfilePictureService profilePictureService,
                             UserService userService) {
         this.profilePictureService = profilePictureService;
         this.userService = userService;
     }
+    //=============================-Methods-==================================
+
+    //-----------------------Upload-Profile-Picture---------------------------
     // TODO: Add profile/banner/ endpoint
     @RequestMapping("/profile/picture")
     public ResponseEntity<OperationSuccessfulResponse> uploadProfilePicture(@RequestParam("file") MultipartFile file, HttpSession session) {
