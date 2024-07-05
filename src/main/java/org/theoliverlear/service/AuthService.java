@@ -1,5 +1,5 @@
 package org.theoliverlear.service;
-
+//=================================-Imports-==================================
 import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +12,16 @@ import org.theoliverlear.entity.user.personal.Profile;
 @Service
 @Getter
 public class AuthService {
+    //============================-Variables-=================================
     private UserService userService;
+    //===========================-Constructors-===============================
     @Autowired
     public AuthService(UserService userService) {
         this.userService = userService;
     }
+    //=============================-Methods-==================================
+
+    //-------------------------------Signup-----------------------------------
     public boolean signup(SignupRequest signupRequest, HttpSession session) {
         if (this.userService.userExistsByUsername(signupRequest.getUsername())) {
             return false;
@@ -29,6 +34,7 @@ public class AuthService {
         session.setAttribute("user", userWithId);
         return true;
     }
+    //-------------------------------Login------------------------------------
     public boolean login(AuthRequest authRequest, HttpSession session) {
         if (!this.userService.userExistsByUsername(authRequest.getUsername())) {
             return false;
@@ -40,7 +46,7 @@ public class AuthService {
         }
         return isAuthorized;
     }
-
+    //-------------------------------Logout-----------------------------------
     public boolean logout(HttpSession session) {
         if (session.getAttribute("user") == null) {
             return false;
@@ -50,6 +56,7 @@ public class AuthService {
             return true;
         }
     }
+    //----------------------------Is-Logged-In--------------------------------
     public boolean isLoggedIn(HttpSession session) {
         return session.getAttribute("user") != null;
     }
