@@ -1,5 +1,5 @@
 export enum PromptMovement {
-    //============================-Variables-=================================
+    //============================-Constants-=================================
     BACKWARD = 'Backward',
     NO_CHANGE = 'No Change',
     FORWARD = 'Forward'
