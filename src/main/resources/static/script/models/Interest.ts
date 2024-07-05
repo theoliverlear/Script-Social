@@ -1,4 +1,5 @@
 export enum Interest {
+    //============================-Constants-=================================
     SOFTWARE_DEVELOPMENT = 'Software Development',
     WEB_DEVELOPMENT = 'Web Development',
     MOBILE_DEVELOPMENT = 'Mobile Development',
@@ -11,6 +12,9 @@ export enum Interest {
     ARTIFICIAL_INTELLIGENCE = 'Artificial Intelligence'
 }
 export namespace Interest {
+    //=============================-Methods-==================================
+
+    //--------------------------------From------------------------------------
     export function from(interestString: string): Interest {
         let interest: Interest;
         switch(interestString) {
@@ -49,6 +53,7 @@ export namespace Interest {
         }
         return interest;
     }
+    //------------------------------To-String---------------------------------
     export function toString() {
         return this.toString();
     }
