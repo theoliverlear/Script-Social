@@ -1,16 +1,22 @@
+//=================================-Imports-==================================
 import {hasProfilePictureFromServer} from "../profileScript";
 
 export class InstantMessage {
+    //============================-Variables-=================================
     private _fullName: string;
     private _userId: number;
     private _message: string;
     private _timestamp: string;
+    //===========================-Constructors-===============================
     constructor(fullName: string, userId: number, message: string, timestamp: string) {
         this._fullName = fullName;
         this._userId = userId;
         this._message = message;
         this._timestamp = timestamp;
     }
+    //=============================-Methods-==================================
+
+    //--------------------------Get-Html-String-------------------------------
     async getHtmlString(): Promise<string> {
         let hasProfilePicture: boolean = await hasProfilePictureFromServer(this.userId);
         let imageSrc: string = '';
@@ -43,14 +49,15 @@ export class InstantMessage {
             </p>
         </div>
         `;
-
     }
+    //------------------------------Get-Html----------------------------------
     async getHtml(): Promise<HTMLDivElement> {
         let messageDiv: HTMLDivElement = document.createElement('div');
         messageDiv.classList.add('message-item');
         messageDiv.innerHTML = await this.getHtmlString();
         return messageDiv;
     }
+    //=============================-Getters-==================================
     get fullName(): string {
         return this._fullName;
     }
@@ -63,6 +70,7 @@ export class InstantMessage {
     get timestamp(): string {
         return this._timestamp;
     }
+    //=============================-Setters-==================================
     setFullName(fullName: string): void {
         this._fullName = fullName;
     }
