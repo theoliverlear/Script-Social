@@ -1,5 +1,5 @@
 package org.theoliverlear.controller;
-
+//=================================-Imports-==================================
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +17,11 @@ import org.theoliverlear.service.UserService;
 @Controller
 @RequestMapping("/create")
 public class CreateController {
+    //============================-Variables-=================================
     private ScriptSocialService scriptSocialService;
     private UserService userService;
     private PostService postService;
+    //===========================-Constructors-===============================
     @Autowired
     public CreateController(ScriptSocialService scriptSocialService,
                             UserService userService,
@@ -28,10 +30,14 @@ public class CreateController {
         this.userService = userService;
         this.postService = postService;
     }
+    //=============================-Methods-==================================
+
+    //-------------------------------Create-----------------------------------
     @RequestMapping("/")
     public String create() {
         return "create";
     }
+    //----------------------------Create-Post---------------------------------
     @RequestMapping("/post")
     public ResponseEntity<OperationSuccessfulResponse> createPost(@RequestBody PostRequest postRequest, HttpSession session) {
         if (!this.scriptSocialService.userInSession(session)) {
@@ -40,6 +46,7 @@ public class CreateController {
         boolean postCreated = this.postService.createPost(postRequest);
         return new ResponseEntity<>(new OperationSuccessfulResponse(postCreated), HttpStatus.OK);
     }
+    //---------------------------Create-Comment-------------------------------
     @RequestMapping("/post/comment")
     public ResponseEntity<OperationSuccessfulResponse> createComment(@RequestBody CommentRequest commentRequest, HttpSession session) {
         if (!this.scriptSocialService.userInSession(session)) {
