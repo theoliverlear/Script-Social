@@ -1,5 +1,5 @@
 package org.theoliverlear.entity.user.personal;
-
+//=================================-Imports-==================================
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @Embeddable
 public class Bio {
+    //============================-Variables-=================================
     @Column(name = "bio_text", columnDefinition = "TEXT")
-    String bioText;
+    private String bioText;
+    //===========================-Constructors-===============================
     public Bio() {
         this.bioText = "";
     }
