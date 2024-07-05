@@ -1,5 +1,5 @@
 export enum ProfileIntention {
-    //============================-Variables-=================================
+    //============================-Constants-=================================
     NETWORKING = 'Networking',
     GETTING_INVOLVED = 'Getting Involved',
     CONNECT_TEAM = 'Connect with Team',
@@ -10,6 +10,9 @@ export enum ProfileIntention {
     LEARN = 'Learn'
 }
 export namespace ProfileIntention {
+    //=============================-Methods-==================================
+
+    //--------------------------------From------------------------------------
     export function from(profileIntentionString: string): ProfileIntention {
         let profileIntention: ProfileIntention;
         switch(profileIntentionString) {
@@ -36,6 +39,7 @@ export namespace ProfileIntention {
         }
         return profileIntention;
     }
+    //------------------------------To-String---------------------------------
     export function toString() {
         return this.toString();
     }
