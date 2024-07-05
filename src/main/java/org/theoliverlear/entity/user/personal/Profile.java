@@ -1,5 +1,5 @@
 package org.theoliverlear.entity.user.personal;
-
+//=================================-Imports-==================================
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,20 +10,22 @@ import org.theoliverlear.entity.user.User;
 @Entity
 @Table(name = "profiles")
 public class Profile {
+    //============================-Variables-=================================
     @Id
     private Long id;
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")
-    User user;
+    private User user;
     @Column(name = "is_public")
-    boolean isPublic;
+    private boolean isPublic;
     @Column(name = "display_profile_intention")
-    boolean displayProfileIntention;
+    private boolean displayProfileIntention;
     @Column(name = "display_employment_status")
-    boolean displayEmploymentStatus;
+    private boolean displayEmploymentStatus;
     @Column(name = "display_interests")
-    boolean displayInterests;
+    private boolean displayInterests;
+    //===========================-Constructors-===============================
     public Profile() {
         this.isPublic = false;
         this.displayProfileIntention = false;
@@ -38,7 +40,11 @@ public class Profile {
         this.displayInterests = false;
         this.user = user;
     }
-    public Profile(User user, boolean isPublic, boolean displayProfileIntention, boolean displayEmploymentStatus, boolean displayInterests) {
+    public Profile(User user,
+                   boolean isPublic,
+                   boolean displayProfileIntention,
+                   boolean displayEmploymentStatus,
+                   boolean displayInterests) {
         this.isPublic = isPublic;
         this.displayProfileIntention = displayProfileIntention;
         this.displayEmploymentStatus = displayEmploymentStatus;
