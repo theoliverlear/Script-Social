@@ -1,20 +1,21 @@
 package org.theoliverlear.entity.user;
-
+//=================================-Imports-==================================
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
 @Embeddable
 public class BirthDate {
+    //============================-Variables-=================================
     @Column(name = "birth_date")
     private LocalDate birthDate;
+    //===========================-Constructors-===============================
     public BirthDate() {
         this.birthDate = null;
     }
