@@ -1,5 +1,5 @@
 package org.theoliverlear.entity.content;
-
+//=================================-Imports-==================================
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "comments")
 public class Comment {
+    //============================-Variables-=================================
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +26,7 @@ public class Comment {
     private String content;
     @Column(name = "time_posted")
     private LocalDateTime timePosted;
+    //===========================-Constructors-===============================
     public Comment() {
         this.commenter = null;
         this.content = "";
