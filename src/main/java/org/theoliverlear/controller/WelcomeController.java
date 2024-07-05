@@ -1,5 +1,5 @@
 package org.theoliverlear.controller;
-
+//=================================-Imports-==================================
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +18,12 @@ import org.theoliverlear.service.WelcomeService;
 @Controller
 @RequestMapping("/welcome")
 public class WelcomeController {
+    //============================-Variables-=================================
     private User currentUser;
     private WelcomeService welcomeService;
     private UserService userService;
     private InterestsService interestsService;
+    //===========================-Constructors-===============================
     @Autowired
     public WelcomeController(WelcomeService welcomeService,
                              UserService userService,
@@ -30,6 +32,9 @@ public class WelcomeController {
         this.userService = userService;
         this.interestsService = interestsService;
     }
+    //=============================-Methods-==================================
+
+    //------------------------------Welcome-----------------------------------
     @RequestMapping("/")
     public String welcome(HttpSession session) {
         this.currentUser = (User) session.getAttribute("user");
