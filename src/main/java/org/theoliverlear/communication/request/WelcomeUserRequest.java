@@ -1,9 +1,10 @@
 package org.theoliverlear.communication.request;
-
+//=================================-Imports-==================================
 import lombok.Data;
 
 @Data
 public class WelcomeUserRequest {
+    //============================-Variables-=================================
     private String firstName;
     private String lastName;
     private String birthDate;
@@ -11,6 +12,7 @@ public class WelcomeUserRequest {
     private String employmentStatus;
     private String profileIntention;
     private String bio;
+    //===========================-Constructors-===============================
     public WelcomeUserRequest(String firstName,
                               String lastName,
                               String birthDate,
