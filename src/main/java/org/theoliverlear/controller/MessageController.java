@@ -1,24 +1,18 @@
 package org.theoliverlear.controller;
-
+//=================================-Imports-==================================
 import jakarta.servlet.http.HttpSession;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.socket.WebSocketSession;
 import org.theoliverlear.communication.request.InstantMessageRequest;
 import org.theoliverlear.communication.response.InstantMessageResponse;
-import org.theoliverlear.communication.response.OperationSuccessfulResponse;
 import org.theoliverlear.entity.im.Conversation;
 import org.theoliverlear.entity.im.Message;
 import org.theoliverlear.entity.user.User;
@@ -35,6 +29,7 @@ import java.util.Optional;
 @RequestMapping("/messages")
 @Controller
 public class MessageController {
+    //============================-Variables-=================================
     private ScriptSocialService scriptSocialService;
     private ConversationService conversationService;
     private MessageService messageService;
@@ -42,6 +37,7 @@ public class MessageController {
     private WebSocketSession session;
     private User currentUser;
     private SimpMessagingTemplate simpMessagingTemplate;
+    //===========================-Constructors-===============================
     @Autowired
     public MessageController(ScriptSocialService scriptSocialService,
                              ConversationService conversationService,
@@ -54,15 +50,20 @@ public class MessageController {
         this.userService = userService;
         this.simpMessagingTemplate = simpMessagingTemplate;
     }
+    //=============================-Methods-==================================
+
+    //------------------------------Message-----------------------------------
     @RequestMapping("/")
     public String message(HttpSession session) {
         Optional<User> user = this.scriptSocialService.getUserFromSession(session);
         if (user.isEmpty()) {
             return "redirect:/authorize/";
+        } else {
+            this.currentUser = user.get();
+            return "message";
         }
-        this.currentUser = user.get();
-        return "message";
     }
+    //----------------------------Get-Messages--------------------------------
     @RequestMapping("/get/{id}")
     public ResponseEntity<List<InstantMessageResponse>> getMessages(@PathVariable Long id, HttpSession session) {
         if (!this.scriptSocialService.userInSession(session))  {
@@ -95,6 +96,7 @@ public class MessageController {
         }
         return ResponseEntity.ok(messages);
     }
+    //----------------------------Send-Message--------------------------------
     @MessageMapping("/send")
     public void sendMessage(@RequestBody InstantMessageRequest instantMessageRequest, SimpMessageHeaderAccessor headerAccessor) {
         System.out.println("Received message: " + instantMessageRequest.getMessage());
