@@ -1,5 +1,5 @@
 package org.theoliverlear.entity.user.personal;
-
+//=================================-Imports-==================================
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -11,8 +11,10 @@ import lombok.Setter;
 @Setter
 @Embeddable
 public class ProfileIntention {
+    //============================-Variables-=================================
     @Column(name = "profile_intention")
     private String profileIntention;
+    //============================-Constants-=================================
     @Transient
     @JsonIgnore
     public static final ProfileIntention NETWORKING = new ProfileIntention("Networking");
@@ -34,12 +36,16 @@ public class ProfileIntention {
     @Transient
     @JsonIgnore
     public static final ProfileIntention LEARN = new ProfileIntention("Learn");
+    //===========================-Constructors-===============================
     public ProfileIntention() {
         this.profileIntention = ProfileIntention.SOCIALIZE.profileIntention;
     }
     public ProfileIntention(String profileIntention) {
         this.profileIntention = profileIntention;
     }
+    //=============================-Methods-==================================
+
+    //--------------------------------From------------------------------------
     public static ProfileIntention from(String profileIntention) {
         return switch (profileIntention) {
             case "Networking" -> ProfileIntention.NETWORKING;
@@ -52,16 +58,8 @@ public class ProfileIntention {
             default -> new ProfileIntention(profileIntention);
         };
     }
+    //--------------------------------From------------------------------------
     public static ProfileIntention from(ProfileIntention profileIntention) {
-        return switch (profileIntention.getProfileIntention()) {
-            case "Networking" -> ProfileIntention.NETWORKING;
-            case "Getting Involved" -> ProfileIntention.GETTING_INVOLVED;
-            case "Connect with Team" -> ProfileIntention.CONNECT_TEAM;
-            case "Find a Team" -> ProfileIntention.FIND_TEAM;
-            case "Socialize" -> ProfileIntention.SOCIALIZE;
-            case "Job Search" -> ProfileIntention.JOB_SEARCH;
-            case "Learn" -> ProfileIntention.LEARN;
-            default -> new ProfileIntention(profileIntention.getProfileIntention());
-        };
+        return from(profileIntention.getProfileIntention());
     }
 }
