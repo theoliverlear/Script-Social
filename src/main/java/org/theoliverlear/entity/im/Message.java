@@ -1,5 +1,5 @@
 package org.theoliverlear.entity.im;
-
+//=================================-Imports-==================================
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "messages")
 public class Message {
+    //============================-Variables-=================================
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +26,8 @@ public class Message {
     private String message;
     @Column(name = "date_sent")
     private LocalDateTime dateSent;
-    // TODO: Add encryption to messages.
+    // TODO: Add encryption to messages. Perhaps each conversation has a key.
+    //===========================-Constructors-===============================
     public Message() {
         this.sender = null;
         this.message = "";
@@ -41,5 +43,4 @@ public class Message {
         this.message = message;
         this.dateSent = dateSent;
     }
-
 }
