@@ -1,5 +1,5 @@
 package org.theoliverlear.service;
-
+//=================================-Imports-==================================
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.theoliverlear.communication.request.WelcomeUserRequest;
@@ -9,13 +9,18 @@ import org.theoliverlear.entity.user.personal.*;
 
 @Service
 public class WelcomeService {
+    //============================-Variables-=================================
     private UserService userService;
     private InterestsService interestsService;
+    //===========================-Constructors-===============================
     @Autowired
     public WelcomeService(UserService userService, InterestsService interestsService) {
         this.userService = userService;
         this.interestsService = interestsService;
     }
+    //=============================-Methods-==================================
+
+    //---------------Apply-Welcome-Request-User-Parameters--------------------
     public User applyWelcomeRequestUserParameters(User user, WelcomeUserRequest welcomeUserRequest) {
 
 //        System.out.println("Employment Status: " + welcomeUserRequest.getEmploymentStatus());
@@ -50,10 +55,8 @@ public class WelcomeService {
         // SET AS COMPLETED SURVEY
         user.setCompletedWelcomeSurvey(true);
 //        System.out.println(user);
-
         this.userService.saveUser(user);
         this.interestsService.saveInterests(interests);
-
         User updatedUser = this.userService.findByUsername(user.getUsername());
         Interests updatedInterests = this.interestsService.findByUserId(updatedUser);
         for (String interest : welcomeUserRequest.getInterests().split(",")) {
