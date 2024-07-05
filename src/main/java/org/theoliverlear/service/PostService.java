@@ -1,5 +1,5 @@
 package org.theoliverlear.service;
-
+//=================================-Imports-==================================
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.theoliverlear.communication.request.CommentRequest;
@@ -14,12 +14,17 @@ import java.util.Optional;
 
 @Service
 public class PostService {
+    //============================-Variables-=================================
     private UserService userService;
     private PostRepository postRepository;
+    //===========================-Constructors-===============================
     public PostService(PostRepository postRepository, UserService userService) {
         this.postRepository = postRepository;
         this.userService = userService;
     }
+    //=============================-Methods-==================================
+
+    //----------------------------Create-Post---------------------------------
     @Transactional
     public boolean createPost(PostRequest postRequest) {
         Optional<User> user = this.userService.getUserById(postRequest.getUserId());
@@ -33,10 +38,12 @@ public class PostService {
         this.userService.saveUser(poster);
         return true;
     }
+    //---------------------Get-All-Posts-By-Poster-Id-------------------------
     @Transactional
     public List<Post> getAllPostsByPosterId(Long userId) {
         return this.postRepository.findAllByPosterId(userId);
     }
+    //----------------------------Delete-Post---------------------------------
     public boolean deletePost(Long postId) {
         Post post = this.postRepository.findById(postId).orElse(null);
         if (post == null) {
@@ -49,6 +56,7 @@ public class PostService {
             return true;
         }
     }
+    //----------------------------Add-Comment---------------------------------
     @Transactional
     public boolean addComment(CommentRequest commentRequest) {
         Long postId = commentRequest.getPostId();
@@ -65,6 +73,7 @@ public class PostService {
         this.postRepository.save(post);
         return true;
     }
+    //-------------------------Post-Exists-By-Id------------------------------
     public boolean postExistsById(Long postId) {
         return this.postRepository.existsById(postId);
     }
