@@ -1,4 +1,5 @@
 export enum AuthPopup {
+    //============================-Constants-=================================
     PASSWORDS_DONT_MATCH = 'Passwords do not match.',
     INVALID_EMAIL = 'Invalid email.',
     USERNAME_OR_EMAIL_EXISTS = 'Username or email already exists',
