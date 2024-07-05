@@ -1,7 +1,5 @@
 package org.theoliverlear.service;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+//=================================-Imports-==================================
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.theoliverlear.entity.user.User;
@@ -10,17 +8,20 @@ import org.theoliverlear.repository.InterestsRepository;
 
 @Service
 public class InterestsService {
+    //============================-Variables-=================================
     private InterestsRepository interestsRepository;
+    //===========================-Constructors-===============================
     @Autowired
     public InterestsService(InterestsRepository interestsRepository) {
         this.interestsRepository = interestsRepository;
     }
+    //=============================-Methods-==================================
+
+    //---------------------------Save-Interests-------------------------------
     public void saveInterests(Interests interests) {
         this.interestsRepository.save(interests);
     }
-    public Interests findByUserId(Interests interests) {
-        return this.interestsRepository.findByUserId(interests.getUser().getId());
-    }
+    //--------------------------Find-By-User-Id-------------------------------
     public Interests findByUserId(User user) {
         return this.interestsRepository.findByUserId(user.getId());
     }
