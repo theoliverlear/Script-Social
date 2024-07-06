@@ -8,30 +8,38 @@ import {
 } from "./globalScript";
 import {AuthPopup} from "./models/AuthPopup";
 //================================-Variables-=================================
+
+//-----------------------------------Cache------------------------------------
 let currentAuthType: AuthType = AuthType.SIGNUP;
+//------------------------------Auth-Containers-------------------------------
+let signupDiv: JQuery<HTMLElement> = $('#signup-div');
+let loginDiv: JQuery<HTMLElement> = $('#login-div');
+//-----------------------------Auth-Type-Buttons------------------------------
 let signupButton: JQuery<HTMLElement> = $('#signup-button');
 let loginButton: JQuery<HTMLElement> = $('#login-button');
 let authTypeButtons: JQuery<HTMLElement> = $('.auth-type-button');
-let signupDiv: JQuery<HTMLElement> = $('#signup-div');
-let loginDiv: JQuery<HTMLElement> = $('#login-div');
+//-------------------------------Signup-Inputs--------------------------------
 let signupPasswordInputs: JQuery<HTMLElement> = $('.signup-password-inputs');
-let signupPopupConfirmDiv: JQuery<HTMLElement> = $('#signup-popup-confirm-div');
-let loginPopupConfirmDiv: JQuery<HTMLElement> = $('#login-popup-confirm-div');
-let popupDiv: JQuery<HTMLElement> = $('#popup-div');
-let popupText: JQuery<HTMLElement> = $('#popup-text');
-let confirmLoginButton: JQuery<HTMLElement> = $('#confirm-login-button');
-let confirmSignupButton: JQuery<HTMLElement> = $('#confirm-signup-button');
 let signupEmailInput: JQuery<HTMLElement> = $('#signup-email-input');
 let signupUsernameInput: JQuery<HTMLElement> = $('#signup-username-input');
 let signupPasswordInput: JQuery<HTMLElement> = $('#signup-password-input');
 let signupConfirmPasswordInput: JQuery<HTMLElement> = $('#signup-confirm-password-input');
+//-----------------------------------Popup------------------------------------
+let popupDiv: JQuery<HTMLElement> = $('#popup-div');
+let popupText: JQuery<HTMLElement> = $('#popup-text');
+//------------------------------Confirm-Buttons-------------------------------
 let confirmButtons: JQuery<HTMLElement> = $('.confirm-button');
-
+let confirmLoginButton: JQuery<HTMLElement> = $('#confirm-login-button');
+let confirmSignupButton: JQuery<HTMLElement> = $('#confirm-signup-button');
+//--------------------------------Login-Inputs--------------------------------
 let loginUsernameInput: JQuery<HTMLElement> = $('#login-username-input');
 let loginPasswordInput: JQuery<HTMLElement> = $('#login-password-input');
+//------------------------------Input-Containers------------------------------
 let signupInputs: JQuery<HTMLElement>[] = [signupEmailInput, signupUsernameInput, signupPasswordInput, signupConfirmPasswordInput];
 let loginInputs: JQuery<HTMLElement>[] = [loginUsernameInput, loginPasswordInput];
 //=============================-Server-Functions-=============================
+
+//----------------------------Send-Signup-Request-----------------------------
 async function sendSignupRequest(): Promise<void> {
     let hashedPassword: string = hashPassword(signupPasswordInput.val() as string);
     let response: void | Response = await fetch('/authorize/signup', {
@@ -60,6 +68,7 @@ async function sendSignupRequest(): Promise<void> {
         }
     }
 }
+//-----------------------------Send-Login-Request-----------------------------
 async function sendLoginRequest(): Promise<void> {
     let hashedPassword: string = hashPassword(loginPasswordInput.val() as string);
     let response: void | Response  = await fetch('/authorize/login', {
@@ -97,7 +106,30 @@ async function sendLoginRequest(): Promise<void> {
         }
     }
 }
+//-----------------------------Send-Auth-Request------------------------------
+async function sendAuthRequest(): Promise<void> {
+    if (currentAuthType === AuthType.SIGNUP) {
+        if (hasEmptyInputs(signupInputs)) {
+            popupDiv.fadeIn(100);
+            popupText.text(AuthPopup.FILL_ALL_FIELDS);
+        } else if (!passwordsMatch()) {
+            popupDiv.fadeIn(100);
+            popupText.text(AuthPopup.PASSWORDS_DONT_MATCH);
+        } else {
+            await sendSignupRequest();
+        }
+    } else if (currentAuthType === AuthType.LOGIN) {
+        if (hasEmptyInputs(loginInputs)) {
+            popupDiv.fadeIn(100);
+            popupText.text(AuthPopup.FILL_ALL_FIELDS);
+        } else {
+            await sendLoginRequest();
+        }
+    }
+}
 //=============================-Client-Functions-=============================
+
+//--------------------------Apply-Select-Type-Style---------------------------
 function applySelectTypeStyle(): void {
     let clickedElementId = this.id;
     if (clickedElementId === 'signup-button' && currentAuthType !== AuthType.SIGNUP) {
@@ -122,41 +154,25 @@ function applySelectTypeStyle(): void {
         hidePopupDiv();
     }
 }
+//-------------------------------Hide-Popup-Div-------------------------------
 function hidePopupDiv(): void {
     if (popupDiv.is(':visible')) {
         popupDiv.fadeOut(100);
     }
 }
+//---------------------------Show-Popup-Div-Message---------------------------
 function showPopupDivMessage(message: string): void {
     if (popupDiv.is(':hidden')) {
         popupDiv.fadeIn(100);
     }
     popupText.text(message);
 }
-async function sendAuthRequest(): Promise<void> {
-    if (currentAuthType === AuthType.SIGNUP) {
-        if (hasEmptyInputs(signupInputs)) {
-            popupDiv.fadeIn(100);
-            popupText.text(AuthPopup.FILL_ALL_FIELDS);
-        } else if (!passwordsMatch()) {
-            popupDiv.fadeIn(100);
-            popupText.text(AuthPopup.PASSWORDS_DONT_MATCH);
-        } else {
-        await sendSignupRequest();
-        }
-    } else if (currentAuthType === AuthType.LOGIN) {
-        if (hasEmptyInputs(loginInputs)) {
-            popupDiv.fadeIn(100);
-            popupText.text(AuthPopup.FILL_ALL_FIELDS);
-        } else {
-            await sendLoginRequest();
-        }
-    }
-}
+//------------------------------Passwords-Match-------------------------------
 function passwordsMatch(): boolean {
     let passwordsMatch: boolean = signupPasswordInput.val() === signupConfirmPasswordInput.val();
     return passwordsMatch;
 }
+//--------------------------Show-Password-Popup-Type--------------------------
 function showPasswordPopupType(): void {
     if (!passwordsMatch()) {
         showPopupDivMessage(AuthPopup.PASSWORDS_DONT_MATCH);
@@ -164,16 +180,17 @@ function showPasswordPopupType(): void {
         hidePopupDiv();
     }
 }
-
+//----------------------------Deselect-Auth-Bubble----------------------------
 function deselectAuthBubble(authBubbleElement: JQuery<HTMLElement>): void {
     authBubbleElement.removeClass('selected-auth');
 }
-
+//-----------------------------Select-Auth-Bubble-----------------------------
 function selectAuthBubble(authBubbleElement: JQuery<HTMLElement>): void {
     authBubbleElement.addClass('selected-auth');
 }
-
+//================================-Init-Load-=================================
 let shouldLoadPage: boolean = loadPage(document.body, 'authorize');
+//=============================-Event-Listeners-==============================
 if (shouldLoadPage) {
     authTypeButtons.on('click', applySelectTypeStyle);
     $('#auth-input-section .console-input').on('keydown', removeTextArtifacts);
