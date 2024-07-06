@@ -1,3 +1,4 @@
+//=================================-Imports-==================================
 import * as CryptoJS from 'crypto-js';
 import './sideBarSwipe';
 //================================-Variables-=================================
@@ -25,6 +26,8 @@ let sideBarTabDiv: JQuery<HTMLElement> = $('#side-bar-tab-div');
 let sideBarTabImg: JQuery<HTMLElement> = $('#side-bar-tab-img');
 let sideBarIconTitleDivs: JQuery<HTMLElement> = $('.side-bar-icon-title-div');
 //=============================-Server-Functions-=============================
+
+//----------------------Get-Current-User-Id-From-Server-----------------------
 async function getCurrentUserIdFromServer(): Promise<number> {
     let response: Response = await fetch('/user/get/current/id');
     if (response.ok) {
@@ -34,6 +37,7 @@ async function getCurrentUserIdFromServer(): Promise<number> {
         return -1;
     }
 }
+//------------------------Set-Is-Logged-In-From-Server------------------------
 async function setIsLoggedInFromServer(): Promise<void> {
     let response: Response = await fetch('/authorize/isloggedin');
     if (response.ok) {
@@ -43,6 +47,7 @@ async function setIsLoggedInFromServer(): Promise<void> {
         isLoggedIn = false;
     }
 }
+//----------------------Set-Current-Username-From-Server----------------------
 async function setCurrentUsernameFromServer(): Promise<void> {
     let response: Response = await fetch('/user/get/current/username');
     if (response.ok) {
@@ -60,7 +65,8 @@ function disableDraggableImages(): void {
         image.draggable = false;
     }
 }
-function toggleSideNavBar(): void {
+//-------------------------Toggle-Side-Nav-Bar-Popout-------------------------
+function toggleSideNavBarPopout(): void {
     if (sideNavBarExpanded) {
         sideNavBar.removeClass('side-nav-opened').addClass('side-nav-closed');
         sideBarIconTitleDivs.fadeOut({duration: 150, queue: false});
@@ -70,9 +76,10 @@ function toggleSideNavBar(): void {
         sideBarIconTitleDivs.fadeIn({duration: 150, queue: false}).css('display', 'flex');
         sideNavBarExpanded = true;
     }
-    flipSideBarTabImg();
+    flipSideBarTabImage();
 }
-function flipSideBarTabImg(): void {
+//--------------------------Flip-Side-Bar-Tab-Image---------------------------
+function flipSideBarTabImage(): void {
     if (sideNavBarExpanded) {
         sideBarTabImg.css('transform', 'rotate(180deg)');
     } else {
@@ -194,7 +201,6 @@ function toggleMobileNavItems(): void {
         navBar.fadeOut(200).css('display', 'none');
     }
 }
-
 //--------------------------Toggle-Desktop-Nav-Items--------------------------
 function toggleDesktopNavItems(): void {
     let navBarItem: JQuery<any> = $(this);
@@ -225,9 +231,10 @@ function toggleDesktopNavItems(): void {
 }
 //-------------------------------Hash-Password--------------------------------
 function hashPassword(password: string): string {
-    let hashedPassword = CryptoJS.SHA256(password);
+    let hashedPassword: CryptoJS.lib.WordArray = CryptoJS.SHA256(password);
     return hashedPassword.toString();
 }
+//-----------------------Set-Nav-Bar-Name-And-Function------------------------
 function setNavBarNameAndFunction(): void {
     if (isLoggedIn) {
         if (navElementIsTyped(accountNavItem)) {
@@ -250,37 +257,59 @@ function setNavBarNameAndFunction(): void {
         });
     }
 }
+//-----------------------------Show-Logout-Button-----------------------------
 function showLogoutButton(): void {
     if (isLoggedIn) {
-        logoutButton.fadeIn();
+        if (logoutButton.is(':hidden')) {
+            logoutButton.fadeIn();
+        }
     }
 }
+//-----------------------------Hide-Logout-Button-----------------------------
 function hideLogoutButton(): void {
-    logoutButton.fadeOut();
+    if (logoutButton.is(':visible')) {
+        logoutButton.fadeOut();
+    }
 }
+//----------------------------Nav-Element-Is-Typed----------------------------
 function navElementIsTyped(element: JQuery<HTMLElement>): boolean {
     if (element.hasClass('nav-text')) {
         return element.text() !== '';
     } else {
-        let textElement = element.find('.nav-text');
+        let textElement: JQuery<HTMLElement> = element.find('.nav-text');
         return textElement.text() !== '';
     }
 }
-function navElementIsAccountName() {
+//------------------------Nav-Element-Is-Account-Name-------------------------
+function navElementIsAccountName(): boolean {
     return accountNameText.text() === currentUsername;
 }
+//-------------------------------Input-Is-Empty-------------------------------
 function inputIsEmpty(input: JQuery<HTMLElement>): boolean {
     return input.val().toString().trim() === '';
 }
+//--------------------------------Clear-Input---------------------------------
+function clearInput(input: JQuery<HTMLElement>): void {
+    input.val('');
+}
+//--------------------------------Clear-Inputs--------------------------------
+function clearInputs(inputElements: JQuery<HTMLElement>[]): void {
+    inputElements.forEach((inputElement: JQuery<HTMLElement>): void => {
+        clearInput(inputElement);
+    });
+}
+//---------------------------Remove-Text-Artifacts----------------------------
 function removeTextArtifacts(event: JQuery.KeyDownEvent): void {
     if (event.key === ' ') {
         event.preventDefault();
     }
 }
+//-------------------------------Email-Is-Valid-------------------------------
 function emailIsValid(emailInput: JQuery<HTMLElement>): boolean {
     return emailInput.val().toString().includes('@') &&
         emailInput.val().toString().includes('.');
 }
+//------------------------------Has-Empty-Inputs------------------------------
 function hasEmptyInputs(inputs: JQuery<HTMLElement>[]): boolean {
     for (let input of inputs) {
         if (inputIsEmpty(input)) {
@@ -289,11 +318,7 @@ function hasEmptyInputs(inputs: JQuery<HTMLElement>[]): boolean {
     }
     return false;
 }
-function clearInputs(inputElements: JQuery<HTMLElement>[]): void {
-    inputElements.forEach((inputElement: JQuery<HTMLElement>): void => {
-        inputElement.val('');
-    });
-}
+//-------------------------Show-Correct-User-Nav-Menu-------------------------
 function showCorrectUserNavMenu(): void {
     if (isLoggedIn) {
         showUserNavMenu();
@@ -301,11 +326,17 @@ function showCorrectUserNavMenu(): void {
         hideUserNavMenu();
     }
 }
+//-----------------------------Show-User-Nav-Menu-----------------------------
 function showUserNavMenu(): void {
     userNavMenuDiv.show();
 }
+//-----------------------------Hide-User-Nav-Menu-----------------------------
 function hideUserNavMenu(): void {
     userNavMenuDiv.hide();
+}
+//-------------------------------Load-Page------------------------------------
+function loadPage(bodyElement: HTMLElement, pageName: string): boolean {
+    return bodyElement.getAttribute('data-page') === pageName;
 }
 //================================-Init-Load-=================================
 disableDraggableImages();
@@ -320,16 +351,13 @@ setIsLoggedInFromServer().then((): void => {
     }
     showCorrectUserNavMenu();
 });
-//-------------------------------Load-Page------------------------------------
-function loadPage(bodyElement: HTMLElement, pageName: string): boolean {
-    return bodyElement.getAttribute('data-page') === pageName;
-}
 //=============================-Event-Listeners-==============================
 hamburgerMenuDiv.on('click', toggleNavItems);
 accountAndLogoutDiv.on('mouseover', showLogoutButton);
 accountAndLogoutDiv.on('mouseleave', hideLogoutButton);
-sideBarTabDiv.on('click', toggleSideNavBar);
-//==================================-Export-==================================
+sideBarTabDiv.on('click', toggleSideNavBarPopout);
+//=================================-Exports-==================================
 export { loadPage, typeText, deleteText, getCurrentUserIdFromServer,
          hashPassword, inputIsEmpty, removeTextArtifacts, emailIsValid,
-         hasEmptyInputs, clearInputs, toggleSideNavBar, sideNavBarExpanded};
+         hasEmptyInputs, clearInputs, toggleSideNavBarPopout,
+         sideNavBarExpanded, clearInput};
