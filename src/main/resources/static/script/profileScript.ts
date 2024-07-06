@@ -1,31 +1,33 @@
-import {getCurrentUserIdFromServer, loadPage} from "./globalScript";
+//=================================-Imports-==================================
+import {
+    clearInput,
+    getCurrentUserIdFromServer,
+    loadPage
+} from "./globalScript";
 import {UserProfile} from "./models/UserProfile";
-import {loadPosts, sendPostToServer} from "./postScript";
+import {loadPostsToElements, sendPostToServer} from "./postScript";
+//================================-Variables-=================================
 
-let body: JQuery<HTMLElement> = $('body');
+//-----------------------------------Cache------------------------------------
 let userProfile: UserProfile = new UserProfile();
 let profileUserId: number = Number(document.body.getAttribute('user-id'));
+//------------------------------Profile-Picture-------------------------------
 let profilePictureImage: JQuery<HTMLElement> = $('#profile-picture-img');
-
+//-------------------------------Name-Headline--------------------------------
 let firstNameHeadlineText: JQuery<HTMLElement> = $('#first-name-headline-text');
 let lastNameHeadlineText: JQuery<HTMLElement> = $('#last-name-headline-text');
-
+//-----------------------------Write-Post-Section-----------------------------
 let writePostButton: JQuery<HTMLElement> = $('#write-post-button-div');
 let writePostTextArea: JQuery<HTMLElement> = $('#write-post-textarea');
-
+//--------------------------------Profile-Bio---------------------------------
 let profileBioText: JQuery<HTMLElement> = $('#profile-bio-text');
+//------------------------------Activity-Section------------------------------
 let activitySection: JQuery<HTMLElement> = $('#activity-section');
+//=============================-Server-Functions-=============================
 
-async function makePost(): Promise<void> {
-    let postMessage: string = writePostTextArea.val() as string;
-    let userId: number = await getCurrentUserIdFromServer();
-    sendPostToServer(userId, postMessage);
-    // TODO: Make globalScript function called clearInput.
-    writePostTextArea.val('');
-}
-
+//-------------------------Get-User-Data-From-Server--------------------------
 async function getUserDataFromServer(): Promise<void> {
-    let response = await fetch(`/profile/get/${profileUserId}`, {
+    let response: void | Response = await fetch(`/profile/get/${profileUserId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -38,6 +40,7 @@ async function getUserDataFromServer(): Promise<void> {
         buildUserProfile(user);
     }
 }
+//----------------------Has-Profile-Picture-From-Server-----------------------
 async function hasProfilePictureFromServer(userId: number): Promise<boolean> {
     let response: Response = await fetch(`/profile/get/${userId}/has-profile-picture`, {
         method: 'GET',
@@ -52,12 +55,23 @@ async function hasProfilePictureFromServer(userId: number): Promise<boolean> {
         return false;
     }
 }
+//=============================-Client-Functions-=============================
+
+//---------------------------------Make-Post----------------------------------
+async function makePost(): Promise<void> {
+    let postMessage: string = writePostTextArea.val() as string;
+    let userId: number = await getCurrentUserIdFromServer();
+    sendPostToServer(userId, postMessage);
+    clearInput(writePostTextArea);
+}
+//------------------------Get-Profile-Picture-Sequence------------------------
 async function getProfilePictureSequence(): Promise<void> {
     let hasProfilePicture: boolean = await hasProfilePictureFromServer(profileUserId);
     if (hasProfilePicture) {
         profilePictureImage.attr('src', `/profile/get/${profileUserId}/profile-picture`);
     }
 }
+//-----------------------------Build-User-Profile-----------------------------
 function buildUserProfile(serverResponse: any): void {
     userProfile.setFirstName(serverResponse.firstName);
     userProfile.setLastName(serverResponse.lastName);
@@ -66,18 +80,24 @@ function buildUserProfile(serverResponse: any): void {
     console.log(userProfile.getFirstName);
     console.log(userProfile.getLastName);
 }
+//-------------------------Apply-User-Profile-To-Page-------------------------
 function applyUserProfileToPage(): void {
     firstNameHeadlineText.text(userProfile.getFirstName);
     lastNameHeadlineText.text(userProfile.getLastName);
     profileBioText.text(userProfile.getBio);
 }
+//================================-Init-Load-=================================
 let shouldLoad: boolean = loadPage(document.body, 'profile');
 if (shouldLoad) {
     getProfilePictureSequence();
     getUserDataFromServer().then((): void => {
         applyUserProfileToPage();
     });
-    loadPosts(activitySection, profileUserId);
+    loadPostsToElements(activitySection, profileUserId);
+}
+//=============================-Event-Listeners-==============================
+if (shouldLoad) {
     writePostButton.on('click', makePost);
 }
+//=================================-Exports-==================================
 export {hasProfilePictureFromServer};
