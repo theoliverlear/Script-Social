@@ -1,7 +1,8 @@
-// Methods for making posts throughout the program
-
+//=================================-Imports-==================================
 import {Post} from "./models/Post";
+//=============================-Server-Functions-=============================
 
+//----------------------------Send-Post-To-Server-----------------------------
 function sendPostToServer(userId: number, message: string): void {
     if (isValidPost(message) && userId !== -1) {
         console.log('userId: ', userId);
@@ -21,6 +22,7 @@ function sendPostToServer(userId: number, message: string): void {
         });
     }
 }
+//---------------------------Get-Posts-From-Server----------------------------
 async function getPostsFromServer(userId: number): Promise<any> {
     let response: void | Response = await fetch('/post/get/' + userId, {
         method: 'GET',
@@ -36,6 +38,9 @@ async function getPostsFromServer(userId: number): Promise<any> {
         return responseJson;
     }
 }
+//=============================-Client-Functions-=============================
+
+//-----------------------Get-Posts-From-Server-Response-----------------------
 function getPostsFromServerResponse(response: any): Post[] {
     let postsFromServer: Post[] = [];
     console.log('response: ', response);
@@ -48,13 +53,14 @@ function getPostsFromServerResponse(response: any): Post[] {
     }
     return postsFromServer;
 }
+//-------------------------------Is-Valid-Post--------------------------------
 function isValidPost(message: string): boolean {
     let messageIsNull: boolean = message === null;
     let messageIsEmpty: boolean = message === '';
     return !messageIsNull && !messageIsEmpty;
 }
-
-function loadPosts(rootElement: JQuery<HTMLElement>, userId: number): void {
+//---------------------------Load-Posts-To-Elements---------------------------
+function loadPostsToElements(rootElement: JQuery<HTMLElement>, userId: number): void {
     getPostsFromServer(userId).then((response: any): void => {
         let posts: Post[] = getPostsFromServerResponse(response);
         posts.forEach((post: Post): void => {
@@ -66,5 +72,6 @@ function loadPosts(rootElement: JQuery<HTMLElement>, userId: number): void {
         });
     });
 }
+//=================================-Exports-==================================
 export { sendPostToServer, getPostsFromServer, getPostsFromServerResponse,
-         isValidPost, loadPosts };
+         isValidPost, loadPostsToElements };
