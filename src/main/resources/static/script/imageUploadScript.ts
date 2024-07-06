@@ -1,3 +1,4 @@
+//=================================-Imports-==================================
 import Uppy from '@uppy/core';
 import Dashboard from '@uppy/dashboard';
 import XHRUpload from '@uppy/xhr-upload';
@@ -9,7 +10,9 @@ import '@uppy/core/dist/style.css';
 import '@uppy/dashboard/dist/style.css';
 import '@uppy/image-editor/dist/style.css';
 import '@uppy/status-bar/dist/style.css';
+//=======================-Client-And-Server-Functions-========================
 
+//--------------------------------Create-Uppy---------------------------------
 export function createUppy(dashboardSelector: string, statusBarSelector: string): Uppy {
     const uppy = new Uppy({
         debug: true,
@@ -48,7 +51,7 @@ export function createUppy(dashboardSelector: string, statusBarSelector: string)
         .use(XHRUpload, {
             endpoint: '/upload/profile/picture',
         })
-        .on('file-editor:complete', () => {
+        .on('file-editor:complete', (): void => {
             uppy.upload();
         })
         .on('complete', (result): void => {
