@@ -1,17 +1,19 @@
+//=================================-Imports-==================================
 import 'jquery-touchswipe';
-import {sideNavBarExpanded, toggleSideNavBar} from "./globalScript";
-
+import {sideNavBarExpanded, toggleSideNavBarPopout} from "./globalScript";
+//================================-Variables-=================================
 let sideNavBar = $('#side-nav-bar');
+//=============================-Event-Listeners-==============================
 sideNavBar.swipe({
     swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
         if (direction === 'left') {
             if (sideNavBarExpanded) {
-                toggleSideNavBar();
+                toggleSideNavBarPopout();
             }
         }
         if (direction === 'right') {
             if (!sideNavBarExpanded) {
-                toggleSideNavBar();
+                toggleSideNavBarPopout();
             }
         }
     },
