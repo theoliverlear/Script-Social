@@ -34,7 +34,7 @@ let passwordInputs: JQuery<HTMLElement>[] = [passwordInput, confirmPasswordInput
 //=============================-Server-Functions-=============================
 
 //---------------------------Send-Signup-To-Server----------------------------
-function sendSignupToServer() {
+function sendSignupToServer(): void {
     let hashedPassword: string = hashPassword(passwordInput.val().toString());
     fetch('/authorize/signup', {
         method: 'POST',
@@ -46,7 +46,7 @@ function sendSignupToServer() {
             username: usernameInput.val(),
             password: hashedPassword
         })
-    }).then(response => response.json()).then(responseJson => {
+    }).then((response: Response) => response.json()).then(responseJson => {
         console.log(responseJson);
         let isAuthorized: boolean = responseJson.authorized;
         if (isAuthorized) {
@@ -61,18 +61,18 @@ function sendSignupToServer() {
 }
 //=============================-Client-Functions-=============================
 
+//---------------------------Contains-Empty-Fields----------------------------
 function containsEmptyFields(): boolean {
     return inputIsEmpty(usernameInput) ||
            inputIsEmpty(passwordInput) ||
            inputIsEmpty(confirmPasswordInput) ||
            inputIsEmpty(emailInput);
 }
-
+//------------------------------Passwords-Match-------------------------------
 function passwordsMatch(): boolean {
     return passwordInput.val() === confirmPasswordInput.val();
 }
-
-
+//-------------------Show-Correct-Message-For-Typing-Input--------------------
 function showCorrectMessageForTypingInput(): void {
     if (!passwordsMatch()) {
         showPopupMessage(passwordsDoNotMatchMessage);
@@ -80,6 +80,7 @@ function showCorrectMessageForTypingInput(): void {
     }
     hidePopupMessage();
 }
+//-------------------Show-Correct-Message-For-Confirm-Join--------------------
 function showCorrectMessageForConfirmJoin(): void {
     if (!emailIsValid(emailInput)) {
         showPopupMessage(invalidEmailMessage);
@@ -90,12 +91,15 @@ function showCorrectMessageForConfirmJoin(): void {
         return;
     }
 }
+//----------------------------Type-Input-Sequence-----------------------------
 function typeInputSequence(): void {
     showCorrectMessageForTypingInput();
 }
+//------------------------------All-Valid-Inputs------------------------------
 function allValidInputs(): boolean {
     return passwordsMatch() && emailIsValid(emailInput) && !containsEmptyFields();
 }
+//---------------------------Confirm-Join-Sequence----------------------------
 function confirmJoinSequence(): void {
     let validInputs: boolean = allValidInputs();
     if (validInputs) {
@@ -104,6 +108,7 @@ function confirmJoinSequence(): void {
         showCorrectMessageForConfirmJoin();
     }
 }
+//-----------------------------Show-Popup-Message-----------------------------
 function showPopupMessage(message: string): void {
     if (messagePopupConsole.is(':hidden')) {
         consoleMessageText.text(message);
@@ -112,6 +117,7 @@ function showPopupMessage(message: string): void {
         consoleMessageText.text(message).fadeIn();
     }
 }
+//-----------------------------Hide-Popup-Message-----------------------------
 function hidePopupMessage(): void {
     if (messagePopupConsole.is(':visible')) {
         messagePopupConsole.fadeOut(100);
@@ -126,7 +132,7 @@ function typeTitleText(): void {
     });
 }
 //-------------------Apply-Popup-And-Confirm-Div-Container--------------------
-function applyPopupAndConfirmDivContainer() {
+function applyPopupAndConfirmDivContainer(): void {
     if (popupDiv.is(':hidden')) {
         popupAndConfirmDiv.css('justify-content', 'flex-end');
     } else {
