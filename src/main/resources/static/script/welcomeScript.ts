@@ -17,6 +17,9 @@ import {Interest} from "./models/Interest";
 
 //------------------------------General-Content-------------------------------
 let body: JQuery<HTMLElement> = $('body');
+//-----------------------------------Cache------------------------------------
+let builtProfile: WelcomeProfile = new WelcomeProfile();
+let currentQuestionIndex: number = 0;
 //-----------------------------------Inputs-----------------------------------
 let inputsSection: JQuery<HTMLElement> = $('#inputs-section');
 let firstInput: JQuery<HTMLElement> = $('#first-input');
@@ -35,60 +38,60 @@ let skipButton: JQuery<HTMLElement> = $('#skip-button');
 let bubbleItems: JQuery<HTMLElement> = $('.bubble-item');
 let bubbleItemsText: JQuery<HTMLElement> = $('.bubble-item-text');
 const interestsOptions: string[] = [Interest.SOFTWARE_DEVELOPMENT,
-    Interest.WEB_DEVELOPMENT,
-    Interest.MOBILE_DEVELOPMENT,
-    Interest.DATABASE_MANAGEMENT,
-    Interest.CYBERSECURITY,
-    Interest.DATA_SCIENCE,
-    Interest.GAME_DEVELOPMENT,
-    Interest.TEAM_BUILDING,
-    Interest.PROJECT_MANAGEMENT,
-    Interest.ARTIFICIAL_INTELLIGENCE];
+                                    Interest.WEB_DEVELOPMENT,
+                                    Interest.MOBILE_DEVELOPMENT,
+                                    Interest.DATABASE_MANAGEMENT,
+                                    Interest.CYBERSECURITY,
+                                    Interest.DATA_SCIENCE,
+                                    Interest.GAME_DEVELOPMENT,
+                                    Interest.TEAM_BUILDING,
+                                    Interest.PROJECT_MANAGEMENT,
+                                    Interest.ARTIFICIAL_INTELLIGENCE];
 const numInterests: number = interestsOptions.length;
-
+//-------------------------Profile-Intentions-Section-------------------------
 const profileIntentionsOptions: string[] = [ProfileIntention.NETWORKING,
-    ProfileIntention.GETTING_INVOLVED,
-    ProfileIntention.CONNECT_TEAM,
-    ProfileIntention.CREATE_TEAM,
-    ProfileIntention.FIND_TEAM,
-    ProfileIntention.SOCIALIZE];
+                                            ProfileIntention.GETTING_INVOLVED,
+                                            ProfileIntention.CONNECT_TEAM,
+                                            ProfileIntention.CREATE_TEAM,
+                                            ProfileIntention.FIND_TEAM,
+                                            ProfileIntention.SOCIALIZE];
 const numProfileIntentions: number = profileIntentionsOptions.length;
-let interestItemsSelected: JQuery<Element>[] = [];
+//-------------------------Employment-Status-Section--------------------------
 const employmentStatusOptions: string[] = [EmploymentStatus.INDEPENDENT,
-    EmploymentStatus.EMPLOYED,
-    EmploymentStatus.SEEKING_EMPLOYMENT,
-    EmploymentStatus.STUDENT,
-    EmploymentStatus.HOBBYIST,
-    EmploymentStatus.BUILDING_TEAM];
-let numEmploymentStatusOptions = employmentStatusOptions.length;
+                                           EmploymentStatus.EMPLOYED,
+                                           EmploymentStatus.SEEKING_EMPLOYMENT,
+                                           EmploymentStatus.STUDENT,
+                                           EmploymentStatus.HOBBYIST,
+                                           EmploymentStatus.BUILDING_TEAM];
+let numEmploymentStatusOptions: number = employmentStatusOptions.length;
+//-------------------------------Choice-Bubbles-------------------------------
 let bubbleDiv: JQuery<HTMLElement> = $('#bubble-selection-div');
 //-------------------------------Title-Section--------------------------------
 let titleQuestionDiv: JQuery<HTMLElement> = $('#title-question-div');
 let titleQuestionText: JQuery<HTMLElement> = $('#title-question-text');
 let titleSection: JQuery<HTMLElement> = $('#title-section');
-let currentQuestionIndex: number = 0;
 let titleQuestions: string[] = ['What\'s your name?',
-    'When were you born?',
-    'Select your interests.',
-    'How do you plan to use Script Social?',
-    'Tell us about your employment.',
-    'Let\'s put a face to the name!',
-    'Tell the world about yourself!'];
+                                'When were you born?',
+                                'Select your interests.',
+                                'How do you plan to use Script Social?',
+                                'Tell us about your employment.',
+                                'Let\'s put a face to the name!',
+                                'Tell the world about yourself!'];
+//--------------------------------Bio-Section---------------------------------
 let bioDiv: JQuery<HTMLElement> = $('#bio-div');
 let userBioInput: JQuery<HTMLElement> = $('#user-bio-input');
 //-------------------------------Popup-Content--------------------------------
 let consolePopupContainer: JQuery<HTMLElement> = $('#console-popup-container');
 let consolePopupText: JQuery<HTMLElement> = $('#console-popup-text');
-
-// profile picture
+//--------------------------Profile-Picture-Section---------------------------
 let profilePictureDiv: JQuery<HTMLElement> = $('#profile-picture-div');
 let defaultProfilePictureDiv: JQuery<HTMLElement> = $('#default-profile-picture-div');
 let uploadUploadProfilePictureImage: JQuery<HTMLElement> = $('#upload-profile-picture-img');
 let fileUploadDiv: JQuery<HTMLElement> = $('#file-upload-div');
 let fileUploadInput: JQuery<HTMLElement> = $('#file-upload-input');
-//----------------------------------Profile-----------------------------------
-let builtProfile: WelcomeProfile = new WelcomeProfile();
 //=============================-Server-Functions-=============================
+
+//---------------------------Send-Profile-To-Server---------------------------
 async function sendProfileToServer(): Promise<void> {
     console.log('Called sendProfileToServer()');
     console.log('Built profile: ', builtProfile);
@@ -126,8 +129,21 @@ async function sendProfileToServer(): Promise<void> {
         console.log('Error sending profile to server.');
     }
 }
+//---------------------------Upload-Profile-Picture---------------------------
+function uploadProfilePicture(uploadEvent: Event): void {
+    defaultProfilePictureDiv.hide();
+    fileUploadDiv.hide();
+    let uploadFile: File = (uploadEvent.target as HTMLInputElement).files[0];
+    let uppy: Uppy = createUppy('#image-editor', '#status-bar');
+    uppy.addFile({
+        name: uploadFile.name,
+        type: uploadFile.type,
+        data: uploadFile
+    });
+}
 //=============================-Client-Functions-=============================
 
+//----------------------------Is-Optional-Section-----------------------------
 function isOptionalSection(): boolean {
     let isOptional: boolean;
     switch (currentQuestionIndex) {
@@ -209,7 +225,7 @@ function clearInputs(movement: PromptMovement): void {
     }
 }
 //-----------------------Show-Correct-Inputs-And-Title------------------------
-async function showCorrectInputsAndTitle() {
+async function showCorrectInputsAndTitle(): Promise<void> {
     console.log(currentQuestionIndex);
     switch (currentQuestionIndex) {
         case 0:
@@ -240,6 +256,7 @@ async function showCorrectInputsAndTitle() {
             showEmploymentSection();
             break;
         case 5:
+            // TODO: Make profile picture last input section.
             showOptionalInputPopup();
             showCorrectInputs();
             showCorrectInputTitle();
@@ -256,6 +273,7 @@ async function showCorrectInputsAndTitle() {
             break;
     }
 }
+//------------------------------Show-Bio-Section------------------------------
 function showBioSection(): void {
     if (bioDiv.is(':hidden')) {
         bioDiv.fadeIn();
@@ -263,6 +281,7 @@ function showBioSection(): void {
 }
 // TODO: Fix issue with typing and deleting text when a button is clicked
 //       while the text is still typing.
+//--------------------------Show-Employment-Section---------------------------
 function showEmploymentSection(): void {
     if (bubbleDiv.is(':hidden')) {
         bubbleDiv.fadeIn();
@@ -275,6 +294,7 @@ function showEmploymentSection(): void {
         }
     });
 }
+//------------------------Show-Profile-Picture-Section------------------------
 function showProfilePictureSection(): void {
     profilePictureDiv.fadeIn();
     defaultProfilePictureDiv.fadeIn();
@@ -325,6 +345,7 @@ function showCorrectInputs(): void {
             hideAllInputs();
     }
 }
+//------------------------------Hide-All-Inputs-------------------------------
 function hideAllInputs(): void {
     if (firstInputTitleDiv.is(':visible')) {
         firstInputTitleDiv.fadeOut();
@@ -354,6 +375,7 @@ function hideAllInputs(): void {
         profilePictureDiv.fadeOut();
     }
 }
+//------------------------------Show-Bio-Inputs-------------------------------
 function setBioInputs(): void {
     if (firstInput.is(':visible')) {
         firstInput.fadeOut();
@@ -365,6 +387,7 @@ function setBioInputs(): void {
         profilePictureDiv.fadeOut();
     }
 }
+//-------------------------Set-Profile-Picture-Inputs-------------------------
 function setProfilePictureInputs(): void {
     if (bioDiv.is(':visible')) {
         bioDiv.fadeOut();
@@ -379,6 +402,7 @@ function setProfilePictureInputs(): void {
         firstInputTitleDiv.fadeOut();
     }
 }
+//------------------------Set-Profile-Intention-Inputs------------------------
 function setProfileIntentionInputs(): void {
     bubbleDiv.fadeIn();
     bubbleItemsText.each((index: number, element: Element): void => {
@@ -389,6 +413,7 @@ function setProfileIntentionInputs(): void {
         }
     });
 }
+//---------------------------Set-Employment-Inputs----------------------------
 function setEmploymentInputs(): void {
     bubbleDiv.fadeIn();
     bubbleItemsText.each((index: number, element: Element): void => {
@@ -468,13 +493,14 @@ function showBirthdateSection() {
     firstInput.attr('type', 'date');
     console.log(firstInput.val());
 }
+//---------------------------Show-Interest-Section----------------------------
 function showInterestSection(): void {
     bubbleDiv.fadeIn();
     bubbleItemsText.each((index: number, element: Element): void => {
         $(element).text(interestsOptions[index]);
     });
 }
-
+//-----------------------Show-Profile-Intention-Section-----------------------
 function showProfileIntentionSection(): void {
     bubbleDiv.fadeIn();
     bubbleItemsText.each((index: number, element: Element): void => {
@@ -485,7 +511,8 @@ function showProfileIntentionSection(): void {
         }
     });
 }
-function setInterestInputs() {
+//----------------------------Set-Interest-Inputs-----------------------------
+function setInterestInputs(): void {
     if (firstInput.is(':visible')) {
         firstInput.fadeOut();
     }
@@ -502,6 +529,7 @@ function setInterestInputs() {
         }
     });
 }
+//--------------------------Save-Inputs-On-Movement---------------------------
 function saveInputsOnMovement(): void {
     switch (currentQuestionIndex) {
         case 0:
@@ -546,6 +574,7 @@ function selectBubbleItem(): void {
 
     }
 }
+//--------------------------Select-Employment-Status--------------------------
 function selectEmploymentStatus(employmentItem: JQuery<Element>): void {
     let indexOfEmployment: number = employmentItem.index();
     employmentItem.fadeIn().toggleClass('general-select');
@@ -556,9 +585,11 @@ function selectEmploymentStatus(employmentItem: JQuery<Element>): void {
         }
     }
 }
+//-----------------------------Clear-Bubble-Style-----------------------------
 function cleerBubblesStyle(): void {
     bubbleItems.removeClass('general-select');
 }
+//---------------------------Reset-Bubble-Selection---------------------------
 function resetBubbleSelection(): void {
     bubbleItems.removeClass('general-select');
     switch (currentQuestionIndex) {
@@ -573,6 +604,7 @@ function resetBubbleSelection(): void {
             break;
     }
 }
+//------------------------------Select-Interest-------------------------------
 function selectInterest(interestItem: JQuery<Element>): void {
     if (interestItem.hasClass('general-select')) {
         deselectInterestItem(interestItem);
@@ -583,6 +615,7 @@ function selectInterest(interestItem: JQuery<Element>): void {
         interestItem.fadeIn().toggleClass('general-select');
     }
 }
+//--------------------------Select-Profile-Intention--------------------------
 function selectProfileIntention(intentionItem: JQuery<Element>): void {
     if (intentionItem.hasClass('general-select')) {
         builtProfile.setProfileIntention(null);
@@ -615,11 +648,10 @@ function confirmButtonPressed(): void {
 function backButtonPressed(): void {
     moveSection(PromptMovement.BACKWARD);
 }
-
-function isLastSection() {
+//------------------------------Is-Last-Section-------------------------------
+function isLastSection(): boolean {
     return currentQuestionIndex === 7;
 }
-
 //--------------------------------Move-Section--------------------------------
 function moveSection(promptMovement: PromptMovement): void {
     saveInputsOnMovement();
@@ -641,7 +673,6 @@ function moveSection(promptMovement: PromptMovement): void {
             if (!isLastSection()) {
                 currentQuestionIndex++;
             }
-
         }
         console.log('Current question index: ', currentQuestionIndex);
         let sectionHasChanged: boolean = previousIndex !== currentQuestionIndex;
@@ -667,6 +698,7 @@ function moveSection(promptMovement: PromptMovement): void {
         }
     }
 }
+//-------------------------Show-Optional-Input-Popup--------------------------
 function showOptionalInputPopup(): void {
     if (consolePopupContainer.is(':hidden')) {
         showPopupMessage('This is optional.');
@@ -711,6 +743,7 @@ function hasValidInputs(): boolean {
     }
     return validInputs;
 }
+//---------------------------Has-Interest-Selected----------------------------
 function hasInterestSelected(): boolean {
     return builtProfile.interests.length > 0;
 }
@@ -738,17 +771,6 @@ async function confettiBursts(): Promise<void> {
         });
     });
 }
-function uploadImage(uploadEvent: Event): void {
-    defaultProfilePictureDiv.hide();
-    fileUploadDiv.hide();
-    let uploadFile: File = (uploadEvent.target as HTMLInputElement).files[0];
-    let uppy: Uppy = createUppy('#image-editor', '#status-bar');
-    uppy.addFile({
-        name: uploadFile.name,
-        type: uploadFile.type,
-        data: uploadFile
-    });
-}
 //================================-Init-Load-=================================
 let shouldLoadPage: boolean = loadPage(document.body, 'welcome');
 if (shouldLoadPage) {
@@ -767,5 +789,5 @@ if (shouldLoadPage) {
     skipButton.on('click', confirmButtonPressed);
     confirmButton.on('click', confirmButtonPressed);
     backButton.on('click', backButtonPressed);
-    fileUploadInput.on('change', uploadImage);
+    fileUploadInput.on('change', uploadProfilePicture);
 }
