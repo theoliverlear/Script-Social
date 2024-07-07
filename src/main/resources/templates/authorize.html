@@ -2,28 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/html"
       dir="ltr">
+<!--==============================-Metadata-===============================-->
 <head>
     <meta charset="UTF-8">
     <title>Signup | Login | Script Social</title>
+    <!----------------------------Stylesheets-------------------------------->
     <link rel="stylesheet" href="../static/style/global-style.css"
           th:href="@{/style/global-style.css}"/>
     <link rel="stylesheet" href="../static/style/authorize-style.css"
           th:href="@{/style/authorize-style.css}"/>
+    <!------------------------------Favicon---------------------------------->
     <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
           th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
 </head>
 <body data-page="authorize">
+<!--===============================-Nav-Bar-===============================-->
 <header>
+    <!------------------------Nav-Hamburger-Menu----------------------------->
     <div>
         <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
              th:src="@{/image/icon/hamburger_menu.svg}">
     </div>
     <nav id="nav-bar">
+        <!-------------------------Nav-Home---------------------------------->
         <a href="/" class="link-no-style nav-item">
             <div>
                 <h4 class="nav-text"></h4>
             </div>
         </a>
+        <!------------------------Nav-Search--------------------------------->
         <div class="nav-item" id="nav-search-div">
             <div id="search-icon-div">
                 <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
@@ -36,6 +43,7 @@
                 <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
             </div>
         </div>
+        <!------------------------Nav-Account-------------------------------->
         <div id="account-and-logout-div" class="nav-item">
             <div id="account-nav-item">
                 <h4 id="account-name-text" class="nav-text"></h4>
@@ -45,6 +53,7 @@
             </div>
         </div>
     </nav>
+    <!---------------------------Nav-User-Menu------------------------------->
     <div id="user-nav-menu-div">
         <div id="user-nav-img-div">
             <img id="user-nav-img" src="../static/image/icon/default_avatar.svg" alt="User Avatar"
@@ -54,7 +63,9 @@
                    logout option.-->
     </div>
 </header>
+<!--============================-Main-Content-=============================-->
 <main>
+    <!------------------------Auth-Type-Selection---------------------------->
     <section id="choose-auth-type-section">
         <div id="signup-button" class="auth-type-button">
             <h3>Signup</h3>
@@ -63,9 +74,12 @@
             <h3>Login</h3>
         </div>
     </section>
+    <!------------------------Auth-Input-Section----------------------------->
     <section id="auth-input-section">
+        <!----------------------Signup-Section------------------------------->
         <div id="signup-div" class="general-console-container">
             <div class="general-console">
+                <!---------------Signup-Inputs------------------------------->
                 <div>
                     <div class="console-input-title-field">
                         <div class="console-title-field">
@@ -108,8 +122,10 @@
                 </div>
             </div>
         </div>
+        <!-----------------------Login-Section------------------------------->
         <div id="login-div" class="general-console-container">
             <div class="general-console">
+                <!---------------Login-Inputs-------------------------------->
                 <div>
                     <div class="console-input-title-field">
                         <div class="console-title-field">
@@ -140,6 +156,7 @@
         </div>
     </section>
 </main>
+<!--===============================-Footer-================================-->
 <footer>
     <section id="footer-small-text-section">
         <div id="footer-left-text-item" class="footer-item">
@@ -150,6 +167,9 @@
         </div>
     </section>
 </footer>
+<!--===============================-Scripts-===============================-->
+
+<!-------------------------------Stack-Bundle-------------------------------->
 <script src="../static/script/bundle.js" type="application/javascript"
         th:src="@{/script/bundle.js}"></script>
 </body>
