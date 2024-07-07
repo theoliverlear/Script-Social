@@ -2,29 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/html"
       dir="ltr">
+<!--==============================-Metadata-===============================-->
 <head>
     <meta charset="UTF-8">
     <title th:text="${username}"> | Script Social</title>
+    <!----------------------------Stylesheets-------------------------------->
     <link rel="stylesheet" href="../static/style/global-style.css"
           th:href="@{/style/global-style.css}"/>
     <link rel="stylesheet" href="../static/style/profile-style.css"
           th:href="@{/style/profile-style.css}"/>
+    <!------------------------------Favicon---------------------------------->
     <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
           th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
 </head>
 <body data-page="profile" th:user-id="${userId}">
-<!----------------------------------Nav-Bar---------------------------------->
+<!--===============================-Nav-Bar-===============================-->
 <header>
+    <!------------------------Nav-Hamburger-Menu----------------------------->
     <div>
         <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
              th:src="@{/image/icon/hamburger_menu.svg}">
     </div>
     <nav id="nav-bar">
+        <!-------------------------Nav-Home---------------------------------->
         <a href="/" class="link-no-style nav-item">
             <div>
                 <h4 class="nav-text"></h4>
             </div>
         </a>
+        <!------------------------Nav-Search--------------------------------->
         <div class="nav-item" id="nav-search-div">
             <div id="search-icon-div">
                 <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
@@ -37,6 +43,7 @@
                 <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
             </div>
         </div>
+        <!------------------------Nav-Account-------------------------------->
         <div id="account-and-logout-div" class="nav-item">
             <div id="account-nav-item">
                 <h4 id="account-name-text" class="nav-text"></h4>
@@ -46,6 +53,7 @@
             </div>
         </div>
     </nav>
+    <!---------------------------Nav-User-Menu------------------------------->
     <div id="user-nav-menu-div">
         <div id="user-nav-img-div">
             <img id="user-nav-img" src="../static/image/icon/default_avatar.svg" alt="User Avatar"
@@ -57,12 +65,14 @@
 </header>
 <!-----------------------------Secondary-Nav-Bar----------------------------->
 <nav id="side-nav-bar" class="side-nav-closed">
+    <!--------------------------Nav-Popout-Tab------------------------------->
     <div id="side-bar-tab-div" class="side-bar-icon-div">
         <img id="side-bar-tab-img" class="side-bar-icon-img" src="../static/image/icon/white_tab_icon.svg"
              alt="Tab Icon" th:src="@{/image/icon/white_tab_icon.svg}">
     </div>
     <hr />
     <div id="side-nav-items">
+        <!---------------------Nav-Notifications----------------------------->
         <a class="link-no-style side-bar-functionality-div" href="/notifications/">
             <div class="side-bar-icon-div">
                 <img class="side-bar-icon-img" src="../static/image/icon/white_notification_bell_icon.svg"
@@ -72,7 +82,8 @@
                 <h6>Notifications</h6>
             </div>
         </a>
-        <a class="link-no-style side-bar-functionality-div" href="/messages/">
+        <!-----------------------Nav-Messages-------------------------------->
+        <a class="link-no-style side-bar-functionality-div" href="/message/">
             <div class="side-bar-icon-div">
                 <img class="side-bar-icon-img" src="../static/image/icon/white_mail_icon.svg" alt="Mail Icon"
                      th:src="@{/image/icon/white_mail_icon.svg}">
@@ -83,12 +94,15 @@
         </a>
     </div>
 </nav>
+<!--============================-Main-Content-=============================-->
 <main>
     <!-- TODO: If a user is private, show a message, hide the appropriate
                content, and heavily blur their profile picture. -->
+    <!--------------------------Banner-Section------------------------------->
     <section id="banner-section">
 
     </section>
+    <!-------------------------Headline-Section------------------------------>
     <section id="headline-section">
         <div id="profile-picture-with-name">
             <div id="profile-picture-div">
@@ -109,6 +123,7 @@
                 </div>
             </div>
         </div>
+        <!---------------------Headline-Buttons------------------------------>
         <div id="buttons-div">
             <div id="follow-button" class="general-button profile-button">
                 <h5>Follow</h5>
@@ -121,6 +136,7 @@
             </div>
         </div>
     </section>
+    <!-------------------------User-Tabs-Section----------------------------->
     <section id="user-tabs-section">
         <!--        <div>-->
         <!--            <h4>Projects</h4>-->
@@ -129,6 +145,7 @@
 
         </div>
     </section>
+    <!------------------------Write-Post-Section----------------------------->
     <section id="write-post-section">
         <div id="write-post-div" class="general-write-post-div">
             <div id="write-post-textarea-div" class="write-post-textarea-div">
@@ -139,11 +156,13 @@
             </div>
         </div>
     </section>
+    <!-------------------------Activity-Section------------------------------>
     <section id="activity-section">
         <div id="activity-title-div">
             <h4 id="activity-title-text">Activity</h4>
         </div>
         <hr />
+        <!---------------------------Post------------------------------------>
         <div class="general-post">
             <div>
                 <p>
@@ -160,12 +179,13 @@
         <div class="content-box">
             <div>
                 <p>
-                    <!-- href is set by the data in the backend and routed via
-                         the jQuery in the frontend. -->
+                    <!-- TODO: href is set by the data in the backend and
+                               routed via the jQuery in the frontend. -->
                     <a href="" class="hyperlink">Oliver</a> connected with <a href="" class="hyperlink">Martha Stewart</a>.
                 </p>
             </div>
         </div>
+        <!-----------------------Project-Post-------------------------------->
         <div class="general-project-post">
             <div class="post-info">
                 <p>
@@ -178,6 +198,7 @@
                            sharing. -->
             </div>
             <hr />
+            <!-------------------Comments-Div-------------------------------->
             <div class="comments-div">
                 <div class="comment-div">
                     <a class="hyperlink" href="">
@@ -231,6 +252,7 @@
 
     </section>
 </main>
+<!--===============================-Footer-================================-->
 <footer>
     <section id="footer-small-text-section">
         <div id="footer-left-text-item" class="footer-item">
@@ -241,6 +263,9 @@
         </div>
     </section>
 </footer>
+<!--===============================-Scripts-===============================-->
+
+<!-------------------------------Stack-Bundle-------------------------------->
 <script src="../static/script/bundle.js" type="application/javascript"
         th:src="@{/script/bundle.js}"></script>
 </body>
