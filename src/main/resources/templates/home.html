@@ -2,29 +2,36 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/html"
       dir="ltr">
+<!--==============================-Metadata-===============================-->
 <head>
     <meta charset="UTF-8">
     <title>Script Social</title>
+    <!----------------------------Stylesheets-------------------------------->
     <link rel="stylesheet" href="../static/style/global-style.css"
           th:href="@{/style/global-style.css}"/>
     <link rel="stylesheet" href="../static/style/home-style.css"
           th:href="@{/style/home-style.css}"/>
+    <!------------------------------Favicon---------------------------------->
     <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
           th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
 </head>
 <body data-page="home">
 <!-- TODO: Turn into a Thymeleaf template to be more modular. -->
+<!--===============================-Nav-Bar-===============================-->
 <header>
+    <!------------------------Nav-Hamburger-Menu----------------------------->
     <div>
         <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
              th:src="@{/image/icon/hamburger_menu.svg}">
     </div>
     <nav id="nav-bar">
+        <!-------------------------Nav-Home---------------------------------->
         <a href="/" class="link-no-style nav-item">
             <div>
                 <h4 class="nav-text"></h4>
             </div>
         </a>
+        <!------------------------Nav-Search--------------------------------->
         <div class="nav-item" id="nav-search-div">
             <div id="search-icon-div">
                 <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
@@ -37,6 +44,7 @@
                 <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
             </div>
         </div>
+        <!------------------------Nav-Account-------------------------------->
         <div id="account-and-logout-div" class="nav-item">
             <div id="account-nav-item">
                 <h4 id="account-name-text" class="nav-text"></h4>
@@ -46,6 +54,7 @@
             </div>
         </div>
     </nav>
+    <!---------------------------Nav-User-Menu------------------------------->
     <div id="user-nav-menu-div">
         <div id="user-nav-img-div">
             <img id="user-nav-img" src="../static/image/icon/default_avatar.svg" alt="User Avatar"
@@ -55,7 +64,9 @@
                    logout option.-->
     </div>
 </header>
+<!--============================-Main-Content-=============================-->
 <main>
+    <!-----------------------Introduction-Section---------------------------->
     <section id="introduction-section">
         <div id="title-div">
             <span class="title-curly-brace">&#123;</span>
@@ -86,6 +97,7 @@
             </div>
         </div>
     </section>
+    <!---------------------------Join-Section-------------------------------->
     <section id="join-section">
         <div id="join-title-div">
             <h2>Join</h2>
@@ -95,6 +107,7 @@
                 <div id="join-console-text">
                     <!--                    <h3>Sign Up</h3>-->
                 </div>
+                <!----------------Join-Inputs-------------------------------->
                 <div id="join-console-inputs">
                     <div id="join-console-email-div" class="join-input-title-field">
                         <div id="join-console-email-text-div" class="join-title-field">
@@ -130,6 +143,7 @@
                     </div>
                     <!-- TODO: Add agree to terms checkbox -->
                 </div>
+                <!-----------Popup-And-Confirm-Div--------------------------->
                 <div id="popup-and-confirm-div">
                     <div id="popup-div">
                         <p id="popup-text">Please enter an email.</p>
@@ -140,6 +154,7 @@
                 </div>
             </div>
         </section>
+        <!-- TODO: Implement new popup section below. -->
         <div id="message-popup-console" class="general-console-container">
             <div class="general-console">
                 <div class="console-popup-div">
@@ -150,6 +165,7 @@
     </section>
     <!--    <input type="hidden" id="csrf-token" th:value="${_csrf.token}"/>-->
 </main>
+<!--===============================-Footer-================================-->
 <footer>
     <section id="footer-small-text-section">
         <div id="footer-left-text-item" class="footer-item">
@@ -160,6 +176,9 @@
         </div>
     </section>
 </footer>
+<!--===============================-Scripts-===============================-->
+
+<!-------------------------------Stack-Bundle-------------------------------->
 <script src="../static/script/bundle.js" type="application/javascript"
         th:src="@{/script/bundle.js}"></script>
 </body>
