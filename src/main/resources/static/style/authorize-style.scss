@@ -1,8 +1,11 @@
+//=================================-Imports-==================================
 @import "global-variables";
 @import "global-mixins";
 @import "global-functions";
 @import "global-placeholders";
+//==================================-Styles-==================================
 
+//-------------------------Choose-Auth-Type-Selection-------------------------
 #choose-auth-type-section {
     margin: $one-half-percent 0 0 0;
     @include flex(space-around, center, row);
@@ -24,6 +27,7 @@
     border: $thin-border solid $alabaster-stone;
     box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
 }
+//-----------------------------Auth-Input-Section-----------------------------
 #auth-input-section {
     //@extend %console;
     #login-div {
