@@ -1,12 +1,16 @@
+//=================================-Imports-==================================
 @import "global-variables";
 @import "global-mixins";
 @import "global-functions";
+//==================================-Styles-==================================
 
+//----------------------------Introduction-Section----------------------------
 #introduction-section {
     width: 100%;
     margin: $one-half-percent $zero $zero $zero;
     color: $pristine-white;
     @include flex(center, center, column);
+    //-------------------------Introduction-Title-----------------------------
     #title-div {
         width: 70%;
         border-radius: $one-percent;
@@ -14,6 +18,7 @@
         @include flex(center, center, row);
         padding: $one-percent $two-percent;
         background-color: $apricot-glow;
+        //------------------Introduction-Title-Text---------------------------
         #title-text {
             text-align: center;
             text-decoration: underline;
@@ -23,7 +28,6 @@
             font-size: $h2-font-size;
             animation: blink 1s infinite;
         }
-
         .title-curly-brace {
             text-decoration: none;
             font-size: $h1-font-size;
@@ -56,14 +60,17 @@
         }
     }
 }
+//--------------------------------Join-Section--------------------------------
 #join-section {
     width: 100%;
     margin: $one-half-percent $zero;
     color: $pristine-white;
     @include flex(center, center, column);
+    //-----------------------------Join-Title---------------------------------
     #join-title-div {
         margin: 0 0 $one-percent 0;
     }
+    //----------------------------Join-Console--------------------------------
     #join-console {
         box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
         width: auto;
@@ -76,6 +83,7 @@
                 margin-right: $one-percent;
                 flex: 1;
             }
+            //--------------------Join-Inputs---------------------------------
             .join-input {
                 width: $fifteen-percent;
                 font-family: $source-code-font;
@@ -87,6 +95,7 @@
                 padding: $zero $one-percent;
             }
         }
+        //-----------------Console-Popup-And-Confirm--------------------------
         #popup-and-confirm-div {
             margin: $half-percent $zero $zero $zero;
             @include flex(flex-end, center, row);
@@ -99,6 +108,9 @@
         display: none;
     }
 }
+//================================-Animations-================================
+
+//-----------------------------------Blink------------------------------------
 @keyframes blink {
     0% {
         opacity: 0;
@@ -110,7 +122,10 @@
         opacity: 0;
     }
 }
-@media screen and (max-width: 751px) {
+//==============================-Media-Queries-===============================
+
+//-------------------------Width-750-Pixels-And-Below-------------------------
+@media screen and (max-width: 750px) {
     #introduction-section {
         #title-div {
             #title-text {
