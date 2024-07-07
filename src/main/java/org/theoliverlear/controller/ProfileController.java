@@ -16,24 +16,35 @@ import org.theoliverlear.entity.user.ProfilePicture;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.entity.user.personal.Bio;
 import org.theoliverlear.service.ProfilePictureService;
+import org.theoliverlear.service.ScriptSocialService;
+
+import java.util.Optional;
 
 @RequestMapping("/profile")
 @Controller
 public class ProfileController {
     //============================-Variables-=================================
+    private ScriptSocialService scriptSocialService;
     private ProfilePictureService profilePictureService;
     //===========================-Constructors-===============================
     @Autowired
-    public ProfileController(ProfilePictureService profilePictureService) {
+    public ProfileController(ScriptSocialService scriptSocialService,
+                             ProfilePictureService profilePictureService) {
+        this.scriptSocialService = scriptSocialService;
         this.profilePictureService = profilePictureService;
     }
     //=============================-Methods-==================================
 
     //------------------------------Profile-----------------------------------
     @RequestMapping("/")
-    public String profile(HttpSession session) {
+    public String profile(HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
+        }
+        Optional<User> possibleUser = this.scriptSocialService.getUserFromSession(session);
+        if (possibleUser.isPresent()) {
+            User currentUser = possibleUser.get();
+            model.addAttribute("username", currentUser.getUsername());
         }
         return "profile";
     }
@@ -42,7 +53,7 @@ public class ProfileController {
     public String profileId(HttpSession session, @PathVariable String id, Model model) {
         User sessionUser = (User) session.getAttribute("user");
         if (sessionUser == null) {
-           return "redirect:/";
+            return "redirect:/";
         }
         model.addAttribute("userId", id);
         return "profile";
@@ -60,10 +71,10 @@ public class ProfileController {
             }
             model.addAttribute("username", sessionUser.getUsername());
             return ResponseEntity.ok(new ProfileResponse(sessionUser.getFirstName(), sessionUser.getLastName(),
-                                                         sessionUser.getBio().getBioText(), true));
+                    sessionUser.getBio().getBioText(), true));
         } else {
             return ResponseEntity.ok(new ProfileResponse("John", "Doe",
-                                                     "Hello, World!", false));
+                    "Hello, World!", false));
         }
     }
     //------------------------Has-Profile-Picture-----------------------------
