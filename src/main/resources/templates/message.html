@@ -2,29 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/html"
       dir="ltr">
+<!--==============================-Metadata-===============================-->
 <head>
     <meta charset="UTF-8">
     <title>Message | Script Social</title>
+    <!----------------------------Stylesheets-------------------------------->
     <link rel="stylesheet" href="../static/style/global-style.css"
           th:href="@{/style/global-style.css}"/>
     <link rel="stylesheet" href="../static/style/message-style.css"
           th:href="@{/style/message-style.css}"/>
+    <!------------------------------Favicon---------------------------------->
     <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
           th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
 </head>
 <body data-page="message">
-<!----------------------------------Nav-Bar---------------------------------->
+<!--===============================-Nav-Bar-===============================-->
 <header>
+    <!------------------------Nav-Hamburger-Menu----------------------------->
     <div>
         <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
              th:src="@{/image/icon/hamburger_menu.svg}">
     </div>
     <nav id="nav-bar">
+        <!-------------------------Nav-Home---------------------------------->
         <a href="/" class="link-no-style nav-item">
             <div>
                 <h4 class="nav-text"></h4>
             </div>
         </a>
+        <!------------------------Nav-Search--------------------------------->
         <div class="nav-item" id="nav-search-div">
             <div id="search-icon-div">
                 <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
@@ -37,6 +43,7 @@
                 <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
             </div>
         </div>
+        <!------------------------Nav-Account-------------------------------->
         <div id="account-and-logout-div" class="nav-item">
             <div id="account-nav-item">
                 <h4 id="account-name-text" class="nav-text"></h4>
@@ -46,6 +53,7 @@
             </div>
         </div>
     </nav>
+    <!---------------------------Nav-User-Menu------------------------------->
     <div id="user-nav-menu-div">
         <div id="user-nav-img-div">
             <img id="user-nav-img" src="../static/image/icon/default_avatar.svg" alt="User Avatar"
@@ -57,12 +65,14 @@
 </header>
 <!-----------------------------Secondary-Nav-Bar----------------------------->
 <nav id="side-nav-bar" class="side-nav-closed">
+    <!--------------------------Nav-Popout-Tab------------------------------->
     <div id="side-bar-tab-div" class="side-bar-icon-div">
         <img id="side-bar-tab-img" class="side-bar-icon-img" src="../static/image/icon/white_tab_icon.svg"
              alt="Tab Icon" th:src="@{/image/icon/white_tab_icon.svg}">
     </div>
     <hr />
     <div id="side-nav-items">
+        <!---------------------Nav-Notifications----------------------------->
         <a class="link-no-style side-bar-functionality-div" href="/notifications/">
             <div class="side-bar-icon-div">
                 <img class="side-bar-icon-img" src="../static/image/icon/white_notification_bell_icon.svg"
@@ -72,7 +82,8 @@
                 <h6>Notifications</h6>
             </div>
         </a>
-        <a class="link-no-style side-bar-functionality-div" href="/messages/">
+        <!-----------------------Nav-Messages-------------------------------->
+        <a class="link-no-style side-bar-functionality-div" href="/message/">
             <div class="side-bar-icon-div">
                 <img class="side-bar-icon-img" src="../static/image/icon/white_mail_icon.svg" alt="Mail Icon"
                      th:src="@{/image/icon/white_mail_icon.svg}">
@@ -83,11 +94,14 @@
         </a>
     </div>
 </nav>
+<!--============================-Main-Content-=============================-->
 <main>
+    <!--------------------------Message-Section------------------------------>
     <section id="message-section">
         <!-- TODO: Conversations with multiple people will have their pictures
                    staggered behind one another with the beginning names as
                    text. -->
+        <!--------------------Connections-Section---------------------------->
         <section id="connections-section">
             <!-- TODO: Add a compose button icon to send a new message with no
                        history. -->
@@ -95,6 +109,7 @@
                 <h5 id="connections-title-text">Connections</h5>
             </div>
             <hr />
+            <!-----------------Connections-List------------------------------>
             <div id="connections-list-div">
                 <div class="connection-item">
                     <div class="connection-img-div">
@@ -125,13 +140,15 @@
                 </div>
             </div>
         </section>
-
+        <!---------------------Messages-Section------------------------------>
         <section id="messages-section">
             <div id="messages-title-div">
                 <h5 id="messages-title-text">Messages</h5>
             </div>
             <hr />
+            <!-------------------Messaging-Div------------------------------->
             <div id="messaging-div">
+                <!---------------User-Messages------------------------------->
                 <div id="user-messages">
                     <div class="message-item">
                         <div class="message-headline">
@@ -197,6 +214,7 @@
         </section>
     </section>
 </main>
+<!--===============================-Footer-================================-->
 <footer>
     <section id="footer-small-text-section">
         <div id="footer-left-text-item" class="footer-item">
@@ -207,6 +225,9 @@
         </div>
     </section>
 </footer>
+<!--===============================-Scripts-===============================-->
+
+<!-------------------------------Stack-Bundle-------------------------------->
 <script src="../static/script/bundle.js" type="application/javascript"
         th:src="@{/script/bundle.js}"></script>
 </body>
