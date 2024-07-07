@@ -1,7 +1,10 @@
+//=================================-Imports-==================================
 @import "global-variables";
 @import "global-mixins";
 @import "global-functions";
+//===============================-Placeholders-===============================
 
+//----------------------------------Console-----------------------------------
 %console {
     border-radius: $one-percent;
     border: $thinnest-border solid $alabaster-stone;
@@ -9,14 +12,17 @@
     box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
     padding: $one-percent;
 }
+//-------------------------------Indented-Text--------------------------------
 %indented-text {
     text-indent: $two-percent;
 }
+//-------------------------------Selected-Auth--------------------------------
 %selected-auth {
     background-color: $apricot-glow;
     border: $thin-border solid $alabaster-stone;
     box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
 }
+//-----------------------------Console-Box-Shadow-----------------------------
 %console-box-shadow {
     box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
 }
