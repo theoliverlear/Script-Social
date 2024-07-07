@@ -1,6 +1,9 @@
+//=================================-Imports-==================================
 @import "global-functions";
 @import "global-mixins";
-/*----------------------------------Colors----------------------------------*/
+//================================-Variables-=================================
+
+//-----------------------------------Colors-----------------------------------
 $pristine-white: hsl(0, 0%, 100%);
 $alabaster-stone: hsl(40, 21%, 89%);
 $sandstone: hsl(29, 32%, 78%);
@@ -12,10 +15,10 @@ $pure-orange: hsl(18, 99%, 61%);
 $light-charcoal: hsl(0, 0%, 20%);
 $charcoal: hsl(0, 0%, 9%);
 $absolute-black: hsl(0, 0%, 0%);
-/*----------------------------------Fonts-----------------------------------*/
+//-----------------------------------Fonts------------------------------------
 $source-code-font: 'Source Code Pro', monospace;
 $jetbrains-mono-font: 'JetBrains Mono', monospace;
-/*--------------------------------Font-Size---------------------------------*/
+//---------------------------------Font-Sizes---------------------------------
 $h1-font-size: min(simple-pixel-calc(6, 12), 140px);
 $h2-font-size: min(simple-pixel-calc(5, 10), 120px);
 $h3-font-size: min(simple-pixel-calc(4,  8), 100px);
@@ -25,11 +28,11 @@ $h4-font-size: min(simple-pixel-calc(2.5,  6), 80px);
 $h5-font-size: min(simple-pixel-calc(1.75,  4), 60px);
 $h6-font-size: min(simple-pixel-calc(1.15,  2), 40px);
 $p-font-size:  min(simple-pixel-calc(1.15,  2), 40px);
-/*---------------------------------Borders----------------------------------*/
+//----------------------------------Borders-----------------------------------
 $thinnest-border: min(calc(((0.025vw + 0.025vh) / 2) + 0.025rem), 2px);
 $very-thin-border: calc(((0.05vw + 0.05vh) / 2) + 0.05em);
 $thin-border: calc(((0.1vw + 0.1vh) / 2) + 0.1em);
-/*----------------------------------Sizes-----------------------------------*/
+//-----------------------------------Sizes------------------------------------
 $zero: 0;
 $sixteenth-percent: simple-calc(0.0625, 0.025);
 $eighth-percent: simple-calc(0.125, 0.05);
