@@ -2,28 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/html"
       dir="ltr">
+<!--==============================-Metadata-===============================-->
 <head>
     <meta charset="UTF-8">
     <title>Welcome | Script Social</title>
+    <!----------------------------Stylesheets-------------------------------->
     <link rel="stylesheet" href="../static/style/global-style.css"
           th:href="@{/style/global-style.css}"/>
     <link rel="stylesheet" href="../static/style/welcome-style.css"
           th:href="@{/style/welcome-style.css}"/>
+    <!------------------------------Favicon---------------------------------->
     <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
           th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
 </head>
 <body data-page="welcome">
+<!--===============================-Nav-Bar-===============================-->
 <header>
+    <!------------------------Nav-Hamburger-Menu----------------------------->
     <div>
         <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
              th:src="@{/image/icon/hamburger_menu.svg}">
     </div>
     <nav id="nav-bar">
+        <!-------------------------Nav-Home---------------------------------->
         <a href="/" class="link-no-style nav-item">
             <div>
                 <h4 class="nav-text"></h4>
             </div>
         </a>
+        <!------------------------Nav-Search--------------------------------->
         <div class="nav-item" id="nav-search-div">
             <div id="search-icon-div">
                 <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
@@ -36,6 +43,7 @@
                 <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
             </div>
         </div>
+        <!------------------------Nav-Account-------------------------------->
         <div id="account-and-logout-div" class="nav-item">
             <div id="account-nav-item">
                 <h4 id="account-name-text" class="nav-text"></h4>
@@ -45,6 +53,7 @@
             </div>
         </div>
     </nav>
+    <!---------------------------Nav-User-Menu------------------------------->
     <div id="user-nav-menu-div">
         <div id="user-nav-img-div">
             <img id="user-nav-img" src="../static/image/icon/default_avatar.svg" alt="User Avatar"
@@ -54,7 +63,9 @@
                    logout option.-->
     </div>
 </header>
+<!--============================-Main-Content-=============================-->
 <main>
+    <!---------------------------Title-Section------------------------------->
     <section id="title-section">
         <div id="title-div">
             <h1 id="title-text">Welcome</h1>
@@ -63,12 +74,14 @@
             <h3>Let's build a profile</h3>
         </div>
     </section>
+    <!--------------------------Inputs-Section------------------------------->
     <section id="inputs-section">
         <div id="title-question-div">
             <h4 id="title-question-text"></h4>
         </div>
         <div class="general-console-container">
             <div class="general-console">
+                <!--------------Console-Inputs------------------------------->
                 <div id="console-inputs">
                     <div class="console-input-title-field">
                         <div class="console-title-field">
@@ -86,6 +99,7 @@
                             <input class="console-input" id="second-input" type="text">
                         </div>
                     </div>
+                    <!---------Bubble-Selection------------------------------>
                     <div id="bubble-selection-div">
                         <div class="bubble-item">
                             <h5 class="bubble-item-text"></h5>
@@ -119,11 +133,13 @@
                         </div>
                     </div>
                 </div>
+                <!--------------User-Bio-Input------------------------------->
                 <div id="bio-div">
                     <textarea id="user-bio-input" class="general-text-area">
 
                     </textarea>
                 </div>
+                <!-----------Profile-Picture-Input--------------------------->
                 <div id="profile-picture-div">
                     <div id="image-editor"></div>
                     <div id="status-bar"></div>
@@ -139,6 +155,7 @@
                         <input type="file" id="file-upload-input" accept="image/*">
                     </div>
                 </div>
+                <!--------------Welcome-Buttons------------------------------>
                 <div id="welcome-buttons" class="console-popup-and-confirm-div">
                     <div id="back-button" class="general-button user-info-button">
                         <h5>BACK</h5>
@@ -152,6 +169,7 @@
                 </div>
             </div>
         </div>
+        <!----------------------Popup-Container------------------------------>
         <div id="console-popup-container" class="general-console-container">
             <div class="general-console">
                 <div id="console-popup-div">
@@ -161,6 +179,7 @@
         </div>
     </section>
 </main>
+<!--===============================-Footer-================================-->
 <footer>
     <section id="footer-small-text-section">
         <div id="footer-left-text-item" class="footer-item">
@@ -171,6 +190,9 @@
         </div>
     </section>
 </footer>
+<!--===============================-Scripts-===============================-->
+
+<!-------------------------------Stack-Bundle-------------------------------->
 <script src="../static/script/bundle.js" type="application/javascript"
         th:src="@{/script/bundle.js}"></script>
 </body>
