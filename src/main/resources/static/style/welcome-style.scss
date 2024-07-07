@@ -1,8 +1,11 @@
+//=================================-Imports-==================================
 @import "global-variables";
 @import "global-mixins";
 @import "global-functions";
 @import "global-style";
+//==================================-Styles-==================================
 
+//-------------------------------Title-Section--------------------------------
 #title-section {
     @include flex(center, center, column);
     margin: $two-percent $zero;
@@ -20,6 +23,7 @@
         @include flex(center, center, column);
     }
 }
+//-------------------------------Inputs-Section-------------------------------
 #inputs-section {
     @include flex(center, center, column);
     display: none;
@@ -50,6 +54,7 @@
         display: none;
         margin: $one-percent $zero;
     }
+    //------------------------Profile-Picture-Div-----------------------------
     #profile-picture-div {
         @include flex(center, center, column);
         display: none;
@@ -65,6 +70,7 @@
             border-radius: $fifty-percent;
             border: $thinnest-border solid $pristine-white;
         }
+        //----------------------File-Upload-Div-------------------------------
         #file-upload-div {
             font-family: $source-code-font;
             color: $pristine-white;
@@ -97,6 +103,7 @@
     #skip-button {
         display: none;
     }
+    //----------------------Console-Popup-Container---------------------------
     #console-popup-container {
         @include flex(center, center, column);
         display: none;
