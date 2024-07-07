@@ -1,13 +1,16 @@
+//=================================-Imports-==================================
 @import "global-variables";
 @import "global-mixins";
 @import "global-functions";
 @import "global-placeholders";
 @import "global-style";
+//==================================-Styles-==================================
 
+//-----------------------------General-Containers-----------------------------
 main {
     //flex: 1;
 }
-
+//------------------------------Message-Section-------------------------------
 #message-section {
     @include flex(center, center, row);
     margin: $one-percent 0 0 0;
@@ -16,6 +19,7 @@ main {
     height: $thirty-five-percent;
     max-height: 80vh;
     @extend %console;
+    //------------------------Connections-Section-----------------------------
     #connections-section {
         padding: 0 $one-percent 0 0;
         margin: 0 $one-percent 0 0;
@@ -27,6 +31,7 @@ main {
             @include flex(center, center, row);
 
         }
+        //----------------------Connections-List------------------------------
         #connections-list-div {
             .connection-item {
                 @include flex(center, center, row);
@@ -57,6 +62,7 @@ main {
             }
         }
     }
+    //--------------------------Messages-Section------------------------------
     #messages-section {
         //@include flex(center, center, column);
         height: 100%;
@@ -66,6 +72,7 @@ main {
         }
         #messaging-div {
             margin: $half-percent 0 0 0;
+            //-------------------User-Messages--------------------------------
             #user-messages {
                 width: $thirty-five-percent;
                 max-width: 30vw;
@@ -106,6 +113,7 @@ main {
                     }
                 }
             }
+            //------------------User-Message-Div------------------------------
             #user-message-div {
                 margin: $one-percent 0 0 0;
                 align-self: end;
