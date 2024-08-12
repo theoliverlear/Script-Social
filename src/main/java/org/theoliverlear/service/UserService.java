@@ -62,4 +62,15 @@ public class UserService {
             return Optional.of(user);
         }
     }
+    public String getNameOrUsername(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User is null.");
+        }
+        String fullName = user.getFirstName() + " " + user.getLastName();
+        if (fullName.equals(" ")) {
+            return user.getUsername();
+        } else {
+            return fullName;
+        }
+    }
 }
