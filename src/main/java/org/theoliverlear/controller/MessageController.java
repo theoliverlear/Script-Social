@@ -1,6 +1,7 @@
 package org.theoliverlear.controller;
 //=================================-Imports-==================================
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RequestMapping("/messages")
 @Controller
 public class MessageController {
@@ -71,14 +73,13 @@ public class MessageController {
         } else {
             this.currentUser = (User) session.getAttribute("user");
         }
-        Optional<List<Conversation>> conversations = this.conversationService.findByUserIds(this.currentUser.getId(), id);
-        if (conversations.isEmpty()) {
+        Optional<Conversation> conversation = this.conversationService.findByUserIds(this.currentUser.getId(), id);
+        if (conversation.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         List<InstantMessageResponse> messages = new ArrayList<>();
         // TODO: Add specification algorithm to not add other user's messages.
-        for (Conversation conversation : conversations.get()) {
-            for (Message message : conversation.getMessages()) {
+            for (Message message : conversation.get().getMessages()) {
                 String fullNameOrUsername = message.getSender().getFirstName() + " " + message.getSender().getLastName();
                 Long senderId = message.getSender().getId();
                 if (senderId.equals(this.currentUser.getId())) {
@@ -93,61 +94,14 @@ public class MessageController {
                 InstantMessageResponse instantMessageResponse = new InstantMessageResponse(fullNameOrUsername, senderId, messageText, dateSent);
                 messages.add(instantMessageResponse);
             }
-        }
         return ResponseEntity.ok(messages);
     }
     //----------------------------Send-Message--------------------------------
     @MessageMapping("/send")
     public void sendMessage(@RequestBody InstantMessageRequest instantMessageRequest, SimpMessageHeaderAccessor headerAccessor) {
         System.out.println("Received message: " + instantMessageRequest.getMessage());
-//        if (!this.scriptSocialService.userInSession(headerAccessor)) {
-//            System.out.println("User not in session.");
-//            return;
-//        } else {
-//            Optional<User> possibleCurrentUser = this.scriptSocialService.getUserFromSession(headerAccessor);
-//            if (possibleCurrentUser.isEmpty()) {
-//                System.out.println("No current user found.");
-//                return;
-//            } else {
-//                System.out.println("Current user found.");
-//                this.currentUser = possibleCurrentUser.get();
-//            }
-//        }
-        if (this.currentUser == null) {
-            System.out.println("No current user found.");
-            return;
-        }
-        System.out.println("Current user: " + this.currentUser.getUsername());
-        Optional<List<Conversation>> conversations = this.conversationService.findByUserIds(this.currentUser.getId(), instantMessageRequest.getReceiverId());
-        Optional<User> possibleReceiver = this.userService.getUserById(instantMessageRequest.getReceiverId());
-        if (conversations.isEmpty()) {
-            System.out.println("No conversation found.");
-            if (possibleReceiver.isEmpty()) {
-                System.out.println("No receiver found.");
-                return;
-            } else {
-                User receiver = possibleReceiver.get();
-                Conversation newConversation = this.conversationService.createConversation(this.currentUser, receiver);
-                conversations.get().add(newConversation);
-            }
-        }
-        if (possibleReceiver.isEmpty()) {
-            System.out.println("No receiver found.");
-            return;
-        }
-        if (conversations.get().get(0) == null) {
-            System.out.println("No conversation found.");
-            return;
-        }
-        boolean messageAdded = this.conversationService.addMessageToConversation(conversations.get().get(0), this.currentUser, instantMessageRequest);
-        System.out.println("Message added: " + messageAdded);
-//        if (!messageAdded) {
-//            return;
-//        }
-        String fullNameOrUsername = this.currentUser.getFirstName() + " " + this.currentUser.getLastName();
-        if (fullNameOrUsername.equals(" ")) {
-            fullNameOrUsername = this.currentUser.getUsername();
-        }
+        String fullNameOrUsername = this.userService.getNameOrUsername(this.currentUser);
+        this.conversationService.saveMessage(instantMessageRequest, this.currentUser);
         InstantMessageResponse instantMessageResponse = new InstantMessageResponse(fullNameOrUsername, this.currentUser.getId(), instantMessageRequest.getMessage(), LocalDateTime.now().toString());
         this.simpMessagingTemplate.convertAndSend("/messages/receiver/" + instantMessageRequest.getReceiverId(), instantMessageResponse);
     }
