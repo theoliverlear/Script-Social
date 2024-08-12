@@ -66,8 +66,8 @@ header {
     left: 0;
     width: 100%;
     position: sticky;
-    margin: 0 0 calc-size(7, 4, 2) 0;
-    height: calc-size(7, 4, 2);
+    margin: 0 0 calc-size(6, 4, 2) 0;
+    height: calc-size(6, 4, 2);
     background-color: $apricot-glow;
     //border-bottom: $thinnest-border solid $alabaster-stone;
     box-shadow: $apricot-glow 0 0 $eighth-percent $eighth-percent;
@@ -225,7 +225,7 @@ header {
     position: fixed;
     transition: width, 0.15s;
     #side-bar-tab-div {
-        margin: calc(calc-size(7, 4, 2) + $one-percent) $zero $quarter-percent $zero;
+        margin: calc(calc-size(6, 4, 2) + $one-percent) $zero $quarter-percent $zero;
     }
     hr {
         background-color: $charcoal;
