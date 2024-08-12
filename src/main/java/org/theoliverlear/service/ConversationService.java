@@ -29,17 +29,22 @@ public class ConversationService {
     //=============================-Methods-==================================
 
     //--------------------------Find-By-User-Ids------------------------------
-    public Optional<List<Conversation>> findByUserIds(Long... userIds) {
+    public Optional<Conversation> findByUserIds(Long... userIds) {
         List<Long> userIdsList = List.of(userIds);
-        return this.findByUserIds(userIdsList);
-    }
-    //--------------------------Find-By-User-Ids------------------------------
-    public Optional<List<Conversation>> findByUserIds(List<Long> userIds) {
-        List<Conversation> conversations = this.conversationRepository.findByUserIds(userIds);
-        if (conversations == null) {
+        Conversation conversation = this.conversationRepository.findByUserIds(userIdsList);
+        if (conversation == null) {
             return Optional.empty();
         } else {
-            return Optional.of(conversations);
+            return Optional.of(conversation);
+        }
+    }
+    //--------------------------Find-By-User-Ids------------------------------
+    public Optional<Conversation> findByUserIds(List<Long> userIds) {
+        Conversation conversation = this.conversationRepository.findByUserIds(userIds);
+        if (conversation == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(conversation);
         }
     }
     //--------------------Add-Message-To-Conversation-------------------------
@@ -72,5 +77,31 @@ public class ConversationService {
         this.userService.saveUser(user);
         this.userService.saveUser(recipient);
         return conversation;
+    }
+    public void saveConversation(Conversation conversation) {
+        this.conversationRepository.save(conversation);
+    }
+    public boolean conversationExists(Long... userIds) {
+        boolean exists = this.findByUserIds(userIds).isPresent();
+        return exists;
+    }
+    public void saveMessage(InstantMessageRequest messageRequest, User currentUser) {
+        boolean conversationExists = this.conversationExists(currentUser.getId(), messageRequest.getReceiverId());
+        if (conversationExists) {
+            Optional<Conversation> possibleConversation = this.findByUserIds(currentUser.getId(), messageRequest.getReceiverId());
+            if (possibleConversation.isEmpty()) {
+                throw new IllegalArgumentException("Conversation does not exist.");
+            }
+            Conversation conversation = possibleConversation.get();
+            this.addMessageToConversation(conversation, currentUser, messageRequest);
+        } else {
+            Optional<User> possibleRecipient = this.userService.getUserById(messageRequest.getReceiverId());
+            if (possibleRecipient.isEmpty()) {
+                throw new IllegalArgumentException("Recipient does not exist.");
+            }
+            Conversation newConversation = this.createConversation(currentUser, possibleRecipient.get());
+            Message userMessage = new Message(currentUser, messageRequest.getMessage());
+            newConversation.addMessage(userMessage);
+        }
     }
 }
