@@ -21,7 +21,7 @@ public class Conversation {
     private Long id;
     @OneToMany(mappedBy = "conversation", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Message> messages;
-    @ManyToMany(mappedBy = "conversations", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(mappedBy = "conversations", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     private Set<User> subscribers;
     //===========================-Constructors-===============================
     public Conversation() {
@@ -32,7 +32,7 @@ public class Conversation {
         this.messages = messages;
         this.subscribers = new HashSet<>();
     }
-    public Conversation(List<Message> messages, HashSet<User> subscribers) {
+    public Conversation(List<Message> messages, Set<User> subscribers) {
         this.messages = messages;
         this.subscribers = subscribers;
     }
@@ -48,7 +48,7 @@ public class Conversation {
     //------------------------------Add-User----------------------------------
     public void addUser(User user) {
         this.addUserIfNotPresent(user);
-        user.addConversation(this);
+        user.addConversationIfNotPresent(this);
     }
     //----------------------Add-User-If-Not-Present---------------------------
     public void addUserIfNotPresent(User user) {
@@ -66,5 +66,21 @@ public class Conversation {
     //---------------------------Contains-User--------------------------------
     public boolean containsUser(User user) {
         return this.subscribers.contains(user);
+    }
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object instanceof Conversation comparedConversation) {
+            if (this.id != null) {
+                return this.id.equals(comparedConversation.getId());
+            } else {
+                boolean messagesEqual = this.messages.equals(comparedConversation.getMessages());
+                boolean subscribersEqual = this.subscribers.equals(comparedConversation.getSubscribers());
+                return messagesEqual && subscribersEqual;
+            }
+        }
+        return false;
     }
 }
