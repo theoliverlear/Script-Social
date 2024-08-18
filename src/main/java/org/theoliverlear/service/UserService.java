@@ -73,4 +73,13 @@ public class UserService {
             return fullName;
         }
     }
+    public String getNameOrUsername(User user, User currentUser) {
+        if (user == null) {
+            throw new IllegalArgumentException("User is null.");
+        }
+        if (user.equals(currentUser)) {
+            return "You";
+        }
+        return this.getNameOrUsername(user);
+    }
 }
