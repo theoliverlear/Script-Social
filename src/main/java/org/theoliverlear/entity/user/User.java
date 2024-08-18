@@ -53,7 +53,7 @@ public class User {
     private Profile profile;
     @JsonIgnore
     @OneToMany(mappedBy = "poster", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<Post> posts;
+    private List<Post> posts;
     @Column(name = "completed_welcome_survey")
     private boolean completedWelcomeSurvey;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -69,7 +69,7 @@ public class User {
     @OneToOne
     @JoinColumn(name = "profile_picture_id")
     private ProfilePicture profilePicture;
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_conversation",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -165,10 +165,18 @@ public class User {
 
     //--------------------------Add-Conversation------------------------------
     public void addConversation(Conversation conversation) {
+        conversation.addUser(this);
         this.conversations.add(conversation);
+    }
+    public void addConversationIfNotPresent(Conversation conversation) {
+        if (!this.conversations.contains(conversation)) {
+            conversation.addUserIfNotPresent(this);
+            this.conversations.add(conversation);
+        }
     }
     //------------------------Remove-Conversation-----------------------------
     public void removeConversation(Conversation conversation) {
+//        conversation.removeUser(this);
         this.conversations.remove(conversation);
     }
     //------------------------------Add-Post----------------------------------
