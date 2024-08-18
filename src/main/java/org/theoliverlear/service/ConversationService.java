@@ -1,12 +1,16 @@
 package org.theoliverlear.service;
 //=================================-Imports-==================================
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.theoliverlear.communication.request.InstantMessageRequest;
 import org.theoliverlear.entity.im.Conversation;
 import org.theoliverlear.entity.im.Message;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.repository.ConversationRepository;
+import org.theoliverlear.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,14 +21,20 @@ public class ConversationService {
     private ConversationRepository conversationRepository;
     private MessageService messageService;
     private UserService userService;
+    private EntityManager entityManager;
+    private UserRepository userRepository;
     //===========================-Constructors-===============================
     @Autowired
     public ConversationService(ConversationRepository conversationRepository,
                                MessageService messageService,
-                               UserService userService) {
+                               UserService userService,
+                               EntityManager entityManager,
+                               UserRepository userRepository) {
         this.conversationRepository = conversationRepository;
         this.messageService = messageService;
         this.userService = userService;
+        this.entityManager = entityManager;
+        this.userRepository = userRepository;
     }
     //=============================-Methods-==================================
 
@@ -48,6 +58,7 @@ public class ConversationService {
         }
     }
     //--------------------Add-Message-To-Conversation-------------------------
+    @Transactional
     public boolean addMessageToConversation(Conversation conversation, User user, InstantMessageRequest instantMessageRequest) {
 //        if (conversation == null) {
 //            conversation = this.createConversation(user, this.userService.getUserById(instantMessageRequest.getReceiverId()).get());
@@ -69,7 +80,11 @@ public class ConversationService {
         return true;
     }
     //------------------------Create-Conversation-----------------------------
+    @Transactional
     public Conversation createConversation(User user, User recipient) {
+        if (!this.entityManager.contains(user)) {
+            user = this.userRepository.findById(user.getId()).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        }
         Conversation conversation = new Conversation();
         conversation.addUser(user);
         conversation.addUser(recipient);
@@ -85,7 +100,13 @@ public class ConversationService {
         boolean exists = this.findByUserIds(userIds).isPresent();
         return exists;
     }
+    @Transactional
     public void saveMessage(InstantMessageRequest messageRequest, User currentUser) {
+
+        if (!this.entityManager.contains(currentUser)) {
+            currentUser = this.userRepository.findById(currentUser.getId()).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        }
+
         boolean conversationExists = this.conversationExists(currentUser.getId(), messageRequest.getReceiverId());
         if (conversationExists) {
             Optional<Conversation> possibleConversation = this.findByUserIds(currentUser.getId(), messageRequest.getReceiverId());
