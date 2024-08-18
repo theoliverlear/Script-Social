@@ -80,14 +80,9 @@ public class MessageController {
         List<InstantMessageResponse> messages = new ArrayList<>();
         // TODO: Add specification algorithm to not add other user's messages.
             for (Message message : conversation.get().getMessages()) {
-                String fullNameOrUsername = message.getSender().getFirstName() + " " + message.getSender().getLastName();
-                Long senderId = message.getSender().getId();
-                if (senderId.equals(this.currentUser.getId())) {
-                    fullNameOrUsername = "You";
-                } else if (fullNameOrUsername.equals(" ")) {
-                    fullNameOrUsername = message.getSender().getUsername();
-                }
+                String fullNameOrUsername = this.userService.getNameOrUsername(message.getSender(), this.currentUser);
                 String messageText = message.getMessage();
+                Long senderId = message.getSender().getId();
                 // TODO: Set up date service do we can show time like "5
                 //       minutes ago".
                 String dateSent = message.getDateSent().toString();
