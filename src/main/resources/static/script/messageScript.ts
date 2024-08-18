@@ -13,17 +13,28 @@ let userMessageSendButton: JQuery<HTMLElement> = $('#user-message-send-button');
 //-----------------------------------Inputs-----------------------------------
 let userMessageText: JQuery<HTMLElement> = $('#user-message-text');
 //---------------------------------Web-Socket---------------------------------
-let webSocket: WebSocket = new SockJS('/ws');
+let webSocket: WebSocket;
 let stompClient: any;
-try {
-    stompClient = Stomp.over(webSocket);
-} catch (error) {
-    console.error('Failed to create stomp client', error);
+function connectWebSocket(): void {
+    webSocket = new SockJS('/ws');
+    try {
+        stompClient = Stomp.over(webSocket);
+    } catch (error) {
+        console.error('Failed to create stomp client', error);
+    }
 }
+
 //=============================-Server-Functions-=============================
 
+function isStompClientConnected(): boolean {
+    return stompClient.connected;
+}
 //---------------------------Send-Message-To-Server---------------------------
 function sendMessageToServer(): void {
+    if (!isStompClientConnected()) {
+        console.error('Stomp client is not connected');
+        return;
+    }
     const messageInfo: {receiverId: number, message: string} = {
         receiverId: 1,
         message: userMessageText.val() as string
@@ -37,10 +48,16 @@ function connectToWebServer(): void {
         const testMessage: string = 'Test message';
         // TODO: Get current selection on screen, then subscribe to messages
         //       for that user.
+    }, function(error: any): void {
+        console.error('Failed to connect to web server', error);
     });
 }
 //---------------------------Subscribe-To-Messages----------------------------
 function subscribeToMessages(userId: number): void {
+    if (!isStompClientConnected()) {
+        console.error('Stomp client is not connected');
+        return;
+    }
     stompClient.subscribe(`/messages/receiver/${userId}`, async function (response: any): Promise<void> {
         console.log(response.body);
         let usernameOrName: string = response.body.fullNameOrUsername;
@@ -79,11 +96,15 @@ function sendMessage(): void {
         sendMessageToServer();
     }
 }
+function initializeSession(): void {
+    connectWebSocket();
+    connectToWebServer();
+    subscribeToMessages(1);
+}
 //================================-Init-Load-=================================
 let shouldLoadPage: boolean = loadPage(document.body, 'message');
 if (shouldLoadPage) {
-    connectToWebServer();
-    subscribeToMessages(1);
+    initializeSession();
 }
 //=============================-Event-Listeners-==============================
 if (shouldLoadPage) {
