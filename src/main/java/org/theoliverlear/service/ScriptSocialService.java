@@ -51,4 +51,7 @@ public class ScriptSocialService {
         Optional<HttpSession> possibleSession = this.getSessionFromAttributes(headerAccessor);
         return possibleSession.filter(this::userInSession).isPresent();
     }
+    public String getRedirectAddress(String pageName) {
+        return "redirect:/" + pageName + "/";
+    }
 }
