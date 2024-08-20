@@ -36,6 +36,14 @@ public class Conversation {
         this.messages = messages;
         this.subscribers = subscribers;
     }
+    //=======================-Factory-Constructors-===========================
+    public static Conversation fromUsers(User... users) {
+        Conversation conversation = new Conversation();
+        for (User user : users) {
+            conversation.addUserIfNotPresent(user);
+        }
+        return conversation;
+    }
     //=============================-Methods-==================================
 
     //----------------------------Add-Message---------------------------------
