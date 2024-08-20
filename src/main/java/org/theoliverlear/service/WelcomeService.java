@@ -7,6 +7,8 @@ import org.theoliverlear.entity.user.BirthDate;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.entity.user.personal.*;
 
+import java.util.Optional;
+
 @Service
 public class WelcomeService {
     //============================-Variables-=================================
@@ -55,9 +57,13 @@ public class WelcomeService {
         // SET AS COMPLETED SURVEY
         user.setCompletedWelcomeSurvey(true);
 //        System.out.println(user);
-        this.userService.saveUser(user);
+        this.userService.save(user);
         this.interestsService.saveInterests(interests);
-        User updatedUser = this.userService.findByUsername(user.getUsername());
+        Optional<User> possibleUpdatedUser = this.userService.findByUsername(user.getUsername());
+        if (possibleUpdatedUser.isEmpty()) {
+            throw new IllegalArgumentException("Welcome Service cannot find user.");
+        }
+        User updatedUser = possibleUpdatedUser.get();
         Interests updatedInterests = this.interestsService.findByUserId(updatedUser);
         for (String interest : welcomeUserRequest.getInterests().split(",")) {
             updatedInterests.addInterest(new Interest(interest.trim(), interests));
