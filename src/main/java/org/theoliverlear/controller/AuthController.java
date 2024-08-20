@@ -15,6 +15,8 @@ import org.theoliverlear.communication.response.LogoutResponse;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.service.AuthService;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/authorize")
 public class AuthController {
@@ -45,10 +47,10 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest, HttpSession session) {
         boolean isAuthorized = this.authService.login(authRequest, session);
         HttpStatus status = isAuthorized ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-        User user = this.authService.getUserService().findByUsername(authRequest.getUsername());
+        Optional<User> possibleUser = this.authService.getUserService().findByUsername(authRequest.getUsername());
         boolean welcomeCompleted = false;
-        if (user != null) {
-            welcomeCompleted = user.isCompletedWelcomeSurvey();
+        if (possibleUser.isPresent()) {
+            welcomeCompleted = possibleUser.get().isCompletedWelcomeSurvey();
         }
         return new ResponseEntity<>(new AuthResponse(isAuthorized, welcomeCompleted), status);
     }
