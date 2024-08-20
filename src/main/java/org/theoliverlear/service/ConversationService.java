@@ -9,6 +9,7 @@ import org.theoliverlear.communication.request.InstantMessageRequest;
 import org.theoliverlear.entity.im.Conversation;
 import org.theoliverlear.entity.im.Message;
 import org.theoliverlear.entity.user.User;
+import org.theoliverlear.model.DatabaseAccessible;
 import org.theoliverlear.repository.ConversationRepository;
 import org.theoliverlear.repository.UserRepository;
 
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ConversationService {
+public class ConversationService implements DatabaseAccessible<Conversation> {
     //============================-Variables-=================================
     private ConversationRepository conversationRepository;
     private MessageService messageService;
@@ -37,6 +38,13 @@ public class ConversationService {
         this.userRepository = userRepository;
     }
     //=============================-Methods-==================================
+
+    public void save(Conversation conversation) {
+        this.conversationRepository.save(conversation);
+    }
+    public Conversation update(Conversation conversation) {
+        return this.conversationRepository.save(conversation);
+    }
 
     //--------------------------Find-By-User-Ids------------------------------
     public Optional<Conversation> findByUserIds(Long... userIds) {
@@ -75,26 +83,26 @@ public class ConversationService {
         conversation.addUser(recipient);
         this.messageService.saveMessage(message);
         this.conversationRepository.save(conversation);
-        this.userService.saveUser(user);
-        this.userService.saveUser(recipient);
+        this.userService.save(user);
+        this.userService.save(recipient);
         return true;
     }
     //------------------------Create-Conversation-----------------------------
     @Transactional
     public Conversation createConversation(User user, User recipient) {
-        if (!this.entityManager.contains(user)) {
-            user = this.userRepository.findById(user.getId()).orElseThrow(() -> new EntityNotFoundException("User not found"));
-        }
-        Conversation conversation = new Conversation();
-        conversation.addUser(user);
-        conversation.addUser(recipient);
+        user = this.updatedEntityManagerUser(user);
+        Conversation conversation = Conversation.fromUsers(user, recipient);
         this.conversationRepository.save(conversation);
-        this.userService.saveUser(user);
-        this.userService.saveUser(recipient);
+        this.userService.save(user);
+        this.userService.save(recipient);
         return conversation;
     }
-    public void saveConversation(Conversation conversation) {
-        this.conversationRepository.save(conversation);
+    public void saveSequence(Conversation conversation, User... users) {
+        Conversation updatedConversation = this.update(conversation);
+        for (User user : users) {
+            this.userService.save(user);
+        }
+        this.save(updatedConversation);
     }
     public boolean conversationExists(Long... userIds) {
         boolean exists = this.findByUserIds(userIds).isPresent();
@@ -103,9 +111,7 @@ public class ConversationService {
     @Transactional
     public void saveMessage(InstantMessageRequest messageRequest, User currentUser) {
 
-        if (!this.entityManager.contains(currentUser)) {
-            currentUser = this.userRepository.findById(currentUser.getId()).orElseThrow(() -> new EntityNotFoundException("User not found"));
-        }
+        currentUser = this.updatedEntityManagerUser(currentUser);
 
         boolean conversationExists = this.conversationExists(currentUser.getId(), messageRequest.getReceiverId());
         if (conversationExists) {
@@ -124,5 +130,12 @@ public class ConversationService {
             Message userMessage = new Message(currentUser, messageRequest.getMessage());
             newConversation.addMessage(userMessage);
         }
+    }
+
+    public User updatedEntityManagerUser(User user) {
+        if (!this.entityManager.contains(user)) {
+            user = this.userRepository.findById(user.getId()).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        }
+        return user;
     }
 }
