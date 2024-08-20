@@ -46,7 +46,7 @@ public class UploadController {
             sessionUser.setProfilePicture(profilePicture);
             profilePicture.setUser(sessionUser);
             this.profilePictureService.saveProfilePicture(profilePicture);
-            this.userService.saveUser(sessionUser);
+            this.userService.save(sessionUser);
             return new ResponseEntity<>(new OperationSuccessfulResponse(true), HttpStatus.OK);
         } catch (IOException ex) {
             return new ResponseEntity<>(new OperationSuccessfulResponse(false), HttpStatus.INTERNAL_SERVER_ERROR);
