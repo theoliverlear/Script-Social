@@ -5,12 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.theoliverlear.entity.user.User;
+import org.theoliverlear.model.DatabaseAccessible;
 import org.theoliverlear.repository.UserRepository;
 
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements DatabaseAccessible<User> {
     //============================-Variables-=================================
     private UserRepository userRepository;
     //===========================-Constructors-===============================
@@ -21,8 +22,11 @@ public class UserService {
     //=============================-Methods-==================================
 
     //-----------------------------Save-User----------------------------------
-    public void saveUser(User user) {
+    public void save(User user) {
         this.userRepository.save(user);
+    }
+    public User update(User user) {
+        return this.userRepository.save(user);
     }
     //----------------------User-Exists-By-Username---------------------------
     public boolean userExistsByUsername(String username) {
@@ -43,8 +47,13 @@ public class UserService {
     }
     //--------------------------Find-By-Username------------------------------
     @Transactional
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public Optional<User> findByUsername(String username) {
+        User user = this.userRepository.findByUsername(username);
+        if (user == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of(user);
+        }
     }
     //------------------------Get-Current-Username----------------------------
     public String getCurrentUsername(HttpSession session) {
