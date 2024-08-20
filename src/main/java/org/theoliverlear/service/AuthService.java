@@ -9,6 +9,8 @@ import org.theoliverlear.communication.request.SignupRequest;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.entity.user.personal.Profile;
 
+import java.util.Optional;
+
 @Service
 @Getter
 public class AuthService {
@@ -29,9 +31,12 @@ public class AuthService {
         User user = new User(signupRequest.getUsername(), signupRequest.getPassword(), signupRequest.getEmail());
         Profile profile = new Profile(user);
         user.setProfile(profile);
-        this.userService.saveUser(user);
-        User userWithId = this.userService.findByUsername(signupRequest.getUsername());
-        session.setAttribute("user", userWithId);
+        this.userService.save(user);
+        Optional<User> possibleUserWithId = this.userService.findByUsername(signupRequest.getUsername());
+        if (possibleUserWithId.isEmpty()) {
+            return false;
+        }
+        session.setAttribute("user", possibleUserWithId.get());
         return true;
     }
     //-------------------------------Login------------------------------------
@@ -39,8 +44,11 @@ public class AuthService {
         if (!this.userService.userExistsByUsername(authRequest.getUsername())) {
             return false;
         }
-        User user = this.userService.findByUsername(authRequest.getUsername());
-        boolean isAuthorized = user.getSafePassword().compareUnencodedPassword(authRequest.getPassword());
+        Optional<User> user = this.userService.findByUsername(authRequest.getUsername());
+        if (user.isEmpty()) {
+            return false;
+        }
+        boolean isAuthorized = user.get().getSafePassword().compareUnencodedPassword(authRequest.getPassword());
         if (isAuthorized) {
             session.setAttribute("user", user);
         }
