@@ -35,7 +35,7 @@ public class PostService {
         Post post = new Post(poster, postRequest.getContent());
         this.postRepository.save(post);
         poster.addPost(post);
-        this.userService.saveUser(poster);
+        this.userService.save(poster);
         return true;
     }
     //---------------------Get-All-Posts-By-Poster-Id-------------------------
@@ -52,7 +52,7 @@ public class PostService {
             User user = post.getPoster();
             user.removePost(post);
             this.postRepository.deleteById(postId);
-            this.userService.saveUser(user);
+            this.userService.save(user);
             return true;
         }
     }
