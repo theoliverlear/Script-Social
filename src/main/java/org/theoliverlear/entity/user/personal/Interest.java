@@ -59,6 +59,7 @@ public class Interest {
     }
     public Interest(String interestTitle, Interests interests) {
         this.interestTitle = interestTitle;
+        this.interests = interests;
     }
     //============================-Overrides-=================================
 
