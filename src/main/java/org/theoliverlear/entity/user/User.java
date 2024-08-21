@@ -163,6 +163,9 @@ public class User {
     }
     //=============================-Methods-==================================
 
+    public boolean containsConversation(Conversation conversation) {
+        return this.conversations.contains(conversation);
+    }
     //--------------------------Add-Conversation------------------------------
     public void addConversation(Conversation conversation) {
         conversation.addUser(this);
