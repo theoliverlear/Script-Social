@@ -25,6 +25,12 @@ public class ScriptSocialService {
             return Optional.of(user);
         }
     }
+    public void setSessionUser(HttpSession session, User user) {
+        session.setAttribute("user", user);
+    }
+    public void removeSessionUser(HttpSession session) {
+        session.removeAttribute("user");
+    }
     //-----------------------Get-User-From-Session----------------------------
     public Optional<User> getUserFromSession(SimpMessageHeaderAccessor headerAccessor) {
         if (headerAccessor.getSessionAttributes() == null) {
