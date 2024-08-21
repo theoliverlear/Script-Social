@@ -45,20 +45,29 @@ public class WelcomeController {
     //------------------------------Welcome-----------------------------------
     @RequestMapping("/")
     public String welcome(HttpSession session) {
-        this.currentUser = (User) session.getAttribute("user");
-        if (this.currentUser == null) {
+        boolean userInSession = this.scriptSocialService.userInSession(session);
+        if (!userInSession) {
             return this.scriptSocialService.getRedirectAddress("authorize");
-        } else {
-            return "welcome";
         }
+        Optional<User> possibleSessionUser = this.scriptSocialService.getUserFromSession(session);
+        if (possibleSessionUser.isEmpty()) {
+            return this.scriptSocialService.getRedirectAddress("authorize");
+        }
+        this.currentUser = possibleSessionUser.get();
+        return "welcome";
     }
     @Transactional
     @RequestMapping("/profile/add")
     public ResponseEntity<OperationSuccessfulResponse> addProfile(@RequestBody WelcomeUserRequest welcomeUserRequest, HttpSession session) {
-        User sessionUser = (User) session.getAttribute("user");
-        if (sessionUser == null) {
+        boolean userInSession = this.scriptSocialService.userInSession(session);
+        if (!userInSession) {
             return new ResponseEntity<>(new OperationSuccessfulResponse(false), HttpStatus.UNAUTHORIZED);
         }
+        Optional<User> possibleSessionUser = this.scriptSocialService.getUserFromSession(session);
+        if (possibleSessionUser.isEmpty()) {
+            return new ResponseEntity<>(new OperationSuccessfulResponse(false), HttpStatus.UNAUTHORIZED);
+        }
+        User sessionUser = possibleSessionUser.get();
         this.currentUser = sessionUser;
         User updatedUser = this.welcomeService.applyWelcomeRequestUserParameters(this.currentUser, welcomeUserRequest);
         this.currentUser = updatedUser;
