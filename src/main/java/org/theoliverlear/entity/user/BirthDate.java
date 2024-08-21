@@ -15,6 +15,7 @@ public class BirthDate {
     //============================-Variables-=================================
     @Column(name = "birth_date")
     private LocalDate birthDate;
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("EEE MMM dd yyyy");
     //===========================-Constructors-===============================
     public BirthDate() {
         this.birthDate = null;
@@ -23,7 +24,6 @@ public class BirthDate {
         this.birthDate = birthDate;
     }
     public BirthDate(String birthDate) {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE MMM dd yyyy");
-        this.birthDate = LocalDate.parse(birthDate, dateFormatter);
+        this.birthDate = LocalDate.parse(birthDate, DATE_FORMATTER);
     }
 }
