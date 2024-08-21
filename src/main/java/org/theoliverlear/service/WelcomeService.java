@@ -6,6 +6,7 @@ import org.theoliverlear.communication.request.WelcomeUserRequest;
 import org.theoliverlear.entity.user.BirthDate;
 import org.theoliverlear.entity.user.User;
 import org.theoliverlear.entity.user.personal.*;
+import org.theoliverlear.model.TitleFormatter;
 
 import java.util.Optional;
 
@@ -29,10 +30,10 @@ public class WelcomeService {
 //        System.out.println(welcomeUserRequest);
         // GET THE NAME
         String firstName = welcomeUserRequest.getFirstName();
-        firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
+        firstName = TitleFormatter.formatTitleCase(firstName);
         user.setFirstName(firstName);
         String lastName = welcomeUserRequest.getLastName();
-        lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
+        lastName = TitleFormatter.formatTitleCase(lastName);
         user.setLastName(lastName);
 //        System.out.println(welcomeUserRequest.getFirstName() + " " + welcomeUserRequest.getLastName());
         // GET THE BIRTHDATE
@@ -58,18 +59,18 @@ public class WelcomeService {
         user.setCompletedWelcomeSurvey(true);
 //        System.out.println(user);
         this.userService.save(user);
-        this.interestsService.saveInterests(interests);
+        Interests updatedInterests = this.interestsService.update(interests);
         Optional<User> possibleUpdatedUser = this.userService.findByUsername(user.getUsername());
         if (possibleUpdatedUser.isEmpty()) {
             throw new IllegalArgumentException("Welcome Service cannot find user.");
         }
         User updatedUser = possibleUpdatedUser.get();
-        Interests updatedInterests = this.interestsService.findByUserId(updatedUser);
-        for (String interest : welcomeUserRequest.getInterests().split(",")) {
-            updatedInterests.addInterest(new Interest(interest.trim(), interests));
+        String[] interestStringArray = welcomeUserRequest.getInterests().split(",");
+        for (String interest : interestStringArray) {
+            String interestString = interest.trim();
+            updatedInterests.addInterest(new Interest(interestString, updatedInterests));
         }
-        this.interestsService.saveInterests(updatedInterests);
+        this.interestsService.save(updatedInterests);
         return updatedUser;
     }
-
 }
