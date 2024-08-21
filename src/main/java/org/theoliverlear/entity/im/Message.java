@@ -43,4 +43,11 @@ public class Message {
         this.message = message;
         this.dateSent = dateSent;
     }
+    public void addConversation(Conversation conversation) {
+        if (this.conversation == null) {
+            this.conversation = conversation;
+        } else if (!this.conversation.equals(conversation)) {
+            this.conversation = conversation;
+        }
+    }
 }
