@@ -41,6 +41,7 @@ public class ProfileController {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
         }
+        // FIXME: This is likely causing a bug.
         Optional<User> possibleUser = this.scriptSocialService.getUserFromSession(session);
         if (possibleUser.isPresent()) {
             User currentUser = possibleUser.get();
