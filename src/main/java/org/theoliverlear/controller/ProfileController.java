@@ -44,6 +44,7 @@ public class ProfileController {
         Optional<User> possibleUser = this.scriptSocialService.getUserFromSession(session);
         if (possibleUser.isPresent()) {
             User currentUser = possibleUser.get();
+            this.scriptSocialService.setSessionUser(session, currentUser);
             model.addAttribute("username", currentUser.getUsername());
         }
         return "profile";
