@@ -79,30 +79,56 @@ public class ConversationService implements DatabaseAccessible<Conversation> {
         }
         User recipient = possibleRecipient.get();
         Message message = new Message(user, instantMessageRequest.getMessage());
+        conversation = this.getManagedEntity(conversation);
+
+        user = this.getManagedEntity(user);
+        recipient = this.getManagedEntity(recipient);
+        message = this.getManagedEntity(message);
+
         conversation.addMessage(message);
         conversation.addUser(recipient);
-        this.messageService.saveMessage(message);
-        this.conversationRepository.save(conversation);
-        this.userService.save(user);
-        this.userService.save(recipient);
+//        this.messageService.saveMessage(message);
+//        this.conversationRepository.save(conversation);
+//        this.userService.save(user);
+//        this.userService.save(recipient);
+        this.saveSequence(conversation, message, user, recipient);
         return true;
+    }
+    public <T> T getManagedEntity(T entity) {
+        return this.entityManager.contains(entity) ? entity : this.entityManager.merge(entity);
     }
     //------------------------Create-Conversation-----------------------------
     @Transactional
     public Conversation createConversation(User user, User recipient) {
         user = this.updatedEntityManagerUser(user);
         Conversation conversation = Conversation.fromUsers(user, recipient);
-        this.conversationRepository.save(conversation);
-        this.userService.save(user);
-        this.userService.save(recipient);
+//        this.conversationRepository.save(conversation);
+//        this.userService.save(user);
+//        this.userService.save(recipient);
+        this.saveSequence(conversation, user, recipient);
         return conversation;
     }
     public void saveSequence(Conversation conversation, User... users) {
         Conversation updatedConversation = this.update(conversation);
         for (User user : users) {
+            if (!updatedConversation.containsUser(user)) {
+                updatedConversation.addUser(user);
+            }
+        }
+        for (User user : users) {
+            if (!user.containsConversation(updatedConversation)) {
+                user.addConversation(updatedConversation);
+            }
             this.userService.save(user);
         }
         this.save(updatedConversation);
+    }
+    public void saveSequence(Conversation conversation, Message message, User... users) {
+        this.messageService.saveMessage(message);
+        conversation = this.update(conversation);
+        conversation.addMessage(message);
+        message.addConversation(conversation);
+        this.saveSequence(conversation, users);
     }
     public boolean conversationExists(Long... userIds) {
         boolean exists = this.findByUserIds(userIds).isPresent();
@@ -129,6 +155,7 @@ public class ConversationService implements DatabaseAccessible<Conversation> {
             Conversation newConversation = this.createConversation(currentUser, possibleRecipient.get());
             Message userMessage = new Message(currentUser, messageRequest.getMessage());
             newConversation.addMessage(userMessage);
+            this.saveSequence(newConversation, userMessage, currentUser, possibleRecipient.get());
         }
     }
 
