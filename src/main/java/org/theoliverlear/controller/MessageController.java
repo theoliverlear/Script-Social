@@ -57,12 +57,12 @@ public class MessageController {
     //------------------------------Message-----------------------------------
     @RequestMapping("/")
     public String message(HttpSession session) {
-        Optional<User> user = this.scriptSocialService.getUserFromSession(session);
-        if (user.isEmpty()) {
+        Optional<User> possibleUser = this.scriptSocialService.getUserFromSession(session);
+        if (possibleUser.isEmpty()) {
             return "redirect:/authorize/";
         } else {
-            this.currentUser = user.get();
-            return "message";
+            this.currentUser = possibleUser.get();
+            return "messages";
         }
     }
     //----------------------------Get-Messages--------------------------------
@@ -98,6 +98,7 @@ public class MessageController {
         String fullNameOrUsername = this.userService.getNameOrUsername(this.currentUser);
         this.conversationService.saveMessage(instantMessageRequest, this.currentUser);
         InstantMessageResponse instantMessageResponse = new InstantMessageResponse(fullNameOrUsername, this.currentUser.getId(), instantMessageRequest.getMessage(), LocalDateTime.now().toString());
-        this.simpMessagingTemplate.convertAndSend("/messages/receiver/" + instantMessageRequest.getReceiverId(), instantMessageResponse);
+        System.out.println("Receiver ID: " + instantMessageRequest.getReceiverId());
+        this.simpMessagingTemplate.convertAndSend("/messages/receiver/" + instantMessageRequest.getReceiverId().toString(), instantMessageResponse);
     }
 }
