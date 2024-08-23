@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.theoliverlear.entity.user.User;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,22 +20,32 @@ public class Conversation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "conversation", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Message> messages;
-    @ManyToMany(mappedBy = "conversations", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "conversation", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Message> messages;
+    @ManyToMany(mappedBy = "conversations", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     private Set<User> subscribers;
+    @Column(name = "last_message_time")
+    private LocalDateTime lastMessageTime;
     //===========================-Constructors-===============================
     public Conversation() {
-        this.messages = new ArrayList<>();
+        this.messages = new HashSet<>();
         this.subscribers = new HashSet<>();
+        this.lastMessageTime = LocalDateTime.now();
     }
-    public Conversation(List<Message> messages) {
+    public Conversation(Set<Message> messages) {
         this.messages = messages;
         this.subscribers = new HashSet<>();
+        this.lastMessageTime = LocalDateTime.now();
     }
-    public Conversation(List<Message> messages, Set<User> subscribers) {
+    public Conversation(Set<Message> messages, Set<User> subscribers) {
         this.messages = messages;
         this.subscribers = subscribers;
+        this.lastMessageTime = LocalDateTime.now();
+    }
+    public Conversation(Set<Message> messages, Set<User> subscribers, LocalDateTime lastMessageTime) {
+        this.messages = messages;
+        this.subscribers = subscribers;
+        this.lastMessageTime = lastMessageTime;
     }
     //=======================-Factory-Constructors-===========================
     public static Conversation fromUsers(User... users) {
@@ -52,6 +63,12 @@ public class Conversation {
             this.addUserFromMessage(message);
         }
         this.messages.add(message);
+        this.updateTimeFromMessage(message);
+    }
+    public void updateTimeFromMessage(Message message) {
+        if (message.getDateSent().isAfter(this.lastMessageTime)) {
+            this.lastMessageTime = message.getDateSent();
+        }
     }
     //------------------------------Add-User----------------------------------
     public void addUser(User user) {
