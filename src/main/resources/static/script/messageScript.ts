@@ -69,6 +69,40 @@ function sendMessageToServer(): void {
     stompClient.publish({destination: '/messages/send', body: JSON.stringify(messageInfo)});
     userMessageText.val('');
 }
+async function getInitialMessages(userId: number): Promise<void> {
+    let response = await fetch(`/messages/get/${userId}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    let messagesJson = await response.json();
+    console.log(messagesJson);
+}
+function loadInitialMessages(userId: number): void {
+    let messagesJson = getInitialMessages(userId);
+    messagesJson.then((messages: any): void => {
+        let messagesArray: InstantMessage[] = getMessagesFromResponse(messages);
+        addAllMessagesToScreen(messagesArray);
+    });
+}
+function addAllMessagesToScreen(messages: InstantMessage[]): void {
+    messages.forEach((message: InstantMessage): void => {
+        addMessageToScreen(message);
+    });
+}
+function getMessagesFromResponse(messagesResponse: any): InstantMessage[] {
+    let messages: InstantMessage[] = [];
+    messagesResponse.forEach((message: any): void => {
+        let usernameOrName: string = message.fullNameOrUsername;
+        let userId: number = message.userId;
+        let messageString: string = message.message;
+        let timestamp: string = message.dateSent;
+        let instantMessage: InstantMessage = new InstantMessage(usernameOrName, userId, messageString, timestamp);
+        messages.push(instantMessage);
+    });
+    return messages;
+}
 //---------------------------Connect-To-Web-Server----------------------------
 function connectToWebServer(): void {
     // stompClient.connect({}, async function(frame: any): Promise<void> {
@@ -98,12 +132,15 @@ function subscribeToMessages(userId: number): void {
         return;
     }
     console.log('Receiver ID: ' + userId);
-    stompClient.subscribe(`/messages/receiver/${userId}`, async function (response: any): Promise<void> {
+    stompClient.subscribe(`/messages/receiver/${userId}`, function(response: any): void {
         console.log('Message received: ', response.body);
-        let usernameOrName: string = response.body.fullNameOrUsername;
-        let userId: number = response.body.userId;
-        let message: string = response.body.message;
-        let timestamp: string = response.body.dateSent;
+        console.log('Response body direct access: ', response);
+        // ALL THIS INFO IN UNDEFINED, PARSE THE RESPONSE FOR ACCURATE INFO ACCESS
+        let parsedJson: any = JSON.parse(response.body);
+        let usernameOrName: string = parsedJson.fullNameOrUsername;
+        let userId: number = parsedJson.userId;
+        let message: string = parsedJson.message;
+        let timestamp: string = parsedJson.dateSent;
         let instantMessage: InstantMessage = new InstantMessage(usernameOrName, userId, message, timestamp);
         addMessageToScreen(instantMessage);
     });
@@ -138,6 +175,7 @@ function sendMessage(): void {
 }
 function initializeSession(): void {
     connectWebSocket();
+    loadInitialMessages(1);
     // connectToWebServer();
     // subscribeToMessages(1);
 }
