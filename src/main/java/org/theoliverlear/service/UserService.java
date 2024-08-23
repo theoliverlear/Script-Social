@@ -71,6 +71,7 @@ public class UserService implements DatabaseAccessible<User> {
             return Optional.of(user);
         }
     }
+    @Transactional
     public String getNameOrUsername(User user) {
         if (user == null) {
             throw new IllegalArgumentException("User is null.");
@@ -82,6 +83,7 @@ public class UserService implements DatabaseAccessible<User> {
             return fullName;
         }
     }
+    @Transactional
     public String getNameOrUsername(User user, User currentUser) {
         if (user == null) {
             throw new IllegalArgumentException("User is null.");
