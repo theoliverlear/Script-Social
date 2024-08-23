@@ -223,12 +223,14 @@ public class User {
             boolean sameBirthDate = this.birthDate.equals(comparedUser.birthDate);
             boolean sameProfileIntention = this.profileIntention.equals(comparedUser.profileIntention);
             boolean sameEmploymentStatus = this.employmentStatus.equals(comparedUser.employmentStatus);
-            boolean sameProfilePicture = this.profilePicture.equals(comparedUser.profilePicture);
+//            boolean sameProfilePicture = this.profilePicture.equals(comparedUser.profilePicture);
+            // TODO: Fix removal of profile picture as it is causing LOB auto
+            //       commit errors.
             if (this.id == null) {
-                return sameUsername && sameEmail && sameFirstName && sameLastName && sameSafePassword && sameProfile && sameCompletedWelcomeSurvey && sameInterests && sameBirthDate && sameProfileIntention && sameEmploymentStatus && sameProfilePicture;
+                return sameUsername && sameEmail && sameFirstName && sameLastName && sameSafePassword && sameProfile && sameCompletedWelcomeSurvey && sameInterests && sameBirthDate && sameProfileIntention && sameEmploymentStatus;
             } else {
                 boolean sameId = this.id.equals(comparedUser.id);
-                return sameId && sameUsername && sameEmail && sameFirstName && sameLastName && sameSafePassword && sameProfile && sameCompletedWelcomeSurvey && sameInterests && sameBirthDate && sameProfileIntention && sameEmploymentStatus && sameProfilePicture;
+                return sameId && sameUsername && sameEmail && sameFirstName && sameLastName && sameSafePassword && sameProfile && sameCompletedWelcomeSurvey && sameInterests && sameBirthDate && sameProfileIntention && sameEmploymentStatus;
             }
         }
         return false;
