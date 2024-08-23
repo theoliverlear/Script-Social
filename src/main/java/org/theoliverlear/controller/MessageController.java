@@ -66,6 +66,9 @@ public class MessageController {
         }
     }
     //----------------------------Get-Messages--------------------------------
+    // TODO: Major bug here. There must be some form of validation to ensure
+    //       that the requesting user is in the conversation. It will be
+    //       checked via the session.
     @RequestMapping("/get/{id}")
     public ResponseEntity<List<InstantMessageResponse>> getMessages(@PathVariable Long id, HttpSession session) {
         if (!this.scriptSocialService.userInSession(session))  {
