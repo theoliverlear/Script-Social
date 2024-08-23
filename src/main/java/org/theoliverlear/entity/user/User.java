@@ -56,7 +56,7 @@ public class User {
     private List<Post> posts;
     @Column(name = "completed_welcome_survey")
     private boolean completedWelcomeSurvey;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "interests_id")
     private Interests interests;
     @Embedded
@@ -69,7 +69,7 @@ public class User {
     @OneToOne
     @JoinColumn(name = "profile_picture_id")
     private ProfilePicture profilePicture;
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_conversation",
             joinColumns = @JoinColumn(name = "user_id"),
