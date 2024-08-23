@@ -20,7 +20,7 @@ public class Interests {
     @JoinColumn(name = "user_id")
     @OneToOne
     private User user;
-    @OneToMany(mappedBy = "interests", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "interests", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Interest> interests;
     //===========================-Constructors-===============================
     public Interests() {
