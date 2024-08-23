@@ -18,6 +18,7 @@ public abstract class Picture {
     private String fileType;
     @Lob
     @Column(name = "file_data")
+    @Basic(fetch = FetchType.LAZY)
     private byte[] fileData;
     //===========================-Constructors-===============================
     public Picture() {
@@ -34,7 +35,8 @@ public abstract class Picture {
     //--------------------------Fetch-File-Type-------------------------------
     public void fetchFileType() {
         String fileExtension = this.fileName.substring(this.fileName.lastIndexOf(".") + 1);
-        switch (fileExtension) {
+        String extensionLowerCase = fileExtension.toLowerCase();
+        switch (extensionLowerCase) {
             case "jpg", "jpeg" -> this.fileType = "image/jpeg";
             case "png" -> this.fileType = "image/png";
             case "gif" -> this.fileType = "image/gif";
