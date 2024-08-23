@@ -1,7 +1,7 @@
 //=================================-Imports-==================================
 import {inputIsEmpty, loadPage} from "./globalScript";
 import SockJS from "sockjs-client";
-import {Client, Stomp} from "@stomp/stompjs";
+import {Client, IFrame, Stomp, StompConfig} from "@stomp/stompjs";
 import {InstantMessage} from "./models/InstantMessage";
 //================================-Variables-=================================
 
@@ -14,19 +14,40 @@ let userMessageSendButton: JQuery<HTMLElement> = $('#user-message-send-button');
 let userMessageText: JQuery<HTMLElement> = $('#user-message-text');
 //---------------------------------Web-Socket---------------------------------
 let webSocket: WebSocket;
-let stompClient: any;
+let stompClient: Client;
 function connectWebSocket(): void {
     webSocket = new SockJS('/ws');
-    try {
-        stompClient = Stomp.over(webSocket);
-    } catch (error) {
-        console.error('Failed to create stomp client', error);
-    }
+
+    // Stomp configuration
+    const stompConfig: StompConfig = {
+        webSocketFactory: () => webSocket,
+        reconnectDelay: 5000,
+        debug: (str) => { console.log(str); },
+        onConnect: (frame: IFrame) => {
+            console.log('Connected: ' + frame);
+            const testId: number = 1;
+
+            // Subscribe to messages after connection
+            subscribeToMessages(testId);
+        },
+        onStompError: (frame: IFrame) => {
+            console.error('Broker reported error: ' + frame.headers['message']);
+            console.error('Additional details: ' + frame.body);
+        }
+    };
+
+    // Create the STOMP client with config
+    stompClient = new Client(stompConfig);
+
+    // Activate the client
+    stompClient.activate();
+
 }
 
 //=============================-Server-Functions-=============================
 
 function isStompClientConnected(): boolean {
+    // return stompClient.connected && stompClient;
     return stompClient.connected;
 }
 //---------------------------Send-Message-To-Server---------------------------
@@ -39,18 +60,36 @@ function sendMessageToServer(): void {
         receiverId: 1,
         message: userMessageText.val() as string
     }
-    stompClient.send('/messages/send', {}, JSON.stringify(messageInfo));
+    // stompClient.send('/messages/send', {}, JSON.stringify(messageInfo), function(response: any): void {
+    //     console.log('Message sent successfully');
+    //     userMessageText.val('');
+    // }).error(function(error: any): void {
+    //     console.error('Failed to send message', error);
+    // });
+    stompClient.publish({destination: '/messages/send', body: JSON.stringify(messageInfo)});
+    userMessageText.val('');
 }
 //---------------------------Connect-To-Web-Server----------------------------
 function connectToWebServer(): void {
-    stompClient.connect({}, async function (frame: any): Promise<void> {
+    // stompClient.connect({}, async function(frame: any): Promise<void> {
+    //     console.log('Connected: ' + frame);
+    //     const testId: number = 1;
+    //     const testMessage: string = 'Test message';
+    //     // TODO: Get current selection on screen, then subscribe to messages
+    //     //       for that user.
+    // }, function(error: any): void {
+    //     console.error('Failed to connect to web server', error);
+    // });
+    stompClient.onConnect = function(frame: IFrame): void {
+        console.log('Connected: ' + frame);
         const testId: number = 1;
         const testMessage: string = 'Test message';
-        // TODO: Get current selection on screen, then subscribe to messages
-        //       for that user.
-    }, function(error: any): void {
-        console.error('Failed to connect to web server', error);
-    });
+    }
+    stompClient.onStompError = function(frame: IFrame): void {
+        console.error('Failed to connect to web server', frame);
+        console.error('Additional Error Details: ', frame.body);
+    }
+    stompClient.activate();
 }
 //---------------------------Subscribe-To-Messages----------------------------
 function subscribeToMessages(userId: number): void {
@@ -58,8 +97,9 @@ function subscribeToMessages(userId: number): void {
         console.error('Stomp client is not connected');
         return;
     }
+    console.log('Receiver ID: ' + userId);
     stompClient.subscribe(`/messages/receiver/${userId}`, async function (response: any): Promise<void> {
-        console.log(response.body);
+        console.log('Message received: ', response.body);
         let usernameOrName: string = response.body.fullNameOrUsername;
         let userId: number = response.body.userId;
         let message: string = response.body.message;
@@ -98,8 +138,8 @@ function sendMessage(): void {
 }
 function initializeSession(): void {
     connectWebSocket();
-    connectToWebServer();
-    subscribeToMessages(1);
+    // connectToWebServer();
+    // subscribeToMessages(1);
 }
 //================================-Init-Load-=================================
 let shouldLoadPage: boolean = loadPage(document.body, 'message');
