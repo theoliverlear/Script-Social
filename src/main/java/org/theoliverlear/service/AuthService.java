@@ -44,13 +44,14 @@ public class AuthService {
         if (!this.userService.userExistsByUsername(authRequest.getUsername())) {
             return false;
         }
-        Optional<User> user = this.userService.findByUsername(authRequest.getUsername());
-        if (user.isEmpty()) {
+        Optional<User> possibleUser = this.userService.findByUsername(authRequest.getUsername());
+        if (possibleUser.isEmpty()) {
             return false;
         }
-        boolean isAuthorized = user.get().getSafePassword().compareUnencodedPassword(authRequest.getPassword());
+        User sessionUser = possibleUser.get();
+        boolean isAuthorized = sessionUser.getSafePassword().compareUnencodedPassword(authRequest.getPassword());
         if (isAuthorized) {
-            session.setAttribute("user", user);
+            session.setAttribute("user", sessionUser);
         }
         return isAuthorized;
     }
