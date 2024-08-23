@@ -1,6 +1,7 @@
 package org.theoliverlear.controller;
 //=================================-Imports-==================================
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 @RequestMapping("/profile")
 @Controller
+@Slf4j
 public class ProfileController {
     //============================-Variables-=================================
     private ScriptSocialService scriptSocialService;
@@ -91,6 +93,7 @@ public class ProfileController {
     public ResponseEntity<byte[]> getProfilePicture(@PathVariable String id) {
         ProfilePicture profilePicture = this.profilePictureService.findByUserId(Long.parseLong(id));
         if (profilePicture == null) {
+            log.warn("User #{} does not have a profile picture.", id);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             byte[] imageData = profilePicture.getFileData();
