@@ -1,7 +1,8 @@
 //=================================-Imports-==================================
-import {hasProfilePictureFromServer} from "../profileScript";
+import {hasProfilePictureFromServerById} from "../profileScript";
+import {HtmlGenerative} from "./HtmlGenerative";
 
-export class InstantMessage {
+export class InstantMessage implements HtmlGenerative {
     //============================-Variables-=================================
     private _fullName: string;
     private _userId: number;
@@ -18,7 +19,7 @@ export class InstantMessage {
 
     //--------------------------Get-Html-String-------------------------------
     async getHtmlString(): Promise<string> {
-        let hasProfilePicture: boolean = await hasProfilePictureFromServer(this.userId);
+        let hasProfilePicture: boolean = await hasProfilePictureFromServerById(this.userId);
         let imageSrc: string = '';
         let thymeleafImageSrc: string = '';
         if (hasProfilePicture) {
