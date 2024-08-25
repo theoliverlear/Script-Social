@@ -13,8 +13,10 @@ import org.theoliverlear.model.DatabaseAccessible;
 import org.theoliverlear.repository.ConversationRepository;
 import org.theoliverlear.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class ConversationService implements DatabaseAccessible<Conversation> {
@@ -46,6 +48,19 @@ public class ConversationService implements DatabaseAccessible<Conversation> {
         return this.conversationRepository.save(conversation);
     }
 
+    public List<String> getConversationUsernames(Long userId) {
+        List<Conversation> conversations = this.conversationRepository.findAllByUserId(userId);
+        List<String> conversationsUsernames = new ArrayList<>();
+        for (Conversation conversation : conversations) {
+            Set<User> users = conversation.getSubscribers();
+            for (User user : users) {
+                if (!user.getId().equals(userId)) {
+                    conversationsUsernames.add(user.getUsername());
+                }
+            }
+        }
+        return conversationsUsernames;
+    }
     //--------------------------Find-By-User-Ids------------------------------
     public Optional<Conversation> findByUserIds(Long... userIds) {
         List<Long> userIdsList = List.of(userIds);
