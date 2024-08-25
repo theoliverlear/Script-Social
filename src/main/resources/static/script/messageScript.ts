@@ -3,11 +3,13 @@ import {inputIsEmpty, loadPage} from "./globalScript";
 import SockJS from "sockjs-client";
 import {Client, IFrame, Stomp, StompConfig} from "@stomp/stompjs";
 import {InstantMessage} from "./models/InstantMessage";
+import {ConnectionBubble} from "./models/ConnectionBubble";
 //================================-Variables-=================================
 
 //----------------------------Messaging-Containers----------------------------
 let connectionItems: JQuery<HTMLElement> = $('.connection-item');
 let userMessages: JQuery<HTMLElement> = $('#user-messages');
+let connectionListDiv: JQuery<HTMLElement> = $('#connection-list-div');
 //----------------------------------Buttons-----------------------------------
 let userMessageSendButton: JQuery<HTMLElement> = $('#user-message-send-button');
 //-----------------------------------Inputs-----------------------------------
@@ -49,6 +51,38 @@ function connectWebSocket(): void {
 function isStompClientConnected(): boolean {
     // return stompClient.connected && stompClient;
     return stompClient.connected;
+}
+async function getConversationUsernames(id: number) {
+    let response = await fetch(`/messages/get/${id}/usernames/all`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    let usernamesJson = await response.json();
+    console.log(usernamesJson);
+}
+function usernamesResponseToNamesList(usernamesResponse: any): string[] {
+    let namesList: string[] = [];
+    usernamesResponse.forEach((username: string): void => {
+        namesList.push(username);
+    });
+    return namesList;
+}
+function loadInitialConnectionBubbles(): void {
+    let usernamesJson = getConversationUsernames(1);
+    usernamesJson.then((usernames: any): void => {
+        let namesList: string[] = usernamesResponseToNamesList(usernames);
+        loadAllConnectionBubbles(namesList);
+    });
+}
+function loadAllConnectionBubbles(namesList: string[]): void {
+    namesList.forEach((username: string): void => {
+        let connectionBubble: ConnectionBubble = new ConnectionBubble(username);
+        connectionBubble.getHtml().then((connectionItem: HTMLDivElement): void => {
+            connectionListDiv.append(connectionItem);
+        });
+    });
 }
 //---------------------------Send-Message-To-Server---------------------------
 function sendMessageToServer(): void {
@@ -173,6 +207,7 @@ function sendMessage(): void {
         sendMessageToServer();
     }
 }
+
 function initializeSession(): void {
     connectWebSocket();
     loadInitialMessages(1);
@@ -183,6 +218,7 @@ function initializeSession(): void {
 let shouldLoadPage: boolean = loadPage(document.body, 'message');
 if (shouldLoadPage) {
     initializeSession();
+    loadInitialConnectionBubbles();
 }
 //=============================-Event-Listeners-==============================
 if (shouldLoadPage) {
