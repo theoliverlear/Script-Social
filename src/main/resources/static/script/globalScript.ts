@@ -1,6 +1,7 @@
 //=================================-Imports-==================================
 import * as CryptoJS from 'crypto-js';
 import './sideBarSwipe';
+import {hasProfilePictureFromServerByUsername} from "./profileScript";
 //================================-Variables-=================================
 
 //------------------------------General-Content-------------------------------
@@ -159,6 +160,26 @@ async function deleteText(element: JQuery<HTMLElement>,
         }
         deleteChar();
     });
+}
+function getThymeleafImageSrc(imageSrc: string): string {
+    let thymeleafImageSrc: string = '';
+    if (pathIsLocalReferenced(imageSrc)) {
+        thymeleafImageSrc = imageSrc.replace('../static/', '@{/') + '}';
+    } else {
+        thymeleafImageSrc = '@{' + imageSrc + '}';
+    }
+    return thymeleafImageSrc;
+}
+async function getProfilePictureSrcByUsername(username: string): Promise<string> {
+    let hasProfilePicture: boolean = await hasProfilePictureFromServerByUsername(username);
+    let imageSrc: string = '../static/image/icon/default_avatar.svg';
+    if (hasProfilePicture) {
+        imageSrc = `/profile/get/username/${username}/profile-picture`;
+    }
+    return imageSrc;
+}
+function pathIsLocalReferenced(path: string): boolean {
+    return path.startsWith('.');
 }
 //-------------------------------Is-Mobile-View-------------------------------
 function isMobileView(): boolean {
@@ -360,4 +381,5 @@ sideBarTabDiv.on('click', toggleSideNavBarPopout);
 export { loadPage, typeText, deleteText, getCurrentUserIdFromServer,
          hashPassword, inputIsEmpty, removeTextArtifacts, emailIsValid,
          hasEmptyInputs, clearInputs, toggleSideNavBarPopout,
-         sideNavBarExpanded, clearInput};
+         sideNavBarExpanded, clearInput,getThymeleafImageSrc,
+         getProfilePictureSrcByUsername};
