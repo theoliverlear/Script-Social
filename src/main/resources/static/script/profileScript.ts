@@ -41,8 +41,22 @@ async function getUserDataFromServer(): Promise<void> {
     }
 }
 //----------------------Has-Profile-Picture-From-Server-----------------------
-async function hasProfilePictureFromServer(userId: number): Promise<boolean> {
+async function hasProfilePictureFromServerById(userId: number): Promise<boolean> {
     let response: Response = await fetch(`/profile/get/${userId}/has-profile-picture`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    if (response.ok) {
+        let responseJson = await response.json();
+        return responseJson.hasProfilePicture;
+    } else {
+        return false;
+    }
+}
+async function hasProfilePictureFromServerByUsername(username: string): Promise<boolean> {
+    let response: Response = await fetch(`/profile/get/username/${username}/has-profile-picture`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -66,7 +80,7 @@ async function makePost(): Promise<void> {
 }
 //------------------------Get-Profile-Picture-Sequence------------------------
 async function getProfilePictureSequence(): Promise<void> {
-    let hasProfilePicture: boolean = await hasProfilePictureFromServer(profileUserId);
+    let hasProfilePicture: boolean = await hasProfilePictureFromServerById(profileUserId);
     if (hasProfilePicture) {
         profilePictureImage.attr('src', `/profile/get/${profileUserId}/profile-picture`);
     }
@@ -100,4 +114,4 @@ if (shouldLoad) {
     writePostButton.on('click', makePost);
 }
 //=================================-Exports-==================================
-export {hasProfilePictureFromServer};
+export {hasProfilePictureFromServerById, hasProfilePictureFromServerByUsername};
