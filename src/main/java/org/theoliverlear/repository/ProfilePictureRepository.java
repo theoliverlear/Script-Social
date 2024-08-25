@@ -10,4 +10,6 @@ public interface ProfilePictureRepository extends JpaRepository<ProfilePicture, 
     ProfilePicture findByUserId(Long userId);
     //-------------------------Exists-By-User-Id------------------------------
     boolean existsByUserId(Long userId);
+    boolean existsByUserUsername(String username);
+    ProfilePicture findByUserUsername(String username);
 }
