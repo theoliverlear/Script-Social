@@ -12,6 +12,9 @@ public interface ConversationRepository extends JpaRepository<Conversation, Long
     //--------------------------Find-By-User-Ids------------------------------
     @Query("SELECT c FROM Conversation c JOIN c.subscribers u WHERE u.id IN :userIds")
     Conversation findByUserIds(List<Long> userIds);
+    // Find all conversations by user id.
+    @Query("SELECT c FROM Conversation c JOIN c.subscribers u WHERE u.id = :userId")
+    List<Conversation> findAllByUserId(Long userId);
 //    @Query("SELECT c FROM Conversation c JOIN c.subscribers u WHERE u.id IN :userIds")
 //    Conversation findByUserIds(Long... userIds);
     // Possible alternative query:
