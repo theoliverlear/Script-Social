@@ -25,7 +25,8 @@ module.exports = {
         './src/main/resources/static/script/models/AuthPopup.ts',
         './src/main/resources/static/script/models/Comment.ts',
         './src/main/resources/static/script/models/InstantMessage.ts',
-
+        './src/main/resources/static/script/models/ConnectionBubble.ts',
+        './src/main/resources/static/script/models/HtmlGenerative.ts'
     ],
     module: {
         rules: [
