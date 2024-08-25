@@ -87,6 +87,11 @@ public class ProfileController {
         boolean hasProfilePicture = this.profilePictureService.existsByUserId(Long.parseLong(id));
         return ResponseEntity.ok(new HasProfilePictureResponse(hasProfilePicture));
     }
+    @RequestMapping("/get/username/{username}/has-profile-picture")
+    public ResponseEntity<HasProfilePictureResponse> hasProfilePictureByUsername(@PathVariable String username) {
+        boolean hasProfilePicture = this.profilePictureService.existsByUsername(username);
+        return ResponseEntity.ok(new HasProfilePictureResponse(hasProfilePicture));
+    }
     //------------------------Get-Profile-Picture-----------------------------
     @Transactional
     @RequestMapping("/get/{id}/profile-picture")
@@ -96,9 +101,19 @@ public class ProfileController {
             log.warn("User #{} does not have a profile picture.", id);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            byte[] imageData = profilePicture.getFileData();
-            String fileType = profilePicture.getFileType();
-            return ResponseEntity.ok().contentType(MediaType.parseMediaType(fileType)).body(imageData);
+            return this.profilePictureService.getProfilePictureResponseEntity(profilePicture);
+        }
+    }
+    //------------------------Get-Profile-Picture-----------------------------
+    @Transactional
+    @RequestMapping("/get/username/{username}/profile-picture")
+    public ResponseEntity<byte[]> getProfilePictureByUsername(@PathVariable String username) {
+        ProfilePicture profilePicture = this.profilePictureService.findByUsername(username);
+        if (profilePicture == null) {
+            log.warn("User {} does not have a profile picture.", username);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return this.profilePictureService.getProfilePictureResponseEntity(profilePicture);
         }
     }
 }
