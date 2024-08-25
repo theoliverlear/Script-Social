@@ -1,6 +1,8 @@
 package org.theoliverlear.service;
 //=================================-Imports-==================================
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.theoliverlear.entity.user.ProfilePicture;
@@ -26,8 +28,20 @@ public class ProfilePictureService {
     public ProfilePicture findByUserId(Long userId) {
         return this.profilePictureRepository.findByUserId(userId);
     }
+    @Transactional
+    public ProfilePicture findByUsername(String username) {
+        return this.profilePictureRepository.findByUserUsername(username);
+    }
     //-------------------------Exists-By-User-Id------------------------------
     public boolean existsByUserId(Long userId) {
         return this.profilePictureRepository.existsByUserId(userId);
+    }
+    public boolean existsByUsername(String username) {
+        return this.profilePictureRepository.existsByUserUsername(username);
+    }
+    public ResponseEntity<byte[]> getProfilePictureResponseEntity(ProfilePicture profilePicture) {
+        byte[] imageData = profilePicture.getFileData();
+        String fileType = profilePicture.getFileType();
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(fileType)).body(imageData);
     }
 }
