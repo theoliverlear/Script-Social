@@ -12,6 +12,11 @@ import java.util.Optional;
 public class ScriptSocialService {
     //=============================-Methods-==================================
 
+    public boolean sessionUserIdMatches(HttpSession session, Long id) {
+        Optional<User> possibleUser = this.getUserFromSession(session);
+        return possibleUser.map(user -> user.getId().equals(id)).orElse(false);
+    }
+
     //--------------------------User-In-Session-------------------------------
     public boolean userInSession(HttpSession session) {
         return session.getAttribute("user") != null;
