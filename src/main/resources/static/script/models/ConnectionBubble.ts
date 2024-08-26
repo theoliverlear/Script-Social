@@ -24,7 +24,7 @@ export class ConnectionBubble implements HtmlGenerative {
     }
     async getHtml(): Promise<HTMLDivElement> {
         let connectionBubbleDiv: HTMLDivElement = document.createElement('div');
-        connectionBubbleDiv.classList.add('connection-item');
+        connectionBubbleDiv.classList.add('connection-item', 'connection');
         connectionBubbleDiv.innerHTML = await this.getHtmlString();
         return connectionBubbleDiv;
     }
