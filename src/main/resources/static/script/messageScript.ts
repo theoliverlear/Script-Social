@@ -9,9 +9,13 @@ import {ConnectionBubble} from "./models/ConnectionBubble";
 //----------------------------Messaging-Containers----------------------------
 let connectionItems: JQuery<HTMLElement> = $('.connection-item');
 let userMessages: JQuery<HTMLElement> = $('#user-messages');
-let connectionListDiv: JQuery<HTMLElement> = $('#connection-list-div');
+let connectionsListDiv: JQuery<HTMLElement> = $('#connections-list-div');
+let newConnectionList: JQuery<HTMLElement> = $('#new-connection-list');
 //----------------------------------Buttons-----------------------------------
 let userMessageSendButton: JQuery<HTMLElement> = $('#user-message-send-button');
+let addConversationButton: JQuery<HTMLElement> = $('#add-conversation-button');
+let connectionBubbles: JQuery<HTMLElement> = $('.connection-item.connection');
+let createConversationButton: JQuery<HTMLElement> = $('#create-conversation-button');
 //-----------------------------------Inputs-----------------------------------
 let userMessageText: JQuery<HTMLElement> = $('#user-message-text');
 //---------------------------------Web-Socket---------------------------------
@@ -45,7 +49,16 @@ function connectWebSocket(): void {
     stompClient.activate();
 
 }
+function toggleConnectionList(): void {
+    connectionBubbles.toggle();
+    newConnectionList.toggle();
+    if (createConversationButton.css('display') === 'flex') {
+        createConversationButton.hide();
+    } else {
+        createConversationButton.css('display', 'flex');
+    }
 
+}
 //=============================-Server-Functions-=============================
 
 function isStompClientConnected(): boolean {
@@ -80,7 +93,7 @@ function loadAllConnectionBubbles(namesList: string[]): void {
     namesList.forEach((username: string): void => {
         let connectionBubble: ConnectionBubble = new ConnectionBubble(username);
         connectionBubble.getHtml().then((connectionItem: HTMLDivElement): void => {
-            connectionListDiv.append(connectionItem);
+            connectionsListDiv.append(connectionItem);
         });
     });
 }
@@ -224,4 +237,5 @@ if (shouldLoadPage) {
 if (shouldLoadPage) {
     connectionItems.on('click', addSelectedStyle);
     userMessageSendButton.on('click', sendMessage);
+    addConversationButton.on('click', toggleConnectionList);
 }
