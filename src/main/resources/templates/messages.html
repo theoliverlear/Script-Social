@@ -111,7 +111,13 @@
             <hr />
             <!-----------------Connections-List------------------------------>
             <div id="connections-list-div">
-                <div class="connection-item">
+                <div class="connection-item" id="add-conversation-button">
+                    <div class="connection-img-div">
+                        <img class="connection-img" src="../static/image/icon/add_icon.svg" alt="Default Avatar"
+                             th:src="@{/image/icon/add_icon.svg}">
+                    </div>
+                </div>
+                <div class="connection-item connection">
                     <div class="connection-img-div">
                         <img class="connection-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
                              th:src="@{/image/icon/default_avatar.svg}">
@@ -120,22 +126,58 @@
                         <h6 class="connection-name-text">John Doe</h6>
                     </div>
                 </div>
-                <div class="connection-item">
+                <div class="connection-item connection">
                     <div class="connection-img-div">
                         <img class="connection-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
                              th:src="@{/image/icon/default_avatar.svg}">
                     </div>
-                    <div class="connection-name-div">
+                    <div class="connection-name-div connection">
                         <h6 class="connection-name-text">Mary Stevens</h6>
                     </div>
                 </div>
-                <div class="connection-item">
+                <div class="connection-item connection">
                     <div class="connection-img-div">
                         <img class="connection-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
                              th:src="@{/image/icon/default_avatar.svg}">
                     </div>
                     <div class="connection-name-div">
                         <h6 class="connection-name-text">Stephan Dumorier</h6>
+                    </div>
+                </div>
+
+                <div id="new-connection-list">
+                    <div class="connection-item potential-connection">
+                        <div class="connection-img-div">
+                            <img class="connection-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
+                                 th:src="@{/image/icon/default_avatar.svg}">
+                        </div>
+                        <div class="connection-name-div">
+                            <h6 class="connection-name-text">Mike Delahouse</h6>
+                        </div>
+                    </div>
+                    <div class="connection-item potential-connection">
+                        <div class="connection-img-div">
+                            <img class="connection-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
+                                 th:src="@{/image/icon/default_avatar.svg}">
+                        </div>
+                        <div class="connection-name-div">
+                            <h6 class="connection-name-text">Anita Baraboda</h6>
+                        </div>
+                    </div>
+                    <div class="connection-item potential-connection">
+                        <div class="connection-img-div">
+                            <img class="connection-img" src="../static/image/icon/default_avatar.svg" alt="Default Avatar"
+                                 th:src="@{/image/icon/default_avatar.svg}">
+                        </div>
+                        <div class="connection-name-div">
+                            <h6 class="connection-name-text">Tommy Thomson</h6>
+                        </div>
+                    </div>
+                    <div class="connection-item" id="create-conversation-button">
+                        <div class="connection-img-div">
+                            <img class="connection-img" src="../static/image/icon/confirm_icon.svg" alt="Default Avatar"
+                                 th:src="@{/image/icon/confirm_icon.svg}">
+                        </div>
                     </div>
                 </div>
             </div>
