@@ -86,12 +86,11 @@ function loadInitialConnectionBubbles(): void {
     let usernamesJson = getConversationUsernames(1);
     usernamesJson.then((usernames: any): void => {
         let namesList: string[] = usernamesResponseToNamesList(usernames);
-        loadAllConnectionBubbles(namesList);
+        loadAllConnectionBubbles(ConnectionBubble.collectionFromNameList(namesList));
     });
 }
-function loadAllConnectionBubbles(namesList: string[]): void {
-    namesList.forEach((username: string): void => {
-        let connectionBubble: ConnectionBubble = new ConnectionBubble(username);
+function loadAllConnectionBubbles(connectionBubbles: ConnectionBubble[]): void {
+    connectionBubbles.forEach((connectionBubble: ConnectionBubble): void => {
         connectionBubble.getHtml().then((connectionItem: HTMLDivElement): void => {
             connectionsListDiv.append(connectionItem);
         });
