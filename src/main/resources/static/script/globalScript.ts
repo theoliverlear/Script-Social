@@ -23,12 +23,23 @@ let logoutButton: JQuery<HTMLElement> = $('#logout-button');
 let accountAndLogoutDiv: JQuery<HTMLElement> = $('#account-and-logout-div');
 let accountNameText: JQuery<HTMLElement> = $('#account-name-text');
 let userNavMenuDiv: JQuery<HTMLElement> = $('#user-nav-menu-div');
+let navSearchInputDiv: JQuery<HTMLElement> = $('#nav-search-input-div');
+let navSearchDiv: JQuery<HTMLElement> = $('#nav-search-div');
+let searchNavTextDiv: JQuery<HTMLElement> = $('#search-nav-text-div');
 //--------------------------------Side-Nav-Bar--------------------------------
 let sideNavBar: JQuery<HTMLElement> = $('#side-nav-bar');
 let sideNavBarExpanded: boolean = false;
 let sideBarTabDiv: JQuery<HTMLElement> = $('#side-bar-tab-div');
 let sideBarTabImg: JQuery<HTMLElement> = $('#side-bar-tab-img');
 let sideBarIconTitleDivs: JQuery<HTMLElement> = $('.side-bar-icon-title-div');
+
+function toggleSearchInput(): void {
+    navSearchDiv.addClass('nav-item-no-hover-effects');
+    navSearchDiv.removeClass('nav-item');
+    searchNavTextDiv.hide();
+    navSearchInputDiv.show();
+}
+
 //=============================-Server-Functions-=============================
 
 //----------------------Get-Current-User-Id-From-Server-----------------------
@@ -388,6 +399,7 @@ hamburgerMenuDiv.on('click', toggleNavItems);
 accountAndLogoutDiv.on('mouseover', showLogoutButton);
 accountAndLogoutDiv.on('mouseleave', hideLogoutButton);
 sideBarTabDiv.on('click', toggleSideNavBarPopout);
+navSearchDiv.on('click', toggleSearchInput);
 //=================================-Exports-==================================
 export { loadPage, typeText, deleteText, getCurrentUserIdFromServer,
          hashPassword, inputIsEmpty, removeTextArtifacts, emailIsValid,
