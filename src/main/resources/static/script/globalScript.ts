@@ -1,7 +1,10 @@
 //=================================-Imports-==================================
 import * as CryptoJS from 'crypto-js';
 import './sideBarSwipe';
-import {hasProfilePictureFromServerByUsername} from "./profileScript";
+import {
+    hasProfilePictureFromServerById,
+    hasProfilePictureFromServerByUsername
+} from "./profileScript";
 //================================-Variables-=================================
 
 //------------------------------General-Content-------------------------------
@@ -175,6 +178,14 @@ async function getProfilePictureSrcByUsername(username: string): Promise<string>
     let imageSrc: string = '../static/image/icon/default_avatar.svg';
     if (hasProfilePicture) {
         imageSrc = `/profile/get/username/${username}/profile-picture`;
+    }
+    return imageSrc;
+}
+async function getProfilePictureSrcById(userId: number): Promise<string> {
+    let hasProfilePicture: boolean = await hasProfilePictureFromServerById(userId);
+    let imageSrc: string = '../static/image/icon/default_avatar.svg';
+    if (hasProfilePicture) {
+        imageSrc = `/profile/get/${userId}/profile-picture`;
     }
     return imageSrc;
 }
@@ -382,4 +393,4 @@ export { loadPage, typeText, deleteText, getCurrentUserIdFromServer,
          hashPassword, inputIsEmpty, removeTextArtifacts, emailIsValid,
          hasEmptyInputs, clearInputs, toggleSideNavBarPopout,
          sideNavBarExpanded, clearInput,getThymeleafImageSrc,
-         getProfilePictureSrcByUsername};
+         getProfilePictureSrcByUsername, getProfilePictureSrcById,};
