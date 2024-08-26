@@ -28,6 +28,13 @@ export class ConnectionBubble implements HtmlGenerative {
         connectionBubbleDiv.innerHTML = await this.getHtmlString();
         return connectionBubbleDiv;
     }
+    static collectionFromNameList(namesList: string[]): ConnectionBubble[] {
+        let connectionBubbles: ConnectionBubble[] = [];
+        namesList.forEach((name: string): void => {
+            connectionBubbles.push(new ConnectionBubble(name));
+        });
+        return connectionBubbles;
+    }
     get username(): string {
         return this._username;
     }
