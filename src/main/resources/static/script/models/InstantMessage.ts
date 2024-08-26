@@ -1,6 +1,10 @@
 //=================================-Imports-==================================
 import {hasProfilePictureFromServerById} from "../profileScript";
 import {HtmlGenerative} from "./HtmlGenerative";
+import {
+    getProfilePictureSrcById,
+    getThymeleafImageSrc
+} from "../globalScript";
 
 export class InstantMessage implements HtmlGenerative {
     //============================-Variables-=================================
@@ -19,22 +23,24 @@ export class InstantMessage implements HtmlGenerative {
 
     //--------------------------Get-Html-String-------------------------------
     async getHtmlString(): Promise<string> {
-        let hasProfilePicture: boolean = await hasProfilePictureFromServerById(this.userId);
-        let imageSrc: string = '';
-        let thymeleafImageSrc: string = '';
-        if (hasProfilePicture) {
-            imageSrc = `/profile/get/${this.userId}/profile-picture`;
-            thymeleafImageSrc = `@{/profile/get/${this.userId}/profile-picture}`;
-        } else {
-            imageSrc = '\"../static/image/icon/default_avatar.svg\"';
-            thymeleafImageSrc = `\"@{/image/icon/default_avatar.svg}\"`;
-        }
+        // let hasProfilePicture: boolean = await hasProfilePictureFromServerById(this.userId);
+        // let imageSrc: string = '';
+        // let thymeleafImageSrc: string = '';
+        // if (hasProfilePicture) {
+        //     imageSrc = `/profile/get/${this.userId}/profile-picture`;
+        //     thymeleafImageSrc = `@{/profile/get/${this.userId}/profile-picture}`;
+        // } else {
+        //     imageSrc = '\"../static/image/icon/default_avatar.svg\"';
+        //     thymeleafImageSrc = `\"@{/image/icon/default_avatar.svg}\"`;
+        // }
+        let profilePictureSrc: string = await getProfilePictureSrcById(this.userId);
+        let thymeleafImageSrc: string = getThymeleafImageSrc(profilePictureSrc);
         return `
         <div class="message-headline">
             <div class="image-with-name-div">
                 <div class="message-img-div">
-                    <img class="message-img" src=${imageSrc} alt="Default Avatar"
-                         th:src=${thymeleafImageSrc}>
+                    <img class="message-img" src="${profilePictureSrc}" alt="Default Avatar"
+                         th:src="${thymeleafImageSrc}">
                 </div>
                 <div class="message-name-div">
                     <h6 class="message-name-text">${this.fullName}</h6>
