@@ -205,11 +205,28 @@ header {
         }
     }
 }
-#nav-search-input {
-    @extend .general-input;
-    @include size($five-percent, $two-percent);
-    padding: $zero $one-percent;
+#nav-search-div.nav-item-no-hover-effects {
+    border-radius: $quarter-percent;
+    @include flex(center, center, row);
+    &:hover {
+        cursor: default;
+        background-color: inherit;
+        color: inherit;
+        box-shadow: inherit;
+    }
+    &:hover {
+        #search-icon-div {
+            filter: none;
+        }
+    }
+}
+#nav-search-input-div {
     display: none;
+    #nav-search-input {
+        @extend .general-input;
+        @include size($five-percent, $two-percent);
+        padding: $zero $one-percent;
+    }
 }
 //--------------------------------Side-Nav-Bar--------------------------------
 #side-nav-bar {
@@ -343,9 +360,19 @@ header {
 }
 //-----------------------------------Inputs-----------------------------------
 .general-input {
-    border-radius: $quarter-percent;
-    border: $thinnest-border solid $charcoal;
-    background-color: $tangerine;
+    //border-radius: $quarter-percent;
+    //border: $thinnest-border solid $charcoal;
+    //background-color: $tangerine;
+    border: none;
+    width: $ten-percent;
+    font-family: $source-code-font;
+    font-size: $p-font-size;
+    color: $pure-orange;
+    //border-bottom: $thin-border solid $alabaster-stone;
+    background-color: $charcoal;
+    flex: 1;
+    padding: $zero $one-percent;
+    border-radius: $one-percent;
 }
 .general-text-area {
     width: $fifteen-percent;
