@@ -42,10 +42,13 @@ main {
                 transition: box-shadow 0.3s;
                 width: $twelve-percent;
                 .connection-img-div {
-                    flex: 1;
+                    margin: 0 $quarter-percent;
                     @include square-size($two-percent);
+                    border-radius: 50%;
+                    background-color: $light-charcoal;
                     .connection-img {
                         @include square-size(100%);
+                        @extend %circle-border-radius;
                     }
                 }
                 .connection-name-div {
@@ -58,6 +61,18 @@ main {
                 &:hover {
                     cursor: pointer;
                     @extend %console-box-shadow;
+                }
+            }
+            #new-connection-list {
+                display: none;
+                .potential-connection {
+                    color: $charcoal;
+                    background-color: $pure-orange;
+                }
+                #create-conversation-button {
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
                 }
             }
         }
@@ -91,9 +106,10 @@ main {
                             .message-img-div {
                                 margin: 0 $half-percent 0 0;
                                 @include square-size($two-percent);
-
+                                @extend %circle-border-radius;
                                 .message-img {
                                     @include square-size(100%);
+                                    @extend %circle-border-radius;
                                 }
                             }
                         }
