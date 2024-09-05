@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
-    "lib": ["dom"],
-    "outDir": "./src/main/resources/static/script",
+    "lib": ["dom", "es2018"],
+//    "outDir": "./src/main/resources/static/script",
+    "outDir": "./",
+    "rootDir": "./",
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "esnext",
     "target": "es6",
     "allowJs": true,
     "esModuleInterop": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "./src/main/resources/static/script/bundle.js"],
+  "angularCompilerOptions": {
+    "enableIvy": true
+  }
 }
