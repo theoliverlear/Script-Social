@@ -1,0 +1,48 @@
+//=================================-Imports-==================================
+@import "../../../../../style/global-variables";
+@import "../../../../../style/global-mixins";
+@import "../../../../../style/global-functions";
+@import "../../../../../style/global-placeholders";
+authorize {
+
+    //==================================-Styles-==================================
+
+    //-------------------------Choose-Auth-Type-Selection-------------------------
+    #choose-auth-type-section {
+        margin: $one-half-percent 0 0 0;
+        @include flex(space-around, center, row);
+        width: 60%;
+        .auth-type-button {
+            background-color: $apricot-glow;
+            padding: $one-percent $two-percent;
+            border-radius: $one-percent;
+            &:first-child {
+                @extend %selected-auth;
+            }
+            &:hover {
+                border: $thin-border solid $pure-orange;
+            }
+        }
+    }
+    .selected-auth {
+        background-color: $apricot-glow;
+        border: $thin-border solid $alabaster-stone;
+        box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+    }
+    //-----------------------------Auth-Input-Section-----------------------------
+    #auth-input-section {
+        //@extend %console;
+        #login-div {
+            display: none;
+        }
+        .console-popup-and-confirm-div {
+            justify-content: flex-end;
+        }
+        #popup-div {
+            @extend %console;
+            color: $pristine-white;
+            text-align: center;
+            display: none;
+        }
+    }
+}
