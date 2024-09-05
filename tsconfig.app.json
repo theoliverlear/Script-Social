@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./src/main/resources/static/script/app",
+    "types": []
+  },
+  "files": [
+    "src/main/resources/static/script/scriptSocialApp.module.ts",
+  ],
+  "include": [
+    "src/main/resources/static/script/**/*.d.ts"
+  ]
+}
