@@ -1,0 +1,43 @@
+<div>
+    <!--============================-Main-Content-=============================-->
+    <main>
+        <!-----------------------Introduction-Section---------------------------->
+        <section id="introduction-section">
+            <div id="title-div">
+                <span class="title-curly-brace">&#123;</span>
+                <h1 id="title-text"></h1>
+                <span id="title-blinking-cursor" class="blinking-cursor">|</span>
+                <span class="title-curly-brace">&#125;</span>
+            </div>
+            <div id="logo-with-text">
+                <div id="intro-text-div">
+                    <div id="intro-headline-div">
+                        <h3>Connect with Developers</h3>
+                    </div>
+                    <div>
+                        <p class="indented-text">
+                            Connect with your fellow developers and share your code,
+                            thoughts, and ideas with the world. Script Social is a tool
+                            for those with established teams looking for easy
+                            communication and integration with version control, as well as
+                            those looking create communities and teams of their own. Sign
+                            up for a free account today and start sharing, connecting, and
+                            collaborating with other developers.
+                        </p>
+                    </div>
+                </div>
+                <div id="intro-logo-div">
+                    <img id="intro-logo"
+                         ngSrc="assets/image/logo/script_social_cropped.png"
+                         unoptimizedImage
+                         fill="preserve"
+                         alt="Script Social Logo"
+                         th:src="@{/image/logo/script_social_cropped.png}">
+                </div>
+            </div>
+        </section>
+        <!---------------------------Join-Section-------------------------------->
+        <join-console></join-console>
+        <!--    <input type="hidden" id="csrf-token" th:value="${_csrf.token}"/>-->
+    </main>
+</div>
