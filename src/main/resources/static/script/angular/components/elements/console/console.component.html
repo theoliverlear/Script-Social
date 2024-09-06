@@ -1,0 +1,74 @@
+<!--<section id="join-section">-->
+<!--    <div id="join-title-div">-->
+<!--        <h2>Join</h2>-->
+<!--    </div>-->
+<!--    <section id="join-console-section">-->
+<!--        <div id="join-console">-->
+<!--            <div id="join-console-text">-->
+<!--                &lt;!&ndash;                    <h3>Sign Up</h3>&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Join-Inputs&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--            <div id="join-console-inputs">-->
+<!--                <div id="join-console-email-div" class="join-input-title-field">-->
+<!--                    <div id="join-console-email-text-div" class="join-title-field">-->
+<!--                        <h5>Email: </h5>-->
+<!--                    </div>-->
+<!--                    <div id="join-console-email-input-div">-->
+<!--                        <input class="general-input join-input" id="join-console-email-input" type="email">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div id="join-console-username-div" class="join-input-title-field">-->
+<!--                    <div id="join-console-username-text-div" class="join-title-field">-->
+<!--                        <h5>Username: </h5>-->
+<!--                    </div>-->
+<!--                    <div id="join-console-username-input-div">-->
+<!--                        <input class="general-input join-input" id="join-console-username-input" type="text">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div id="join-console-password-div" class="join-input-title-field">-->
+<!--                    <div id="join-console-password-text-div" class="join-title-field">-->
+<!--                        <h5>Password: </h5>-->
+<!--                    </div>-->
+<!--                    <div id="join-console-password-input-div">-->
+<!--                        <input class="general-input join-input" id="join-console-password-input" type="password">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div id="join-console-confirm-password-div" class="join-input-title-field">-->
+<!--                    <div id="join-console-confirm-password-text-div" class="join-title-field">-->
+<!--                        <h5>Confirm Password: </h5>-->
+<!--                    </div>-->
+<!--                    <div id="join-console-confirm-password-input-div">-->
+<!--                        <input class="general-input join-input" id="join-console-confirm-password-input" type="password">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                &lt;!&ndash; TODO: Add agree to terms checkbox &ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Popup-And-Confirm-Div-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--            <div id="popup-and-confirm-div">-->
+<!--                <div id="popup-div">-->
+<!--                    <p id="popup-text">Please enter an email.</p>-->
+<!--                </div>-->
+<!--&lt;!&ndash;                <div id="confirm-join-button" class="general-button">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h5 class="general-button-text">CONFIRM</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                    <ss-button [text]="ButtonText.CONFIRM" [size]="ButtonSize.SMALL"></ss-button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    &lt;!&ndash; TODO: Implement new popup section below. &ndash;&gt;-->
+<!--    <div id="message-popup-console" class="general-console-container">-->
+<!--        <div class="general-console">-->
+<!--            <div class="console-popup-div">-->
+<!--                <h5 id="console-message-text"></h5>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<div class="big-console">
+    <console-input [title]="ConsoleInputField.USERNAME" [type]="ConsoleInputType.TEXT"></console-input>
+    <console-input [title]="ConsoleInputField.EMAIL" [type]="ConsoleInputType.EMAIL"></console-input>
+    <console-input [title]="ConsoleInputField.PASSWORD" [type]="ConsoleInputType.PASSWORD"></console-input>
+    <console-input [title]="ConsoleInputField.CONFIRM_PASSWORD" [type]="ConsoleInputType.PASSWORD"></console-input>
+    <ss-button [text]="ButtonText.CONFIRM" [size]="ElementSize.SMALL" [buttonPosition]="ButtonPosition.END"></ss-button>
+</div>
