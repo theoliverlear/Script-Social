@@ -30,6 +30,7 @@
                     <img id="intro-logo"
                          ngSrc="assets/image/logo/script_social_cropped.png"
                          unoptimizedImage
+                         undraggable
                          fill="preserve"
                          alt="Script Social Logo"
                          th:src="@{/image/logo/script_social_cropped.png}">
@@ -37,7 +38,7 @@
             </div>
         </section>
         <!---------------------------Join-Section-------------------------------->
-        <console></console>
+        <console [consoleType]="ConsoleType.SIGNUP"></console>
         <!--    <input type="hidden" id="csrf-token" th:value="${_csrf.token}"/>-->
     </main>
 </div>
