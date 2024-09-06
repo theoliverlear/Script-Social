@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {ConsoleType} from "../../elements/console/models/ConsoleType";
 
 @Component({
     selector: 'home',
@@ -13,4 +14,6 @@ export class HomeComponent {
     constructor() {
         console.log('HomeComponent loaded');
     }
+
+    protected readonly ConsoleType = ConsoleType;
 }
