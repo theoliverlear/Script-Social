@@ -16,10 +16,13 @@ export class HeadComponent implements OnChanges{
     static readonly DEFAULT_STYLESHEETS_PATHS: string[] = [
         // 'angular_build/styles.css'
     ];
+    static readonly DEFAULT_FAVICON = 'assets/image/favicon/script_social_transparent_cropped.ico';
     @Input() title: string;
     @Input() stylesheets: string[];
+    @Input() favicon: string = HeadComponent.DEFAULT_FAVICON;
     constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {
         console.log('HeadComponent loaded');
+        this.addFavicon(this.favicon);
         HeadComponent.DEFAULT_STYLESHEETS_PATHS.forEach((path) => {
             console.log('Adding default stylesheet: ' + path);
             this.addStylesheet(path);
@@ -54,10 +57,15 @@ export class HeadComponent implements OnChanges{
         link.href = path;
         this.renderer.setAttribute(link, 'data-dynamic', '');
         this.renderer.appendChild(this.document.head, link);
-
-        link.onerror = () => {
+        link.onerror = function() {
             console.error('Failed to load stylesheet: ' + path);
         }
+    }
+    private addFavicon(path: string) {
+        const link = this.renderer.createElement('link');
+        link.rel = 'icon';
+        link.href = path;
+        this.renderer.appendChild(this.document.head, link);
     }
     private clearExisting(selector: string) {
         const existing = this.document.querySelectorAll(selector);
