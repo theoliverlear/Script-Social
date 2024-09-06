@@ -1,0 +1,22 @@
+@import "../../../../../style/global-variables";
+@import "../../../../../style/global-mixins";
+@import "../../../../../style/global-functions";
+@import "../../../../../style/global-placeholders";
+@import "../../../../../style/global-style";
+
+
+
+.console {
+    @include flex(center, center, column);
+    border-radius: $one-percent;
+    border: $thinnest-border solid $alabaster-stone;
+    background-color: $charcoal;
+    color: $pristine-white;
+    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+    padding: $one-percent;
+    width: auto;
+}
+.big-console {
+    @extend .console;
+    width: $thirty-percent;
+}
