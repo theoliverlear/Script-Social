@@ -46,6 +46,31 @@ function toggleSearchInput(): void {
 
 //=============================-Server-Functions-=============================
 
+
+//---------------------------Send-Signup-To-Server----------------------------
+function sendSignupToServer(username: string, email: string, unwashedPassword: string): boolean {
+    let hashedPassword: string = hashPassword(unwashedPassword);
+    let isAuthorized: boolean = false;
+    fetch('/authorize/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            username: username,
+            password: hashedPassword
+        })
+    }).then((response: Response) => response.json()).then(responseJson => {
+        console.log(responseJson);
+        isAuthorized = responseJson.authorized;
+    }).catch(error => {
+        console.error('Error: ', error);
+        isAuthorized = false;
+    });
+    return isAuthorized;
+}
+
 //----------------------Get-Current-User-Id-From-Server-----------------------
 async function getCurrentUserIdFromServer(): Promise<number> {
     let response: Response = await fetch('/user/get/current/id');
@@ -409,4 +434,4 @@ export { loadPage, typeText, deleteText, getCurrentUserIdFromServer,
          hashPassword, inputIsEmpty, removeTextArtifacts, emailIsValid,
          hasEmptyInputs, clearInputs, toggleSideNavBarPopout,
          sideNavBarExpanded, clearInput,getThymeleafImageSrc,
-         getProfilePictureSrcByUsername, getProfilePictureSrcById,};
+         getProfilePictureSrcByUsername, getProfilePictureSrcById, sendSignupToServer};
