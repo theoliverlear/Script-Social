@@ -26,14 +26,16 @@ import {
 import {
     ConsoleInputComponent
 } from "../components/elements/console-input/console-input.component";
+import {UndraggableDirective} from "../directives/undraggable.directive";
+import {
+    ConsolePopupComponent
+} from "../components/elements/console-popup/console-popup.component";
 
 @NgModule({
     declarations: [
-
         // Directives
         UnoptimizedImageDirective,
-
-
+        UndraggableDirective,
         // Elements
         NavBarComponent,
         ConsoleComponent,
@@ -42,6 +44,7 @@ import {
         SsFooterComponent,
         HeadComponent,
         SsButtonComponent,
+        ConsolePopupComponent,
         // Pages
         HomeComponent,
         AuthorizeComponent
