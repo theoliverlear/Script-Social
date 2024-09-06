@@ -27,18 +27,14 @@
               }
             ],
             "styles": [
-              "src/main/resources/static/style/authorize-style.css",
-              "src/main/resources/static/style/create-style.css",
-              "src/main/resources/static/style/global-style.css",
-              "src/main/resources/static/style/home-style.css",
-              "src/main/resources/static/style/message-style.css",
-              "src/main/resources/static/style/profile-style.css",
-              "src/main/resources/static/style/welcome-style.css",
               "src/main/resources/static/script/angular/components/app/app-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/console/console-style.component.css",
               "src/main/resources/static/script/angular/components/elements/nav-bar/nav-bar-style.component.css",
               "src/main/resources/static/script/angular/components/elements/ss-footer/ss-footer-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/ss-button/ss-button-style.component.css",
+              "src/main/resources/static/script/angular/components/pages/authorize/authorize-style.component.css",
               "src/main/resources/static/script/angular/components/pages/home/home-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/join-console/join-console-style.component.css"
+              "src/main/resources/static/script/angular/components/elements/console-input/console-input-style.component.css"
 
             ],
             "scripts": [],
