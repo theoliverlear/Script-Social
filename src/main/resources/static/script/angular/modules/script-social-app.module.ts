@@ -15,11 +15,17 @@ import {
     UnoptimizedImageDirective
 } from "../directives/unoptimized-image.directive";
 import {
-    JoinConsoleComponent
-} from "../components/elements/join-console/join-console.component";
+    ConsoleComponent
+} from "../components/elements/console/console.component";
 import {
     AuthorizeComponent
 } from "../components/pages/authorize/authorize.component";
+import {
+    SsButtonComponent
+} from "../components/elements/ss-button/ss-button.component";
+import {
+    ConsoleInputComponent
+} from "../components/elements/console-input/console-input.component";
 
 @NgModule({
     declarations: [
@@ -30,10 +36,12 @@ import {
 
         // Elements
         NavBarComponent,
-        JoinConsoleComponent,
+        ConsoleComponent,
+        ConsoleInputComponent,
         AppComponent,
         SsFooterComponent,
         HeadComponent,
+        SsButtonComponent,
         // Pages
         HomeComponent,
         AuthorizeComponent
