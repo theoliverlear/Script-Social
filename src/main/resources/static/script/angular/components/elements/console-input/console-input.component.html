@@ -3,6 +3,9 @@
         <h5>{{ title }}</h5>
     </div>
     <div class="console-input-div">
-        <input class="console-input" type="{{ type }}">
+        <input class="console-input"
+               type="{{ type }}"
+               (ngModelChange)="handleInputChange($event)"
+               [(ngModel)]="value">
     </div>
 </div>
