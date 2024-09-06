@@ -200,11 +200,14 @@ article {
     font-family: $source-code-font;
     font-size: $p-font-size;
     color: $pure-orange;
-    //border-bottom: $thin-border solid $alabaster-stone;
+    border-bottom: $thin-border solid $alabaster-stone;
     background-color: $charcoal;
     flex: 1;
     padding: $zero $one-percent;
-    border-radius: $one-percent;
+    //border-radius: $one-percent;
+    &:focus {
+        border-radius: $one-percent;
+    }
 }
 .general-text-area {
     width: $fifteen-percent;
