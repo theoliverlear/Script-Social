@@ -70,5 +70,5 @@
     <console-input [title]="ConsoleInputField.EMAIL" [type]="ConsoleInputType.EMAIL"></console-input>
     <console-input [title]="ConsoleInputField.PASSWORD" [type]="ConsoleInputType.PASSWORD"></console-input>
     <console-input [title]="ConsoleInputField.CONFIRM_PASSWORD" [type]="ConsoleInputType.PASSWORD"></console-input>
-    <ss-button [text]="ButtonText.CONFIRM" [size]="ElementSize.SMALL" [buttonPosition]="ButtonPosition.END"></ss-button>
+    <ss-button [text]="ButtonText.CONFIRM" [size]="ElementSize.SMALL" [buttonPosition]="ButtonPosition.END" (click)="sendSignupToServer()"></ss-button>
 </div>
