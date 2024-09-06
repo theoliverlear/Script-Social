@@ -3,10 +3,9 @@ import {ElementSize} from "../models/ElementSize";
 import {ButtonText} from "../ss-button/models/ButtonText";
 import {ConsoleInputField} from "../console-input/models/ConsoleInputField";
 import {ConsoleInputType} from "../console-input/models/ConsoleInputType";
-import {
-    ButtonSize
-} from "../../../../../../templates/angular_build/assets/script/angular/components/elements/ss-button/ButtonSize";
 import {ButtonPosition} from "../ss-button/models/ButtonPosition";
+import {ConsoleType} from "./models/ConsoleType";
+import { sendSignupToServer } from "../../../../new_scripts/globalScript";
 
 @Component({
     selector: 'console',
@@ -15,10 +14,19 @@ import {ButtonPosition} from "../ss-button/models/ButtonPosition";
 })
 export class ConsoleComponent {
     @Input() elementSize: ElementSize;
+    @Input() consoleType: ConsoleType;
+    email: string = '';
+    username: string = '';
+    password: string = '';
+    confirmPassword: string = '';
     constructor() {
         console.log('ConsoleComponent loaded');
     }
 
+    sendSignupToServer() {
+        let signupApproved = sendSignupToServer(this.email, this.username, this.password);
+
+    }
     protected readonly ConsoleInputType = ConsoleInputType;
     protected readonly ButtonText = ButtonText;
     protected readonly ElementSize = ElementSize;
