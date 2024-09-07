@@ -1,5 +1,6 @@
 import {Component} from "@angular/core";
 import {ConsoleType} from "../../elements/console/models/ConsoleType";
+import {TagType} from "../../elements/models/TagType";
 
 @Component({
     selector: 'home',
@@ -16,4 +17,5 @@ export class HomeComponent {
     }
 
     protected readonly ConsoleType = ConsoleType;
+    protected readonly TagType = TagType;
 }
