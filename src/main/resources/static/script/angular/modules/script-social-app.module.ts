@@ -30,6 +30,12 @@ import {UndraggableDirective} from "../directives/undraggable.directive";
 import {
     ConsolePopupComponent
 } from "../components/elements/console-popup/console-popup.component";
+import {
+    TypableTextComponent
+} from "../components/elements/typable-text/typable-text.component";
+import {
+    BlinkingCursorComponent
+} from "../components/elements/blinking-cursor/blinking-cursor.component";
 
 @NgModule({
     declarations: [
@@ -45,6 +51,8 @@ import {
         HeadComponent,
         SsButtonComponent,
         ConsolePopupComponent,
+        TypableTextComponent,
+        BlinkingCursorComponent,
         // Pages
         HomeComponent,
         AuthorizeComponent
