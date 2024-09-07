@@ -5,8 +5,13 @@
         <section id="introduction-section">
             <div id="title-div">
                 <span class="title-curly-brace">&#123;</span>
-                <h1 id="title-text"></h1>
-                <span id="title-blinking-cursor" class="blinking-cursor">|</span>
+                <typable-text id="title-text"
+                              [textToType]="'Script Social'"
+                              [tagType]="TagType.H1"
+                              [applyBeingTypedStyle]="false"
+                              [textSpeed]="150">
+                </typable-text>
+                <blinking-cursor></blinking-cursor>
                 <span class="title-curly-brace">&#125;</span>
             </div>
             <div id="logo-with-text">
