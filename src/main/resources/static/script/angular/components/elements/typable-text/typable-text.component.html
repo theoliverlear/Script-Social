@@ -1,0 +1,13 @@
+<ng-container [ngSwitch]="tagType">
+    <h1   #typedText *ngSwitchCase="TagType.H1">{{ typedTextContent }}</h1>
+    <h2   #typedText *ngSwitchCase="TagType.H2">{{ typedTextContent }}</h2>
+    <h3   #typedText *ngSwitchCase="TagType.H3">{{ typedTextContent }}</h3>
+    <h4   #typedText *ngSwitchCase="TagType.H4">{{ typedTextContent }}</h4>
+    <h5   #typedText *ngSwitchCase="TagType.H5">{{ typedTextContent }}</h5>
+    <h6   #typedText *ngSwitchCase="TagType.H6">{{ typedTextContent }}</h6>
+    <p    #typedText *ngSwitchCase="TagType.P">{{ typedTextContent }}</p>
+    <span #typedText *ngSwitchCase="TagType.SPAN">{{ typedTextContent }}</span>
+    <div  #typedText *ngSwitchCase="TagType.DIV">{{ typedTextContent }}</div>
+    <code #typedText *ngSwitchCase="TagType.CODE">{{ typedTextContent }}</code>
+    <span #typedText *ngSwitchDefault> {{ typedTextContent }}</span>
+</ng-container>
