@@ -1,0 +1,24 @@
+@import "../../../../../style/global-variables";
+@import "../../../../../style/global-mixins";
+@import "../../../../../style/global-functions";
+@import "../../../../../style/global-placeholders";
+
+.blinking-cursor {
+    font-size: $h2-font-size;
+    animation: blink 1s infinite;
+}
+//================================-Animations-================================
+
+//-----------------------------------Blink------------------------------------
+@keyframes blink {
+0% {
+        opacity: 0;
+    }
+50% {
+        opacity: 1;
+    }
+100% {
+        opacity: 0;
+    }
+}
+
