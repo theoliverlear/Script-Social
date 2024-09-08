@@ -5,13 +5,21 @@ import {ConsoleInputField} from "../console-input/models/ConsoleInputField";
 import {ConsoleInputType} from "../console-input/models/ConsoleInputType";
 import {ButtonPosition} from "../ss-button/models/ButtonPosition";
 import {ConsoleType} from "./models/ConsoleType";
-import { sendSignupToServer } from "../../../../new_scripts/globalScript";
+import {
+    sendLoginRequest,
+    sendSignupToServer
+} from "../../../../new_scripts/globalScript";
 import {AuthPopup} from "../models/auth/AuthPopup";
+import {ConsoleService} from "../../../services/console.service";
+import {fadeAnimation} from "../../animations/animations";
 
 @Component({
     selector: 'console',
     templateUrl: './console.component.html',
-    styleUrls: ['./console-style.component.css']
+    styleUrls: ['./console-style.component.css'],
+    animations: [
+        fadeAnimation
+    ]
 })
 export class ConsoleComponent {
     @Input() elementSize: ElementSize;
@@ -24,7 +32,7 @@ export class ConsoleComponent {
     private _username: string = '';
     private _password: string = '';
     private _confirmPassword: string = '';
-    constructor() {
+    constructor(private consoleService: ConsoleService) {
         console.log('ConsoleComponent loaded');
     }
 
@@ -57,12 +65,11 @@ export class ConsoleComponent {
         // TODO: Add handling for username input
     }
     handleEmailInput() {
+        let shouldHandleEmailInput = this.consoleService.shouldValidateEmail(this.consoleType);
         console.log('Handling email input');
-        this.emitValidEmail(this.isValidEmail());
-    }
-    isValidEmail(): boolean {
-        let emailPattern = new RegExp('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-        return emailPattern.test(this.email);
+        if (shouldHandleEmailInput) {
+            this.emitValidEmail(this.consoleService.emailValidatorService.isValidEmail(this.email));
+        }
     }
     emitValidEmail(isValid: boolean) {
         console.log('Emitting valid email: ', isValid);
@@ -73,21 +80,47 @@ export class ConsoleComponent {
         this.authPopup = isMismatch ? AuthPopup.PASSWORDS_DONT_MATCH : null;
         this.passwordMismatch.emit(isMismatch);
     }
-    isPasswordMismatch(): boolean {
-        console.log('Checking if passwords match: ', this.password, this.confirmPassword);
-        return this.password !== this.confirmPassword;
-    }
     handlePasswordMismatch() {
-        console.log('Handling password mismatch');
-        console.log('Passwords match: ', !this.isPasswordMismatch());
-        this.emitPasswordMismatch(this.isPasswordMismatch());
+        let shouldHandlePasswordMismatch = this.consoleService.shouldHandlePasswordMismatch(this.consoleType);
+        if (shouldHandlePasswordMismatch) {
+            console.log('Handling password mismatch');
+            this.emitPasswordMismatch(this.consoleService.passwordMatchHandlerService.isMismatchPassword(this.password, this.confirmPassword));
+        }
     }
     handleSignupFailed(authPopup: AuthPopup) {
-        this.signupFailed.emit(authPopup);
+        let shouldHandleSignupFailed = this.consoleService.shouldHandleSignupFailed(this.consoleType);
+        if (shouldHandleSignupFailed) {
+            this.authPopup = authPopup;
+            this.emitSignupFailed(authPopup);
+        }
     }
     emitSignupFailed(authPopup: AuthPopup) {
-        this.authPopup = authPopup;
         this.signupFailed.emit(authPopup);
+    }
+    sendAuthToServer() {
+        if (this.isSignup()) {
+            this.sendSignupToServer();
+        } else if (this.isLogin()) {
+            this.sendLoginToServer();
+        }
+    }
+    handleLoginFailed(authPopup: AuthPopup) {
+        let shouldHandleLoginFailed = this.consoleService.shouldHandleLoginFailed(this.consoleType);
+        if (shouldHandleLoginFailed) {
+            this.authPopup = authPopup;
+            this.emitLoginFailed(authPopup);
+        }
+    }
+    emitLoginFailed(authPopup: AuthPopup) {
+        this.signupFailed.emit(authPopup);
+    }
+    sendLoginToServer() {
+        let loginApproved: boolean = sendLoginRequest(this.username, this.password);
+        if (!loginApproved) {
+            this.handleLoginFailed(AuthPopup.INVALID_USERNAME_OR_PASSWORD);
+        } else {
+            window.location.href = '/welcome/';
+        }
     }
     sendSignupToServer() {
         console.log('Sending signup to server');
@@ -97,9 +130,10 @@ export class ConsoleComponent {
         console.log('Confirm password: ', this.confirmPassword);
         let signupApproved = sendSignupToServer(this.email, this.username, this.password);
         if (!signupApproved) {
-            this.emitSignupFailed(AuthPopup.USERNAME_OR_EMAIL_EXISTS);
+            this.handleSignupFailed(AuthPopup.USERNAME_OR_EMAIL_EXISTS);
         }
     }
+
     getConsoleClass() {
         let consoleClass = '';
         switch (this.elementSize) {
@@ -117,10 +151,10 @@ export class ConsoleComponent {
         }
         return consoleClass;
     }
-    isSignup() {
+    isSignup(): boolean {
         return this.consoleType === ConsoleType.SIGNUP;
     }
-    isLogin() {
+    isLogin(): boolean {
         return this.consoleType === ConsoleType.LOGIN;
     }
     protected readonly ConsoleInputType = ConsoleInputType;
