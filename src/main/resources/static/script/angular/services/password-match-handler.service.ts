@@ -10,6 +10,9 @@ export class PasswordMatchHandlerService {
     constructor() {
         console.log('PasswordMatchHandlerService loaded');
     }
+    isMismatchPassword(password: string, confirmPassword: string): boolean {
+        return password !== confirmPassword;
+    }
     emitPasswordMismatch(isMismatch: boolean) {
         this.passwordMismatchSubject.next(isMismatch);
     }
