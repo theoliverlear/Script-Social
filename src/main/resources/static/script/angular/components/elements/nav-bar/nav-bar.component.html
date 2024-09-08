@@ -1,34 +1,35 @@
 <!--===============================-Nav-Bar-===============================-->
 <header>
     <!------------------------Nav-Hamburger-Menu----------------------------->
-    <div>
-        <img id="nav-hamburger-menu"
-             unoptimizedImage
-             undraggable
-             ngSrc="assets/image/icon/hamburger_menu.svg"
-             alt="Hamburger Menu"
-             fill="preserve"
-        />
-    </div>
-    <nav id="nav-bar">
+    <ss-img [imageAsset]="hamburgerIcon"
+            (click)="toggleNavBar()"
+            [childId]="'nav-hamburger-menu'"/>
+    <nav id="nav-bar" [ngClass]="{'hidden': !navBarDisplayed}">
         <!-------------------------Nav-Home---------------------------------->
         <a href="/static" class="link-no-style nav-item">
             <div>
-                <h4 class="nav-text"></h4>
+<!--                <h4 class="nav-text"></h4>-->
+                <typable-text [textToType]="'Home'"
+                              #typableTextComponent
+                              [typeOnLoad]="false"
+                              [applyBeingTypedStyle]="true"
+                              [typeSpeed]="TypeSpeed.NORMAL"
+                              [tagType]="TagType.H4"></typable-text>
             </div>
         </a>
         <!------------------------Nav-Search--------------------------------->
         <div class="nav-item" id="nav-search-div">
-            <div id="search-icon-div">
-                <img id="search-icon-img"
-                     fill="preserve"
-                     unoptimizedImage
-                     undraggable
-                     ngSrc="assets/image/icon/search_icon.png" alt="Search Icon"
-                     th:src="@{/image/icon/search_icon.png}">
-            </div>
+            <ss-img [imageAsset]="searchIcon"
+                    id="search-icon-div"
+                    [childId]="'search-icon-img'"/>
             <div class="nav-text-div" id="search-nav-text-div">
-                <h4 class="nav-text"></h4>
+<!--                <h4 class="nav-text"></h4>-->
+                <typable-text [textToType]="'Search'"
+                              #typableTextComponent
+                              [typeOnLoad]="false"
+                              [applyBeingTypedStyle]="true"
+                              [typeSpeed]="TypeSpeed.NORMAL"
+                              [tagType]="TagType.H4"></typable-text>
             </div>
             <div id="nav-search-input-div">
                 <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
@@ -37,7 +38,13 @@
         <!------------------------Nav-Account-------------------------------->
         <div id="account-and-logout-div" class="nav-item">
             <div id="account-nav-item">
-                <h4 id="account-name-text" class="nav-text"></h4>
+                <typable-text [textToType]="'Account'"
+                              #typableTextComponent
+                              [typeOnLoad]="false"
+                              [applyBeingTypedStyle]="true"
+                              [typeSpeed]="TypeSpeed.NORMAL"
+                              [tagType]="TagType.H4"></typable-text>
+<!--                <h4 id="account-name-text" class="nav-text"></h4>-->
             </div>
             <div id="logout-button">
                 <h5>Logout</h5>
@@ -46,15 +53,12 @@
     </nav>
     <!---------------------------Nav-User-Menu------------------------------->
     <div id="user-nav-menu-div">
-        <div id="user-nav-img-div">
-            <img id="user-nav-img"
-                 fill="preserve"
-                 unoptimizedImage
-                 undraggable
-                 ngSrc="assets/image/icon/default_avatar.svg" alt="User Avatar"
-                 th:src="@{/image/icon/default_avatar.svg}">
-        </div>
+        <ss-img [imageAsset]="defaultAvatar"
+                id="user-nav-img-div"
+                [childId]="'user-nav-img'"/>
+<!--        </div>-->
         <!-- TODO: Add dropdown menu for user settings. This should include a
                    logout option.-->
     </div>
+
 </header>
