@@ -9,7 +9,8 @@
                               [textToType]="'Script Social'"
                               [tagType]="TagType.H1"
                               [applyBeingTypedStyle]="false"
-                              [textSpeed]="150">
+                              [typeOnLoad]="true"
+                              [typeSpeed]="TypeSpeed.NORMAL">
                 </typable-text>
                 <blinking-cursor></blinking-cursor>
                 <span class="title-curly-brace">&#125;</span>
@@ -31,15 +32,11 @@
                         </p>
                     </div>
                 </div>
-                <div id="intro-logo-div">
-                    <img id="intro-logo"
-                         ngSrc="assets/image/logo/script_social_cropped.png"
-                         unoptimizedImage
-                         undraggable
-                         fill="preserve"
-                         alt="Script Social Logo"
-                         th:src="@{/image/logo/script_social_cropped.png}">
-                </div>
+
+                <ss-img id="intro-logo-div"
+                        [childId]="'intro-logo'"
+                        [imageAsset]="scriptSocialLogoCropped"/>
+
             </div>
         </section>
         <!---------------------------Join-Section-------------------------------->
