@@ -56,6 +56,8 @@ import {AutoPopupDirective} from "../directives/auto-popup.directive";
 import {
     EmailValidatorDirective
 } from "../directives/email-validator.directive";
+import {ConsoleService} from "../services/console.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
@@ -83,8 +85,16 @@ import {
         HomeComponent,
         AuthorizeComponent
     ],
-    imports: [BrowserModule, FormsModule, AppRouting, RouterOutlet, NgOptimizedImage],
-    providers: [SignupHandlerService, PasswordMatchHandlerService, EmailValidatorDirective],
+    imports: [BrowserModule,
+              BrowserAnimationsModule,
+              FormsModule,
+              AppRouting,
+              RouterOutlet,
+              NgOptimizedImage],
+    providers: [SignupHandlerService,
+                PasswordMatchHandlerService,
+                EmailValidatorDirective,
+                ConsoleService],
     bootstrap: [AppComponent],
     exports: [AppComponent, NavBarComponent, SsFooterComponent],
     schemas: []
