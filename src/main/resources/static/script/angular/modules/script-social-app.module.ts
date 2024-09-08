@@ -36,12 +36,38 @@ import {
 import {
     BlinkingCursorComponent
 } from "../components/elements/blinking-cursor/blinking-cursor.component";
+import {SignupHandlerService} from "../services/signup-handler.service";
+import {
+    SignupConsoleHandlerDirective
+} from "../directives/signup-console-handler.directive";
+import {
+    AutoSignupConsoleDirective
+} from "../directives/auto-signup-console.directive";
+import {
+    PasswordMatchHandlerService
+} from "../services/password-match-handler.service";
+import {
+    PasswordMatchHandlerDirective
+} from "../directives/password-match-handler.directive";
+import {
+    AutoPasswordMatchDirective
+} from "../directives/auto-password-match.directive";
+import {AutoPopupDirective} from "../directives/auto-popup.directive";
+import {
+    EmailValidatorDirective
+} from "../directives/email-validator.directive";
 
 @NgModule({
     declarations: [
         // Directives
         UnoptimizedImageDirective,
         UndraggableDirective,
+        SignupConsoleHandlerDirective,
+        AutoSignupConsoleDirective,
+        PasswordMatchHandlerDirective,
+        AutoPasswordMatchDirective,
+        AutoPopupDirective,
+        EmailValidatorDirective,
         // Elements
         NavBarComponent,
         ConsoleComponent,
@@ -58,7 +84,7 @@ import {
         AuthorizeComponent
     ],
     imports: [BrowserModule, FormsModule, AppRouting, RouterOutlet, NgOptimizedImage],
-    providers: [],
+    providers: [SignupHandlerService, PasswordMatchHandlerService, EmailValidatorDirective],
     bootstrap: [AppComponent],
     exports: [AppComponent, NavBarComponent, SsFooterComponent],
     schemas: []
