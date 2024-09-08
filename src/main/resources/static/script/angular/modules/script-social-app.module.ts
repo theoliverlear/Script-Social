@@ -58,6 +58,7 @@ import {
 } from "../directives/email-validator.directive";
 import {ConsoleService} from "../services/console.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SsImgComponent} from "../components/elements/ss-img/ss-img.component";
 
 @NgModule({
     declarations: [
@@ -81,6 +82,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         ConsolePopupComponent,
         TypableTextComponent,
         BlinkingCursorComponent,
+        SsImgComponent,
         // Pages
         HomeComponent,
         AuthorizeComponent
