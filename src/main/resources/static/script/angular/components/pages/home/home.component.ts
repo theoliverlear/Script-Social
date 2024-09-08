@@ -1,6 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ConsoleType} from "../../elements/console/models/ConsoleType";
 import {TagType} from "../../elements/models/TagType";
+import {scriptSocialLogoCropped} from "../../assets/imageAssets";
+import {TypeSpeed} from "../../elements/models/TypeSpeed";
 
 @Component({
     selector: 'home',
@@ -22,4 +24,6 @@ export class HomeComponent implements OnInit {
 
     protected readonly ConsoleType = ConsoleType;
     protected readonly TagType = TagType;
+    protected readonly scriptSocialLogoCropped = scriptSocialLogoCropped;
+    protected readonly TypeSpeed = TypeSpeed;
 }
