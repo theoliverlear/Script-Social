@@ -6,6 +6,7 @@ import {
     ViewChild
 } from "@angular/core";
 import {TagType} from "../models/TagType";
+import {TypeSpeed} from "../models/TypeSpeed";
 
 @Component({
     selector: 'typable-text',
@@ -16,8 +17,9 @@ export class TypableTextComponent implements AfterViewInit {
     @Input() tagType: TagType;
     @Input() textToType: string;
     typedTextContent: string = '';
-    @Input() textSpeed: number;
+    @Input() typeSpeed: TypeSpeed = TypeSpeed.NORMAL;
     @Input() applyBeingTypedStyle: boolean = false;
+    @Input() typeOnLoad: boolean = true;
     @ViewChild('typedText', {static: false}) typedText: ElementRef;
     constructor(private renderer: Renderer2) {
         console.log('TypableTextComponent loaded');
@@ -25,7 +27,9 @@ export class TypableTextComponent implements AfterViewInit {
 
     protected readonly TagType = TagType;
     ngAfterViewInit() {
-        this.typeText();
+        if (this.typeOnLoad) {
+            this.typeText();
+        }
     }
     async typeText(): Promise<void> {
         let element = this.typedText.nativeElement;
@@ -38,7 +42,7 @@ export class TypableTextComponent implements AfterViewInit {
                 if (currentCharIndex < this.textToType.length) {
                     element.textContent += this.textToType.charAt(currentCharIndex);
                     currentCharIndex++;
-                    setTimeout(typeChar, this.textSpeed);
+                    setTimeout(typeChar, this.typeSpeed);
                 } else {
                     if (this.applyBeingTypedStyle) {
                         this.renderer.removeClass(element, 'being-typed');
@@ -51,16 +55,17 @@ export class TypableTextComponent implements AfterViewInit {
     }
     //--------------------------------Delete-Text---------------------------------
     async deleteText(): Promise<void> {
+        let typeSpeed = this.typeSpeed;
+        console.log('deleting text');
         let element = this.typedText.nativeElement;
         if (this.applyBeingTypedStyle) {
-            element.addClass('being-typed');
+            element.classList.add('being-typed');
         }
         return new Promise((resolve): void => {
             function deleteChar(): void {
-                let text = element.textContent;
-                if (text.length > 0) {
-                    element.textContent = text.slice(0, -1);
-                    setTimeout(deleteChar, this.speed);
+                if (element.textContent.length > 0) {
+                    element.textContent = element.textContent.slice(0, -1);
+                    setTimeout(deleteChar, typeSpeed);
                 } else {
                     if (this.applyBeingTypedStyle) {
                         element.removeClass('being-typed');
