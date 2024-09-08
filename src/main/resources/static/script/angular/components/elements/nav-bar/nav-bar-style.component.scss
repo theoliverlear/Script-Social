@@ -22,10 +22,12 @@ header {
 
     nav {
         //margin: 0 0 0 $four-percent;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        display: none;
+        margin-right: $four-percent;
+            &.hidden {
+            display: none;
+        }
+        @include flex(center, center, row);
+        //display: none;
         @include size(50%, 100%);
 
         > div, > a {
