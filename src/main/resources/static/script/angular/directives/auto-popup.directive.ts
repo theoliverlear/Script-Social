@@ -44,7 +44,7 @@ export class AutoPopupDirective implements OnInit {
 
         if (this.consoleType === ConsoleType.SIGNUP) {
             this.viewContainer.createEmbeddedView(this.templateRef);
-
+            console.log('ConsoleType: ', this.consoleType);
             if (this.consoleComponent) {
                 console.log('AutoPopupDirective: setting up event listeners on ConsoleComponent');
                 this.consoleComponent.passwordMismatch.subscribe((isMismatch: boolean) => {
