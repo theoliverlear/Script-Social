@@ -25,11 +25,10 @@ export class TypableTextComponent implements AfterViewInit {
 
     protected readonly TagType = TagType;
     ngAfterViewInit() {
-        this.typeText(this.typedText.nativeElement);
+        this.typeText();
     }
-
-    async typeText(
-        element: HTMLElement,): Promise<void> {
+    async typeText(): Promise<void> {
+        let element = this.typedText.nativeElement;
         if (this.applyBeingTypedStyle) {
             this.renderer.addClass(element, 'being-typed');
         }
@@ -48,6 +47,28 @@ export class TypableTextComponent implements AfterViewInit {
                 }
             };
             typeChar();
+        });
+    }
+    //--------------------------------Delete-Text---------------------------------
+    async deleteText(): Promise<void> {
+        let element = this.typedText.nativeElement;
+        if (this.applyBeingTypedStyle) {
+            element.addClass('being-typed');
+        }
+        return new Promise((resolve): void => {
+            function deleteChar(): void {
+                let text = element.textContent;
+                if (text.length > 0) {
+                    element.textContent = text.slice(0, -1);
+                    setTimeout(deleteChar, this.speed);
+                } else {
+                    if (this.applyBeingTypedStyle) {
+                        element.removeClass('being-typed');
+                    }
+                    resolve();
+                }
+            }
+            deleteChar();
         });
     }
 }
