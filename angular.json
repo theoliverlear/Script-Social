@@ -37,7 +37,8 @@
               "src/main/resources/static/script/angular/components/elements/console-input/console-input-style.component.css",
               "src/main/resources/static/script/angular/components/elements/console-popup/console-popup-style.component.css",
               "src/main/resources/static/script/angular/components/elements/typable-text/typable-text-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/blinking-cursor/blinking-cursor-style.component.css"
+              "src/main/resources/static/script/angular/components/elements/blinking-cursor/blinking-cursor-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/ss-img/ss-img-style.component.css"
 
             ],
             "scripts": [],
