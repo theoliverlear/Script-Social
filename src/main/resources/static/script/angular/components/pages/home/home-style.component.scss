@@ -44,6 +44,7 @@ home {
         @include flex(center, center, row);
         width: 100%;
         #intro-logo-div {
+            @extend %console-box-shadow;
             margin: $zero $three-percent;
             @include size($twelve-percent, $twelve-percent);
             @include flex(center, center, row);
