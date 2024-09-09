@@ -59,6 +59,12 @@ import {
 import {ConsoleService} from "../services/console.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SsImgComponent} from "../components/elements/ss-img/ss-img.component";
+import {
+    AuthBubbleComponent
+} from "../components/elements/auth-bubble/auth-bubble.component";
+import {
+    AuthTypeSelectorComponent
+} from "../components/elements/auth-type-selector/auth-type-selector.component";
 
 @NgModule({
     declarations: [
@@ -83,6 +89,8 @@ import {SsImgComponent} from "../components/elements/ss-img/ss-img.component";
         TypableTextComponent,
         BlinkingCursorComponent,
         SsImgComponent,
+        AuthBubbleComponent,
+        AuthTypeSelectorComponent,
         // Pages
         HomeComponent,
         AuthorizeComponent
