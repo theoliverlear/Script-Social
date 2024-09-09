@@ -4,8 +4,6 @@
 @import "../../../../../style/global-placeholders";
 @import "../../../../../style/global-style";
 
-
-
 .console {
     @include flex(center, center, column);
     border-radius: $one-percent;
@@ -15,6 +13,7 @@
     box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
     padding: $one-percent;
     width: auto;
+    margin: $one-percent 0;
 }
 .big-console {
     @extend .console;
