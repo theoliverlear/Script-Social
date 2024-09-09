@@ -1,0 +1,8 @@
+<section class="choose-auth-type-section">
+    <auth-bubble [authType]="AuthType.SIGNUP"
+                 (click)="selectAuthType(AuthType.SIGNUP)"
+                 [class.selected-auth]="isSignupSelected()"></auth-bubble>
+    <auth-bubble [authType]="AuthType.LOGIN"
+                    (click)="selectAuthType(AuthType.LOGIN)"
+                 [class.selected-auth]="isLoginSelected()"></auth-bubble>
+</section>
