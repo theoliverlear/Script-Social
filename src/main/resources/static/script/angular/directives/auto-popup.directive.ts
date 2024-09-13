@@ -15,6 +15,7 @@ import {
 import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
 import {SignupHandlerService} from "../services/signup-handler.service";
 import {EmailValidatorService} from "../services/email-validator.service";
+import {FilledFieldsService} from "../services/filled-fields.service";
 
 @Directive({
     selector: '[autoPopup]'
@@ -32,7 +33,8 @@ export class AutoPopupDirective implements OnInit {
         private templateRef: TemplateRef<any>,
         private passwordMatchHandlerService: PasswordMatchHandlerService,
         private signupHandlerService: SignupHandlerService,
-        private emailValidatorService: EmailValidatorService) {}
+        private emailValidatorService: EmailValidatorService,
+        private filledFieldsService: FilledFieldsService) {}
     get consoleType(): ConsoleType {
         return this._consoleType;
     }
@@ -43,14 +45,14 @@ export class AutoPopupDirective implements OnInit {
         this.viewContainer.clear();
 
         if (this.consoleType === ConsoleType.SIGNUP) {
-            this.viewContainer.createEmbeddedView(this.templateRef);
+
             console.log('ConsoleType: ', this.consoleType);
             if (this.consoleComponent) {
                 console.log('AutoPopupDirective: setting up event listeners on ConsoleComponent');
-                this.consoleComponent.passwordMismatch.subscribe((isMismatch: boolean) => {
-                    console.log(isMismatch);
-                    this.passwordMatchHandlerService.emitPasswordMismatch(isMismatch);
-                    this.consoleComponent.authPopup = isMismatch ? AuthPopup.PASSWORDS_DONT_MATCH : null;
+                this.consoleComponent.passwordMismatch.subscribe((authPopup: AuthPopup) => {
+                    console.log(authPopup);
+                    this.passwordMatchHandlerService.emitPasswordMismatch(authPopup);
+                    this.consoleComponent.authPopup = authPopup;
                 });
                 this.consoleComponent.signupFailed.subscribe((authPopup: AuthPopup) => {
                     this.signupHandlerService.emitSignupFailed(authPopup);
@@ -61,8 +63,12 @@ export class AutoPopupDirective implements OnInit {
             } else {
                 console.error('ConsoleComponent not provided');
             }
-        } else if (this.consoleType === ConsoleType.LOGIN) {
-            this.viewContainer.createEmbeddedView(this.templateRef);
         }
+        this.viewContainer.createEmbeddedView(this.templateRef);
+        this.consoleComponent.filledFields.subscribe((field: string) => {
+            let isFilledField = this.filledFieldsService.isFilledField(field);
+            let authPopup = isFilledField ? null : AuthPopup.FILL_ALL_FIELDS;
+            this.filledFieldsService.emitFilledFields(authPopup);
+        });
     }
 }
