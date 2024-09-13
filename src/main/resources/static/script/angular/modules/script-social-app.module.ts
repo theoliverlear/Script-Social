@@ -65,6 +65,18 @@ import {
 import {
     AuthTypeSelectorComponent
 } from "../components/elements/auth-type-selector/auth-type-selector.component";
+import {ErrorHandlerService} from "../services/error-handler.service";
+import {HashPasswordService} from "../services/hash-password.service";
+import {SignupService} from "../services/signup.service";
+import {
+    HttpClientModule,
+    provideHttpClient,
+    withFetch
+} from "@angular/common/http";
+import {
+    FilledFieldsHandlerDirective
+} from "../directives/filled-fields-handler.directive";
+import {FilledFieldsService} from "../services/filled-fields.service";
 
 @NgModule({
     declarations: [
@@ -77,6 +89,7 @@ import {
         AutoPasswordMatchDirective,
         AutoPopupDirective,
         EmailValidatorDirective,
+        FilledFieldsHandlerDirective,
         // Elements
         NavBarComponent,
         ConsoleComponent,
@@ -100,11 +113,17 @@ import {
               FormsModule,
               AppRouting,
               RouterOutlet,
-              NgOptimizedImage],
+              NgOptimizedImage,
+              HttpClientModule],
     providers: [SignupHandlerService,
                 PasswordMatchHandlerService,
                 EmailValidatorDirective,
-                ConsoleService],
+                ConsoleService,
+                ErrorHandlerService,
+                HashPasswordService,
+                SignupService,
+                provideHttpClient(withFetch()),
+                FilledFieldsService],
     bootstrap: [AppComponent],
     exports: [AppComponent, NavBarComponent, SsFooterComponent],
     schemas: []
