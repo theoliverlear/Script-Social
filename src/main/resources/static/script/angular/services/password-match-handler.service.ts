@@ -1,19 +1,20 @@
 import {Injectable} from "@angular/core";
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
+import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
 
 @Injectable({
     providedIn: 'root'
 })
 export class PasswordMatchHandlerService {
-    private passwordMismatchSubject: Subject<boolean> = new Subject();
-    passwordMismatch$ = this.passwordMismatchSubject.asObservable();
+    private passwordMismatchSubject: Subject<AuthPopup> = new Subject();
+    passwordMismatch$: Observable<AuthPopup> = this.passwordMismatchSubject.asObservable();
     constructor() {
         console.log('PasswordMatchHandlerService loaded');
     }
     isMismatchPassword(password: string, confirmPassword: string): boolean {
         return password !== confirmPassword;
     }
-    emitPasswordMismatch(isMismatch: boolean) {
-        this.passwordMismatchSubject.next(isMismatch);
+    emitPasswordMismatch(authPopup: AuthPopup) {
+        this.passwordMismatchSubject.next(authPopup);
     }
 }
