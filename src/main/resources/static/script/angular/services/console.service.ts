@@ -3,6 +3,8 @@ import {PasswordMatchHandlerService} from "./password-match-handler.service";
 import {SignupHandlerService} from "./signup-handler.service";
 import {EmailValidatorService} from "./email-validator.service";
 import {ConsoleType} from "../components/elements/console/models/ConsoleType";
+import {SignupService} from "./signup.service";
+import {Observable} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -10,18 +12,20 @@ import {ConsoleType} from "../components/elements/console/models/ConsoleType";
 export class ConsoleService {
     constructor(private _passwordMatchHandlerService: PasswordMatchHandlerService,
                 private _signupHandlerService: SignupHandlerService,
-                private _emailValidatorService: EmailValidatorService) {
+                private _emailValidatorService: EmailValidatorService,
+                private _signupService: SignupService) {
         console.log('ConsoleService loaded');
     }
-    get passwordMatchHandlerService(): PasswordMatchHandlerService {
-        return this._passwordMatchHandlerService;
+    isMismatchPassword(password: string, confirmPassword: string): boolean {
+        return this.passwordMatchHandlerService.isMismatchPassword(password, confirmPassword);
     }
-    get signupHandlerService(): SignupHandlerService {
-        return this._signupHandlerService;
+    isValidEmail(email: string): boolean {
+        return this.emailValidatorService.isValidEmail(email);
     }
-    get emailValidatorService(): EmailValidatorService {
-        return this._emailValidatorService;
+    sendSignupToServer(username: string, email: string, unhashedPassword: string): Observable<boolean> {
+        return this._signupService.sendSignupToServer(username, email, unhashedPassword);
     }
+
     shouldValidateEmail(consoleType: ConsoleType) {
         return consoleType === ConsoleType.SIGNUP;
     }
@@ -33,5 +37,14 @@ export class ConsoleService {
     }
     shouldHandleLoginFailed(consoleType: ConsoleType) {
         return consoleType === ConsoleType.LOGIN;
+    }
+    get passwordMatchHandlerService(): PasswordMatchHandlerService {
+        return this._passwordMatchHandlerService;
+    }
+    get signupHandlerService(): SignupHandlerService {
+        return this._signupHandlerService;
+    }
+    get emailValidatorService(): EmailValidatorService {
+        return this._emailValidatorService;
     }
 }
