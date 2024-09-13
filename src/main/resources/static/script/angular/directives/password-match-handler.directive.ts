@@ -5,6 +5,7 @@ import {
 import {
     PasswordMatchHandlerService
 } from "../services/password-match-handler.service";
+import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
 
 @Directive({
     selector: '[passwordMatchHandler]'
@@ -18,8 +19,9 @@ export class PasswordMatchHandlerDirective implements OnInit {
         console.log('PasswordMatchHandlerDirective: ngOnInit');
         if (this.consoleComponent) {
             console.log('PasswordMatchHandlerDirective: setting up event listeners on ConsoleComponent');
-            this.consoleComponent.passwordMismatch.subscribe((isMismatch: boolean): void => {
-                this.passwordMatchHandlerService.emitPasswordMismatch(isMismatch);
+            this.consoleComponent.passwordMismatch.subscribe((authPopup: AuthPopup): void => {
+                this.passwordMatchHandlerService.emitPasswordMismatch(authPopup);
+                this.consoleComponent.authPopup = authPopup;
             });
         }
     }
