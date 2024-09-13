@@ -5,5 +5,6 @@ export enum AuthPopup {
     USERNAME_OR_EMAIL_EXISTS = 'Username or email already exists',
     FILL_ALL_FIELDS = 'Please fill all fields.',
     INVALID_USERNAME_OR_PASSWORD = 'Invalid username or password.',
+    SERVER_ERROR = 'Server error. Try refreshing the page.',
     NONE = '',
 }
