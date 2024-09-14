@@ -21,3 +21,7 @@ export const defaultAvatar: ImageAsset = {
     src: iconImageAssetPath + 'default_avatar.svg',
     alt: 'User Avatar'
 }
+export const confirmIcon: ImageAsset = {
+    src: iconImageAssetPath + 'confirm_icon.svg',
+    alt: 'Confirm Icon'
+}
