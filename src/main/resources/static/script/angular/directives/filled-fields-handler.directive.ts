@@ -1,4 +1,4 @@
-import {Directive, Input, OnInit} from "@angular/core";
+import {Directive, Inject, Input, OnInit} from "@angular/core";
 import {
     ConsoleComponent
 } from "../components/elements/console/console.component";
@@ -9,8 +9,8 @@ import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
     selector: '[filledFieldsHandler]'
 })
 export class FilledFieldsHandlerDirective implements OnInit{
-    @Input('filledFieldsHandler') consoleComponent: ConsoleComponent;
-    constructor(private filledFieldsService: FilledFieldsService) {
+    constructor(private filledFieldsService: FilledFieldsService,
+                @Inject(ConsoleComponent) private consoleComponent: ConsoleComponent) {
         console.log('FilledFieldsHandlerDirective loaded');
     }
     ngOnInit() {
