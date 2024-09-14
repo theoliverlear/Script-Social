@@ -3,6 +3,7 @@ import {ConsoleType} from "../../elements/console/models/ConsoleType";
 import {TagType} from "../../elements/models/TagType";
 import {scriptSocialLogoCropped} from "../../assets/imageAssets";
 import {TypeSpeed} from "../../elements/models/TypeSpeed";
+import {ElementSize} from "../../elements/models/ElementSize";
 
 @Component({
     selector: 'home',
@@ -26,4 +27,5 @@ export class HomeComponent implements OnInit {
     protected readonly TagType = TagType;
     protected readonly scriptSocialLogoCropped = scriptSocialLogoCropped;
     protected readonly TypeSpeed = TypeSpeed;
+    protected readonly ElementSize = ElementSize;
 }
