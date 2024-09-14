@@ -9,6 +9,7 @@ import {
 import {ConsoleInputType} from "./models/ConsoleInputType";
 import {ConsoleInputField} from "./models/ConsoleInputField";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {confirmIcon} from "../../assets/imageAssets";
 
 @Component({
     selector: 'console-input',
@@ -26,15 +27,22 @@ export class ConsoleInputComponent implements AfterViewInit, ControlValueAccesso
     @Input() value: string = '';
     @Input() maxValue: number = 200;
     @Output() valueChange: EventEmitter<string> = new EventEmitter();
+    @Output() isSelectedChange: EventEmitter<boolean> = new EventEmitter();
+    isSelected: boolean = false;
     private inputElement: HTMLInputElement | null = null;
     constructor(private renderer: Renderer2, private element: ElementRef) {
         console.log('ConsoleInputComponent loaded');
     }
-
+    toggleSelected(): void {
+        this.isSelected = !this.isSelected
+        this.isSelectedChange.emit(this.isSelected);
+    }
     writeValue(value: any): void {
         this.value = value;
     }
-
+    isCheckbox(): boolean {
+        return this.type === ConsoleInputType.CHECKBOX;
+    }
     registerOnChange(changeCallback: any): void {
         this.valueChange.subscribe(changeCallback);
     }
@@ -78,4 +86,5 @@ export class ConsoleInputComponent implements AfterViewInit, ControlValueAccesso
         ].includes(this.type);
     }
 
+    protected readonly confirmIcon = confirmIcon;
 }
