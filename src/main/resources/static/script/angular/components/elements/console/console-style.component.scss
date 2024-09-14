@@ -15,7 +15,19 @@
     width: auto;
     margin: $one-percent 0;
 }
-.big-console {
+.very-large-console {
+    @extend .console;
+    width: $fifty-percent;
+}
+.large-console {
     @extend .console;
     width: $thirty-percent;
+}
+.medium-console {
+    @extend .console;
+    width: $twenty-percent;
+}
+.small-console {
+    @extend .console;
+    width: $fifteen-percent;
 }
