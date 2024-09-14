@@ -4,4 +4,5 @@ export enum ConsoleInputType {
     NUMBER = 'number',
     EMAIL = 'email',
     DATE = 'date',
+    CHECKBOX = 'checkbox',
 }
