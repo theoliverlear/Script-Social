@@ -23,4 +23,11 @@ console-input {
             }
         }
     }
+    ss-img {
+        @include square-size($two-percent);
+        &.selected {
+            border: $thin-border solid $pure-orange;
+            border-radius: $one-percent;
+        }
+    }
 }
