@@ -60,6 +60,10 @@ export class AutoPopupDirective implements OnInit {
                 this.consoleComponent.validEmail.subscribe((email: string) => {
                     this.emailValidatorService.emitValidEmail(this.emailValidatorService.isValidEmail(email));
                 });
+                this.consoleComponent.termsAgreed.subscribe((termsAgreed: boolean) => {
+                    let authPopup = termsAgreed ? null : AuthPopup.AGREE_TERMS;
+                    this.signupHandlerService.emitSignupFailed(authPopup);
+                });
             } else {
                 console.error('ConsoleComponent not provided');
             }
