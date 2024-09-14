@@ -77,6 +77,9 @@ import {
     FilledFieldsHandlerDirective
 } from "../directives/filled-fields-handler.directive";
 import {FilledFieldsService} from "../services/filled-fields.service";
+import {AgreeTermsDirective} from "../directives/agree-terms.directive";
+import {EmailValidatorService} from "../services/email-validator.service";
+import {AgreeTermsService} from "../services/agree-terms.service";
 
 @NgModule({
     declarations: [
@@ -90,6 +93,7 @@ import {FilledFieldsService} from "../services/filled-fields.service";
         AutoPopupDirective,
         EmailValidatorDirective,
         FilledFieldsHandlerDirective,
+        AgreeTermsDirective,
         // Elements
         NavBarComponent,
         ConsoleComponent,
@@ -117,11 +121,12 @@ import {FilledFieldsService} from "../services/filled-fields.service";
               HttpClientModule],
     providers: [SignupHandlerService,
                 PasswordMatchHandlerService,
-                EmailValidatorDirective,
+                EmailValidatorService,
                 ConsoleService,
                 ErrorHandlerService,
                 HashPasswordService,
                 SignupService,
+                AgreeTermsService,
                 provideHttpClient(withFetch()),
                 FilledFieldsService],
     bootstrap: [AppComponent],
