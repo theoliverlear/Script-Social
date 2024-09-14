@@ -6,15 +6,23 @@ import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
     providedIn: 'root'
 })
 export class FilledFieldsService {
-    private filledFieldsService: Subject<AuthPopup> = new Subject();
-    fieldsFilled$: Observable<AuthPopup> = this.filledFieldsService.asObservable();
+    private filledFieldsSubject: Subject<AuthPopup> = new Subject();
+    fieldsFilled$: Observable<AuthPopup> = this.filledFieldsSubject.asObservable();
     constructor() {
         console.log('FilledFieldsService loaded');
+    }
+    isFilledFields(fields: string[]): boolean {
+        for (let field of fields) {
+            if (!this.isFilledField(field)) {
+                return false;
+            }
+        }
+        return true;
     }
     isFilledField(field: string): boolean {
         return field.length > 0;
     }
     emitFilledFields(authPopup: AuthPopup) {
-        this.filledFieldsService.next(authPopup);
+        this.filledFieldsSubject.next(authPopup);
     }
 }
