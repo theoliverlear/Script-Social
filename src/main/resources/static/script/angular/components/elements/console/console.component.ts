@@ -28,15 +28,23 @@ export class ConsoleComponent {
     @Output() passwordMismatch: EventEmitter<AuthPopup> = new EventEmitter();
     @Output() validEmail: EventEmitter<boolean> = new EventEmitter();
     @Output() filledFields: EventEmitter<AuthPopup> = new EventEmitter();
+    @Output() termsAgreed: EventEmitter<AuthPopup> = new EventEmitter();
     authPopup: AuthPopup | null;
     private _email: string = '';
     private _username: string = '';
     private _password: string = '';
     private _confirmPassword: string = '';
+    private _agreeTerms: boolean = false;
     constructor(private consoleService: ConsoleService) {
         console.log('ConsoleComponent loaded');
     }
-
+    get agreeTerms(): boolean {
+        return this._agreeTerms;
+    }
+    set agreeTerms(value: boolean) {
+        console.log('Setting agree terms: ', value);
+        this._agreeTerms = value;
+    }
     get password(): string {
         return this._password;
     }
@@ -64,6 +72,36 @@ export class ConsoleComponent {
     set username(value: string) {
         this._username = value;
         // TODO: Add handling for username input
+    }
+    handleTermsSelectedChange(termsAgreed: boolean) {
+        console.log(`Registering change of termsAgreed from ${this.agreeTerms} to ${termsAgreed}`);
+        this.agreeTerms = termsAgreed;
+        this.handleTermsAgreed();
+    }
+    handleTermsAgreed() {
+        console.log('Handling terms agreed');
+        let shouldHandleAgreeTerms: boolean = this.consoleService.shouldHandleAgreeTerms(this.consoleType);
+        console.log('Should handle agree terms: ', shouldHandleAgreeTerms);
+        if (shouldHandleAgreeTerms) {
+            console.log('Terms agreed: ', this.agreeTerms);
+            this.emitAgreeTerms(this.agreeTerms);
+        }
+    }
+    emitAgreeTerms(termsAgreed: boolean) {
+        let authPopup = termsAgreed ? null : AuthPopup.AGREE_TERMS;
+        this.authPopup = authPopup;
+        this.termsAgreed.emit(authPopup);
+    }
+    handleFilledFields() {
+        if (this.consoleService.shouldHandleFilledFields(this.consoleType)) {
+            let fieldsFilled: boolean = this.consoleService.isFilledFields([this.email, this.username, this.password, this.confirmPassword]);
+            this.emitFilledFields(fieldsFilled);
+        }
+    }
+    emitFilledFields(isFilledFields: boolean) {
+        let authPopup = isFilledFields ? null : AuthPopup.FILL_ALL_FIELDS;
+        this.authPopup = authPopup;
+        this.filledFields.emit(authPopup);
     }
     handleEmailInput() {
         let shouldHandleEmailInput = this.consoleService.shouldValidateEmail(this.consoleType);
@@ -99,8 +137,29 @@ export class ConsoleComponent {
     emitSignupFailed(authPopup: AuthPopup) {
         this.signupFailed.emit(authPopup);
     }
+    authPrerequisitesSucceed() {
+        let fieldsFilled = this.consoleService.isFilledFields([this.email, this.username, this.password, this.confirmPassword]);
+        console.log('Fields filled: ', fieldsFilled);
+        console.log('Agree terms: ', this.agreeTerms);
+        return fieldsFilled && this.agreeTerms;
+    }
+    handleAuthPrerequisites(): void {
+        let filledFields = this.consoleService.isFilledFields([this.email, this.username, this.password, this.confirmPassword]);
+        if (!filledFields) {
+            this.handleFilledFields();
+            return;
+        }
+        if (this.isSignup() && !this.agreeTerms) {
+            this.handleTermsAgreed();
+            return;
+        }
+    }
     sendAuthToServer() {
-        if (this.isSignup()) {
+        let prerequisitesFailed = !this.authPrerequisitesSucceed();
+        console.log('Prerequisites failed: ', prerequisitesFailed);
+        if (prerequisitesFailed) {
+            this.handleAuthPrerequisites();
+        } else if (this.isSignup()) {
             this.sendSignupToServer();
         } else if (this.isLogin()) {
             this.sendLoginToServer();
@@ -157,6 +216,9 @@ export class ConsoleComponent {
                 break;
             case ElementSize.LARGE:
                 consoleClass = 'large-console';
+                break;
+            case ElementSize.VERY_LARGE:
+                consoleClass = 'very-large-console';
                 break;
             default:
                 consoleClass = 'console';
