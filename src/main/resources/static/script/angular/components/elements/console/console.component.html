@@ -1,4 +1,4 @@
-<div class="{{ getConsoleClass() }}">
+<div [ngClass]="getConsoleClass()">
     <console-input [(ngModel)]="username"
                    *ngIf="isSignup()"
                    [title]="ConsoleInputField.USERNAME"
@@ -16,6 +16,12 @@
                    (ngModelChange)="handlePasswordMismatch()"
                    [title]="ConsoleInputField.CONFIRM_PASSWORD"
                    [type]="ConsoleInputType.PASSWORD"></console-input>
+    <console-input [(ngModel)]="termsAgreed"
+                   *ngIf="isSignup()"
+                   (ngModelChange)="handleTermsAgreed()"
+                   [title]="ConsoleInputField.AGREE_TERMS"
+                   (isSelectedChange)="handleTermsSelectedChange($event)"
+                   [type]="ConsoleInputType.CHECKBOX"></console-input>
     <ss-button [text]="ButtonText.CONFIRM"
                [size]="ElementSize.SMALL"
                [buttonPosition]="ButtonPosition.END"
