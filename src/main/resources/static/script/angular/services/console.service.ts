@@ -5,6 +5,8 @@ import {EmailValidatorService} from "./email-validator.service";
 import {ConsoleType} from "../components/elements/console/models/ConsoleType";
 import {SignupService} from "./signup.service";
 import {Observable} from "rxjs";
+import {FilledFieldsService} from "./filled-fields.service";
+import {AgreeTermsService} from "./agree-terms.service";
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +15,9 @@ export class ConsoleService {
     constructor(private _passwordMatchHandlerService: PasswordMatchHandlerService,
                 private _signupHandlerService: SignupHandlerService,
                 private _emailValidatorService: EmailValidatorService,
-                private _signupService: SignupService) {
+                private _signupService: SignupService,
+                private _filledFieldsService: FilledFieldsService,
+                private _agreeTermsService: AgreeTermsService) {
         console.log('ConsoleService loaded');
     }
     isMismatchPassword(password: string, confirmPassword: string): boolean {
@@ -22,10 +26,18 @@ export class ConsoleService {
     isValidEmail(email: string): boolean {
         return this.emailValidatorService.isValidEmail(email);
     }
+    isFilledFields(fields: string[]) {
+        return this._filledFieldsService.isFilledFields(fields);
+    }
     sendSignupToServer(username: string, email: string, unhashedPassword: string): Observable<boolean> {
         return this._signupService.sendSignupToServer(username, email, unhashedPassword);
     }
-
+    shouldHandleAgreeTerms(consoleType: ConsoleType) {
+        return consoleType === ConsoleType.SIGNUP;
+    }
+    shouldHandleFilledFields(consoleType: ConsoleType) {
+        return consoleType === ConsoleType.SIGNUP || consoleType === ConsoleType.LOGIN;
+    }
     shouldValidateEmail(consoleType: ConsoleType) {
         return consoleType === ConsoleType.SIGNUP;
     }
