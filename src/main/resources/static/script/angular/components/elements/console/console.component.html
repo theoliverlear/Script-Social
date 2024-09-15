@@ -1,9 +1,9 @@
 <div [ngClass]="getConsoleClass()">
     <console-input [(ngModel)]="username"
-                   *ngIf="isSignup()"
                    [title]="ConsoleInputField.USERNAME"
                    [type]="ConsoleInputType.TEXT"></console-input>
     <console-input [(ngModel)]="email"
+                   *ngIf="isSignup()"
                    (ngModelChange)="handleEmailInput()"
                    [title]="ConsoleInputField.EMAIL"
                    [type]="ConsoleInputType.EMAIL"></console-input>
