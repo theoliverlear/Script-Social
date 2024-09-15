@@ -38,6 +38,28 @@ export class ConsoleComponent {
     constructor(private consoleService: ConsoleService) {
         console.log('ConsoleComponent loaded');
     }
+    clear(): void {
+        this.clearInputs();
+        this.clearEmissions();
+        this.clearAuthPopup();
+    }
+    clearInputs(): void {
+        this._email = '';
+        this._username = '';
+        this._password = '';
+        this._confirmPassword = '';
+        this._agreeTerms = false;
+    }
+    clearEmissions(): void {
+        this.signupFailed.emit(null);
+        this.passwordMismatch.emit(null);
+        this.validEmail.emit(null);
+        this.filledFields.emit(null);
+        this.termsAgreed.emit(null);
+    }
+    clearAuthPopup(): void {
+        this.authPopup = null;
+    }
     get agreeTerms(): boolean {
         return this._agreeTerms;
     }
@@ -73,12 +95,12 @@ export class ConsoleComponent {
         this._username = value;
         // TODO: Add handling for username input
     }
-    handleTermsSelectedChange(termsAgreed: boolean) {
+    handleTermsSelectedChange(termsAgreed: boolean): void {
         console.log(`Registering change of termsAgreed from ${this.agreeTerms} to ${termsAgreed}`);
         this.agreeTerms = termsAgreed;
         this.handleTermsAgreed();
     }
-    handleTermsAgreed() {
+    handleTermsAgreed(): void {
         console.log('Handling terms agreed');
         let shouldHandleAgreeTerms: boolean = this.consoleService.shouldHandleAgreeTerms(this.consoleType);
         console.log('Should handle agree terms: ', shouldHandleAgreeTerms);
@@ -87,30 +109,30 @@ export class ConsoleComponent {
             this.emitAgreeTerms(this.agreeTerms);
         }
     }
-    emitAgreeTerms(termsAgreed: boolean) {
-        let authPopup = termsAgreed ? null : AuthPopup.AGREE_TERMS;
+    emitAgreeTerms(termsAgreed: boolean): void {
+        let authPopup: AuthPopup = termsAgreed ? null : AuthPopup.AGREE_TERMS;
         this.authPopup = authPopup;
         this.termsAgreed.emit(authPopup);
     }
-    handleFilledFields() {
+    handleFilledFields(): void {
         if (this.consoleService.shouldHandleFilledFields(this.consoleType)) {
             let fieldsFilled: boolean = this.consoleService.isFilledFields([this.email, this.username, this.password, this.confirmPassword]);
             this.emitFilledFields(fieldsFilled);
         }
     }
-    emitFilledFields(isFilledFields: boolean) {
-        let authPopup = isFilledFields ? null : AuthPopup.FILL_ALL_FIELDS;
+    emitFilledFields(isFilledFields: boolean): void {
+        let authPopup: AuthPopup = isFilledFields ? null : AuthPopup.FILL_ALL_FIELDS;
         this.authPopup = authPopup;
         this.filledFields.emit(authPopup);
     }
-    handleEmailInput() {
-        let shouldHandleEmailInput = this.consoleService.shouldValidateEmail(this.consoleType);
+    handleEmailInput(): void {
+        let shouldHandleEmailInput: boolean = this.consoleService.shouldValidateEmail(this.consoleType);
         console.log('Handling email input');
         if (shouldHandleEmailInput) {
             this.emitValidEmail(this.consoleService.isValidEmail(this.email));
         }
     }
-    emitValidEmail(isValid: boolean) {
+    emitValidEmail(isValid: boolean): void {
         console.log('Emitting valid email: ', isValid);
         this.authPopup = isValid ? null : AuthPopup.INVALID_EMAIL;
         this.validEmail.emit(isValid);
@@ -120,33 +142,48 @@ export class ConsoleComponent {
         this.authPopup = authPopup;
         this.passwordMismatch.emit(authPopup);
     }
-    handlePasswordMismatch() {
-        let shouldHandlePasswordMismatch = this.consoleService.shouldHandlePasswordMismatch(this.consoleType);
+    handlePasswordMismatch(): void {
+        let shouldHandlePasswordMismatch: boolean = this.consoleService.shouldHandlePasswordMismatch(this.consoleType);
         if (shouldHandlePasswordMismatch) {
             console.log('Handling password mismatch');
             this.emitPasswordMismatch(this.consoleService.isMismatchPassword(this.password, this.confirmPassword));
         }
     }
-    handleSignupFailed(authPopup: AuthPopup) {
-        let shouldHandleSignupFailed = this.consoleService.shouldHandleSignupFailed(this.consoleType);
+    handleSignupFailed(authPopup: AuthPopup): void {
+        let shouldHandleSignupFailed: boolean = this.consoleService.shouldHandleSignupFailed(this.consoleType);
         if (shouldHandleSignupFailed) {
             this.authPopup = authPopup;
             this.emitSignupFailed(authPopup);
         }
     }
-    emitSignupFailed(authPopup: AuthPopup) {
+    emitSignupFailed(authPopup: AuthPopup): void {
         this.signupFailed.emit(authPopup);
     }
-    authPrerequisitesSucceed() {
-        let fieldsFilled = this.consoleService.isFilledFields([this.email, this.username, this.password, this.confirmPassword]);
-        console.log('Fields filled: ', fieldsFilled);
-        console.log('Agree terms: ', this.agreeTerms);
-        return fieldsFilled && this.agreeTerms;
+    authPrerequisitesSucceed(): boolean {
+        if (this.isSignup()) {
+            return this.signupPrerequisitesSucceed();
+        } else if (this.isLogin()) {
+            return this.loginPrerequisitesSucceed();
+        }
+        return false;
     }
-    handleAuthPrerequisites(): void {
-        let filledFields = this.consoleService.isFilledFields([this.email, this.username, this.password, this.confirmPassword]);
+    signupPrerequisitesSucceed(): boolean {
+        let fieldsFilled: boolean = this.consoleService.isFilledFields([this.email, this.username, this.password, this.confirmPassword]);
+        let validEmail: boolean = this.consoleService.isValidEmail(this.email);
+        return fieldsFilled && validEmail && this.agreeTerms;
+    }
+    loginPrerequisitesSucceed(): boolean {
+        return this.consoleService.isFilledFields([this.username, this.password]);
+    }
+    handleSignupPrerequisites(): void {
+        let filledFields: boolean = this.consoleService.isFilledFields([this.email, this.username, this.password, this.confirmPassword]);
         if (!filledFields) {
             this.handleFilledFields();
+            return;
+        }
+        let validEmail = this.consoleService.isValidEmail(this.email);
+        if (!validEmail) {
+            this.handleEmailInput();
             return;
         }
         if (this.isSignup() && !this.agreeTerms) {
@@ -154,7 +191,21 @@ export class ConsoleComponent {
             return;
         }
     }
-    sendAuthToServer() {
+    handleLoginPrerequisites(): void {
+        let filledFields: boolean = this.consoleService.isFilledFields([this.username, this.password]);
+        if (!filledFields) {
+            this.handleFilledFields();
+            return;
+        }
+    }
+    handleAuthPrerequisites(): void {
+        if (this.isSignup()) {
+            this.handleSignupPrerequisites();
+        } else if (this.isLogin()) {
+            this.handleLoginPrerequisites();
+        }
+    }
+    sendAuthToServer(): void {
         let prerequisitesFailed = !this.authPrerequisitesSucceed();
         console.log('Prerequisites failed: ', prerequisitesFailed);
         if (prerequisitesFailed) {
