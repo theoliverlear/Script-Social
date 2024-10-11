@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {AuthPopup} from "../models/auth/AuthPopup";
+import {AuthPopup} from "../../models/auth/AuthPopup";
 
 @Component({
     selector: 'console-popup',
