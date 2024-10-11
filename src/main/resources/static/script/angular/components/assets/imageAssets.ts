@@ -25,3 +25,15 @@ export const confirmIcon: ImageAsset = {
     src: iconImageAssetPath + 'confirm_icon.svg',
     alt: 'Confirm Icon'
 }
+export const whiteTabIcon: ImageAsset = {
+    src: iconImageAssetPath + 'white_tab_icon.svg',
+    alt: 'White Tab Icon'
+}
+export const whiteNotificationBellIcon: ImageAsset = {
+    src: iconImageAssetPath + 'white_notification_bell_icon.svg',
+    alt: 'White Notification Bell Icon'
+}
+export const whiteMailIcon: ImageAsset = {
+    src: iconImageAssetPath + 'white_mail_icon.svg',
+    alt: 'White Mail Icon'
+}
