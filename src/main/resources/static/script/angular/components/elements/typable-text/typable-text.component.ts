@@ -5,8 +5,8 @@ import {
     Input, Renderer2,
     ViewChild
 } from "@angular/core";
-import {TagType} from "../models/TagType";
-import {TypeSpeed} from "../models/TypeSpeed";
+import {TagType} from "../../models/TagType";
+import {TypeSpeed} from "../../models/TypeSpeed";
 
 @Component({
     selector: 'typable-text',
