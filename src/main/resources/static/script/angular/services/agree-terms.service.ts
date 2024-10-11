@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs";
-import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
+import {AuthPopup} from "../components/models/auth/AuthPopup";
 
 @Injectable({
     providedIn: 'root'
