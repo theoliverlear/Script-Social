@@ -3,7 +3,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import { AppComponent } from '../components/app/app.component';
 import {NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import { AppRouting } from './app-routing.module';
+import { AppRouting } from './routing/app-routing.module';
 import {RouterOutlet} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
