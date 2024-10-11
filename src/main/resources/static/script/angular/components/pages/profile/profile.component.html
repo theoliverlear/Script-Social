@@ -1,0 +1,40 @@
+<side-nav-bar></side-nav-bar>
+<!--============================-Main-Content-=============================-->
+<main>
+    <!-- TODO: If a user is private, show a message, hide the appropriate
+               content, and heavily blur their profile picture. -->
+    <!--------------------------Banner-Section------------------------------->
+    <section id="banner-section">
+
+    </section>
+    <!-------------------------Headline-Section------------------------------>
+    <section id="headline-section">
+        <div id="profile-picture-with-name">
+            <ss-img id="profile-picture-div" [imageAsset]="defaultAvatar" [childId]="'profile-picture-img'"></ss-img>
+            <div id="profile-name-and-bio-div">
+                <div id="profile-name">
+                    <div id="profile-first-name" class="profile-name">
+                        <h5 class="profile-name-headline-text" id="first-name-headline-text">Oliver</h5>
+                    </div>
+                    <div id="profile-last-name" class="profile-name">
+                        <h5 class="profile-name-headline-text" id="last-name-headline-text">Sigwarth</h5>
+                    </div>
+                </div>
+                <div id="profile-bio">
+                    <p id="profile-bio-text">I'm a software developer who loves to code!</p>
+                </div>
+            </div>
+        </div>
+        <!---------------------Headline-Buttons------------------------------>
+        <profile-headline-buttons></profile-headline-buttons>
+    </section>
+    <!-------------------------User-Tabs-Section----------------------------->
+    <section id="user-tabs-section">
+        <!--        <div>-->
+        <!--            <h4>Projects</h4>-->
+        <!--        </div>-->
+        <div>
+
+        </div>
+    </section>
+</main>
