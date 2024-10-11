@@ -3,7 +3,7 @@ import {
     ConsoleComponent
 } from "../components/elements/console/console.component";
 import {FilledFieldsService} from "../services/filled-fields.service";
-import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
+import {AuthPopup} from "../components/models/auth/AuthPopup";
 
 @Directive({
     selector: '[filledFieldsHandler]'
