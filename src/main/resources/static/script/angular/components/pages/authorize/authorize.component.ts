@@ -1,6 +1,6 @@
 import {Component, ViewChild} from "@angular/core";
 import {ConsoleType} from "../../elements/console/models/ConsoleType";
-import {AuthType} from "../../elements/models/auth/AuthType";
+import {AuthType} from "../../models/auth/AuthType";
 import {ConsoleComponent} from "../../elements/console/console.component";
 
 @Component({
