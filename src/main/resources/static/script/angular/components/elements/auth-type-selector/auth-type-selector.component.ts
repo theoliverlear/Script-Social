@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from "@angular/core";
-import {AuthType} from "../models/auth/AuthType";
+import {AuthType} from "../../models/auth/AuthType";
 
 @Component({
     selector: 'auth-type-selector',
