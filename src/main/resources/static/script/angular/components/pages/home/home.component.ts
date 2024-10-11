@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {ConsoleType} from "../../elements/console/models/ConsoleType";
-import {TagType} from "../../elements/models/TagType";
+import {TagType} from "../../models/TagType";
 import {scriptSocialLogoCropped} from "../../assets/imageAssets";
-import {TypeSpeed} from "../../elements/models/TypeSpeed";
-import {ElementSize} from "../../elements/models/ElementSize";
+import {TypeSpeed} from "../../models/TypeSpeed";
+import {ElementSize} from "../../models/ElementSize";
 
 @Component({
     selector: 'home',
