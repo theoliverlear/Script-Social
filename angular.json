@@ -40,7 +40,12 @@
               "src/main/resources/static/script/angular/components/elements/blinking-cursor/blinking-cursor-style.component.css",
               "src/main/resources/static/script/angular/components/elements/ss-img/ss-img-style.component.css",
               "src/main/resources/static/script/angular/components/elements/auth-bubble/auth-bubble-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/auth-type-selector/auth-type-selector-style.component.css"
+              "src/main/resources/static/script/angular/components/elements/auth-type-selector/auth-type-selector-style.component.css",
+              "src/main/resources/static/script/angular/components/pages/profile/profile-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/headline-button/headline-button-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/profile-headline-buttons/profile-headline-buttons-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/side-nav-bar/side-nav-bar-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/side-nav-bar-button/side-nav-bar-button-style.component.css"
             ],
             "scripts": [],
             "fileReplacements": []
