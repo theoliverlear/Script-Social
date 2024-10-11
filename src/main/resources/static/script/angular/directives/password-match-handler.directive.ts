@@ -5,7 +5,7 @@ import {
 import {
     PasswordMatchHandlerService
 } from "../services/password-match-handler.service";
-import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
+import {AuthPopup} from "../components/models/auth/AuthPopup";
 
 @Directive({
     selector: '[passwordMatchHandler]'
