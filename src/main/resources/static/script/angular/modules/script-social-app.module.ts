@@ -95,6 +95,15 @@ import {
 import {
     SideNavBarButtonComponent
 } from "../components/elements/side-nav-bar-button/side-nav-bar-button.component";
+import {
+    ProfileBioComponent
+} from "../components/elements/profile-bio/profile-bio.component";
+import {
+    ProfileNameComponent
+} from "../components/elements/profile-name/profile-name.component";
+import {
+    GeneralPostComponent
+} from "../components/elements/general-post/general-post.component";
 
 @NgModule({
     declarations: [
@@ -127,6 +136,9 @@ import {
         AuthTypeSelectorComponent,
         HeadlineButtonComponent,
         ProfileHeadlineButtonsComponent,
+        ProfileBioComponent,
+        ProfileNameComponent,
+        GeneralPostComponent,
         // Pages
         HomeComponent,
         AuthorizeComponent,
