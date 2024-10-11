@@ -4,7 +4,7 @@ import {
 } from "../components/elements/console/console.component";
 import {SignupHandlerService} from "../services/signup-handler.service";
 import {ConsoleType} from "../components/elements/console/models/ConsoleType";
-import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
+import {AuthPopup} from "../components/models/auth/AuthPopup";
 
 @Directive({
     selector: '[signupConsoleHandler]'
