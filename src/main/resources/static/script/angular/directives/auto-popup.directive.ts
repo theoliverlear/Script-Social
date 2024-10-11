@@ -12,7 +12,7 @@ import {
 import {
     PasswordMatchHandlerService
 } from '../services/password-match-handler.service';
-import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
+import {AuthPopup} from "../components/models/auth/AuthPopup";
 import {SignupHandlerService} from "../services/signup-handler.service";
 import {EmailValidatorService} from "../services/email-validator.service";
 import {FilledFieldsService} from "../services/filled-fields.service";
