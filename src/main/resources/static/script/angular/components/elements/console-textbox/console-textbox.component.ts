@@ -1,4 +1,6 @@
 import {Component} from "@angular/core";
+import {ButtonText} from "../ss-button/models/ButtonText";
+import {ButtonPosition} from "../ss-button/models/ButtonPosition";
 
 @Component({
     selector: 'console-textbox',
@@ -9,4 +11,7 @@ export class ConsoleTextboxComponent {
     constructor() {
         console.log('ConsoleTextboxComponent loaded');
     }
+
+    protected readonly ButtonText = ButtonText;
+    protected readonly ButtonPosition = ButtonPosition;
 }
