@@ -12,17 +12,8 @@
         <div id="profile-picture-with-name">
             <ss-img id="profile-picture-div" [imageAsset]="defaultAvatar" [childId]="'profile-picture-img'"></ss-img>
             <div id="profile-name-and-bio-div">
-                <div id="profile-name">
-                    <div id="profile-first-name" class="profile-name">
-                        <h5 class="profile-name-headline-text" id="first-name-headline-text">Oliver</h5>
-                    </div>
-                    <div id="profile-last-name" class="profile-name">
-                        <h5 class="profile-name-headline-text" id="last-name-headline-text">Sigwarth</h5>
-                    </div>
-                </div>
-                <div id="profile-bio">
-                    <p id="profile-bio-text">I'm a software developer who loves to code!</p>
-                </div>
+                <profile-name [nameText]="'Oliver Sigwarth'"></profile-name>
+                <profile-bio [bioText]="'A software developer who loves to program!'"></profile-bio>
             </div>
         </div>
         <!---------------------Headline-Buttons------------------------------>
