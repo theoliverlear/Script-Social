@@ -12,18 +12,18 @@ import {DOCUMENT} from "@angular/common";
     selector: 'ss-head',
     templateUrl: './ss-head.component.html'
 })
-export class HeadComponent implements OnChanges{
+export class SsHeadComponent implements OnChanges{
     static readonly DEFAULT_STYLESHEETS_PATHS: string[] = [
         // 'angular_build/styles.css'
     ];
     static readonly DEFAULT_FAVICON = 'assets/image/favicon/script_social_transparent_cropped.ico';
     @Input() title: string;
     @Input() stylesheets: string[];
-    @Input() favicon: string = HeadComponent.DEFAULT_FAVICON;
+    @Input() favicon: string = SsHeadComponent.DEFAULT_FAVICON;
     constructor(private renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {
         console.log('HeadComponent loaded');
         this.addFavicon(this.favicon);
-        HeadComponent.DEFAULT_STYLESHEETS_PATHS.forEach((path) => {
+        SsHeadComponent.DEFAULT_STYLESHEETS_PATHS.forEach((path) => {
             console.log('Adding default stylesheet: ' + path);
             this.addStylesheet(path);
         });
