@@ -5,9 +5,9 @@ import {
     hasProfilePictureFromServerById,
     hasProfilePictureFromServerByUsername
 } from "./profileScript";
-import '../../templates/angular_build/main';
-import '../../templates/angular_build/polyfills';
-import '../../templates/angular_build/runtime';
+import '../../../templates/angular_build/main';
+import '../../../templates/angular_build/polyfills';
+import '../../../templates/angular_build/runtime';
 
 //================================-Variables-=================================
 
