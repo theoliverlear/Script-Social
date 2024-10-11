@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from "@angular/core";
-import {ElementSize} from "../models/ElementSize";
+import {ElementSize} from "../../models/ElementSize";
 import {ButtonText} from "./models/ButtonText";
 import {ButtonPosition} from "./models/ButtonPosition";
 
