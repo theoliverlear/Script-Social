@@ -3,7 +3,7 @@ import {
     ConsoleComponent
 } from "../components/elements/console/console.component";
 import {AgreeTermsService} from "../services/agree-terms.service";
-import {AuthPopup} from "../components/elements/models/auth/AuthPopup";
+import {AuthPopup} from "../components/models/auth/AuthPopup";
 
 @Directive({
     selector: '[agreeTerms]'
