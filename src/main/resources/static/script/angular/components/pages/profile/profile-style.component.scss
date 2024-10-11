@@ -1,0 +1,105 @@
+//=================================-Imports-==================================
+@import "../../../../../style/global-variables";
+@import "../../../../../style/global-mixins";
+@import "../../../../../style/global-functions";
+@import "../../../../../style/global-placeholders";
+@import "../../../../../style/global-style";
+
+//==================================-Styles-==================================
+
+profile {
+    height: 100%;
+    width: 100%;
+    //------------------------------Headline-Section------------------------------
+    #headline-section {
+        @include flex(center, center, column);
+        background-image: url("../../../../../image/alt_default_banner.webp");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        padding: $one-percent 0;
+        margin: $one-percent 0;
+        border : {
+            top: $thinnest-border solid $alabaster-stone;
+            bottom: $thinnest-border solid $alabaster-stone;
+        }
+        @extend %console-box-shadow;
+        //---------------------Profile-Picture-With-Name--------------------------
+        #profile-picture-with-name {
+            margin: $half-percent 0 0 0;
+            @include flex(center, center, column);
+            #profile-picture-div {
+                @include flex(center, center, row);
+                @include size($twelve-percent, $twelve-percent);
+                border-radius: $one-half-percent;
+                border: $thin-border solid $sandstone;
+                #profile-picture-img {
+                    @include size(100%, 100%);
+                    border-radius: inherit;
+                    background-color: $absolute-black;
+                }
+            }
+            //------------------Profile-Name-And-Bio-Div--------------------------
+            #profile-name-and-bio-div {
+                @include flex(center, center, column);
+                #profile-name {
+                    background-color: $charcoal;
+                    border: $thin-border solid $alabaster-stone;
+                    border-radius: $quarter-percent;
+                    padding: $quarter-percent $half-percent;
+                    text-align: center;
+                    margin: $half-percent $half-percent $half-percent calc($half-percent + $half-percent);
+                    @include flex(center, center, row);
+                    .profile-name-headline-text {
+                        color: $pristine-white;
+                    }
+                    #profile-first-name {
+                        margin-right: $half-percent;
+                    }
+                    .profile-name {
+                        @include basic-margin-padding(0, 0);
+                        text-align: center;
+                    }
+                }
+                //--------------------Profile-Bio---------------------------------
+                #profile-bio {
+                    background-color: $apricot-glow;
+                    border-radius: $one-percent;
+                    padding: $half-percent $one-percent;
+                    #profile-bio-text {
+                        //color: $pure-orange;
+                        color: $charcoal;
+                    }
+                }
+            }
+        }
+        //----------------------------Buttons-Div---------------------------------
+        #buttons-div {
+            @include flex(space-around, center, row);
+            margin: $one-percent 0 0 0;
+            .profile-button {
+                padding: $eighth-percent;
+                border-radius: calc($quarter-percent * 0.9);
+            }
+        }
+    }
+    //------------------------------Activity-Section------------------------------
+    #activity-section {
+        #activity-title-div {
+            @include flex(center, center, row);
+            margin: $one-percent 0;
+            #activity-title-text {
+                color: $pristine-white;
+            }
+        }
+        hr {
+            @extend %console-box-shadow;
+        }
+    }
+    //-----------------------------Write-Post-Section-----------------------------
+    #write-post-section {
+        @extend .general-write-post-div;
+    }
+}
+
