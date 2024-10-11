@@ -45,7 +45,11 @@
               "src/main/resources/static/script/angular/components/elements/headline-button/headline-button-style.component.css",
               "src/main/resources/static/script/angular/components/elements/profile-headline-buttons/profile-headline-buttons-style.component.css",
               "src/main/resources/static/script/angular/components/elements/side-nav-bar/side-nav-bar-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/side-nav-bar-button/side-nav-bar-button-style.component.css"
+              "src/main/resources/static/script/angular/components/elements/side-nav-bar-button/side-nav-bar-button-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/console-textbox/console-textbox-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/profile-bio/profile-bio-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/profile-name/profile-name-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/general-post/general-post-style.component.css"
             ],
             "scripts": [],
             "fileReplacements": []
