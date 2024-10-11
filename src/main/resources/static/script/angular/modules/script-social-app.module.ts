@@ -80,6 +80,21 @@ import {FilledFieldsService} from "../services/filled-fields.service";
 import {AgreeTermsDirective} from "../directives/agree-terms.directive";
 import {EmailValidatorService} from "../services/email-validator.service";
 import {AgreeTermsService} from "../services/agree-terms.service";
+import {
+    ProfileComponent
+} from "../components/pages/profile/profile.component";
+import {
+    HeadlineButtonComponent
+} from "../components/elements/headline-button/headline-button.component";
+import {
+    ProfileHeadlineButtonsComponent
+} from "../components/elements/profile-headline-buttons/profile-headline-buttons.component";
+import {
+    SideNavBarComponent
+} from "../components/elements/side-nav-bar/side-nav-bar.component";
+import {
+    SideNavBarButtonComponent
+} from "../components/elements/side-nav-bar-button/side-nav-bar-button.component";
 
 @NgModule({
     declarations: [
@@ -96,6 +111,8 @@ import {AgreeTermsService} from "../services/agree-terms.service";
         AgreeTermsDirective,
         // Elements
         NavBarComponent,
+        SideNavBarComponent,
+        SideNavBarButtonComponent,
         ConsoleComponent,
         ConsoleInputComponent,
         AppComponent,
@@ -108,9 +125,12 @@ import {AgreeTermsService} from "../services/agree-terms.service";
         SsImgComponent,
         AuthBubbleComponent,
         AuthTypeSelectorComponent,
+        HeadlineButtonComponent,
+        ProfileHeadlineButtonsComponent,
         // Pages
         HomeComponent,
-        AuthorizeComponent
+        AuthorizeComponent,
+        ProfileComponent
     ],
     imports: [BrowserModule,
               BrowserAnimationsModule,
@@ -130,7 +150,7 @@ import {AgreeTermsService} from "../services/agree-terms.service";
                 provideHttpClient(withFetch()),
                 FilledFieldsService],
     bootstrap: [AppComponent],
-    exports: [AppComponent, NavBarComponent, SsFooterComponent],
+    exports: [AppComponent],
     schemas: []
 })
 export class ScriptSocialAppModule {
