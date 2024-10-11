@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
-import {ElementSize} from "../models/ElementSize";
+import {ElementSize} from "../../models/ElementSize";
 import {ButtonText} from "../ss-button/models/ButtonText";
 import {ConsoleInputField} from "../console-input/models/ConsoleInputField";
 import {ConsoleInputType} from "../console-input/models/ConsoleInputType";
@@ -9,7 +9,7 @@ import {
     sendLoginRequest,
     sendSignupToServer
 } from "../../../../new_scripts/globalScript";
-import {AuthPopup} from "../models/auth/AuthPopup";
+import {AuthPopup} from "../../models/auth/AuthPopup";
 import {ConsoleService} from "../../../services/console.service";
 import {fadeAnimation} from "../../animations/animations";
 
