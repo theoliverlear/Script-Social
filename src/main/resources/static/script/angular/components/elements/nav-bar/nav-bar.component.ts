@@ -6,8 +6,8 @@ import {
   ViewChildren
 } from '@angular/core';
 import {defaultAvatar, hamburgerIcon, searchIcon} from "../../assets/imageAssets";
-import {TypeSpeed} from "../models/TypeSpeed";
-import {TagType} from "../models/TagType";
+import {TypeSpeed} from "../../models/TypeSpeed";
+import {TagType} from "../../models/TagType";
 import {TypableTextComponent} from "../typable-text/typable-text.component";
 
 @Component({
