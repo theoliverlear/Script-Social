@@ -1,0 +1,11 @@
+@import "../../../../../style/global-variables";
+@import "../../../../../style/global-mixins";
+@import "../../../../../style/global-functions";
+@import "../../../../../style/global-placeholders";
+
+profile-activity {
+    width: $sixty-percent;
+    height: $eighty-percent;
+    padding: $one-percent;
+    background-color: $light-charcoal;
+}
