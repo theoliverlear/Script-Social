@@ -1,0 +1,14 @@
+@import "../../../../../style/global-variables";
+@import "../../../../../style/global-mixins";
+@import "../../../../../style/global-functions";
+@import "../../../../../style/global-placeholders";
+
+profile-bio {
+    background-color: $apricot-glow;
+    border-radius: $one-percent;
+    padding: $half-percent $one-percent;
+    p {
+        //color: $pure-orange;
+        color: $charcoal;
+    }
+}
