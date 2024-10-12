@@ -30,6 +30,9 @@ import {SsFooterComponent} from "./ss-footer/ss-footer.component";
 import {SsHeadComponent} from "./ss-head/ss-head.component";
 import {SsImgComponent} from "./ss-img/ss-img.component";
 import {TypableTextComponent} from "./typable-text/typable-text.component";
+import {
+    ProfileActivityComponent
+} from "./profile-activity/profile-activity.component";
 
 export const elements = [
     AuthBubbleComponent,
@@ -42,6 +45,7 @@ export const elements = [
     GeneralPostComponent,
     HeadlineButtonComponent,
     NavBarComponent,
+    ProfileActivityComponent,
     ProfileBioComponent,
     ProfileHeadlineButtonsComponent,
     ProfileNameComponent,
