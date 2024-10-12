@@ -79,73 +79,6 @@ article {
 .hidden {
     display: none;
 }
-//--------------------------------Side-Nav-Bar--------------------------------
-#side-nav-bar {
-    z-index: 1;
-    @include flex(flex-start, center, column);
-    //@include size($four-percent, 100%);
-    height: 100%;
-    background-color: $light-charcoal;
-    //border-right: $thinnest-border solid $alabaster-stone;
-    box-shadow: $light-charcoal 0 0 $eighth-percent $eighth-percent;
-    top: 0;
-    left: 0;
-    position: fixed;
-    transition: width, 0.15s;
-    #side-bar-tab-div {
-        margin: calc(calc-size(6, 4, 2) + $one-percent) $zero $quarter-percent $zero;
-    }
-    hr {
-        background-color: $charcoal;
-        width: 70%;
-    }
-    .side-bar-icon-div {
-        background-color: $charcoal;
-        border-radius: $half-percent;
-        padding: $quarter-percent;
-        margin: $half-percent $zero;
-        box-sizing: border-box;
-        @include square-size(calc($two-half-percent + $thin-border));
-        @include flex(center, center, row);
-        border: none;
-        transition: border 0.15s;
-        .side-bar-icon-img {
-            @include size(100%, 100%);
-        }
-
-        &:hover {
-            border: $thin-border solid $alabaster-stone;
-            cursor: pointer;
-        }
-
-        &:active {
-            border: $thin-border solid $pure-orange;
-            cursor: pointer;
-        }
-    }
-    .side-bar-functionality-div {
-        @include flex(center, center, row);
-        width: 100%;
-        .side-bar-icon-title-div {
-            flex: 1;
-            margin: 0 0 0 $half-percent;
-            display: none;
-            h6 {
-                font-size: $h6-font-size;
-                color: $pristine-white;
-            }
-        }
-    }
-    #side-nav-items {
-        @include flex(center, center, column);
-    }
-}
-.side-nav-closed {
-    width: $four-percent;
-}
-.side-nav-opened {
-    width: $ten-percent;
-}
 //--------------------------------Hover-Styles--------------------------------
 .general-hover {
     transition: color, background-color, 0.15s;
@@ -263,9 +196,6 @@ article {
     }
 }
 //-----------------------------------Posts------------------------------------
-.general-post {
-    @extend .content-box;
-}
 .general-project-post {
     @extend .content-box;
     hr {
@@ -295,28 +225,6 @@ article {
                 }
             }
         }
-    }
-}
-.general-write-post-div {
-    @include flex(center, center, column);
-    width: $twenty-percent;
-    height: $ten-percent;
-    @extend %console;
-    .write-post-textarea-div {
-        textarea {
-            width: $nineteen-percent;
-            height: $six-percent;
-            background-color: $charcoal;
-            color: $pristine-white;
-            border-radius: $one-percent;
-            padding: $one-percent;
-            margin: $one-percent $zero $half-percent $zero;
-            resize: none;
-        }
-    }
-    .write-post-button-div {
-        align-self: flex-end;
-        margin-bottom: $half-percent;
     }
 }
 //------------------------------Text-Type-Styles------------------------------
