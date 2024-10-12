@@ -49,7 +49,8 @@
               "src/main/resources/static/script/angular/components/elements/console-textbox/console-textbox-style.component.css",
               "src/main/resources/static/script/angular/components/elements/profile-bio/profile-bio-style.component.css",
               "src/main/resources/static/script/angular/components/elements/profile-name/profile-name-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/general-post/general-post-style.component.css"
+              "src/main/resources/static/script/angular/components/elements/general-post/general-post-style.component.css",
+              "src/main/resources/static/script/angular/components/elements/profile-activity/profile-activity-style.component.css"
             ],
             "scripts": [],
             "fileReplacements": []
