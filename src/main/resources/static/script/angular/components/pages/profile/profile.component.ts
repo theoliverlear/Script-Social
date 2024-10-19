@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {defaultAvatar} from "../../assets/imageAssets";
 import {
     HeadlineButtonType
@@ -10,7 +10,8 @@ import {
     styleUrls: ['./profile-style.component.css']
 })
 export class ProfileComponent {
-    constructor() {
+    @Input() userId: number;
+    constructor(userId: number = 0) {
         console.log('ProfileComponent loaded');
     }
 
