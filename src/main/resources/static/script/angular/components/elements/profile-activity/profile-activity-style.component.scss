@@ -4,8 +4,9 @@
 @import "../../../../../style/global-placeholders";
 
 profile-activity {
-    width: $sixty-percent;
-    height: $eighty-percent;
+    @include flex(center, center, column);
+    width: 80%;
     padding: $one-percent;
     background-color: $light-charcoal;
+    @extend %content-box;
 }
