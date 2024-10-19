@@ -29,3 +29,16 @@
 %circle-border-radius {
     border-radius: 50%;
 }
+%soft-border-radius {
+    border-radius: $one-percent;
+}
+%content-box {
+    @include flex(center, center, column);
+    width: $twenty-percent;
+    @extend %console;
+    margin: $one-percent $zero;
+    p {
+        color: $pristine-white;
+        font-size: $p-font-size;
+    }
+}
