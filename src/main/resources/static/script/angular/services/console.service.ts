@@ -3,7 +3,7 @@ import {PasswordMatchHandlerService} from "./password-match-handler.service";
 import {SignupHandlerService} from "./signup-handler.service";
 import {EmailValidatorService} from "./email-validator.service";
 import {ConsoleType} from "../components/elements/console/models/ConsoleType";
-import {SignupService} from "./signup.service";
+import {SignupService} from "./server/signup.service";
 import {Observable} from "rxjs";
 import {FilledFieldsService} from "./filled-fields.service";
 import {AgreeTermsService} from "./agree-terms.service";
