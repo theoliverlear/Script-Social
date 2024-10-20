@@ -16,7 +16,7 @@ export class SsHeadComponent implements OnChanges{
     static readonly DEFAULT_STYLESHEETS_PATHS: string[] = [
         // 'angular_build/styles.css'
     ];
-    static readonly DEFAULT_FAVICON = 'assets/image/favicon/script_social_transparent_cropped.ico';
+    static readonly DEFAULT_FAVICON = 'assets/images/favicon/script_social_transparent_cropped.ico';
     @Input() title: string;
     @Input() stylesheets: string[];
     @Input() favicon: string = SsHeadComponent.DEFAULT_FAVICON;
