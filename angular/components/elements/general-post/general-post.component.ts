@@ -10,10 +10,7 @@ export class GeneralPostComponent {
     @Input() userId: number;
     @Input() postId: number;
     @Input() postedDate: Date;
-    constructor(postText: string = '',
-                userId: number = 0,
-                postId: number = 0,
-                postedDate: Date = new Date()) {
+    constructor() {
         console.log('GeneralPostComponent loaded');
     }
 }
