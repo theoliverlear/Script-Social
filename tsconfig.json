@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "lib": ["dom", "es2018"],
-//    "outDir": "./src/main/resources/static/script",
     "outDir": "./",
     "rootDir": "./",
     "noImplicitAny": true,
@@ -14,7 +13,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["./src/**/*"],
+  "include": ["./angular/**/*"],
   "exclude": ["node_modules", "./src/main/resources/static/script/bundle.js"],
   "angularCompilerOptions": {
     "enableIvy": true

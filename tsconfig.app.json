@@ -1,13 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./src/main/resources/static/script/app",
+    "outDir": "./",
     "types": []
   },
   "files": [
-    "src/main/resources/static/script/scriptSocialApp.module.ts",
+    "angular/modules/script-social-app.module.ts",
   ],
   "include": [
-    "src/main/resources/static/script/**/*.d.ts"
+    "angular/**/*.d.ts"
   ]
 }

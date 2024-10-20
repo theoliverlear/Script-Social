@@ -1,0 +1,13 @@
+@import "angular/styles/global-variables";
+@import "angular/styles/global-mixins";
+@import "angular/styles/global-functions";
+@import "angular/styles/global-placeholders";
+
+profile-headline-buttons {
+    @include flex(space-around, center, row);
+    margin: $one-percent 0 0 0;
+    .profile-button {
+        padding: $eighth-percent;
+        border-radius: calc($quarter-percent * 0.9);
+    }
+}

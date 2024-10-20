@@ -2,10 +2,10 @@
   "name": "script-social",
   "version": "1.0.0",
   "description": "A social media site for programmers",
-  "main": "globalScript.js",
+  "main": "angular/main.js",
   "scripts": {
     "build": "webpack",
-    "test": "mocha 'src/main/resources/static/script/test/**/*.test.ts'"
+    "test": "mocha 'angular/test/**/*.test.ts'"
   },
   "author": "Sigwarth Software - @theoliverlear",
   "license": "SEE LICENSE IN LICENSE.md",

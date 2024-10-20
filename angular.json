@@ -14,43 +14,43 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "src/main/resources/templates/angular_build",
-            "index": "src/main/resources/templates/home.html",
-            "main": "src/main/resources/static/script/angular/main.ts",
-            "polyfills": "src/main/resources/static/script/angular/polyfills.ts",
+            "index": "angular/index.html",
+            "main": "angular/main.ts",
+            "polyfills": "angular/polyfills.ts",
             "tsConfig": "tsconfig.json",
             "aot": false,
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/main/resources/static",
+                "input": "angular/assets",
                 "output": "/assets/"
               }
             ],
             "styles": [
-              "src/main/resources/static/script/angular/components/app/app-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/console/console-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/nav-bar/nav-bar-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/ss-footer/ss-footer-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/ss-button/ss-button-style.component.css",
-              "src/main/resources/static/script/angular/components/pages/authorize/authorize-style.component.css",
-              "src/main/resources/static/script/angular/components/pages/home/home-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/console-input/console-input-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/console-popup/console-popup-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/typable-text/typable-text-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/blinking-cursor/blinking-cursor-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/ss-img/ss-img-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/auth-bubble/auth-bubble-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/auth-type-selector/auth-type-selector-style.component.css",
-              "src/main/resources/static/script/angular/components/pages/profile/profile-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/headline-button/headline-button-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/profile-headline-buttons/profile-headline-buttons-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/side-nav-bar/side-nav-bar-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/side-nav-bar-button/side-nav-bar-button-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/console-textbox/console-textbox-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/profile-bio/profile-bio-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/profile-name/profile-name-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/general-post/general-post-style.component.css",
-              "src/main/resources/static/script/angular/components/elements/profile-activity/profile-activity-style.component.css"
+              "angular/components/app/app-style.component.css",
+              "angular/components/elements/console/console-style.component.css",
+              "angular/components/elements/nav-bar/nav-bar-style.component.css",
+              "angular/components/elements/ss-footer/ss-footer-style.component.css",
+              "angular/components/elements/ss-button/ss-button-style.component.css",
+              "angular/components/pages/authorize/authorize-style.component.css",
+              "angular/components/pages/home/home-style.component.css",
+              "angular/components/elements/console-input/console-input-style.component.css",
+              "angular/components/elements/console-popup/console-popup-style.component.css",
+              "angular/components/elements/typable-text/typable-text-style.component.css",
+              "angular/components/elements/blinking-cursor/blinking-cursor-style.component.css",
+              "angular/components/elements/ss-img/ss-img-style.component.css",
+              "angular/components/elements/auth-bubble/auth-bubble-style.component.css",
+              "angular/components/elements/auth-type-selector/auth-type-selector-style.component.css",
+              "angular/components/pages/profile/profile-style.component.css",
+              "angular/components/elements/headline-button/headline-button-style.component.css",
+              "angular/components/elements/profile-headline-buttons/profile-headline-buttons-style.component.css",
+              "angular/components/elements/side-nav-bar/side-nav-bar-style.component.css",
+              "angular/components/elements/side-nav-bar-button/side-nav-bar-button-style.component.css",
+              "angular/components/elements/console-textbox/console-textbox-style.component.css",
+              "angular/components/elements/profile-bio/profile-bio-style.component.css",
+              "angular/components/elements/profile-name/profile-name-style.component.css",
+              "angular/components/elements/general-post/general-post-style.component.css",
+              "angular/components/elements/profile-activity/profile-activity-style.component.css"
             ],
             "scripts": [],
             "fileReplacements": []
@@ -66,8 +66,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src/main/resources/static/script/angular/environments/environment.ts",
-                  "with": "src/main/resources/static/script/angular/environments/environment.prod.ts"
+                  "replace": "angular/environments/environment.ts",
+                  "with": "angular/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "none",
@@ -82,8 +82,8 @@
             "development": {
               "fileReplacements": [
                 {
-                  "replace": "src/main/resources/static/script/angular/environments/environment.ts",
-                  "with": "src/main/resources/static/script/angular/environments/environment.dev.ts"
+                  "replace": "angular/environments/environment.ts",
+                  "with": "angular/environments/environment.dev.ts"
                 }
               ],
               "optimization": false,
@@ -120,15 +120,15 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/main/resources/static/script/test.ts",
-            "polyfills": "src/main/resources/static/script/angular/polyfills.ts",
+            "main": "angular/test.ts",
+            "polyfills": "angular/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/main/resources/static"
+              "angular/assets"
             ],
             "styles": [
-              "src/main/resources/static/script/styles.css"
+              "angular/styles/styles.css"
             ],
             "scripts": []
           }

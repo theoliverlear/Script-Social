@@ -1,0 +1,12 @@
+@import "angular/styles/global-variables";
+@import "angular/styles/global-mixins";
+@import "angular/styles/global-functions";
+@import "angular/styles/global-placeholders";
+
+profile-activity {
+    @include flex(center, center, column);
+    width: 80%;
+    padding: $one-percent;
+    background-color: $light-charcoal;
+    @extend %content-box;
+}

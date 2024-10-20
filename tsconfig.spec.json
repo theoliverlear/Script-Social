@@ -1,17 +1,17 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./src/main/resources/static/script/spec",
+    "outDir": "./",
     "types": [
       "jasmine",
       "node"
     ]
   },
   "files": [
-    "src/main/resources/static/script/test.ts",
+    "angular/test/test.ts",
   ],
   "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "./**/*.spec.ts",
+    "./**/*.d.ts"
   ]
 }

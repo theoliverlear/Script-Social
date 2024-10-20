@@ -1,0 +1,13 @@
+//=================================-Imports-==================================
+@import "angular/styles/global-variables";
+@import "angular/styles/global-mixins";
+@import "angular/styles/global-functions";
+@import "angular/styles/global-placeholders";
+@import "angular/styles/profile-style.css";
+//==================================-Styles-==================================
+
+//-----------------------------Write-Post-Section-----------------------------
+#write-post-section {
+    margin: $one-percent 0 0 0;
+    @extend #write-post-section;
+}

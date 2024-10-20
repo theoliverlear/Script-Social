@@ -7,21 +7,21 @@
     <meta charset="UTF-8">
     <title>Create | Script Social</title>
     <!----------------------------Stylesheets-------------------------------->
-    <link rel="stylesheet" href="../static/style/global-style.css"
-          th:href="@{/style/global-style.css}"/>
-    <link rel="stylesheet" href="../static/style/create-style.css"
-            th:href="@{/style/create-style.css}"/>
+    <link rel="stylesheet" href="../../../../angular/styles/global-style.css"
+          th:href="@{/angular/styles/global-style.css}"/>
+    <link rel="stylesheet" href="../../../../angular/styles/create-style.css"
+            th:href="@{/angular/styles/create-style.css}"/>
     <!------------------------------Favicon---------------------------------->
-    <link rel="icon" href="../static/image/favicon/script_social_transparent_cropped.ico"
-            th:href="@{/image/favicon/script_social_transparent_cropped.ico}">
+    <link rel="icon" href="../../../../angular/assets/images/favicon/script_social_transparent_cropped.ico"
+            th:href="@{/angular/assets/images/favicon/script_social_transparent_cropped.ico}">
 </head>
 <body data-page="create">
 <!--===============================-Nav-Bar-===============================-->
 <header>
     <!------------------------Nav-Hamburger-Menu----------------------------->
     <div>
-        <img id="nav-hamburger-menu" src="../static/image/icon/hamburger_menu.svg" alt="Hamburger Menu"
-             th:src="@{/image/icon/hamburger_menu.svg}">
+        <img id="nav-hamburger-menu" src="../../../../angular/assets/images/icon/hamburger_menu.svg" alt="Hamburger Menu"
+             th:src="@{/angular/assets/images/icon/hamburger_menu.svg}">
     </div>
     <nav id="nav-bar">
         <!-------------------------Nav-Home---------------------------------->
@@ -33,8 +33,8 @@
         <!------------------------Nav-Search--------------------------------->
         <div class="nav-item" id="nav-search-div">
             <div id="search-icon-div">
-                <img id="search-icon-img" src="../static/image/icon/search_icon.png" alt="Search Icon"
-                     th:src="@{/image/icon/search_icon.png}">
+                <img id="search-icon-img" src="../../../../angular/assets/images/icon/search_icon.png" alt="Search Icon"
+                     th:src="@{/angular/assets/images/icon/search_icon.png}">
             </div>
             <div>
                 <h4 class="nav-text"></h4>
@@ -56,8 +56,8 @@
     <!---------------------------Nav-User-Menu------------------------------->
     <div id="user-nav-menu-div">
         <div id="user-nav-img-div">
-            <img id="user-nav-img" src="../static/image/icon/default_avatar.svg" alt="User Avatar"
-                 th:src="@{/image/icon/default_avatar.svg}">
+            <img id="user-nav-img" src="../../../../angular/assets/images/icon/default_avatar.svg" alt="User Avatar"
+                 th:src="@{/angular/assets/images/icon/default_avatar.svg}">
         </div>
         <!-- TODO: Add dropdown menu for user settings. This should include a
                    logout option.-->
@@ -67,16 +67,16 @@
 <nav id="side-nav-bar" class="side-nav-closed">
     <!--------------------------Nav-Popout-Tab------------------------------->
     <div id="side-bar-tab-div" class="side-bar-icon-div">
-        <img id="side-bar-tab-img" class="side-bar-icon-img" src="../static/image/icon/white_tab_icon.svg"
-             alt="Tab Icon" th:src="@{/image/icon/white_tab_icon.svg}">
+        <img id="side-bar-tab-img" class="side-bar-icon-img" src="../../../../angular/assets/images/icon/white_tab_icon.svg"
+             alt="Tab Icon" th:src="@{/angular/assets/images/icon/white_tab_icon.svg}">
     </div>
     <hr />
     <div id="side-nav-items">
         <!---------------------Nav-Notifications----------------------------->
         <a class="link-no-style side-bar-functionality-div" href="/notifications/">
             <div class="side-bar-icon-div">
-                <img class="side-bar-icon-img" src="../static/image/icon/white_notification_bell_icon.svg"
-                     alt="Notification Bell Icon" th:src="@{/image/icon/white_notification_bell_icon.svg}">
+                <img class="side-bar-icon-img" src="../../../../angular/assets/images/icon/white_notification_bell_icon.svg"
+                     alt="Notification Bell Icon" th:src="@{/angular/assets/images/icon/white_notification_bell_icon.svg}">
             </div>
             <div class="side-bar-icon-title-div">
                 <h6>Notifications</h6>
@@ -85,8 +85,8 @@
         <!-----------------------Nav-Messages-------------------------------->
         <a class="link-no-style side-bar-functionality-div" href="/messages/">
             <div class="side-bar-icon-div">
-                <img class="side-bar-icon-img" src="../static/image/icon/white_mail_icon.svg" alt="Mail Icon"
-                     th:src="@{/image/icon/white_mail_icon.svg}">
+                <img class="side-bar-icon-img" src="../../../../angular/assets/images/icon/white_mail_icon.svg" alt="Mail Icon"
+                     th:src="@{/angular/assets/images/icon/white_mail_icon.svg}">
             </div>
             <div class="side-bar-icon-title-div">
                 <h6>Messages</h6>

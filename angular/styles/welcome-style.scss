@@ -1,0 +1,112 @@
+//=================================-Imports-==================================
+@import "angular/styles/global-variables";
+@import "angular/styles/global-mixins";
+@import "angular/styles/global-functions";
+@import "angular/styles/global-style.css";
+//==================================-Styles-==================================
+
+//-------------------------------Title-Section--------------------------------
+#title-section {
+    @include flex(center, center, column);
+    margin: $two-percent $zero;
+    color: $pristine-white;
+    background-color: $tangerine;
+    padding: $one-percent;
+    border-radius: $one-percent;
+    #subtext-div {
+        padding: $half-percent;
+        background-color: $charcoal;
+        border-radius: $one-percent;
+        color: $pristine-white;
+    }
+    > div {
+        @include flex(center, center, column);
+    }
+}
+//-------------------------------Inputs-Section-------------------------------
+#inputs-section {
+    @include flex(center, center, column);
+    display: none;
+    .welcome-input-title-text {
+        //text-decoration: underline;
+        //text-underline-offset: simplest-calc(0.05);
+        //text-decoration-thickness: simplest-calc(0.05);
+    }
+    #title-question-div {
+        @include flex(center, center, column);
+        #title-question-text {
+            font-size: calc($h4-font-size * 1.15);
+            color: $pristine-white;
+        }
+    }
+    #bubble-selection-div {
+        display: none;
+        .bubble-item {
+            margin: $half-percent 0;
+            @extend .general-hover;
+            &:active {
+                @extend .general-select;
+            }
+        }
+    }
+    #bio-div {
+        @include flex(center, center, column);
+        display: none;
+        margin: $one-percent $zero;
+    }
+    //------------------------Profile-Picture-Div-----------------------------
+    #profile-picture-div {
+        @include flex(center, center, column);
+        display: none;
+        @include size(auto, auto);
+        margin: $one-percent;
+        #status-bar {
+            width: 100%;
+        }
+        #default-profile-picture-div {
+            margin: $one-half-percent;
+            @include flex(center, center, column);
+            @include size($twenty-percent, $twenty-percent);
+            border-radius: $fifty-percent;
+            border: $thinnest-border solid $pristine-white;
+        }
+        //----------------------File-Upload-Div-------------------------------
+        #file-upload-div {
+            font-family: $source-code-font;
+            color: $pristine-white;
+            background-color: $charcoal;
+            border: $thinnest-border solid $alabaster-stone;
+            border-radius: $half-percent;
+            padding: $half-percent $three-quarter-percent;
+            #file-upload-label {
+                font-family: $source-code-font;
+                color: $pristine-white;
+                background-color: $charcoal;
+                @include size(100%, 100%);
+                text-decoration: underline;
+                text-align: center;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: $alabaster-stone;
+                color: $charcoal;
+                #file-upload-label {
+                    background-color: $alabaster-stone;
+                    color: $charcoal;
+                }
+            }
+            #file-upload-input {
+                display: none;
+            }
+        }
+    }
+    #skip-button {
+        display: none;
+    }
+    //----------------------Console-Popup-Container---------------------------
+    #console-popup-container {
+        @include flex(center, center, column);
+        display: none;
+        max-width: 40vw;
+    }
+}
