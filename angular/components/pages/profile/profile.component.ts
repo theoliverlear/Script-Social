@@ -11,7 +11,7 @@ import {
 })
 export class ProfileComponent {
     @Input() userId: number;
-    constructor(userId: number = 0) {
+    constructor() {
         console.log('ProfileComponent loaded');
     }
 
