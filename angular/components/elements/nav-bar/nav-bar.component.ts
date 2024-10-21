@@ -8,7 +8,7 @@ import {
 import {defaultAvatar, hamburgerIcon, searchIcon} from "../../../assets/imageAssets";
 import {TypeSpeed} from "../../../models/TypeSpeed";
 import {TagType} from "../../../models/TagType";
-import {TypableTextComponent} from "../typable-text/typable-text.component";
+import {TypingTextComponent} from "../typing-text/typing-text.component";
 
 @Component({
   selector: 'nav-bar',
@@ -18,17 +18,17 @@ import {TypableTextComponent} from "../typable-text/typable-text.component";
 export class NavBarComponent implements AfterViewInit{
   navBarDisplayed: boolean = false;
   @Output() navBarDisplayedEvent: EventEmitter<void> = new EventEmitter();
-  @ViewChildren('typableTextComponent') typableTextComponents: QueryList<TypableTextComponent>;
+  @ViewChildren('typingTextComponent') typingTextComponents: QueryList<TypingTextComponent>;
   async displayNavBar(): Promise<void> {
     this.navBarDisplayed = true;
     this.navBarDisplayedEvent.emit();
-    for (let typableTextComponent of this.typableTextComponents.toArray()) {
-      await typableTextComponent.typeText();
+    for (let typingTextComponent of this.typingTextComponents.toArray()) {
+      await typingTextComponent.typeText();
     }
   }
   async hideNavBar(): Promise<void> {
-    for (let typableTextComponent of this.typableTextComponents.toArray().reverse()) {
-      await typableTextComponent.deleteText();
+    for (let typingTextComponent of this.typingTextComponents.toArray().reverse()) {
+      await typingTextComponent.deleteText();
     }
     this.navBarDisplayed = false;
   }
