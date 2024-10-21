@@ -1,21 +1,22 @@
 //=================================-Imports-==================================
-@import "angular/styles/global-variables";
-@import "angular/styles/global-mixins";
-@import "angular/styles/global-functions";
-@import "angular/styles/global-placeholders";
-@import "angular/styles/global-style";
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+@import "../../../styles/global-style";
 
 nav-bar {
     width: 100%;
     z-index: 3;
+    //margin-bottom: calc-size(6, 4, 2);
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 //----------------------------------Nav-Bar-----------------------------------
 header {
     z-index: 2;
-    top: 0;
-    left: 0;
     width: 100%;
-    position: sticky;
     margin: 0 0 calc-size(6, 4, 2) 0;
     height: calc-size(6, 4, 2);
     background-color: $apricot-glow;
