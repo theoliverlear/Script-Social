@@ -5,15 +5,15 @@ import {
     Input, Renderer2,
     ViewChild
 } from "@angular/core";
-import {TagType} from "../../../models/TagType";
+import {TagType} from "../../../models/html/TagType";
 import {TypeSpeed} from "../../../models/TypeSpeed";
 
 @Component({
-    selector: 'typable-text',
-    templateUrl: './typable-text.component.html',
-    styleUrls: ['./typable-text-style.component.css']
+    selector: 'typing-text',
+    templateUrl: './typing-text.component.html',
+    styleUrls: ['./typing-text-style.component.css']
 })
-export class TypableTextComponent implements AfterViewInit {
+export class TypingTextComponent implements AfterViewInit {
     @Input() tagType: TagType;
     @Input() textToType: string;
     typedTextContent: string = '';
@@ -22,7 +22,7 @@ export class TypableTextComponent implements AfterViewInit {
     @Input() typeOnLoad: boolean = true;
     @ViewChild('typedText', {static: false}) typedText: ElementRef;
     constructor(private renderer: Renderer2) {
-        console.log('TypableTextComponent loaded');
+        console.log('TypingTextComponent loaded');
     }
 
     protected readonly TagType = TagType;
