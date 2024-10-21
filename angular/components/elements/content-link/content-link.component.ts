@@ -1,6 +1,6 @@
 import {Component, Input} from "@angular/core";
-import {TargetType} from "../../../models/TargetType";
-import {TagType} from "../../../models/TagType";
+import {TargetType} from "../../../models/html/TargetType";
+import {TagType} from "../../../models/html/TagType";
 
 @Component({
     selector: 'content-link',
