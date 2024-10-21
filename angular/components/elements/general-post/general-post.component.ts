@@ -1,4 +1,7 @@
 import {Component, Input} from "@angular/core";
+import {defaultAvatar} from "../../../assets/imageAssets";
+import {TagType} from "../../../models/TagType";
+import {TargetType} from "../../../models/TargetType";
 
 @Component({
     selector: 'general-post',
@@ -13,4 +16,8 @@ export class GeneralPostComponent {
     constructor() {
         console.log('GeneralPostComponent loaded');
     }
+
+    protected readonly defaultAvatar = defaultAvatar;
+    protected readonly TagType = TagType;
+    protected readonly TargetType = TargetType;
 }
