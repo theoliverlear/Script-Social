@@ -6,15 +6,15 @@
             [childId]="'nav-hamburger-menu'"/>
     <nav id="nav-bar" [ngClass]="{'hidden': !navBarDisplayed}">
         <!-------------------------Nav-Home---------------------------------->
-        <a href="/static" class="link-no-style nav-item">
+        <a href="/" class="link-no-style nav-item">
             <div>
 <!--                <h4 class="nav-text"></h4>-->
-                <typable-text [textToType]="'Home'"
+                <typing-text [textToType]="'Home'"
                               #typableTextComponent
                               [typeOnLoad]="false"
                               [applyBeingTypedStyle]="true"
                               [typeSpeed]="TypeSpeed.NORMAL"
-                              [tagType]="TagType.H4"></typable-text>
+                              [tagType]="TagType.H4"></typing-text>
             </div>
         </a>
         <!------------------------Nav-Search--------------------------------->
@@ -24,12 +24,12 @@
                     [childId]="'search-icon-img'"/>
             <div class="nav-text-div" id="search-nav-text-div">
 <!--                <h4 class="nav-text"></h4>-->
-                <typable-text [textToType]="'Search'"
+                <typing-text [textToType]="'Search'"
                               #typableTextComponent
                               [typeOnLoad]="false"
                               [applyBeingTypedStyle]="true"
                               [typeSpeed]="TypeSpeed.NORMAL"
-                              [tagType]="TagType.H4"></typable-text>
+                              [tagType]="TagType.H4"></typing-text>
             </div>
             <div id="nav-search-input-div">
                 <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
@@ -38,12 +38,12 @@
         <!------------------------Nav-Account-------------------------------->
         <a id="account-and-logout-div" class="nav-item link-no-style" href="/authorize">
             <div id="account-nav-item">
-                <typable-text [textToType]="'Account'"
+                <typing-text [textToType]="'Account'"
                               #typableTextComponent
                               [typeOnLoad]="false"
                               [applyBeingTypedStyle]="true"
                               [typeSpeed]="TypeSpeed.NORMAL"
-                              [tagType]="TagType.H4"></typable-text>
+                              [tagType]="TagType.H4"></typing-text>
 <!--                <h4 id="account-name-text" class="nav-text"></h4>-->
             </div>
             <div id="logout-button">
