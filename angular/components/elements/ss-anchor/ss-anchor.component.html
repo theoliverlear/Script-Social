@@ -1,0 +1,20 @@
+<a [href]="hrefLink" [target]="targetType" class="link-no-style hyperlink">
+    <ng-container *ngIf="hasContent">
+        <ng-content></ng-content>
+    </ng-container>
+    <ng-container *ngIf="!hasContent">
+        <ng-container [ngSwitch]="tagType">
+            <h1   *ngSwitchCase="TagType.H1">{{ anchorText }}</h1>
+            <h2   *ngSwitchCase="TagType.H2">{{ anchorText }}</h2>
+            <h3   *ngSwitchCase="TagType.H3">{{ anchorText }}</h3>
+            <h4   *ngSwitchCase="TagType.H4">{{ anchorText }}</h4>
+            <h5   *ngSwitchCase="TagType.H5">{{ anchorText }}</h5>
+            <h6   *ngSwitchCase="TagType.H6">{{ anchorText }}</h6>
+            <p    *ngSwitchCase="TagType.P">{{ anchorText }}</p>
+            <span *ngSwitchCase="TagType.SPAN">{{ anchorText }}</span>
+            <div  *ngSwitchCase="TagType.DIV">{{ anchorText }}</div>
+            <code *ngSwitchCase="TagType.CODE">{{ anchorText }}</code>
+            <span *ngSwitchDefault> {{ anchorText }}</span>
+        </ng-container>
+    </ng-container>
+</a>
