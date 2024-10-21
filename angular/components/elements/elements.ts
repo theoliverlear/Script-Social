@@ -28,11 +28,16 @@ import {
 import {SsButtonComponent} from "./ss-button/ss-button.component";
 import {SsHeadComponent} from "./ss-head/ss-head.component";
 import {SsImgComponent} from "./ss-img/ss-img.component";
-import {TypableTextComponent} from "./typable-text/typable-text.component";
+import {TypingTextComponent} from "./typing-text/typing-text.component";
 import {
     ProfileActivityComponent
 } from "./profile-activity/profile-activity.component";
 import {SsFooterComponent} from "./ss-footer/ss-footer.component";
+import {SsAnchorComponent} from "./ss-anchor/ss-anchor.component";
+import {ContentLinkComponent} from "./content-link/content-link.component";
+import {
+    GeneralPostHeaderComponent
+} from "./general-post-header/general-post-header.component";
 
 export const elements = [
     AuthBubbleComponent,
@@ -42,7 +47,9 @@ export const elements = [
     ConsoleInputComponent,
     ConsolePopupComponent,
     ConsoleTextboxComponent,
+    ContentLinkComponent,
     GeneralPostComponent,
+    GeneralPostHeaderComponent,
     HeadlineButtonComponent,
     NavBarComponent,
     ProfileActivityComponent,
@@ -51,9 +58,10 @@ export const elements = [
     ProfileNameComponent,
     SideNavBarComponent,
     SideNavBarButtonComponent,
+    SsAnchorComponent,
     SsButtonComponent,
     SsFooterComponent,
     SsHeadComponent,
     SsImgComponent,
-    TypableTextComponent
+    TypingTextComponent
 ]
