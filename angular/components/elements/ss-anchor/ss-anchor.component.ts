@@ -5,8 +5,8 @@ import {
     ElementRef,
     Input
 } from "@angular/core";
-import {TagType} from "../../../models/TagType";
-import {TargetType} from "../../../models/TargetType";
+import {TagType} from "../../../models/html/TagType";
+import {TargetType} from "../../../models/html/TargetType";
 
 @Component({
     selector: 'ss-anchor',
