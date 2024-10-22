@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import {defaultAvatar, hamburgerIcon, searchIcon} from "../../../assets/imageAssets";
 import {TypeSpeed} from "../../../models/TypeSpeed";
-import {TagType} from "../../../models/TagType";
+import {TagType} from "../../../models/html/TagType";
 import {TypingTextComponent} from "../typing-text/typing-text.component";
 
 @Component({
