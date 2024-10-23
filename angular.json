@@ -52,7 +52,9 @@
               "angular/components/elements/general-post/general-post-style.component.css",
               "angular/components/elements/profile-activity/profile-activity-style.component.css",
               "angular/components/elements/ss-anchor/ss-anchor-style.component.css",
-              "angular/components/elements/general-post-header/general-post-header-style.component.css"
+              "angular/components/elements/general-post-header/general-post-header-style.component.css",
+              "angular/components/elements/general-post-buttons/general-post-buttons-style.component.css",
+              "angular/components/elements/general-post-button/general-post-button-style.component.css"
             ],
             "scripts": [],
             "fileReplacements": []
