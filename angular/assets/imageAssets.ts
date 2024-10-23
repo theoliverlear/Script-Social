@@ -37,3 +37,19 @@ export const whiteMailIcon: ImageAsset = {
     src: iconImageAssetPath + 'white_mail_icon.svg',
     alt: 'White Mail Icon'
 }
+export const whiteChatBubbleIcon: ImageAsset = {
+    src: iconImageAssetPath + 'white_chat_bubble_icon.svg',
+    alt: 'White Chat Bubble Icon'
+}
+export const whiteRepostIcon: ImageAsset = {
+    src: iconImageAssetPath + 'white_repost_icon.svg',
+    alt: 'White Repost Icon'
+}
+export const likeIcon: ImageAsset = {
+    src: iconImageAssetPath + 'like_icon.svg',
+    alt: 'Like Icon'
+}
+export const whiteLikeIcon: ImageAsset = {
+    src: iconImageAssetPath + 'white_like_icon.svg',
+    alt: 'White Like Icon'
+}
