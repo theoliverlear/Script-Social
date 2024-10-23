@@ -1,15 +1,23 @@
 //=================================-Imports-==================================
-@import "angular/styles/global-variables";
-@import "angular/styles/global-mixins";
-@import "angular/styles/global-functions";
-@import "angular/styles/global-placeholders";
-@import "angular/styles/global-style.css";
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+@import "../../../styles/global-style";
 
 //==================================-Styles-==================================
 
 profile {
-    height: 100%;
     width: 100%;
+    max-height: 100vh;
+    overflow: auto;
+    @include flex(center, center, column);
+    padding-top: calc-size(1, 0, 0);
+    main {
+        width: 100%;
+        height: 100%;
+        @include flex(center, center, column);
+    }
     //------------------------------Headline-Section------------------------------
     #headline-section {
         @include flex(center, center, column);
@@ -20,11 +28,11 @@ profile {
         width: 100%;
         padding: $one-percent 0;
         margin: $one-percent 0;
+        @extend %console-box-shadow;
         border : {
             top: $thinnest-border solid $alabaster-stone;
             bottom: $thinnest-border solid $alabaster-stone;
         }
-        @extend %console-box-shadow;
         //---------------------Profile-Picture-With-Name--------------------------
         #profile-picture-with-name {
             margin: $half-percent 0 0 0;
@@ -71,6 +79,18 @@ profile {
     //-----------------------------Write-Post-Section-----------------------------
     #write-post-section {
         @extend .general-write-post-div;
+    }
+}
+@media screen and (min-width: 1225px) {
+    profile {
+        padding-top: calc-size(10, 0, 2);
+        //display: none;
+    }
+}
+@media screen and (min-width: 1500px) {
+    profile {
+        padding-top: calc-size(16, 0, 4);
+        //display: none;
     }
 }
 
