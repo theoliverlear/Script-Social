@@ -38,6 +38,12 @@ import {ContentLinkComponent} from "./content-link/content-link.component";
 import {
     GeneralPostHeaderComponent
 } from "./general-post-header/general-post-header.component";
+import {
+    GeneralPostButtonComponent
+} from "./general-post-button/general-post-button.component";
+import {
+    GeneralPostButtonsComponent
+} from "./general-post-buttons/general-post-buttons.component";
 
 export const elements = [
     AuthBubbleComponent,
@@ -49,6 +55,8 @@ export const elements = [
     ConsoleTextboxComponent,
     ContentLinkComponent,
     GeneralPostComponent,
+    GeneralPostButtonComponent,
+    GeneralPostButtonsComponent,
     GeneralPostHeaderComponent,
     HeadlineButtonComponent,
     NavBarComponent,
