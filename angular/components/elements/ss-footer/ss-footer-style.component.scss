@@ -1,7 +1,7 @@
-@import "../../../../../style/global-variables";
-@import "../../../../../style/global-mixins";
-@import "../../../../../style/global-functions";
-@import "../../../../../style/global-placeholders";
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
 
 ss-footer {
     width: 100%;
@@ -9,9 +9,13 @@ ss-footer {
     left: 0;
     bottom: 0;
     margin-top: auto;
+    //background-color: $charcoal;
+    background-color: transparent;
+    //border-top: $thinnest-border solid $charcoal;
+    border-top: $thinnest-border solid;
+    border-image: radial-gradient(at center, $absolute-black 30%, $charcoal) 1;
 }
 footer {
-    background-color: $charcoal;
     width: 100%;
     padding: 0;
     bottom: 0;
