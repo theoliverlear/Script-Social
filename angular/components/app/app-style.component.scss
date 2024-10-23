@@ -1,8 +1,8 @@
 //=================================-Imports-==================================
-@import "angular/styles/global-variables";
-@import "angular/styles/global-mixins";
-@import "angular/styles/global-functions";
-@import "angular/styles/global-placeholders";
+@import "../../styles/global-variables";
+@import "../../styles/global-mixins";
+@import "../../styles/global-functions";
+@import "../../styles/global-placeholders";
 //==================================-Styles-==================================
 
 //----------------------------General-Text-Content----------------------------
@@ -48,7 +48,12 @@ app {
     //min-height: 100vh;
     @include size(100%, 100%);
     min-height: 100vh;
-    background-color: $charcoal;
+    //background-color: $charcoal;
+
+    //background: linear-gradient(to bottom, $charcoal, $light-charcoal);
+    //background-image: linear-gradient(to bottom, $charcoal 85%, $alabaster-stone);
+    //background: radial-gradient(at 400px, $charcoal 50%, $light-charcoal 100%);
+    background: radial-gradient(at center, $charcoal 70%, $absolute-black);
     @include basic-margin-padding(0, 0);
     font-family: $jetbrains-mono-font;
     @include flex(center, center, column);
