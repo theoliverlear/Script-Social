@@ -1,0 +1,15 @@
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+@import "../../../styles/global-style";
+
+general-post-buttons {
+    @include flex(row, space-around, center);
+    width: 80%;
+    background-color: $light-charcoal;
+    padding: $quarter-percent;
+    @extend %console-box-shadow;
+    border-radius: $half-percent;
+    border-width: calc($thinnest-border * 0.25);
+}
