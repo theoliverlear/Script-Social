@@ -1,46 +1,45 @@
-<div>
-    <!--============================-Main-Content-=============================-->
-    <main>
-        <!-----------------------Introduction-Section---------------------------->
-        <section id="introduction-section">
-            <div id="title-div">
-                <span class="title-curly-brace">&#123;</span>
-                <typing-text id="title-text"
-                              [textToType]="'Script Social'"
-                              [tagType]="TagType.H1"
-                              [applyBeingTypedStyle]="false"
-                              [typeOnLoad]="true"
-                              [typeSpeed]="TypeSpeed.NORMAL">
-                </typing-text>
-                <blinking-cursor></blinking-cursor>
-                <span class="title-curly-brace">&#125;</span>
-            </div>
-            <div id="logo-with-text">
-                <div id="intro-text-div">
-                    <div id="intro-headline-div">
-                        <h3>Connect with Developers</h3>
-                    </div>
-                    <div>
-                        <p class="indented-text">
-                            Connect with your fellow developers and share your code,
-                            thoughts, and ideas with the world. Script Social is a tool
-                            for those with established teams looking for easy
-                            communication and integration with version control, as well as
-                            those looking create communities and teams of their own. Sign
-                            up for a free account today and start sharing, connecting, and
-                            collaborating with other developers.
-                        </p>
-                    </div>
+
+<!--============================-Main-Content-=============================-->
+<main>
+    <!-----------------------Introduction-Section---------------------------->
+    <section id="introduction-section">
+        <div id="title-div">
+            <span class="title-curly-brace">&#123;</span>
+            <typing-text id="title-text"
+                         [textToType]="'Script Social'"
+                         [tagType]="TagType.H1"
+                         [applyBeingTypedStyle]="false"
+                         [typeOnLoad]="true"
+                         [typeSpeed]="TypeSpeed.NORMAL">
+            </typing-text>
+            <blinking-cursor></blinking-cursor>
+            <span class="title-curly-brace">&#125;</span>
+        </div>
+        <div id="logo-with-text">
+            <div id="intro-text-div">
+                <div id="intro-headline-div">
+                    <h3>Connect with Developers</h3>
                 </div>
-
-                <ss-img id="intro-logo-div"
-                        [childId]="'intro-logo'"
-                        [imageAsset]="scriptSocialLogoCropped"/>
-
+                <div>
+                    <p class="indented-text">
+                        Connect with your fellow developers and share your code,
+                        thoughts, and ideas with the world. Script Social is a tool
+                        for those with established teams looking for easy
+                        communication and integration with version control, as well as
+                        those looking create communities and teams of their own. Sign
+                        up for a free account today and start sharing, connecting, and
+                        collaborating with other developers.
+                    </p>
+                </div>
             </div>
-        </section>
-        <!---------------------------Join-Section-------------------------------->
-        <console [consoleType]="ConsoleType.SIGNUP" [elementSize]="ElementSize.LARGE"></console>
-        <!--    <input type="hidden" id="csrf-token" th:value="${_csrf.token}"/>-->
-    </main>
-</div>
+
+            <ss-img id="intro-logo-div"
+                    [childId]="'intro-logo'"
+                    [imageAsset]="scriptSocialLogoCropped"/>
+
+        </div>
+    </section>
+    <!---------------------------Join-Section-------------------------------->
+    <console [consoleType]="ConsoleType.SIGNUP" [elementSize]="ElementSize.LARGE"></console>
+    <!--    <input type="hidden" id="csrf-token" th:value="${_csrf.token}"/>-->
+</main>
