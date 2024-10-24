@@ -41,8 +41,8 @@ nav-bar {
             //display: none;
             @include size(50%, 100%);
 
-            > div, > a {
-                flex-basis: $eight-percent;
+            > div, > ss-anchor {
+                //flex-basis: $eight-percent;
                 height: 30%;
                 //border-left: $very-thin-border solid $charcoal;
                 padding: $quarter-percent $one-percent;
@@ -55,15 +55,19 @@ nav-bar {
             .nav-item {
                 transition: width, height, color, background-color, 0.15s;
                 border-radius: $quarter-percent;
+                padding: $half-percent;
                 @include flex(center, center, row);
-
+                &:not(:last-child) {
+                    margin-right: $two-percent;
+                }
                 &:hover:not(#account-and-logout-div) {
-                    background-color: $charcoal;
+                    //background-color: $charcoal;
+                    //background: linear-gradient(to bottom, $charcoal, $light-charcoal);
+                    background: linear-gradient(to bottom, $charcoal 15%, $light-charcoal);
                     color: $pristine-white;
                 }
 
                 &:active:not(#account-and-logout-div) {
-                    background-color: $charcoal;
                     color: $bright-sunset;
                 }
 
@@ -99,12 +103,11 @@ nav-bar {
                 }
 
                 &:hover {
-                    background-color: $charcoal;
+                    background: linear-gradient(to bottom, $charcoal 15%, $light-charcoal);
                     color: $pristine-white;
                 }
 
                 &:active {
-                    background-color: $charcoal;
                     color: $bright-sunset;
                 }
             }
@@ -118,15 +121,16 @@ nav-bar {
                 align-items: center;
                 flex-direction: row;
                 display: flex;
-
+                a {
+                    @include flex(center, center, row);
+                }
                 #search-icon-div {
                     @include flex(center, center, row);
                     @include size($one-half-percent, $one-half-percent);
                     margin-right: $quarter-percent;
-
-                    img {
-                        @include size(100%, 100%);
-                    }
+                        img {
+                            @include size(100%, 100%);
+                        }
                 }
 
                 &:hover {
