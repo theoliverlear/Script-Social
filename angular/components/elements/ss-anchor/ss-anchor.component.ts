@@ -18,8 +18,7 @@ export class SsAnchorComponent implements AfterContentInit {
     @Input() hrefLink: string = '';
     @Input() anchorText: string = '';
     @Input() targetType: TargetType = TargetType.SELF;
-    @ContentChild('content') content: ElementRef;
-    hasContent: boolean = false;
+    hasContent: boolean = this.anchorText.length === 0;
     constructor() {
         console.log('SsAnchorComponent loaded');
     }
@@ -27,7 +26,8 @@ export class SsAnchorComponent implements AfterContentInit {
         window.location.href = this.hrefLink;
     }
     ngAfterContentInit() {
-        this.hasContent = this.content && this.content.nativeElement.hasChildNodes();
+        // this.hasContent = this.content && this.content.nativeElement.hasChildNodes();
+        console.log('Has Content: ', this.hasContent);
     }
     protected readonly TagType = TagType;
 }
