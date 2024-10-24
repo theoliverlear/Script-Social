@@ -9,6 +9,7 @@ import {defaultAvatar, hamburgerIcon, searchIcon} from "../../../assets/imageAss
 import {TypeSpeed} from "../../../models/TypeSpeed";
 import {TagType} from "../../../models/html/TagType";
 import {TypingTextComponent} from "../typing-text/typing-text.component";
+import {TargetType} from "../../../models/html/TargetType";
 
 @Component({
   selector: 'nav-bar',
@@ -41,9 +42,9 @@ export class NavBarComponent implements AfterViewInit{
     }
   }
 
-ngAfterViewInit() {
+  ngAfterViewInit() {
 
-}
+  }
 
   protected readonly hamburgerIcon = hamburgerIcon;
   protected readonly searchIcon = searchIcon;
@@ -51,4 +52,5 @@ ngAfterViewInit() {
 
   protected readonly TypeSpeed = TypeSpeed;
   protected readonly TagType = TagType;
+  protected readonly TargetType = TargetType;
 }
