@@ -12,9 +12,16 @@ nav-bar {
     position: sticky;
     top: 0;
     left: 0;
-    background-color: $apricot-glow;
-    //background: linear-gradient(to bottom, $apricot-glow 90%, $light-charcoal);
+
+    //background-color: $apricot-glow;
     box-shadow: $apricot-glow 0 0 $eighth-percent $eighth-percent;
+
+    //background: linear-gradient(to bottom, $apricot-glow 90%, $light-charcoal);
+    border-bottom: {
+        left-radius:  $ten-percent;
+        right-radius: $ten-percent;
+    }
+    background: radial-gradient(at top, $apricot-glow 70%, $charcoal);
     header {
         z-index: 2;
         width: 100%;
