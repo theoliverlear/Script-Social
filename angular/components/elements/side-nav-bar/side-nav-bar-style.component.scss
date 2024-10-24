@@ -1,16 +1,21 @@
-@import "angular/styles/global-variables";
-@import "angular/styles/global-mixins";
-@import "angular/styles/global-functions";
-@import "angular/styles/global-placeholders";
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
 //--------------------------------Side-Nav-Bar--------------------------------
 side-nav-bar {
     z-index: 1;
     @include flex(flex-start, center, column);
     //@include size($four-percent, 100%);
     height: 100%;
-    background-color: $light-charcoal;
     //border-right: $thinnest-border solid $alabaster-stone;
-    box-shadow: $light-charcoal 0 0 $eighth-percent $eighth-percent;
+
+    //background-color: $light-charcoal;
+    //box-shadow: $light-charcoal 0 0 $eighth-percent $eighth-percent;
+
+    //background-image: radial-gradient(at left, $light-charcoal 70%, $charcoal);
+    //background-image: linear-gradient(to right, $light-charcoal 90%, $charcoal);
+    background-image: radial-gradient(at center left, $light-charcoal 40%, $charcoal);
     top: 0;
     left: 0;
     position: fixed;
@@ -73,6 +78,9 @@ side-nav-bar-button {
     transition: width, 0.15s;
 }
 .side-nav-opened {
-    width: $ten-percent;
+    width: $eleven-percent;
     transition: width, 0.15s;
+    #side-nav-items .side-bar-functionality-div {
+        margin-left: $one-percent;
+    }
 }
