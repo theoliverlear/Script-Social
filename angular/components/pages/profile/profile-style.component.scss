@@ -9,8 +9,8 @@
 
 profile {
     width: 100%;
-    max-height: 100vh;
-    overflow: auto;
+    //max-height: 100vh;
+    //overflow: auto;
     @include flex(center, center, column);
     padding-top: calc-size(1, 0, 0);
     main {
@@ -83,13 +83,13 @@ profile {
 }
 @media screen and (min-width: 1225px) {
     profile {
-        padding-top: calc-size(10, 0, 2);
+        //padding-top: calc-size(10, 0, 2);
         //display: none;
     }
 }
 @media screen and (min-width: 1500px) {
     profile {
-        padding-top: calc-size(16, 0, 4);
+        //padding-top: calc-size(16, 0, 4);
         //display: none;
     }
 }
