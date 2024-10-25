@@ -10,6 +10,11 @@ import {TypeSpeed} from "../../../models/TypeSpeed";
 import {TagType} from "../../../models/html/TagType";
 import {TypingTextComponent} from "../typing-text/typing-text.component";
 import {TargetType} from "../../../models/html/TargetType";
+import {
+  navBarAccountElementLink,
+  navBarHomeElementLink,
+  navBarSearchElementLink
+} from "../../../assets/elementLinkAssets";
 
 @Component({
   selector: 'nav-bar',
@@ -53,4 +58,7 @@ export class NavBarComponent implements AfterViewInit{
   protected readonly TypeSpeed = TypeSpeed;
   protected readonly TagType = TagType;
   protected readonly TargetType = TargetType;
+  protected readonly navBarHomeElementLink = navBarHomeElementLink;
+  protected readonly navBarSearchElementLink = navBarSearchElementLink;
+  protected readonly navBarAccountElementLink = navBarAccountElementLink;
 }
