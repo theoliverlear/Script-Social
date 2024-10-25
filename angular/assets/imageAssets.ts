@@ -53,3 +53,11 @@ export const whiteLikeIcon: ImageAsset = {
     src: iconImageAssetPath + 'white_like_icon.svg',
     alt: 'White Like Icon'
 }
+export const whiteShareIcon: ImageAsset = {
+    src: iconImageAssetPath + 'white_share_icon.svg',
+    alt: 'White Share Icon'
+}
+export const whiteReplyIcon: ImageAsset = {
+    src: iconImageAssetPath + 'white_reply_icon.svg',
+    alt: 'White Reply Icon'
+}
