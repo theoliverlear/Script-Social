@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, ElementRef, Input, ViewChild} from "@angular/core";
 import {ImageAsset} from "../../../assets/imageAssets";
 
 
@@ -11,4 +11,11 @@ export class SsImgComponent {
     @Input() imageAsset: ImageAsset;
     @Input() childId: string;
     @Input() childClass: string;
+    @ViewChild('imageElement') imageElement: ElementRef;
+    constructor() {
+        console.log('SsImgComponent loaded');
+    }
+    addClassToImageElement(className: string) {
+        this.imageElement.nativeElement.classList.add(className);
+    }
 }
