@@ -7,8 +7,7 @@
     <nav id="nav-bar" [ngClass]="{'hidden': !navBarDisplayed}">
         <!-------------------------Nav-Home---------------------------------->
         <ss-anchor class="link-no-style nav-item"
-                   [hrefLink]="'/'"
-                   [targetType]="TargetType.SELF">
+                   [elementLink]="navBarHomeElementLink">
             <div>
                 <typing-text [textToType]="'Home'"
                              #typingTextComponent
@@ -21,8 +20,7 @@
         <!------------------------Nav-Search--------------------------------->
         <ss-anchor class="link-no-style nav-item"
                    id="nav-search-div"
-                   [hrefLink]="'/search'"
-                   [targetType]="TargetType.SELF">
+                   [elementLink]="navBarSearchElementLink">
             <ss-img [imageAsset]="searchIcon"
                     id="search-icon-div"
                     [childId]="'search-icon-img'"/>
@@ -41,8 +39,7 @@
         <!------------------------Nav-Account-------------------------------->
         <ss-anchor id="account-and-logout-div"
                    class="nav-item link-no-style"
-                   [hrefLink]="'/authorize'"
-                   [targetType]="TargetType.SELF">
+                   [elementLink]="navBarAccountElementLink">
             <div id="account-nav-item">
                 <typing-text [textToType]="'Account'"
                              #typingTextComponent
