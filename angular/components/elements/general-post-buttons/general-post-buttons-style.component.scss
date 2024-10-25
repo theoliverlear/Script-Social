@@ -2,11 +2,10 @@
 @import "../../../styles/global-mixins";
 @import "../../../styles/global-functions";
 @import "../../../styles/global-placeholders";
-@import "../../../styles/global-style";
 
 general-post-buttons {
-    @include flex(row, space-around, center);
-    width: 80%;
+    @include flex(flex-start, center, row);
+    width: 95%;
     background-color: $light-charcoal;
     padding: $quarter-percent;
     @extend %console-box-shadow;
