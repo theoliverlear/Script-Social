@@ -9,11 +9,13 @@ import {SignupHandlerService} from "./signup-handler.service";
 import {SwipeService} from "./swipe.service";
 import {PostService} from "./server/post.service";
 import {PasswordMatchHandlerService} from "./password-match-handler.service";
+import {UserService} from "./server/user.service";
 
 export const services = [
     // Server
     PostService,
     SignupService,
+    UserService,
     // Other
     AgreeTermsService,
     ConsoleService,
