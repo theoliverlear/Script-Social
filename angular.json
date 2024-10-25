@@ -54,7 +54,11 @@
               "angular/components/elements/ss-anchor/ss-anchor-style.component.css",
               "angular/components/elements/general-post-header/general-post-header-style.component.css",
               "angular/components/elements/general-post-buttons/general-post-buttons-style.component.css",
-              "angular/components/elements/general-post-button/general-post-button-style.component.css"
+              "angular/components/elements/general-post-button/general-post-button-style.component.css",
+              "angular/components/elements/general-post-footer/general-post-footer-style.component.css",
+              "angular/components/elements/post-input-console/post-input-console-style.component.css",
+              "angular/components/elements/general-post-comment-input/general-post-comment-input-style.component.css",
+              "angular/components/elements/general-post-comment/general-post-comment-style.component.css"
             ],
             "scripts": [],
             "fileReplacements": []
