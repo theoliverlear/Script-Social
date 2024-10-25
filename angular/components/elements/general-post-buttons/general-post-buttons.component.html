@@ -1,5 +1,20 @@
-<div>
-    <general-post-button
-        [generalPostButtonType]="GeneralPostButtonType.LIKE"></general-post-button>
-<!--    TODO: Add more buttons like comment and repost.-->
-</div>
+<general-post-button
+        [buttonType]="GeneralPostButtonType.LIKE"
+        [clickResponse]="GeneralPostButtonClickResponse.TOGGLE">
+</general-post-button>
+<general-post-button
+        [buttonType]="GeneralPostButtonType.COMMENT"
+        [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER">
+</general-post-button>
+<general-post-button
+        [buttonType]="GeneralPostButtonType.REPOST"
+        [clickResponse]="GeneralPostButtonClickResponse.TOGGLE">
+</general-post-button>
+<general-post-button
+        [buttonType]="GeneralPostButtonType.CHAT"
+        [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER">
+</general-post-button>
+<general-post-button
+        [buttonType]="GeneralPostButtonType.SHARE"
+        [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER">
+</general-post-button>
