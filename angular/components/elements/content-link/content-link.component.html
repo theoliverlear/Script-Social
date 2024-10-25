@@ -1,4 +1,3 @@
-<ss-anchor [hrefLink]="hrefLink"
-           [tagType]="tagType"
-           [anchorText]="text"
-           [targetType]="targetType"></ss-anchor>
+<div [ngClass]="{'hyperlink': elementLink.useHyperlinkStyle}">
+    <ss-anchor [elementLink]="elementLink"></ss-anchor>
+</div>
