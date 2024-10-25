@@ -42,3 +42,13 @@
         font-size: $p-font-size;
     }
 }
+%hyperlink {
+    color: $apricot-glow;
+    text-decoration: underline;
+    text-decoration-color: $sandstone;
+    text-underline-offset: calc($eighth-percent * 0.75);
+    &:hover {
+        cursor: pointer;
+    }
+
+}
