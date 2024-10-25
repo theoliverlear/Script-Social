@@ -49,7 +49,8 @@ app {
     @include size(100%, 100%);
     min-height: 100vh;
     //background-color: $charcoal;
-
+    max-height: 100vh;
+    overflow: auto;
     //background: linear-gradient(to bottom, $charcoal, $light-charcoal);
     //background-image: linear-gradient(to bottom, $charcoal 85%, $alabaster-stone);
     //background: radial-gradient(at 400px, $charcoal 50%, $light-charcoal 100%);
@@ -174,6 +175,7 @@ article {
 }
 .hyperlink {
     color: $apricot-glow;
+    //color: $bright-sunset;
     text-decoration: underline;
     text-decoration-color: $sandstone;
     text-underline-offset: calc($eighth-percent * 0.75);
