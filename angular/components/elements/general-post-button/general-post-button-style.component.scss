@@ -5,10 +5,11 @@
 
 general-post-button {
     $button-size: $two-percent;
-    @include square-size($button-size);
-    @include flex(row, center, center);
+    //@include square-size($button-size);
+    @include flex(center, center, row);
     background-color: $charcoal;
     border-radius: $half-percent;
+    margin-right: $half-percent;
     ss-img {
         border-radius: $half-percent;
         box-sizing: border-box;
@@ -26,11 +27,24 @@ general-post-button {
                 border: $thin-border solid $alabaster-stone;
                 cursor: pointer;
             }
-            &:active {
+            &:active:not(.quick-trigger) {
                 border: $thin-border solid $pure-orange;
                 cursor: pointer;
             }
+            &:active:is(.quick-trigger) {
+                background-color: $pure-orange;
+                border: $thin-border solid $tan;
+                box-shadow: $absolute-black $third-percent $third-percent 0 0;
+            }
+
         }
+    }
+    .interactions-div {
+        @include flex(center, center, row);
+        @include size($button-size);
+        color: $alabaster-stone;
+        //@extend %circle-border-radius;
+        background-color: $charcoal;
     }
     &.clicked {
         transition: box-shadow 0.05s;
