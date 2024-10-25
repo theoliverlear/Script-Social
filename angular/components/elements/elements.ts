@@ -44,6 +44,18 @@ import {
 import {
     GeneralPostButtonsComponent
 } from "./general-post-buttons/general-post-buttons.component";
+import {
+    GeneralPostFooterComponent
+} from "./general-post-footer/general-post-footer.component";
+import {
+    GeneralPostCommentInputComponent
+} from "./general-post-comment-input/general-post-comment-input.component";
+import {
+    PostInputConsoleComponent
+} from "./post-input-console/post-input-console.component";
+import {
+    GeneralPostCommentComponent
+} from "./general-post-comment/general-post-comment.component";
 
 export const elements = [
     AuthBubbleComponent,
@@ -57,9 +69,13 @@ export const elements = [
     GeneralPostComponent,
     GeneralPostButtonComponent,
     GeneralPostButtonsComponent,
+    GeneralPostCommentComponent,
+    GeneralPostCommentInputComponent,
+    GeneralPostFooterComponent,
     GeneralPostHeaderComponent,
     HeadlineButtonComponent,
     NavBarComponent,
+    PostInputConsoleComponent,
     ProfileActivityComponent,
     ProfileBioComponent,
     ProfileHeadlineButtonsComponent,
