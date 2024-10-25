@@ -1,0 +1,43 @@
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+
+general-post-comment {
+    @include flex(center, center, column);
+    //background-color: $sandstone;
+    border-radius: $half-percent;
+    padding: $quarter-percent;
+    margin: $quarter-percent $zero;
+    border: {
+        left: $thinnest-border solid $absolute-black;
+        right: $thinnest-border solid $absolute-black;
+    }
+    @extend %console-box-shadow;
+    ss-anchor {
+        @include flex(flex-end, center, row);
+        a {
+            @include flex(flex-end, center, row);
+            ss-img {
+                @include square-size($one-half-percent);
+                background-color: $charcoal;
+                border-radius: $one-percent;
+                img {
+                    // TODO: Remove temporary styling and find a different
+                    //       differentiating style for the profile picture.
+                    filter: grayscale(100%);
+
+                }
+            }
+
+            .commenter-name-div {
+                @include flex(center, center, row);
+                @extend %hyperlink;
+                margin-left: $half-percent;
+                p {
+                    font-size: $smaller-p-font-size;
+                }
+            }
+        }
+    }
+}
