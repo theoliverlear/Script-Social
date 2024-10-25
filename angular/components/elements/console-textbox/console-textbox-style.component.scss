@@ -1,7 +1,7 @@
-@import "../../../../../style/global-variables";
-@import "../../../../../style/global-mixins";
-@import "../../../../../style/global-functions";
-@import "../../../../../style/global-placeholders";
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
 
 .general-write-post-div {
     @include flex(center, center, column);
