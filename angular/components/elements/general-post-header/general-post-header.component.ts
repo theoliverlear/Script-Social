@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {defaultAvatar} from "../../../assets/imageAssets";
 import {TagType} from "../../../models/html/TagType";
 import {TargetType} from "../../../models/html/TargetType";
+import {TextElementLink} from "../../../models/link/TextElementLink";
 
 @Component({
     selector: 'general-post-header',
@@ -9,11 +10,15 @@ import {TargetType} from "../../../models/html/TargetType";
     styleUrls: ['./general-post-header-style.component.css']
 })
 export class GeneralPostHeaderComponent {
+    testElementLink: TextElementLink = new TextElementLink('#',
+                                                           TargetType.SELF,
+                                                           true,
+                                                           'Oliver',
+                                                           TagType.H5);
     constructor() {
         console.log('GeneralPostHeaderComponent loaded');
     }
 
     protected readonly defaultAvatar = defaultAvatar;
     protected readonly TagType = TagType;
-    protected readonly TargetType = TargetType;
 }
