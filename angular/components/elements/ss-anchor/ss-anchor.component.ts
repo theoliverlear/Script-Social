@@ -3,31 +3,29 @@ import {
     Component,
     ContentChild,
     ElementRef,
-    Input
+    Input, OnInit
 } from "@angular/core";
 import {TagType} from "../../../models/html/TagType";
 import {TargetType} from "../../../models/html/TargetType";
+import {ElementLink} from "../../../models/link/ElementLink";
+import {TextElementLink} from "../../../models/link/TextElementLink";
 
 @Component({
     selector: 'ss-anchor',
     templateUrl: './ss-anchor.component.html',
     styleUrls: ['./ss-anchor-style.component.css']
 })
-export class SsAnchorComponent implements AfterContentInit {
-    @Input() tagType: TagType = TagType.P;
-    @Input() hrefLink: string = '';
-    @Input() anchorText: string = '';
-    @Input() targetType: TargetType = TargetType.SELF;
-    hasContent: boolean = this.anchorText.length === 0;
+export class SsAnchorComponent implements OnInit {
+    @Input() elementLink: TextElementLink;
+    hasContent: boolean = false;
     constructor() {
         console.log('SsAnchorComponent loaded');
     }
-    navigateToLink(): void {
-        window.location.href = this.hrefLink;
+    ngOnInit() {
+        if (this.elementLink) {
+            this.hasContent = !this.elementLink.hasText();
+        }
     }
-    ngAfterContentInit() {
-        // this.hasContent = this.content && this.content.nativeElement.hasChildNodes();
-        console.log('Has Content: ', this.hasContent);
-    }
+
     protected readonly TagType = TagType;
 }
