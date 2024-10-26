@@ -124,19 +124,19 @@ article {
         border-radius: $one-percent;
     }
 }
-.general-text-area {
-    width: $fifteen-percent;
-    height: auto;
-    border-radius: $one-percent;
-    border: $thinnest-border solid $alabaster-stone;
-    background-color: $charcoal;
-    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
-    //text-decoration: underline;
-    color: $pristine-white;
-    font-size: $p-font-size;
-    padding: $one-percent;
-    resize: vertical;
-}
+//.general-text-area {
+//    width: $fifteen-percent;
+//    height: auto;
+//    border-radius: $one-percent;
+//    border: $thinnest-border solid $alabaster-stone;
+//    background-color: $charcoal;
+//    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+//    //text-decoration: underline;
+//    color: $pristine-white;
+//    font-size: $p-font-size;
+//    padding: $one-percent;
+//    resize: vertical;
+//}
 //---------------------------------Scroll-Bar---------------------------------
 ::-webkit-scrollbar {
     width: $half-percent;
@@ -201,6 +201,14 @@ article {
         background-color: $charcoal;
         cursor: pointer;
     }
+}
+textarea {
+    color: $pure-orange;
+    font-family: $source-code-font;
+    font-size: $smaller-p-font-size;
+    background-color: $charcoal;
+    border-radius: $one-percent;
+    padding: $one-percent;
 }
 //-----------------------------------Posts------------------------------------
 .general-project-post {
