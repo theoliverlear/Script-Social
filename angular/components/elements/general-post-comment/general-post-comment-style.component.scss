@@ -6,13 +6,13 @@
 general-post-comment {
     @include flex(center, center, column);
     //background-color: $sandstone;
+    //background: linear-gradient(90deg, $absolute-black, $charcoal);
+    background-color: $light-charcoal;
     border-radius: $half-percent;
-    padding: $quarter-percent;
-    margin: $quarter-percent $zero;
-    border: {
-        left: $thinnest-border solid $absolute-black;
-        right: $thinnest-border solid $absolute-black;
-    }
+    padding: $half-percent;
+    //margin: $quarter-percent 0 $half-percent 0;
+    margin: $half-percent 0;
+    border: $very-thin-border solid $alabaster-stone;
     @extend %console-box-shadow;
     ss-anchor {
         @include flex(flex-end, center, row);
@@ -35,7 +35,7 @@ general-post-comment {
                 @extend %hyperlink;
                 margin-left: $half-percent;
                 p {
-                    font-size: $smaller-p-font-size;
+                    font-size: $smallest-p-font-size;
                 }
             }
         }
