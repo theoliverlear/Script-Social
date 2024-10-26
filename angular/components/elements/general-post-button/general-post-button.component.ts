@@ -1,16 +1,17 @@
 import {
     AfterViewInit,
     Component,
-    ElementRef,
-    Input,
+    ElementRef, EventEmitter,
+    Input, Output,
     Renderer2,
     ViewChild
 } from "@angular/core";
 import {
     ImageAsset,
-    likeIcon,
+    likeIcon, whiteCloseIcon,
     whiteChatBubbleIcon,
-    whiteLikeIcon, whiteReplyIcon,
+    whiteLikeIcon,
+    whiteReplyIcon,
     whiteRepostIcon,
     whiteShareIcon
 } from "../../../assets/imageAssets";
@@ -19,6 +20,7 @@ import {SsImgComponent} from "../ss-img/ss-img.component";
 import {
     GeneralPostButtonClickResponse
 } from "./models/GeneralPostButtonClickResponse";
+import {ElementSize} from "../../../models/ElementSize";
 
 @Component({
     selector: 'general-post-button',
@@ -28,18 +30,35 @@ import {
 export class GeneralPostButtonComponent implements AfterViewInit {
     @Input() buttonType: GeneralPostButtonType;
     @Input() clickResponse: GeneralPostButtonClickResponse;
+    @Input() elementSize: ElementSize = ElementSize.MEDIUM;
+    @Input() showNumberInteractions: boolean = true;
+    @Output() buttonClicked: EventEmitter<void> = new EventEmitter();
     numInteractions: number = 0;
     isClicked: boolean = false;
-    @ViewChild(('buttonImage')) buttonImage: SsImgComponent;
+    @ViewChild('buttonImage') buttonImage: SsImgComponent;
     constructor(private renderer: Renderer2, private element: ElementRef) {
         console.log('GeneralPostButtonComponent loaded');
+    }
+    emitButtonClicked() {
+        this.buttonClicked.emit();
+        // this.toggleClicked();
     }
     ngAfterViewInit() {
         if (this.clickResponse === GeneralPostButtonClickResponse.QUICK_TRIGGER) {
             this.buttonImage.addClassToImageElement('quick-trigger');
         }
+        this.applySizeStyle();
     }
-
+    applySizeStyle() {
+        switch (this.elementSize) {
+            case ElementSize.SMALL:
+                this.element.nativeElement.classList.add('small');
+                break;
+            case ElementSize.LARGE:
+                this.element.nativeElement.classList.add('large');
+                break;
+        }
+    }
     toggleClicked() {
         if (this.clickResponse === GeneralPostButtonClickResponse.TOGGLE) {
             this.isClicked = !this.isClicked;
@@ -52,7 +71,7 @@ export class GeneralPostButtonComponent implements AfterViewInit {
         // this.buttonImage.imageAsset = this.toggleClickImageAsset();
     }
     getImageAsset(): ImageAsset {
-        console.log('REACHED GET IMAGE ASSET');
+        // console.log('REACHED GET IMAGE ASSET');
         switch (this.buttonType) {
             case GeneralPostButtonType.LIKE:
                 return whiteLikeIcon;
@@ -64,6 +83,8 @@ export class GeneralPostButtonComponent implements AfterViewInit {
                 return whiteShareIcon;
             case GeneralPostButtonType.CHAT:
                 return whiteChatBubbleIcon;
+            case GeneralPostButtonType.CANCEL:
+                return whiteCloseIcon;
             default:
                 return whiteLikeIcon;
         }
