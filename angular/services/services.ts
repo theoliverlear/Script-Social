@@ -10,6 +10,7 @@ import {SwipeService} from "./swipe.service";
 import {PostService} from "./server/post.service";
 import {PasswordMatchHandlerService} from "./password-match-handler.service";
 import {UserService} from "./server/user.service";
+import {EmptyPostService} from "./empty-post.service";
 
 export const services = [
     // Server
@@ -20,6 +21,7 @@ export const services = [
     AgreeTermsService,
     ConsoleService,
     EmailValidatorService,
+    EmptyPostService,
     ErrorHandlerService,
     FilledFieldsService,
     HashPasswordService,
