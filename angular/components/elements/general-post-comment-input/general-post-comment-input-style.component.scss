@@ -1,0 +1,28 @@
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+
+general-post-comment-input {
+    @include flex(center, center, column);
+    width: 95%;
+    .general-post-comment-input-div {
+        width: 100%;
+        @include flex(center, center, row);
+        @extend %soft-border-radius;
+        background-color: $light-charcoal;
+        padding: $quarter-percent;
+
+        console-textbox {
+            width: 100%;
+
+            textarea {
+                width: 100%;
+                resize: none;
+            }
+        }
+    }
+    console-popup {
+        margin: $quarter-percent 0;
+    }
+}
