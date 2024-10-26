@@ -11,4 +11,5 @@ general-post-buttons {
     @extend %console-box-shadow;
     border-radius: $half-percent;
     border-width: calc($thinnest-border * 0.25);
+    margin: $quarter-percent 0;
 }
