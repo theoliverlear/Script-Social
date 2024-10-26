@@ -1,0 +1,33 @@
+@import "angular/styles/global-variables";
+@import "angular/styles/global-mixins";
+@import "angular/styles/global-functions";
+@import "angular/styles/global-placeholders";
+@import "angular/styles/global-style.css";
+
+.console {
+    @include flex(center, center, column);
+    border-radius: $one-percent;
+    border: $thinnest-border solid $alabaster-stone;
+    background-color: $charcoal;
+    color: $pristine-white;
+    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+    padding: $one-percent;
+    width: auto;
+    margin: $one-percent 0;
+}
+.very-large-console {
+    @extend .console;
+    width: $fifty-percent;
+}
+.large-console {
+    @extend .console;
+    width: $thirty-percent;
+}
+.medium-console {
+    @extend .console;
+    width: $twenty-percent;
+}
+.small-console {
+    @extend .console;
+    width: $fifteen-percent;
+}

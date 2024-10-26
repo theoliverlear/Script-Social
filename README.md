@@ -1,5 +1,5 @@
 # Script Social
-<img src="src/main/resources/static/image/logo/script_social_cropped.png">
+<img src="angular/assets/images/logo/script_social_cropped.png">
 
 ## Description
 Script Social is a social media and networking site designed specifically for

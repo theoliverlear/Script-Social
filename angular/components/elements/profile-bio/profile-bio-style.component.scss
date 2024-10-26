@@ -1,0 +1,14 @@
+@import "angular/styles/global-variables";
+@import "angular/styles/global-mixins";
+@import "angular/styles/global-functions";
+@import "angular/styles/global-placeholders";
+
+profile-bio {
+    background-color: $apricot-glow;
+    border-radius: $one-percent;
+    padding: $half-percent $one-percent;
+    p {
+        //color: $pure-orange;
+        color: $charcoal;
+    }
+}

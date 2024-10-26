@@ -1,0 +1,28 @@
+<side-nav-bar></side-nav-bar>
+<!--============================-Main-Content-=============================-->
+<main>
+    <!-- TODO: If a user is private, show a message, hide the appropriate
+               content, and heavily blur their profile picture. -->
+    <!-------------------------Headline-Section------------------------------>
+    <section id="headline-section">
+        <div id="profile-picture-with-name">
+            <ss-img id="profile-picture-div" [imageAsset]="defaultAvatar" [childId]="'profile-picture-img'"></ss-img>
+            <div id="profile-name-and-bio-div">
+                <profile-name [nameText]="'Oliver Sigwarth'"></profile-name>
+                <profile-bio [bioText]="'A software developer who loves to program!'"></profile-bio>
+            </div>
+        </div>
+        <!---------------------Headline-Buttons------------------------------>
+        <profile-headline-buttons></profile-headline-buttons>
+    </section>
+    <!-------------------------User-Tabs-Section----------------------------->
+    <section id="user-tabs-section">
+        <!--        <div>-->
+        <!--            <h4>Projects</h4>-->
+        <!--        </div>-->
+        <div>
+
+        </div>
+    </section>
+    <profile-activity></profile-activity>
+</main>

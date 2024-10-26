@@ -1,0 +1,225 @@
+//=================================-Imports-==================================
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+@import "../../../styles/global-style";
+
+nav-bar {
+    width: 100%;
+    z-index: 3;
+    margin-bottom: simple-calc(1, 1);
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    //background-color: $apricot-glow;
+    box-shadow: $apricot-glow 0 0 $eighth-percent $eighth-percent;
+
+    //background: linear-gradient(to bottom, $apricot-glow 90%, $light-charcoal);
+    border-bottom: {
+        left-radius:  $ten-percent;
+        right-radius: $ten-percent;
+    }
+    background: radial-gradient(at top, $apricot-glow 70%, $charcoal);
+    header {
+        z-index: 2;
+        width: 100%;
+        margin: 0 0 calc-size(6, 4, 2) 0;
+        height: calc-size(6, 4, 2);
+        //border-bottom: $thinnest-border solid $alabaster-stone;
+        @include basic-margin-padding(0, 0);
+        @include flex(center, center, row);
+
+        nav {
+            //margin: 0 0 0 $four-percent;
+            margin-right: $four-percent;
+            &.hidden {
+                display: none;
+            }
+            @include flex(center, center, row);
+            //display: none;
+            @include size(50%, 100%);
+
+            > div, > ss-anchor {
+                //flex-basis: $eight-percent;
+                height: 30%;
+                //border-left: $very-thin-border solid $charcoal;
+                padding: $quarter-percent $one-percent;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                display: none;
+            }
+
+            .nav-item {
+                transition: width, height, color, background-color, 0.15s;
+                border-radius: $quarter-percent;
+                padding: $half-percent;
+                @include flex(center, center, row);
+                &:not(:last-child) {
+                    margin-right: $two-percent;
+                }
+                &:hover:not(#account-and-logout-div) {
+                    //background-color: $charcoal;
+                    //background: linear-gradient(to bottom, $charcoal, $light-charcoal);
+                    background: linear-gradient(to bottom, $charcoal 15%, $light-charcoal);
+                    color: $pristine-white;
+                }
+
+                &:active:not(#account-and-logout-div) {
+                    color: $bright-sunset;
+                }
+
+                &:hover .nav-text {
+                    //font-size: $h4-quarter-font-size;
+                }
+
+                .nav-text {
+                    transition: font-size, 0.15s;
+                }
+            }
+
+            #account-and-logout-div {
+                @include flex(center, center, column);
+                position: relative;
+
+                #logout-button {
+                    position: absolute;
+                    top: $three-percent;
+                    background-color: $tangerine;
+                    color: $pristine-white;
+                    padding: $half-percent $one-percent;
+                    border-radius: $quarter-percent;
+                    display: none;
+
+                    &:hover {
+                        background-color: $bright-sunset;
+                    }
+
+                    &:active {
+                        background-color: $charcoal;
+                    }
+                }
+
+                &:hover {
+                    background: linear-gradient(to bottom, $charcoal 15%, $light-charcoal);
+                    color: $pristine-white;
+                }
+
+                &:active {
+                    color: $bright-sunset;
+                }
+            }
+
+            & > div:last-child {
+                //border-right: $very-thin-border solid $charcoal;
+            }
+
+            #nav-search-div {
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                display: flex;
+                a {
+                    @include flex(center, center, row);
+                }
+                #search-icon-div {
+                    @include flex(center, center, row);
+                    @include size($one-half-percent, $one-half-percent);
+                    margin-right: $quarter-percent;
+                        img {
+                            @include size(100%, 100%);
+                        }
+                }
+
+                &:hover {
+                    //font-size: $h4-quarter-font-size;
+                    #search-icon-div {
+                        //@include size(calc($two-percent * 0.85), calc($two-percent * 0.85));
+                    }
+
+                    #search-icon-div {
+                        filter: invert(1);
+                    }
+                }
+
+                &:active {
+                    //font-size: $h4-half-font-size;
+                    //#search-icon-div {
+                    //    filter: invert(1);
+                    //}
+                }
+            }
+        }
+
+        #nav-hamburger-menu {
+            transition: width, height, 0.15s;
+            @include size($three-percent, $three-percent);
+
+            img {
+                @include size(100%, 100%);
+            }
+
+            &:hover {
+                @include size($three-half-percent, $three-half-percent);
+            }
+        }
+
+        #user-nav-menu-div {
+            display: none;
+
+            #user-nav-img-div {
+                top: $half-percent;
+                right: $half-percent;
+                position: absolute;
+                @include square-size($four-percent);
+                border: $thin-border solid $sandstone;
+                border-radius: $one-percent;
+                background-color: $charcoal;
+                @extend %console-box-shadow;
+                transition: box-shadow, 0.15s;
+
+                #user-nav-img {
+                    border-radius: inherit;
+                    @include size(100%, 100%)
+                }
+
+                &:hover {
+                    box-shadow: $absolute-black $third-percent $third-percent 0 0;
+                    cursor: pointer;
+                }
+
+                &:active {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+//----------------------------------Nav-Bar-----------------------------------
+
+#nav-search-div.nav-item-no-hover-effects {
+    border-radius: $quarter-percent;
+    @include flex(center, center, row);
+    &:hover {
+        cursor: default;
+        background-color: inherit;
+        color: inherit;
+        box-shadow: inherit;
+    }
+    &:hover {
+        #search-icon-div {
+            filter: none;
+        }
+    }
+}
+#nav-search-input-div {
+    //@import "../../../../style/global-style";
+    display: none;
+    #nav-search-input {
+        @extend .general-input;
+        @include size($five-percent, $two-percent);
+        padding: $zero $one-percent;
+    }
+}

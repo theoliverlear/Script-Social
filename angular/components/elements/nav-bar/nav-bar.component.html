@@ -1,0 +1,66 @@
+<!--===============================-Nav-Bar-===============================-->
+<header>
+    <!------------------------Nav-Hamburger-Menu----------------------------->
+    <ss-img [imageAsset]="hamburgerIcon"
+            (click)="toggleNavBar()"
+            [childId]="'nav-hamburger-menu'"/>
+    <nav id="nav-bar" [ngClass]="{'hidden': !navBarDisplayed}">
+        <!-------------------------Nav-Home---------------------------------->
+        <ss-anchor class="link-no-style nav-item"
+                   [elementLink]="navBarHomeElementLink">
+            <div>
+                <typing-text [textToType]="'Home'"
+                             #typingTextComponent
+                             [typeOnLoad]="false"
+                             [applyBeingTypedStyle]="true"
+                             [typeSpeed]="TypeSpeed.NORMAL"
+                             [tagType]="TagType.H4"></typing-text>
+            </div>
+        </ss-anchor>
+        <!------------------------Nav-Search--------------------------------->
+        <ss-anchor class="link-no-style nav-item"
+                   id="nav-search-div"
+                   [elementLink]="navBarSearchElementLink">
+            <ss-img [imageAsset]="searchIcon"
+                    id="search-icon-div"
+                    [childId]="'search-icon-img'"/>
+            <div class="nav-text-div" id="search-nav-text-div">
+                <typing-text [textToType]="'Search'"
+                             #typingTextComponent
+                             [typeOnLoad]="false"
+                             [applyBeingTypedStyle]="true"
+                             [typeSpeed]="TypeSpeed.NORMAL"
+                             [tagType]="TagType.H4"></typing-text>
+            </div>
+            <div id="nav-search-input-div">
+                <input class="general-input" id="nav-search-input" type="text" placeholder="Search">
+            </div>
+        </ss-anchor>
+        <!------------------------Nav-Account-------------------------------->
+        <ss-anchor id="account-and-logout-div"
+                   class="nav-item link-no-style"
+                   [elementLink]="navBarAccountElementLink">
+            <div id="account-nav-item">
+                <typing-text [textToType]="'Account'"
+                             #typingTextComponent
+                             [typeOnLoad]="false"
+                             [applyBeingTypedStyle]="true"
+                             [typeSpeed]="TypeSpeed.NORMAL"
+                             [tagType]="TagType.H4"></typing-text>
+            </div>
+            <div id="logout-button">
+                <h5>Logout</h5>
+            </div>
+        </ss-anchor>
+    </nav>
+    <!---------------------------Nav-User-Menu------------------------------->
+    <div id="user-nav-menu-div">
+        <ss-img [imageAsset]="defaultAvatar"
+                id="user-nav-img-div"
+                [childId]="'user-nav-img'"/>
+        <!--        </div>-->
+        <!-- TODO: Add dropdown menu for user settings. This should include a
+                   logout option.-->
+    </div>
+
+</header>

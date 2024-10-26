@@ -1,0 +1,17 @@
+<div class="console-input-title-field">
+    <div class="console-title-field">
+        <h5>{{ title }}</h5>
+    </div>
+    <div class="console-input-div" *ngIf="!isCheckbox(); else checkboxInputTemplate">
+        <input class="console-input"
+               type="{{ type }}"
+               (ngModelChange)="handleInputChange($event)"
+               [(ngModel)]="value">
+    </div>
+</div>
+<ng-template #checkboxInputTemplate>
+    <ss-img class="checkbox-ss-img"
+            [imageAsset]="confirmIcon"
+            [ngClass]="{'selected': isSelected}"
+    (click)="toggleSelected()"/>
+</ng-template>

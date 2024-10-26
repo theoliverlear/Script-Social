@@ -1,0 +1,8 @@
+<ss-img #buttonImage
+        [imageAsset]="getImageAsset()"
+        (click)="toggleClicked()"></ss-img>
+<ng-container *ngIf="isNumberedButton() && showNumberInteractions">
+    <div class="interactions-div">
+        <h6> {{ numInteractions }} </h6>
+    </div>
+</ng-container>

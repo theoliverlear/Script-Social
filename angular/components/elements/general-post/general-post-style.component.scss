@@ -1,0 +1,13 @@
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+@import "../../../styles/global-style";
+
+.general-post {
+    @extend .content-box;
+    hr {
+        width: 95%;
+        border-color: $sandstone;
+    }
+}

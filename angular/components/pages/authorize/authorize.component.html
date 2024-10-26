@@ -1,0 +1,10 @@
+<!--============================-Main-Content-=============================-->
+<main>
+    <!------------------------Auth-Type-Selection---------------------------->
+    <auth-type-selector (authTypeChange)="onAuthTypeChange($event)"></auth-type-selector>
+    <!------------------------Auth-Input-Section----------------------------->
+    <section id="auth-input-section">
+        <!----------------------Signup-Section------------------------------->
+        <console [consoleType]="consoleType"></console>
+    </section>
+</main>

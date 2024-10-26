@@ -1,5 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
+const glob = require('glob');
+const { AngularWebpackPlugin } = require('@ngtools/webpack');
 
 module.exports = {
     entry: [
@@ -26,7 +29,15 @@ module.exports = {
         './src/main/resources/static/script/models/Comment.ts',
         './src/main/resources/static/script/models/InstantMessage.ts',
         './src/main/resources/static/script/models/ConnectionBubble.ts',
-        './src/main/resources/static/script/models/HtmlGenerative.ts'
+        './src/main/resources/static/script/models/HtmlGenerative.ts',
+        // Angular
+        // './src/main/resources/static/script/angular/script-social-app.module.ts',
+        // './src/main/resources/static/script/angular/main.ts',
+        // './src/main/resources/static/script/angular/polyfills.ts',
+        // Angular Components
+        // './src/main/resources/static/script/angular/components/nav-bar/nav-bar.component.ts',
+        // './src/main/resources/static/script/angular/components/ss-footer/ss-footer.component.ts',
+        // ...glob.sync('./src/main/resources/static/script/angular/**/*.ts').map(p => './' + path.relative(__dirname, p).replace(/\\/g, '/'))
     ],
     module: {
         rules: [
@@ -50,6 +61,23 @@ module.exports = {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                test: /\.html\.js$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: path.resolve(__dirname, './src/main/resources/templates/scripts'),
+                            publicPath: '/templates/scripts',
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.html$/,
+                use: 'raw-loader',
+            }
         ],
     },
     resolve: {
@@ -62,11 +90,20 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, './src/main/resources/static/script'),
     },
-    mode: 'development',
+    mode: 'production', // Set to production for optimization
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()],
+    },
     plugins: [
         new webpack.ProvidePlugin({
             $: 'jquery',
-            jQuery: 'jquery'
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+        }),
+        new AngularWebpackPlugin({
+            tsconfig: './tsconfig.json',
+            jitMode: true,  // Enable JIT mode in AngularWebpackPlugin
         })
     ]
 };

@@ -1,0 +1,18 @@
+<ng-container *ngIf="!isPopoutButton(); else popoutTab">
+    <a class="link-no-style side-bar-functionality-div" [href]="sideNavBarButtonType.urlPath">
+        <ss-img class="side-bar-icon-div"
+                [imageAsset]="sideNavBarButtonType.imageAsset"
+                [childClass]="'side-bar-icon-img'"></ss-img>
+        <div class="side-bar-icon-title-div">
+            <h6>{{ sideNavBarButtonType.buttonTitle }}</h6>
+        </div>
+    </a>
+</ng-container>
+<ng-template #popoutTab>
+    <ss-img id="side-bar-tab-div"
+            class="side-bar-icon-div"
+            [childId]="'side-bar-tab-img'"
+            [childClass]="'side-bar-icon-img'"
+            [imageAsset]="sideNavBarButtonType.imageAsset"></ss-img>
+    <hr />
+</ng-template>

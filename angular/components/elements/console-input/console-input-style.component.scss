@@ -1,0 +1,33 @@
+@import "angular/styles/global-variables";
+@import "angular/styles/global-mixins";
+@import "angular/styles/global-functions";
+@import "angular/styles/global-placeholders";
+@import "angular/styles/global-style.css";
+
+console-input {
+    width: 100%;
+    margin: $eighth-percent 0;
+    .console-input-title-field {
+        width: 100%;
+        @include flex(center, center, row);
+        .console-title-field {
+            margin-right: $one-percent;
+            flex: 1;
+        }
+        .console-input-div {
+            flex: 1;
+            width: 100%;
+            .console-input {
+                @extend .general-input;
+                width: 100%;
+            }
+        }
+    }
+    ss-img {
+        @include square-size($two-percent);
+        &.selected {
+            border: $thin-border solid $pure-orange;
+            border-radius: $one-percent;
+        }
+    }
+}

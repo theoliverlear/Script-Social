@@ -1,0 +1,76 @@
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+
+.small {
+    ss-img {
+        @include square-size($one-quarter-percent);
+        img {
+            @include square-size($one-quarter-percent);
+        }
+    }
+    .interactions-div {
+        @include size($one-quarter-percent);
+    }
+}
+
+general-post-button {
+    $button-size: $two-percent;
+    //@include square-size($button-size);
+    @include flex(center, center, row);
+    background-color: $charcoal;
+    border-radius: $half-percent;
+    margin-right: $half-percent;
+    ss-img {
+        border-radius: $half-percent;
+        box-sizing: border-box;
+        transition: border 0.05s;
+        border: none;
+        background-color: inherit;
+        @include square-size($button-size);
+        img {
+            border-radius: $half-percent;
+            box-sizing: border-box;
+            transition: border 0.05s;
+            border: none;
+            @include square-size($button-size);
+            &:hover {
+                border: $thin-border solid $alabaster-stone;
+                cursor: pointer;
+            }
+            &:active:not(.quick-trigger) {
+                border: $thin-border solid $pure-orange;
+                cursor: pointer;
+            }
+            &:active:is(.quick-trigger) {
+                background-color: $pure-orange;
+                border: $thin-border solid $tan;
+                box-shadow: $absolute-black $third-percent $third-percent 0 0;
+            }
+
+        }
+    }
+    .interactions-div {
+        @include flex(center, center, row);
+        @include size($button-size);
+        color: $alabaster-stone;
+        //@extend %circle-border-radius;
+        background-color: $charcoal;
+    }
+    &.clicked {
+        transition: box-shadow 0.05s;
+        ss-img {
+            background-color: $pure-orange;
+            img {
+                border: $thin-border solid $tan;
+                &:hover {
+                    @extend %console-box-shadow;
+                }
+                &:active {
+                    box-shadow: $absolute-black $third-percent $third-percent 0 0;
+                }
+            }
+        }
+    }
+}

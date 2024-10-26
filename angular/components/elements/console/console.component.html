@@ -1,0 +1,30 @@
+<div [ngClass]="getConsoleClass()">
+    <console-input [(ngModel)]="username"
+                   [title]="ConsoleInputField.USERNAME"
+                   [type]="ConsoleInputType.TEXT"></console-input>
+    <console-input [(ngModel)]="email"
+                   *ngIf="isSignup()"
+                   (ngModelChange)="handleEmailInput()"
+                   [title]="ConsoleInputField.EMAIL"
+                   [type]="ConsoleInputType.EMAIL"></console-input>
+    <console-input [(ngModel)]="password"
+                   (ngModelChange)="handlePasswordMismatch()"
+                   [title]="ConsoleInputField.PASSWORD"
+                   [type]="ConsoleInputType.PASSWORD"></console-input>
+    <console-input [(ngModel)]="confirmPassword"
+                   *ngIf="isSignup()"
+                   (ngModelChange)="handlePasswordMismatch()"
+                   [title]="ConsoleInputField.CONFIRM_PASSWORD"
+                   [type]="ConsoleInputType.PASSWORD"></console-input>
+    <console-input [(ngModel)]="termsAgreed"
+                   *ngIf="isSignup()"
+                   (ngModelChange)="handleTermsAgreed()"
+                   [title]="ConsoleInputField.AGREE_TERMS"
+                   (isSelectedChange)="handleTermsSelectedChange($event)"
+                   [type]="ConsoleInputType.CHECKBOX"></console-input>
+    <ss-button [text]="ButtonText.CONFIRM"
+               [size]="ElementSize.SMALL"
+               [buttonPosition]="ButtonPosition.END"
+               (click)="sendAuthToServer()"></ss-button>
+</div>
+<console-popup *ngIf="authPopup" [@fade] [popup]="authPopup"></console-popup>

@@ -1,0 +1,10 @@
+<div class="console">
+    <div class="console-popup-div">
+        <ng-container [ngSwitch]="elementSize">
+            <h6 *ngSwitchCase="ElementSize.SMALL">{{ popup }}</h6>
+            <h5 *ngSwitchCase="ElementSize.MEDIUM">{{ popup }}</h5>
+            <h4 *ngSwitchCase="ElementSize.LARGE">{{ popup }}</h4>
+            <p *ngSwitchDefault>{{ popup }}</p>
+        </ng-container>
+    </div>
+</div>
