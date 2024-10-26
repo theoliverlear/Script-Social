@@ -4,7 +4,8 @@
 </general-post-button>
 <general-post-button
         [buttonType]="GeneralPostButtonType.COMMENT"
-        [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER">
+        [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER"
+        (click)="emitButtonClick(GeneralPostButtonType.COMMENT)">
 </general-post-button>
 <general-post-button
         [buttonType]="GeneralPostButtonType.REPOST"
