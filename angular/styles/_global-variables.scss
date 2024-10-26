@@ -29,6 +29,7 @@ $h5-font-size: min(simple-pixel-calc(1.75,  4), 60px);
 $h6-font-size: min(simple-pixel-calc(1.15,  2), 40px);
 $p-font-size:  min(simple-pixel-calc(1.15,  2), 40px);
 $smaller-p-font-size: min(simple-pixel-calc(1,  1), 25px);
+$smallest-p-font-size: min(simple-pixel-calc(0.75,  1), 20px);
 //----------------------------------Borders-----------------------------------
 $thinnest-border: min(calc(((0.025vw + 0.025vh) / 2) + 0.025rem), 2px);
 $very-thin-border: calc(((0.05vw + 0.05vh) / 2) + 0.05em);
@@ -42,6 +43,7 @@ $third-percent: simple-calc(0.3333, 0.1333);
 $half-percent: simple-calc(0.5, 0.2);
 $three-quarter-percent: simple-calc(0.75, 0.3);
 $one-percent: simple-calc(1, 0.4);
+$one-quarter-percent: simple-calc(1.25, 0.5);
 $one-half-percent: simple-calc(1.5, 0.6);
 $two-percent: simple-calc(2, 0.8);
 $two-half-percent: simple-calc(2.5, 1);
