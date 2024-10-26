@@ -61,3 +61,7 @@ export const whiteReplyIcon: ImageAsset = {
     src: iconImageAssetPath + 'white_reply_icon.svg',
     alt: 'White Reply Icon'
 }
+export const whiteCloseIcon: ImageAsset = {
+    src: iconImageAssetPath + 'white_close_icon.svg',
+    alt: 'White Cancel Icon'
+}
