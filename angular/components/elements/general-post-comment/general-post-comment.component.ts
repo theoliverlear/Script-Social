@@ -3,6 +3,7 @@ import {GeneralPostComment} from "./models/GeneralPostComment";
 import {defaultAvatar} from "../../../assets/imageAssets";
 import {TextElementLink} from "../../../models/link/TextElementLink";
 import {TargetType} from "../../../models/html/TargetType";
+import {ElementSize} from "../../../models/ElementSize";
 
 @Component({
     selector: 'general-post-comment',
@@ -17,4 +18,5 @@ export class GeneralPostCommentComponent {
     }
 
     protected readonly defaultAvatar = defaultAvatar;
+    protected readonly ElementSize = ElementSize;
 }
