@@ -5,18 +5,18 @@
 
 .general-write-post-div {
     @include flex(center, center, column);
-    width: $twenty-percent;
-    height: $ten-percent;
-    @extend %console;
+    padding: $quarter-percent;
+    height: $five-percent;
     .write-post-textarea-div {
+        @include flex(center, center, column);
+        @include size(95%, 95%);
+        @extend %no-margin-padding;
         textarea {
-            width: $nineteen-percent;
-            height: $eight-percent;
+            @extend %fill-container;
             background-color: $charcoal;
             color: $pristine-white;
-            border-radius: $one-percent;
-            padding: $one-percent;
-            margin: $one-percent $zero $half-percent $zero;
+            //padding: $one-percent;
+            //margin: $one-percent $zero $half-percent $zero;
             resize: none;
         }
     }
