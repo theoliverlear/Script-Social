@@ -12,12 +12,12 @@ import {AgreeTermsService} from "./agree-terms.service";
     providedIn: 'root'
 })
 export class ConsoleService {
-    constructor(private _passwordMatchHandlerService: PasswordMatchHandlerService,
-                private _signupHandlerService: SignupHandlerService,
-                private _emailValidatorService: EmailValidatorService,
-                private _signupService: SignupService,
-                private _filledFieldsService: FilledFieldsService,
-                private _agreeTermsService: AgreeTermsService) {
+    constructor(private passwordMatchHandlerService: PasswordMatchHandlerService,
+                private signupHandlerService: SignupHandlerService,
+                private emailValidatorService: EmailValidatorService,
+                private signupService: SignupService,
+                private filledFieldsService: FilledFieldsService,
+                private agreeTermsService: AgreeTermsService) {
         console.log('ConsoleService loaded');
     }
     isMismatchPassword(password: string, confirmPassword: string): boolean {
@@ -27,10 +27,10 @@ export class ConsoleService {
         return this.emailValidatorService.isValidEmail(email);
     }
     isFilledFields(fields: string[]) {
-        return this._filledFieldsService.isFilledFields(fields);
+        return this.filledFieldsService.isFilledFields(fields);
     }
     sendSignupToServer(username: string, email: string, unhashedPassword: string): Observable<boolean> {
-        return this._signupService.sendSignupToServer(username, email, unhashedPassword);
+        return this.signupService.sendSignupToServer(username, email, unhashedPassword);
     }
     shouldHandleAgreeTerms(consoleType: ConsoleType) {
         return consoleType === ConsoleType.SIGNUP;
@@ -49,14 +49,5 @@ export class ConsoleService {
     }
     shouldHandleLoginFailed(consoleType: ConsoleType) {
         return consoleType === ConsoleType.LOGIN;
-    }
-    get passwordMatchHandlerService(): PasswordMatchHandlerService {
-        return this._passwordMatchHandlerService;
-    }
-    get signupHandlerService(): SignupHandlerService {
-        return this._signupHandlerService;
-    }
-    get emailValidatorService(): EmailValidatorService {
-        return this._emailValidatorService;
     }
 }
