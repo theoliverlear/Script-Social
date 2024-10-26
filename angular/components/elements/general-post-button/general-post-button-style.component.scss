@@ -3,6 +3,18 @@
 @import "../../../styles/global-functions";
 @import "../../../styles/global-placeholders";
 
+.small {
+    ss-img {
+        @include square-size($one-quarter-percent);
+        img {
+            @include square-size($one-quarter-percent);
+        }
+    }
+    .interactions-div {
+        @include size($one-quarter-percent);
+    }
+}
+
 general-post-button {
     $button-size: $two-percent;
     //@include square-size($button-size);
