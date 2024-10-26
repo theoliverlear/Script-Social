@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 import {ButtonText} from "../ss-button/models/ButtonText";
 import {ButtonPosition} from "../ss-button/models/ButtonPosition";
 
@@ -8,10 +8,15 @@ import {ButtonPosition} from "../ss-button/models/ButtonPosition";
     styleUrls: ['./console-textbox-style.component.css']
 })
 export class ConsoleTextboxComponent {
+    @Output() textChanged: EventEmitter<string> = new EventEmitter();
+
     constructor() {
         console.log('ConsoleTextboxComponent loaded');
     }
-
+    emitTextChange(text: string) {
+        console.log('Text changed: ' + text);
+        this.textChanged.emit(text);
+    }
     protected readonly ButtonText = ButtonText;
     protected readonly ButtonPosition = ButtonPosition;
 }
