@@ -1,5 +1,9 @@
 import {Component, Input} from "@angular/core";
 import {AuthPopup} from "../../../models/auth/AuthPopup";
+import {
+    ConsolePostPopup
+} from "../general-post-comment/models/ConsolePostPopup";
+import {ElementSize} from "../../../models/ElementSize";
 
 @Component({
     selector: 'console-popup',
@@ -7,8 +11,11 @@ import {AuthPopup} from "../../../models/auth/AuthPopup";
     styleUrls: ['./console-popup-style.component.css']
 })
 export class ConsolePopupComponent {
-    @Input() authPopup: AuthPopup;
+    @Input() popup: AuthPopup | ConsolePostPopup;
+    @Input() elementSize: ElementSize = ElementSize.MEDIUM;
     constructor() {
         console.log('ConsolePopupComponent loaded');
     }
+
+    protected readonly ElementSize = ElementSize;
 }
