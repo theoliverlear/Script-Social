@@ -18,10 +18,10 @@ import {EmailValidatorService} from "../services/email-validator.service";
 import {FilledFieldsService} from "../services/filled-fields.service";
 
 @Directive({
-    selector: '[autoPopup]'
+    selector: '[autoAuthPopup]'
 })
-export class AutoPopupDirective implements OnInit {
-    @Input() autoPopup(consoleType: ConsoleType, consoleComponent: ConsoleComponent): void {
+export class AutoAuthPopupDirective implements OnInit {
+    @Input() autoAuthPopup(consoleType: ConsoleType, consoleComponent: ConsoleComponent): void {
         this._consoleType = consoleType;
         this._consoleComponent = consoleComponent;
         this.ngOnInit();
