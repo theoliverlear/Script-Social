@@ -3,5 +3,6 @@ export enum GeneralPostButtonType {
     COMMENT = 'Comment',
     CHAT = 'Chat',
     REPOST = 'Repost',
-    SHARE = 'Share'
+    SHARE = 'Share',
+    CANCEL = 'Cancel'
 }
