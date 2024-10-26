@@ -6,7 +6,7 @@
         </p>
     </div>
     <hr />
-    <general-post-buttons></general-post-buttons>
+    <general-post-buttons (buttonClicked)="handleButtonClick($event)"></general-post-buttons>
     <hr />
-    <general-post-footer></general-post-footer>
+    <general-post-footer #generalPostFooter></general-post-footer>
 </div>
