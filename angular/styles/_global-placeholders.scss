@@ -50,5 +50,10 @@
     &:hover {
         cursor: pointer;
     }
-
+}
+%fill-container {
+    @include square-size(100%);
+}
+%no-margin-padding {
+    @include basic-margin-padding(0);
 }
