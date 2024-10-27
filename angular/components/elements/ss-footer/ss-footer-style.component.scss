@@ -5,23 +5,16 @@
 
 ss-footer {
     width: 100%;
-    //position: absolute;
-    left: 0;
-    bottom: 0;
     margin-top: auto;
-    //background-color: $charcoal;
+    box-sizing: border-box;
     background-color: transparent;
-    //border-top: $thinnest-border solid $charcoal;
     border-top: $thinnest-border solid;
     border-image: radial-gradient(at center, $absolute-black 30%, $charcoal) 1;
 }
 footer {
     width: 100%;
     padding: 0;
-    bottom: 0;
-
     @include flex(center, center, row);
-
     margin-bottom: 0;
     #footer-small-text-section {
         @include size(100%, 100%);
