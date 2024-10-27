@@ -41,40 +41,39 @@ span {
 code {
 
 }
-//-----------------------------General-Containers-----------------------------
-app {
-    //width: 100%;
-    //height: 100%;
-    //min-height: 100vh;
-    @include size(100%, 100%);
-    min-height: 100vh;
-    //background-color: $charcoal;
-    max-height: 100vh;
-    overflow: auto;
-    //background: linear-gradient(to bottom, $charcoal, $light-charcoal);
-    //background-image: linear-gradient(to bottom, $charcoal 85%, $alabaster-stone);
-    //background: radial-gradient(at 400px, $charcoal 50%, $light-charcoal 100%);
-    background: radial-gradient(at center, $charcoal 70%, $absolute-black);
-    @include basic-margin-padding(0, 0);
-    font-family: $jetbrains-mono-font;
+body {
     @include flex(center, center, column);
-
-    body {
-        @include size(100%, 100%);
-        min-height: 100vh;
-        background-color: $charcoal;
-        @include basic-margin-padding(0, 0);
-        font-family: $jetbrains-mono-font;
+    @include square-size(100%);
+    @include basic-margin-padding(0, 0);
+    min-height: 100vh;
+    app {
+        width: 100%;
         @include flex(center, center, column);
-
+        @include basic-margin-padding(0, 0);
+        min-height: 100vh;
+        //max-height: 100vh;
+        background: radial-gradient(at center, $charcoal 70%, $absolute-black);
+        font-family: $jetbrains-mono-font;
+        overflow: auto;
+        //flex-grow: 1;
         main {
             width: 100%;
+            flex: 1;
             @include flex(center, center, column);
         }
+        .scroll-container {
+            @include flex(flex-start, flex-start, column);
+            @extend %nav-bar-padding-top;
+            width: 100%;
+            overflow: scroll;
+            height: auto;
+            flex: 1;
+        }
+        authorize, home, profile {
+            box-sizing: border-box;
+            flex: 1;
+        }
     }
-}
-.page-container {
-    flex: 1;
 }
 aside {
 
@@ -124,19 +123,6 @@ article {
         border-radius: $one-percent;
     }
 }
-//.general-text-area {
-//    width: $fifteen-percent;
-//    height: auto;
-//    border-radius: $one-percent;
-//    border: $thinnest-border solid $alabaster-stone;
-//    background-color: $charcoal;
-//    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
-//    //text-decoration: underline;
-//    color: $pristine-white;
-//    font-size: $p-font-size;
-//    padding: $one-percent;
-//    resize: vertical;
-//}
 //---------------------------------Scroll-Bar---------------------------------
 ::-webkit-scrollbar {
     width: $half-percent;
