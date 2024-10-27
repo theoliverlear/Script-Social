@@ -55,5 +55,8 @@
     @include square-size(100%);
 }
 %no-margin-padding {
-    @include basic-margin-padding(0);
+    @include basic-margin-padding(0, 0);
+}
+%nav-bar-padding-top {
+    padding-top: calc-size(6, 4, 2);
 }
