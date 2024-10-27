@@ -11,11 +11,6 @@ import {ElementSize} from "../../../models/ElementSize";
     styleUrls: ['./home-style.component.css']
 })
 export class HomeComponent implements OnInit {
-    title: string = 'Home | Script Social';
-
-    stylesheets: string[] = [
-
-        ];
     constructor() {
         console.log('HomeComponent loaded');
     }
