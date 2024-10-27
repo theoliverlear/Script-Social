@@ -3,13 +3,14 @@
 @import "../../../styles/global-mixins";
 @import "../../../styles/global-functions";
 @import "../../../styles/global-placeholders";
-@import "../../../styles/global-style";
+@import "../../app/app-style.component";
+
+$nav-bar-height: calc-size(6, 4, 2);
 
 nav-bar {
     width: 100%;
     z-index: 3;
-    margin-bottom: simple-calc(1, 1);
-    position: sticky;
+    position: absolute;
     top: 0;
     left: 0;
 
@@ -17,16 +18,16 @@ nav-bar {
     box-shadow: $apricot-glow 0 0 $eighth-percent $eighth-percent;
 
     //background: linear-gradient(to bottom, $apricot-glow 90%, $light-charcoal);
+    height: $nav-bar-height;
     border-bottom: {
         left-radius:  $ten-percent;
         right-radius: $ten-percent;
     }
     background: radial-gradient(at top, $apricot-glow 70%, $charcoal);
     header {
+        height: 100%;
         z-index: 2;
         width: 100%;
-        margin: 0 0 calc-size(6, 4, 2) 0;
-        height: calc-size(6, 4, 2);
         //border-bottom: $thinnest-border solid $alabaster-stone;
         @include basic-margin-padding(0, 0);
         @include flex(center, center, row);
