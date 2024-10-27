@@ -1,10 +1,10 @@
-@import "angular/styles/global-variables";
-@import "angular/styles/global-mixins";
-@import "angular/styles/global-functions";
-@import "angular/styles/global-placeholders";
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
 
 home {
-
+    //@extend %nav-bar-padding-top;
 }
 //=================================-Imports-==================================
 
