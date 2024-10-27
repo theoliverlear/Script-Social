@@ -2,7 +2,7 @@
 @import "../../../styles/global-mixins";
 @import "../../../styles/global-functions";
 @import "../../../styles/global-placeholders";
-@import "../../../styles/global-style";
+@import "../../app/app-style.component";
 
 .general-post {
     @extend .content-box;
