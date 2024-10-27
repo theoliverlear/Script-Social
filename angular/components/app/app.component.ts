@@ -10,8 +10,6 @@ import {filter, map, mergeMap} from "rxjs";
 })
 export class AppComponent implements OnInit {
     title: string;
-    stylesheets: string[];
-    @Input() name: string = '';
     constructor(private router: Router, private activatedRoot: ActivatedRoute) {
         console.log('AppComponent loaded');
     }
@@ -28,12 +26,6 @@ export class AppComponent implements OnInit {
         ).subscribe((data) => {
             const metaInfo = data['meta'] || {};
             this.title = metaInfo['title'] || 'Script Social';
-            this.stylesheets = metaInfo['stylesheets'] || [];
         });
-
-        console.log('AppComponent ngOnInit');
-        if (!this.name || this.name.trim() === "") {
-            this.name = 'We did it!';
-        }
     }
 }
