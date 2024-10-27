@@ -1,10 +1,11 @@
 //=================================-Imports-==================================
-@import "angular/styles/global-variables";
-@import "angular/styles/global-mixins";
-@import "angular/styles/global-functions";
-@import "angular/styles/global-placeholders";
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
 //==================================-Styles-==================================
 authorize {
+    //@extend %nav-bar-padding-top;
     @include square-size(100%);
     //-------------------------Choose-Auth-Type-Selection-------------------------
     #choose-auth-type-section {
