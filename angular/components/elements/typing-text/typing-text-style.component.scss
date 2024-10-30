@@ -2,3 +2,7 @@
 @import "../../../styles/global-mixins";
 @import "../../../styles/global-functions";
 @import "../../../styles/global-placeholders";
+
+typing-text {
+    @include flex(center, center, column);
+}
