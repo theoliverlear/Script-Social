@@ -10,8 +10,8 @@ import {
     ConsoleComponent
 } from '../components/elements/console/console.component';
 import {
-    PasswordMatchHandlerService
-} from '../services/password-match-handler.service';
+    PasswordMatchService
+} from '../services/password-match.service';
 import {AuthPopup} from "../models/auth/AuthPopup";
 import {SignupHandlerService} from "../services/signup-handler.service";
 import {EmailValidatorService} from "../services/email-validator.service";
@@ -31,7 +31,7 @@ export class AutoAuthPopupDirective implements OnInit {
     constructor(
         private viewContainer: ViewContainerRef,
         private templateRef: TemplateRef<any>,
-        private passwordMatchHandlerService: PasswordMatchHandlerService,
+        private passwordMatchHandlerService: PasswordMatchService,
         private signupHandlerService: SignupHandlerService,
         private emailValidatorService: EmailValidatorService,
         private filledFieldsService: FilledFieldsService) {}
