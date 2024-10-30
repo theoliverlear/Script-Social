@@ -5,7 +5,10 @@
 <!-------------------------Headline-Section------------------------------>
 <section id="headline-section">
     <div id="profile-picture-with-name">
-        <ss-img id="profile-picture-div" [imageAsset]="defaultAvatar" [childId]="'profile-picture-img'"></ss-img>
+<!--        <ss-img id="profile-picture-div" [imageAsset]="defaultAvatar" [childId]="'profile-picture-img'"></ss-img>-->
+        <profile-picture
+                [isHeadlineProfilePicture]="true"
+                [userId]="0"></profile-picture>
         <div id="profile-name-and-bio-div">
             <profile-name [nameText]="'Oliver Sigwarth'"></profile-name>
             <profile-bio [bioText]="'A software developer who loves to program!'"></profile-bio>
