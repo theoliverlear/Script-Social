@@ -18,6 +18,7 @@ import {EmptyPostHandlerDirective} from "./empty-post-handler.directive";
 import {
     AutoEmptyPostHandlerDirective
 } from "./auto-empty-post-handler.directive";
+import {SyntaxHighlightDirective} from "./syntax-highlight.directive";
 
 export const directives = [
     AgreeTermsDirective,
@@ -30,6 +31,7 @@ export const directives = [
     FilledFieldsHandlerDirective,
     PasswordMatchHandlerDirective,
     SignupConsoleHandlerDirective,
+    SyntaxHighlightDirective,
     UndraggableDirective,
     UnoptimizedImageDirective
 ]
