@@ -8,13 +8,15 @@ import {SignupService} from "./server/signup.service";
 import {SignupHandlerService} from "./signup-handler.service";
 import {SwipeService} from "./swipe.service";
 import {PostService} from "./server/post.service";
-import {PasswordMatchHandlerService} from "./password-match-handler.service";
+import {PasswordMatchService} from "./password-match.service";
 import {UserService} from "./server/user.service";
 import {EmptyPostService} from "./empty-post.service";
+import {ProfilePictureService} from "./server/profile-picture.service";
 
 export const services = [
     // Server
     PostService,
+    ProfilePictureService,
     SignupService,
     UserService,
     // Other
@@ -25,7 +27,7 @@ export const services = [
     ErrorHandlerService,
     FilledFieldsService,
     HashPasswordService,
-    PasswordMatchHandlerService,
+    PasswordMatchService,
     SignupHandlerService,
     SwipeService
 ]
