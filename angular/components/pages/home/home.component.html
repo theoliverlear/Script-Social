@@ -1,45 +1,106 @@
 
-<!--============================-Main-Content-=============================-->
 <main>
-    <!-----------------------Introduction-Section---------------------------->
-    <section id="introduction-section">
-        <div id="title-div">
-            <span class="title-curly-brace">&#123;</span>
-            <typing-text id="title-text"
-                         [textToType]="'Script Social'"
-                         [tagType]="TagType.H1"
-                         [applyBeingTypedStyle]="false"
-                         [typeOnLoad]="true"
-                         [typeSpeed]="TypeSpeed.NORMAL">
-            </typing-text>
-            <blinking-cursor></blinking-cursor>
-            <span class="title-curly-brace">&#125;</span>
-        </div>
-        <div id="logo-with-text">
-            <div id="intro-text-div">
-                <div id="intro-headline-div">
-                    <h3>Connect with Developers</h3>
-                </div>
-                <div>
-                    <p class="indented-text">
-                        Connect with your fellow developers and share your code,
-                        thoughts, and ideas with the world. Script Social is a tool
-                        for those with established teams looking for easy
-                        communication and integration with version control, as well as
-                        those looking create communities and teams of their own. Sign
-                        up for a free account today and start sharing, connecting, and
-                        collaborating with other developers.
-                    </p>
-                </div>
-            </div>
+    <!-- Tatiana Ramos, Colin Fredrickson, Mark Liliano -->
+    <!-- Below is what the start of the webpage should look like. -->
+    <!-- Communicate            const homePage = $('#home-page');
+         your                   homepage.fadeIn();
+         code.                  const introText = $('#intro-text');
+                                introText.type('Communicate your code.');
+                                document.window.scrollTo(0, 0);
+                                const codeExample = $('#code-example');
+                                if (window.width > 1000) {
+                                    codeExample.fadeIn();
+                                } else {
+                                    codeExample.innerText = '{}'
+                                }
+        (I like the code,                   (I'll get our senior dev linked in
+         but you can do this in Angular.     on this chat and see what they
+         Let' me show you how.)              they think.)
+         ~code gets edited and says         [Request (Add Tatiana to chat)] [Accept]
+          "Changes by Mark" [Accept]                                        [Reject]
+                            [Reject]
+        // Page scrolls down to the next section. Only conversation left.
+        (Tatiana has joined)
+        Thanks for adding me Colin, let's get you started with a new branch. I
+        am making a group for you called "Angular Refactor Devs". I'll add you
+        and some other juniors to it.
+        (Join new group {Angular Refactor Devs}) [Accept] [Reject]
 
-            <ss-img id="intro-logo-div"
-                    [childId]="'intro-logo'"
-                    [imageAsset]="scriptSocialLogoCropped"/>
+-->
+    <section id="intro-section">
+        <div id="intro-title-with-code">
+            <div id="intro-title-div">
+                <typing-text
+                        id="intro-title-text"
+                        [textToType]="'Communicate your code.'"
+                        [tagType]="TagType.H1"
+                        [applyBeingTypedStyle]="false"
+                        [typeOnLoad]="true"
+                        [typeSpeed]="TypeSpeed.NORMAL"></typing-text>
+            </div>
+            <ss-code [codeText]="originalCodeText"></ss-code>
+        </div>
+        <div id="intro-messages-div">
 
         </div>
     </section>
-    <!---------------------------Join-Section-------------------------------->
-    <console [consoleType]="ConsoleType.SIGNUP" [elementSize]="ElementSize.LARGE"></console>
-    <!--    <input type="hidden" id="csrf-token" th:value="${_csrf.token}"/>-->
+
+
+
+
+
+    <!-- A platform for programmers -->
+    <!-- Message with code as context -->
+
+    <!-- Integrate version control and communication -->
+
+    <!-- Connect with developers -->
+
+    <!-- Script Social -->
+
+    <!-- Sign up console -->
 </main>
+<!--============================-Main-Content-=============================-->
+<!--<main>-->
+<!--    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Introduction-Section&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--    <section id="introduction-section">-->
+<!--        <div id="title-div">-->
+<!--            <span class="title-curly-brace">&#123;</span>-->
+<!--            <typing-text id="title-text"-->
+<!--                         [textToType]="'Script Social'"-->
+<!--                         [tagType]="TagType.H1"-->
+<!--                         [applyBeingTypedStyle]="false"-->
+<!--                         [typeOnLoad]="true"-->
+<!--                         [typeSpeed]="TypeSpeed.NORMAL">-->
+<!--            </typing-text>-->
+<!--            <blinking-cursor></blinking-cursor>-->
+<!--            <span class="title-curly-brace">&#125;</span>-->
+<!--        </div>-->
+<!--        <div id="logo-with-text">-->
+<!--            <div id="intro-text-div">-->
+<!--                <div id="intro-headline-div">-->
+<!--                    <h3>Connect with Developers</h3>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <p class="indented-text">-->
+<!--                        Connect with your fellow developers and share your code,-->
+<!--                        thoughts, and ideas with the world. Script Social is a tool-->
+<!--                        for those with established teams looking for easy-->
+<!--                        communication and integration with version control, as well as-->
+<!--                        those looking create communities and teams of their own. Sign-->
+<!--                        up for a free account today and start sharing, connecting, and-->
+<!--                        collaborating with other developers.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <ss-img id="intro-logo-div"-->
+<!--                    [childId]="'intro-logo'"-->
+<!--                    [imageAsset]="scriptSocialLogoCropped"/>-->
+
+<!--        </div>-->
+<!--    </section>-->
+<!--    &lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;Join-Section&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
+<!--    <console [consoleType]="ConsoleType.SIGNUP" [elementSize]="ElementSize.LARGE"></console>-->
+<!--    <input type="hidden" id="csrf-token" th:value="${_csrf.token}"/>-->
+<!--</main>-->
