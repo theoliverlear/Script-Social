@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, ViewChild} from "@angular/core";
-import {ImageAsset} from "../../../assets/imageAssets";
+import {defaultAvatar, ImageAsset} from "../../../assets/imageAssets";
 
 
 @Component({
@@ -8,7 +8,7 @@ import {ImageAsset} from "../../../assets/imageAssets";
     styleUrls: ['./ss-img-style.component.css']
 })
 export class SsImgComponent {
-    @Input() imageAsset: ImageAsset;
+    @Input() imageAsset: ImageAsset = defaultAvatar;
     @Input() childId: string;
     @Input() childClass: string;
     @ViewChild('imageElement') imageElement: ElementRef;
