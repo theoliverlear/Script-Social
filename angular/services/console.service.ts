@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {PasswordMatchHandlerService} from "./password-match-handler.service";
+import {PasswordMatchService} from "./password-match.service";
 import {SignupHandlerService} from "./signup-handler.service";
 import {EmailValidatorService} from "./email-validator.service";
 import {ConsoleType} from "../components/elements/console/models/ConsoleType";
@@ -12,7 +12,7 @@ import {AgreeTermsService} from "./agree-terms.service";
     providedIn: 'root'
 })
 export class ConsoleService {
-    constructor(private passwordMatchHandlerService: PasswordMatchHandlerService,
+    constructor(private passwordMatchHandlerService: PasswordMatchService,
                 private signupHandlerService: SignupHandlerService,
                 private emailValidatorService: EmailValidatorService,
                 private signupService: SignupService,
