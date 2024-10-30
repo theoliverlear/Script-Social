@@ -56,6 +56,13 @@ import {
 import {
     GeneralPostCommentComponent
 } from "./general-post-comment/general-post-comment.component";
+import {
+    ProfilePictureComponent
+} from "./profile-picture/profile-picture.component";
+import {SsCodeComponent} from "./ss-code/ss-code.component";
+import {
+    MessageBubbleComponent
+} from "./message-bubble/message-bubble.component";
 
 export const elements = [
     AuthBubbleComponent,
@@ -74,16 +81,19 @@ export const elements = [
     GeneralPostFooterComponent,
     GeneralPostHeaderComponent,
     HeadlineButtonComponent,
+    MessageBubbleComponent,
     NavBarComponent,
     PostInputConsoleComponent,
     ProfileActivityComponent,
     ProfileBioComponent,
     ProfileHeadlineButtonsComponent,
+    ProfilePictureComponent,
     ProfileNameComponent,
     SideNavBarComponent,
     SideNavBarButtonComponent,
     SsAnchorComponent,
     SsButtonComponent,
+    SsCodeComponent,
     SsFooterComponent,
     SsHeadComponent,
     SsImgComponent,
