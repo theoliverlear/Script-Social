@@ -58,7 +58,11 @@
               "angular/components/elements/general-post-footer/general-post-footer-style.component.css",
               "angular/components/elements/post-input-console/post-input-console-style.component.css",
               "angular/components/elements/general-post-comment-input/general-post-comment-input-style.component.css",
-              "angular/components/elements/general-post-comment/general-post-comment-style.component.css"
+              "angular/components/elements/general-post-comment/general-post-comment-style.component.css",
+              "angular/components/elements/profile-picture/profile-picture-style.component.css",
+              "angular/components/elements/ss-code/ss-code-style.component.css",
+              "angular/components/elements/message-bubble/message-bubble-style.component.css",
+              "angular/components/pages/messages/messages-style.component.css"
             ],
             "scripts": [],
             "fileReplacements": []
