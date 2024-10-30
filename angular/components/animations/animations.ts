@@ -37,3 +37,9 @@ export const slideInOutAnimation: AnimationTriggerMetadata = trigger('slideInOut
         animate('0.15s')
     ])
 ]);
+export const scrollFadeInAnimation: AnimationTriggerMetadata = trigger('scrollFadeIn', [
+    transition(':enter', [
+        style({ opacity: 0 }),
+        animate('2500ms 500ms', style({ opacity: 1 }))
+    ])
+]);
