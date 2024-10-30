@@ -3,8 +3,8 @@ import {
     ConsoleComponent
 } from "../components/elements/console/console.component";
 import {
-    PasswordMatchHandlerService
-} from "../services/password-match-handler.service";
+    PasswordMatchService
+} from "../services/password-match.service";
 import {AuthPopup} from "../models/auth/AuthPopup";
 
 @Directive({
@@ -12,7 +12,7 @@ import {AuthPopup} from "../models/auth/AuthPopup";
 })
 export class PasswordMatchHandlerDirective implements OnInit {
     @Input('passwordMatchHandler') consoleComponent: ConsoleComponent;
-    constructor(private passwordMatchHandlerService: PasswordMatchHandlerService) {
+    constructor(private passwordMatchHandlerService: PasswordMatchService) {
         console.log('PasswordMatchHandlerDirective loaded');
     }
     ngOnInit() {
