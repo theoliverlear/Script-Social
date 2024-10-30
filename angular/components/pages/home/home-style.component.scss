@@ -5,6 +5,34 @@
 
 home {
     //@extend %nav-bar-padding-top;
+    @include flex(center, center, column);
+    main {
+        @include flex(center, center, column);
+        @extend %fill-container;
+    }
+    #intro-section {
+        width: 100%;
+        @include flex(center, center, column);
+        #intro-title-with-code {
+            width: 100%;
+            @include flex(space-between, center, row);
+            typing-text {
+                margin: 0 0 0 $four-percent;
+                float: left;
+                color: $pristine-white;
+                //text-shadow: 0 0 1em $charcoal;
+                width: 100%;
+                max-width: 30vw;
+                flex-wrap: wrap;
+                flex: 0 0 30%;
+            }
+            ss-code {
+                margin: 0 $four-percent 0 0;
+                width: $twenty-five-percent;
+                flex: 0 0 30%;
+            }
+        }
+    }
 }
 //=================================-Imports-==================================
 
