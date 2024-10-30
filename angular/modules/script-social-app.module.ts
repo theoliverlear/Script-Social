@@ -36,7 +36,7 @@ import {services} from "../services/services";
         provideHttpClient(withFetch()),
     ],
     bootstrap: [AppComponent],
-    exports: [AppComponent],
+    exports: [],
     schemas: []
 })
 export class ScriptSocialAppModule {
