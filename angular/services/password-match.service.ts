@@ -5,7 +5,7 @@ import {AuthPopup} from "../models/auth/AuthPopup";
 @Injectable({
     providedIn: 'root'
 })
-export class PasswordMatchHandlerService {
+export class PasswordMatchService {
     private passwordMismatchSubject: Subject<AuthPopup> = new Subject();
     passwordMismatch$: Observable<AuthPopup> = this.passwordMismatchSubject.asObservable();
     constructor() {
