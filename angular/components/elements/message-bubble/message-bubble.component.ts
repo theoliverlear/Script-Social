@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
+import {Message} from "../../../models/Message";
 
 @Component({
     selector: 'message-bubble',
@@ -6,6 +7,7 @@ import {Component} from "@angular/core";
     styleUrls: ['./message-bubble-style.component.css']
 })
 export class MessageBubbleComponent {
+    @Input() message: Message;
     constructor() {
         console.log('MessageBubbleComponent loaded');
     }
