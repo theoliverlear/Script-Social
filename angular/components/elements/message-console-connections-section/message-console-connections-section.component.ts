@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {
-    MessagesSectionTitles
-} from "../messages-section-title/models/MessagesSectionTitles";
+    MessagesSectionTitle
+} from "../messages-section-title/models/MessagesSectionTitle";
 
 @Component({
     selector: 'message-console-connections-section',
@@ -13,5 +13,5 @@ export class MessageConsoleConnectionsSectionComponent {
         console.log('MessageConsoleConnectionsSectionComponent loaded');
     }
 
-    protected readonly MessagesSectionTitles = MessagesSectionTitles;
+    protected readonly MessagesSectionTitles = MessagesSectionTitle;
 }
