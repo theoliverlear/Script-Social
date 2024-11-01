@@ -1,0 +1,14 @@
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+
+message-console {
+    @include flex(center, center, row);
+    margin: $one-percent 0 0 0;
+    color: $pristine-white;
+    //height: $thirty-percent;
+    height: $thirty-five-percent;
+    max-height: 80vh;
+    @extend %console;
+}
