@@ -1,0 +1,13 @@
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+
+message-console-connections-section {
+    padding: 0 $one-percent 0 0;
+    margin: 0 $one-percent 0 0;
+    border : {
+        right: calc($thin-border * 0.75) solid $light-charcoal;
+    }
+    height: 100%;
+}
