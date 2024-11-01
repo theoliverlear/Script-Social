@@ -6,22 +6,26 @@ import {
 import {
     ProfileComponent
 } from "../../components/pages/profile/profile.component";
+import {
+    MessagesComponent
+} from "../../components/pages/messages/messages.component";
 
 export const homeRoute: Route = {
     path: '',
     component: HomeComponent,
     data: {
-        meta: {title: 'Home | Script Social',
-            stylesheets: []},
-
+        meta: {
+            title: 'Home | Script Social'
+        },
     }
 }
 export const authorizeRoute: Route = {
     path: 'authorize',
     component: AuthorizeComponent,
     data: {
-        meta: {title: 'Authorize | Script Social',
-            stylesheets: []}
+        meta: {
+            title: 'Authorize | Script Social'
+        }
     }
 }
 export const profileRoute: Route = {
@@ -30,7 +34,6 @@ export const profileRoute: Route = {
     data: {
         meta: {
             title: 'Profile | Script Social',
-            stylesheets: []
         }
     }
 }
@@ -44,8 +47,18 @@ export const profileWithIdRoute: Route = {
     //         }
     //     }
 }
+export const messagesRoute: Route = {
+    path: 'messages',
+    component: MessagesComponent,
+    data: {
+        meta: {
+            title: 'Messages | Script Social'
+        }
+    }
+}
 export const routes: Routes = [
     homeRoute,
     authorizeRoute,
-    profileRoute
+    profileRoute,
+    messagesRoute
 ];
