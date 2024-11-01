@@ -1,0 +1,12 @@
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+
+messages-section-title {
+    @include flex(center, center, column);
+    color: $pristine-white;
+    hr {
+        width: 100%;
+    }
+}
