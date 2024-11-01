@@ -63,11 +63,38 @@ import {SsCodeComponent} from "./ss-code/ss-code.component";
 import {
     MessageBubbleComponent
 } from "./message-bubble/message-bubble.component";
+import {
+    MessageConsoleComponent
+} from "./message-console/message-console.component";
+import {
+    MessagesConnectionsListComponent
+} from "./messages-connections-list/messages-connections-list.component";
+import {
+    ConnectionsListBubbleComponent
+} from "./connections-list-bubble/connections-list-bubble.component";
+import {
+    ConnectionsListButtonComponent
+} from "./connections-list-button/connections-list-button.component";
+import {MessagesListComponent} from "./messages-list/messages-list.component";
+import {
+    MessagesInputComponent
+} from "./messages-input/messages-input.component";
+import {
+    MessagesSectionTitleComponent
+} from "./messages-section-title/messages-section-title.component";
+import {
+    MessageConsoleConnectionsSectionComponent
+} from "./message-console-connections-section/message-console-connections-section.component";
+import {
+    MessageConsoleMessagesSectionComponent
+} from "./message-console-messages-section/message-console-messages-section.component";
 
 export const elements = [
     AuthBubbleComponent,
     AuthTypeSelectorComponent,
     BlinkingCursorComponent,
+    ConnectionsListBubbleComponent,
+    ConnectionsListButtonComponent,
     ConsoleComponent,
     ConsoleInputComponent,
     ConsolePopupComponent,
@@ -82,6 +109,13 @@ export const elements = [
     GeneralPostHeaderComponent,
     HeadlineButtonComponent,
     MessageBubbleComponent,
+    MessageConsoleComponent,
+    MessageConsoleConnectionsSectionComponent,
+    MessageConsoleMessagesSectionComponent,
+    MessagesConnectionsListComponent,
+    MessagesInputComponent,
+    MessagesListComponent,
+    MessagesSectionTitleComponent,
     NavBarComponent,
     PostInputConsoleComponent,
     ProfileActivityComponent,
