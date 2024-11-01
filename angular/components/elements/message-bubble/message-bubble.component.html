@@ -1,0 +1,25 @@
+<ng-container>
+    <div class="message-headline-div">
+        <profile-picture></profile-picture>
+        <div class="message-name-and-date-div">
+            <div class="message-users-name">
+                <h6>
+                    {{ message.usersName }}
+                </h6>
+            </div>
+            <div class="message-date">
+                <p>
+                    {{ message.dateSent | date: 'MMM. d h:mm a' }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="message-text-div">
+
+        <div class="message-text">
+            <p>
+                {{ message.messageText }}
+            </p>
+        </div>
+    </div>
+</ng-container>
