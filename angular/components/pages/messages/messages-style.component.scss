@@ -2,7 +2,148 @@
 @import "../../../styles/global-mixins";
 @import "../../../styles/global-functions";
 @import "../../../styles/global-placeholders";
+@import "../../app/app-style.component.scss";
 
 messages {
+    #message-section {
+        @include flex(center, center, row);
+        margin: $one-percent 0 0 0;
+        color: $pristine-white;
+        //height: $thirty-percent;
+        height: $thirty-five-percent;
+        max-height: 80vh;
+        @extend %console;
+        //------------------------Connections-Section-----------------------------
+        #connections-section {
+            padding: 0 $one-percent 0 0;
+            margin: 0 $one-percent 0 0;
+            border : {
+                right: calc($thin-border * 0.75) solid $light-charcoal;
+            }
+            height: 100%;
+            #connections-title-div {
+                @include flex(center, center, row);
 
+            }
+            //----------------------Connections-List------------------------------
+            #connections-list-div {
+                .connection-item {
+                    @include flex(center, center, row);
+                    border-radius: $one-percent;
+                    background-color: $light-charcoal;
+                    padding: $quarter-percent 0;
+                    margin: $half-percent 0;
+                    transition: box-shadow 0.3s;
+                    width: $twelve-percent;
+                    .connection-img-div {
+                        margin: 0 $quarter-percent;
+                        @include square-size($two-percent);
+                        border-radius: 50%;
+                        background-color: $light-charcoal;
+                        .connection-img {
+                            @include square-size(100%);
+                            @extend %circle-border-radius;
+                        }
+                    }
+                    .connection-name-div {
+                        flex: 3;
+                        padding: $quarter-percent;
+                        .connection-name {
+                            font-size: $h6-font-size;
+                        }
+                    }
+                    &:hover {
+                        cursor: pointer;
+                        @extend %console-box-shadow;
+                    }
+                }
+                #new-connection-list {
+                    display: none;
+                    .potential-connection {
+                        color: $charcoal;
+                        background-color: $pure-orange;
+                    }
+                    #create-conversation-button {
+                        display: none;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+        //--------------------------Messages-Section------------------------------
+        #messages-section {
+            //@include flex(center, center, column);
+            height: 100%;
+
+            #messages-title-div {
+                @include flex(center, center, row);
+            }
+            #messaging-div {
+                margin: $half-percent 0 0 0;
+                //-------------------User-Messages--------------------------------
+                #user-messages {
+                    width: $thirty-five-percent;
+                    max-width: 30vw;
+                    height: 49vh;
+                    overflow: scroll;
+                    .message-item {
+                        max-width: 27.85vw;
+                        border-radius: $one-percent;
+                        background-color: $light-charcoal;
+                        padding: $half-percent;
+                        margin: $one-percent 0;
+                        .message-headline {
+                            @include flex(center, center, column);
+                            .image-with-name-div {
+                                @include flex(center, center, row);
+                                .message-img-div {
+                                    margin: 0 $half-percent 0 0;
+                                    @include square-size($two-percent);
+                                    @extend %circle-border-radius;
+                                    .message-img {
+                                        @include square-size(100%);
+                                        @extend %circle-border-radius;
+                                    }
+                                }
+                            }
+                            .message-time-div {
+                                margin: 0 0 0 $one-half-percent;
+                                p {
+                                    font-size: calc($p-font-size * 0.75);
+                                    font-style: italic;
+                                }
+                            }
+                        }
+                        .message-content {
+                            padding: $half-percent;
+                            .message-text {
+                                font-size: calc($p-font-size * 0.75);
+                            }
+                        }
+                    }
+                }
+                //------------------User-Message-Div------------------------------
+                #user-message-div {
+                    margin: $one-percent 0 0 0;
+                    align-self: end;
+                    @include flex(center, center, column);
+                    width: $thirty-five-percent;
+                    max-width: 30vw;
+                    #send-message-div {
+                        textarea {
+                            width: $thirty-percent;
+                            max-width: 27vw;
+                            //@extend .general-text-area;
+                            max-height: $eight-percent;
+                        }
+                    }
+                    #user-message-send-button {
+                        align-self: end;
+                        justify-self: end;
+                    }
+                }
+            }
+        }
+    }
 }
