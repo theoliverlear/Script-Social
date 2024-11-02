@@ -4,6 +4,7 @@
 @import "../../../styles/global-placeholders";
 
 messages-section-title {
+    width: 100%;
     @include flex(center, center, column);
     color: $pristine-white;
     hr {
