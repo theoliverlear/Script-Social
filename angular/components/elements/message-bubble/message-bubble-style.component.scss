@@ -4,12 +4,14 @@
 @import "../../../styles/global-placeholders";
 
 message-bubble {
+    box-sizing: border-box;
     @include flex(center, center, column);
-    max-width: 27.85vw;
+    //max-width: 27.85vw;
     border-radius: $one-percent;
     background-color: $light-charcoal;
     padding: $half-percent;
     margin: $one-percent 0;
+    width: 100%;
     .message-headline-div {
         @include flex(center, center, row);
         profile-picture {
