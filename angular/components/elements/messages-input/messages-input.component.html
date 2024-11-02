@@ -1,3 +1,9 @@
-<ng-container>
-
-</ng-container>
+<div class="message-input-div">
+    <console-textbox/>
+    <general-post-button
+            [buttonType]="GeneralPostButtonType.SEND"
+            [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER"
+            [elementSize]="ElementSize.LARGE"
+            [showNumberInteractions]="false"
+            (click)="sendMessageToServer()"/>
+</div>
