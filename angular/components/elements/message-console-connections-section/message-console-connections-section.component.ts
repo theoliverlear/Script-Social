@@ -2,6 +2,9 @@ import {Component} from "@angular/core";
 import {
     MessagesSectionTitle
 } from "../messages-section-title/models/MessagesSectionTitle";
+import {
+    ConnectionsListButtonType
+} from "../connections-list-button/models/ConnectionsListButtonType";
 
 @Component({
     selector: 'message-console-connections-section',
@@ -14,4 +17,5 @@ export class MessageConsoleConnectionsSectionComponent {
     }
 
     protected readonly MessagesSectionTitles = MessagesSectionTitle;
+    protected readonly ConnectionsListButtonType = ConnectionsListButtonType;
 }
