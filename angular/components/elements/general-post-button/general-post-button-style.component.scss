@@ -4,17 +4,31 @@
 @import "../../../styles/global-placeholders";
 
 .small {
+    $small-size: $one-quarter-percent;
     ss-img {
-        @include square-size($one-quarter-percent);
+        @include square-size($small-size);
         img {
-            @include square-size($one-quarter-percent);
+            @include square-size($small-size);
         }
     }
     .interactions-div {
-        @include size($one-quarter-percent);
+        @include size($small-size);
     }
 }
 
+.large {
+    //$large-size: $two-half-percent;
+    $large-size: calc($two-half-percent * 1.15);
+    ss-img {
+        @include square-size($large-size);
+        img {
+            @include square-size($large-size);
+        }
+    }
+    .interactions-div {
+        @include size($large-size);
+    }
+}
 general-post-button {
     $button-size: $two-percent;
     //@include square-size($button-size);
