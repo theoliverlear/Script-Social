@@ -4,5 +4,10 @@
 @import "../../../styles/global-placeholders";
 
 messages-list {
-
+    @include flex(center, center, column);
+    flex: 1;
+    .message-list-div {
+        @include flex(flex-start, center, column);
+        flex: 1;
+    }
 }
