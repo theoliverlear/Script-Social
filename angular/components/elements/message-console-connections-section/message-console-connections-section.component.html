@@ -1,7 +1,9 @@
 <ng-container>
     <messages-section-title
-            [titleText]="MessagesSectionTitles.CONNECTIONS">
-    </messages-section-title>
-    <connections-list-button></connections-list-button>
+            [titleText]="MessagesSectionTitles.CONNECTIONS"/>
+    <connections-list-button
+            [buttonType]="ConnectionsListButtonType.ADD"/>
     <messages-connections-list></messages-connections-list>
+    <connections-list-button
+            [buttonType]="ConnectionsListButtonType.CONFIRM"/>
 </ng-container>
