@@ -13,7 +13,7 @@ import {
     whiteLikeIcon,
     whiteReplyIcon,
     whiteRepostIcon,
-    whiteShareIcon
+    whiteShareIcon, whiteSendIcon
 } from "../../../assets/imageAssets";
 import {GeneralPostButtonType} from "./models/GeneralPostButtonType";
 import {SsImgComponent} from "../ss-img/ss-img.component";
@@ -85,6 +85,8 @@ export class GeneralPostButtonComponent implements AfterViewInit {
                 return whiteChatBubbleIcon;
             case GeneralPostButtonType.CANCEL:
                 return whiteCloseIcon;
+            case GeneralPostButtonType.SEND:
+                return whiteSendIcon;
             default:
                 return whiteLikeIcon;
         }
