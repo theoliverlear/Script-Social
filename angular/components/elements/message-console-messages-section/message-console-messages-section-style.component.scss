@@ -4,5 +4,11 @@
 @import "../../../styles/global-placeholders";
 
 message-console-messages-section {
+    @include flex(center, center, column);
     height: 100%;
+    width: $thirty-percent;
+    hr {
+        width: 100%;
+        margin-bottom: $one-percent;
+    }
 }
