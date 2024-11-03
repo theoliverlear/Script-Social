@@ -1,13 +1,22 @@
 import {Component, OnInit} from "@angular/core";
 import {ConsoleType} from "../../elements/console/models/ConsoleType";
 import {TagType} from "../../../models/html/TagType";
-import {scriptSocialLogoCropped} from "../../../assets/imageAssets";
+import {
+    colinFredricksonPicture,
+    markLilianoPicture,
+    scriptSocialLogoCropped
+} from "../../../assets/imageAssets";
 import {TypeSpeed} from "../../../models/TypeSpeed";
 import {ElementSize} from "../../../models/ElementSize";
 import {
     scrollFadeInAnimation
 } from "../../animations/animations";
-import {originalCodeText} from "../../../assets/textAssets";
+import {
+    homeMessageInviteSeniorDevText,
+    homeMessageRefactorText,
+    originalCodeText
+} from "../../../assets/textAssets";
+import {Message} from "../../../models/Message";
 
 @Component({
     selector: 'home',
@@ -18,6 +27,8 @@ import {originalCodeText} from "../../../assets/textAssets";
     ]
 })
 export class HomeComponent implements OnInit {
+    homeRefactorMessage: Message = new Message(0, 'Mark Liliano', new Date(), homeMessageRefactorText);
+    homeInviteSeniorDevMessage: Message = new Message(0, 'Colin Fredrickson', new Date(), homeMessageInviteSeniorDevText);
     constructor() {
         console.log('HomeComponent loaded');
     }
@@ -31,4 +42,6 @@ export class HomeComponent implements OnInit {
     protected readonly TypeSpeed = TypeSpeed;
     protected readonly ElementSize = ElementSize;
     protected readonly originalCodeText = originalCodeText;
+    protected readonly colinFredricksonPicture = colinFredricksonPicture;
+    protected readonly markLilianoPicture = markLilianoPicture;
 }
