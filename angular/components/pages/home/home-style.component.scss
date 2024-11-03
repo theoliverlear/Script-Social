@@ -32,6 +32,16 @@ home {
                 flex: 0 0 30%;
             }
         }
+        #intro-messages-div {
+            @include flex(space-around, center, row);
+            message-bubble {
+                width: 45%;
+                profile-picture {
+                    box-sizing: border-box;
+                    border: $thin-border solid $sandstone;
+                }
+            }
+        }
     }
 }
 //=================================-Imports-==================================
