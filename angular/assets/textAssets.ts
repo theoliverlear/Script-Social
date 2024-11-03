@@ -25,3 +25,9 @@ import {Component, Input} from "@angular/core";
 })
 ...
 `;
+export const homeMessageRefactorText = `
+I like the code, but you can do this in Angular. Let me show you how.
+`;
+export const homeMessageInviteSeniorDevText = `
+I'll get our senior dev linked in on this chat and see what they they think.
+`;
