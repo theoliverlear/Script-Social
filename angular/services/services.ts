@@ -12,14 +12,16 @@ import {PasswordMatchService} from "./password-match.service";
 import {UserService} from "./server/user.service";
 import {EmptyPostService} from "./empty-post.service";
 import {ProfilePictureService} from "./server/profile-picture.service";
+import {MessageService} from "./server/message.service";
 
 export const services = [
     // Server
+    MessageService,
     PostService,
     ProfilePictureService,
     SignupService,
     UserService,
-    // Other
+    // Client
     AgreeTermsService,
     ConsoleService,
     EmailValidatorService,
