@@ -5,7 +5,9 @@
 
 ss-img {
     @include flex(row, center, center);
+    border-radius: inherit;
     img {
+        border-radius: inherit;
         @include size(100%, 100%);
     }
 }
