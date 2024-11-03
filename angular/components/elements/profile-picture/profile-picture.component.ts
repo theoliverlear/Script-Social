@@ -1,5 +1,5 @@
 import {
-    AfterViewInit,
+    AfterViewInit, ChangeDetectorRef,
     Component,
     Input,
     OnInit,
@@ -19,27 +19,31 @@ import {
 export class ProfilePictureComponent implements AfterViewInit {
     @Input() userId: number = 0;
     @Input() isHeadlineProfilePicture: boolean = false;
+    @Input() imageAsset: ImageAsset = defaultAvatar;
     @ViewChild('profilePictureImage') profilePictureImage: SsImgComponent;
-    constructor(private profilePictureService: ProfilePictureService) {
+    constructor(private profilePictureService: ProfilePictureService,
+                private changeDetection: ChangeDetectorRef) {
         console.log('ProfilePictureComponent created');
     }
     ngAfterViewInit() {
-        if (this.userId == 0) {
-            this.profilePictureImage.imageAsset = defaultAvatar;
-            return;
+        if (this.userId !== 0) {
+            this.profilePictureService.getHasProfilePictureFromServer(this.userId).subscribe((hasProfilePicture: boolean) => {
+                console.log(`User ${this.userId} has profile picture: ${hasProfilePicture}`);
+                Promise.resolve().then(() => {
+                    if (hasProfilePicture) {
+                        let profilePictureAsset: ImageAsset = {
+                            src: `localhost:8080/profile/get/${this.userId}/profile-picture`,
+                            alt: 'Profile Picture'
+                        };
+                        this.profilePictureImage.imageAsset = profilePictureAsset;
+                    } else {
+                        this.profilePictureImage.imageAsset = defaultAvatar;
+                    }
+                    this.changeDetection.detectChanges();
+                });
+
+            });
         }
-        this.profilePictureService.getHasProfilePictureFromServer(this.userId).subscribe((hasProfilePicture: boolean) => {
-            console.log(`User ${this.userId} has profile picture: ${hasProfilePicture}`);
-            if (hasProfilePicture) {
-                let profilePictureAsset: ImageAsset = {
-                    src: `localhost:8080/profile/get/${this.userId}/profile-picture`,
-                    alt: 'Profile Picture'
-                };
-                this.profilePictureImage.imageAsset = profilePictureAsset;
-            } else {
-                this.profilePictureImage.imageAsset = defaultAvatar;
-            }
-        })
     }
 
     protected readonly defaultAvatar = defaultAvatar;
