@@ -3,6 +3,17 @@
 @import "../../../styles/global-functions";
 @import "../../../styles/global-placeholders";
 
+.medium {
+    profile-picture {
+        @include square-size($two-percent);
+    }
+}
+.large {
+    profile-picture {
+        @include square-size($three-percent);
+    }
+}
+
 message-bubble {
     box-sizing: border-box;
     @include flex(center, center, column);
@@ -12,26 +23,28 @@ message-bubble {
     padding: $half-percent;
     margin: $one-percent 0;
     width: 100%;
+    color: $pristine-white;
     .message-headline-div {
         @include flex(center, center, row);
         profile-picture {
             margin: 0 $half-percent 0 0;
             @include square-size($two-percent);
-            @extend %circle-border-radius;
+            //@extend %circle-border-radius;
             border: none;
+            border-radius: $one-percent;
         }
         .message-name-and-date-div {
             @include flex(center, center, column);
             .message-date {
                 //margin: 0 0 0 $one-half-percent;
-                p {
+                p, h6 {
                     font-size: calc($p-font-size * 0.75);
                     font-style: italic;
                 }
             }
             .message-users-name {
                 width: 100%;
-                h6 {
+                h6, h5 {
                     color: $pristine-white;
                 }
             }
@@ -41,7 +54,7 @@ message-bubble {
     .message-text-div {
         .message-text {
             padding: $half-percent;
-            p {
+            p, h6 {
                 //font-size: calc($p-font-size * 0.75);
             }
         }
