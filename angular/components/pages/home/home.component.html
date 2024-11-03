@@ -15,7 +15,7 @@
                                 }
         (I like the code,                   (I'll get our senior dev linked in
          but you can do this in Angular.     on this chat and see what they
-         Let' me show you how.)              they think.)
+         Let me show you how.)              they think.)
          ~code gets edited and says         [Request (Add Tatiana to chat)] [Accept]
           "Changes by Mark" [Accept]                                        [Reject]
                             [Reject]
@@ -34,14 +34,23 @@
                         id="intro-title-text"
                         [textToType]="'Communicate your code.'"
                         [tagType]="TagType.H1"
-                        [applyBeingTypedStyle]="false"
+                        [applyBeingTypedStyle]="true"
                         [typeOnLoad]="true"
-                        [typeSpeed]="TypeSpeed.NORMAL"></typing-text>
+                        [typeSpeed]="TypeSpeed.NORMAL"/>
             </div>
-            <ss-code [codeText]="originalCodeText"></ss-code>
+            <ss-code [codeText]="originalCodeText"/>
         </div>
         <div id="intro-messages-div">
-
+            <message-bubble
+                [message]="homeRefactorMessage"
+                [elementSize]="ElementSize.LARGE"
+                [imageAsset]="markLiliano"
+            />
+            <message-bubble
+                [message]="homeInviteSeniorDevMessage"
+                [elementSize]="ElementSize.LARGE"
+                [imageAsset]="colinFredrickson"
+            />
         </div>
     </section>
 
