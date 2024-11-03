@@ -1,4 +1,11 @@
-import {Component, ElementRef, Input, ViewChild} from "@angular/core";
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    Input,
+    ViewChild
+} from "@angular/core";
 import {defaultAvatar, ImageAsset} from "../../../assets/imageAssets";
 
 
@@ -7,13 +14,19 @@ import {defaultAvatar, ImageAsset} from "../../../assets/imageAssets";
     templateUrl: './ss-img.component.html',
     styleUrls: ['./ss-img-style.component.css']
 })
-export class SsImgComponent {
+export class SsImgComponent implements AfterViewInit {
     @Input() imageAsset: ImageAsset = defaultAvatar;
     @Input() childId: string;
     @Input() childClass: string;
     @ViewChild('imageElement') imageElement: ElementRef;
-    constructor() {
+    constructor(private changeDetector: ChangeDetectorRef) {
         console.log('SsImgComponent loaded');
+    }
+    ngAfterViewInit() {
+        if (this.imageAsset.src === '') {
+            this.imageAsset = defaultAvatar;
+        }
+        this.changeDetector.detectChanges();
     }
     addClassToImageElement(className: string) {
         this.imageElement.nativeElement.classList.add(className);
