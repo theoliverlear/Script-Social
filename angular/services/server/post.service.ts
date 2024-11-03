@@ -5,6 +5,7 @@ import {catchError, map, Observable} from "rxjs";
 import {
     GeneralPost
 } from "../../components/elements/general-post/models/GeneralPost";
+import {httpOptions} from "./httpProperties";
 
 @Injectable({
     providedIn: 'root'
@@ -15,12 +16,6 @@ export class PostService {
         console.log('PostService loaded');
     }
     getPostsFromServer(userId: number): Observable<GeneralPost[]> {
-        // TODO: Add some sort of default HttpHeaders to reduce repetition.
-        const httpOptions: { headers: HttpHeaders } = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            })
-        };
         return this.http.get<GeneralPost[]>('/post/get/' + userId, httpOptions)
             .pipe(
                 map(response => this.getPostsFromResponse(response)),
