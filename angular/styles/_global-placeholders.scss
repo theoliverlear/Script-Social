@@ -34,7 +34,7 @@
 }
 %content-box {
     @include flex(center, center, column);
-    width: $twenty-percent;
+    //width: $twenty-percent;
     @extend %console;
     margin: $one-percent $zero;
     p {
