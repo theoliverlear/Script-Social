@@ -88,6 +88,15 @@ import {
 import {
     MessageConsoleMessagesSectionComponent
 } from "./message-console-messages-section/message-console-messages-section.component";
+import {
+    FadeInContentComponent
+} from "./fade-in-content/fade-in-content.component";
+import {
+    UserChoiceBubbleComponent
+} from "./user-choice-bubble/user-choice-bubble.component";
+import {
+    UserChoiceBubbleButtonsComponent
+} from "./user-choice-bubble-buttons/user-choice-bubble-buttons.component";
 
 export const elements = [
     AuthBubbleComponent,
@@ -100,6 +109,7 @@ export const elements = [
     ConsolePopupComponent,
     ConsoleTextboxComponent,
     ContentLinkComponent,
+    FadeInContentComponent,
     GeneralPostComponent,
     GeneralPostButtonComponent,
     GeneralPostButtonsComponent,
@@ -131,5 +141,7 @@ export const elements = [
     SsFooterComponent,
     SsHeadComponent,
     SsImgComponent,
-    TypingTextComponent
+    TypingTextComponent,
+    UserChoiceBubbleComponent,
+    UserChoiceBubbleButtonsComponent
 ]
