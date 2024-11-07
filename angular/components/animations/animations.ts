@@ -15,6 +15,12 @@ export const fadeAnimation: AnimationTriggerMetadata = trigger('fade', [
         animate('250ms', style({ opacity: 0 }))
     ])
 ]);
+export const fadeIn: AnimationTriggerMetadata = trigger('fadeIn', [
+    transition(':enter', [
+        style({ opacity: 0 }),
+        animate('{{ duration }} {{ delay }}', style({ opacity: 1 }))
+    ])
+]);
 export const slideInOutAnimation: AnimationTriggerMetadata = trigger('slideInOut', [
     state('closed',
         style({
