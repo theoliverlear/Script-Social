@@ -21,10 +21,14 @@ home {
                 float: left;
                 color: $pristine-white;
                 //text-shadow: 0 0 1em $charcoal;
+                background-color: $bright-sunset;
                 width: 100%;
-                max-width: 30vw;
+                padding: $one-percent;
+                max-width: 45vw;
                 flex-wrap: wrap;
                 flex: 0 0 30%;
+                @extend %console-box-shadow;
+                @extend %soft-border-radius;
             }
             ss-code {
                 margin: 0 $four-percent 0 0;
@@ -34,11 +38,14 @@ home {
         }
         #intro-messages-div {
             @include flex(space-around, center, row);
-            message-bubble {
+            fade-in-content {
                 width: 45%;
-                profile-picture {
-                    box-sizing: border-box;
-                    border: $thin-border solid $sandstone;
+                message-bubble {
+                    width: 100%;
+                    profile-picture {
+                        box-sizing: border-box;
+                        border: $thin-border solid $sandstone;
+                    }
                 }
             }
         }
