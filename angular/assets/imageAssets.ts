@@ -96,3 +96,7 @@ export const whiteSendIcon: ImageAsset = {
     src: getIconImagePath('white_send_icon.svg'),
     alt: 'White Send Icon'
 };
+export const basicWhiteConfirmIcon: ImageAsset = {
+    src: getIconImagePath('basic_white_confirm_icon.svg'),
+    alt: 'Basic White Confirm Icon'
+}
