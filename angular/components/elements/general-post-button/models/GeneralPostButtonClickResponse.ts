@@ -1,4 +1,4 @@
 export enum GeneralPostButtonClickResponse {
     TOGGLE = 'toggle',
-    QUICK_TRIGGER = 'quick trigger',
+    QUICK_RELEASE = 'quick release',
 }
