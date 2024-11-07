@@ -14,10 +14,10 @@ export const promoCodeFadeInAnimation: FadeInAnimationProperties = {
     delay: '150ms'
 };
 export const homeRefactorMessageFadeInAnimation: FadeInAnimationProperties = {
-    duration: '1000ms',
+    duration: '600ms',
     delay: '4000ms'
 };
 export const homeInviteSeniorDevMessageFadeInAnimation: FadeInAnimationProperties = {
-    duration: '1000ms',
+    duration: '600ms',
     delay: '7500ms'
 };
