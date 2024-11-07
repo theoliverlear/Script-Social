@@ -13,7 +13,7 @@ import {
     whiteLikeIcon,
     whiteReplyIcon,
     whiteRepostIcon,
-    whiteShareIcon, whiteSendIcon
+    whiteShareIcon, whiteSendIcon, basicWhiteConfirmIcon
 } from "../../../assets/imageAssets";
 import {GeneralPostButtonType} from "./models/GeneralPostButtonType";
 import {SsImgComponent} from "../ss-img/ss-img.component";
@@ -41,10 +41,9 @@ export class GeneralPostButtonComponent implements AfterViewInit {
     }
     emitButtonClicked() {
         this.buttonClicked.emit();
-        // this.toggleClicked();
     }
     ngAfterViewInit() {
-        if (this.clickResponse === GeneralPostButtonClickResponse.QUICK_TRIGGER) {
+        if (this.clickResponse === GeneralPostButtonClickResponse.QUICK_RELEASE) {
             this.buttonImage.addClassToImageElement('quick-trigger');
         }
         this.applySizeStyle();
@@ -68,10 +67,8 @@ export class GeneralPostButtonComponent implements AfterViewInit {
                 this.renderer.removeClass(this.element.nativeElement, 'clicked');
             }
         }
-        // this.buttonImage.imageAsset = this.toggleClickImageAsset();
     }
     getImageAsset(): ImageAsset {
-        // console.log('REACHED GET IMAGE ASSET');
         switch (this.buttonType) {
             case GeneralPostButtonType.LIKE:
                 return whiteLikeIcon;
@@ -87,12 +84,14 @@ export class GeneralPostButtonComponent implements AfterViewInit {
                 return whiteCloseIcon;
             case GeneralPostButtonType.SEND:
                 return whiteSendIcon;
+            case GeneralPostButtonType.CONFIRM:
+                return basicWhiteConfirmIcon;
             default:
                 return whiteLikeIcon;
         }
     }
     isQuickTrigger(): boolean {
-        return this.clickResponse === GeneralPostButtonClickResponse.QUICK_TRIGGER;
+        return this.clickResponse === GeneralPostButtonClickResponse.QUICK_RELEASE;
     }
     isNumberedButton(): boolean {
         switch (this.buttonType) {
