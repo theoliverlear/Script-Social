@@ -53,6 +53,15 @@ export class TypingTextComponent implements AfterViewInit {
             typeChar();
         });
     }
+    async typeTextWithDelay(delay: number): Promise<void> {
+        await new Promise<void>((resolve) => {
+            setTimeout(() => {
+                this.typeText().then(() => {
+                    resolve();
+                });
+            }, delay);
+        });
+    }
     //--------------------------------Delete-Text---------------------------------
     async deleteText(): Promise<void> {
         let typeSpeed = this.typeSpeed;
