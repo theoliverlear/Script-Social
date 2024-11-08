@@ -1,0 +1,26 @@
+@import "../../../styles/global-variables";
+@import "../../../styles/global-mixins";
+@import "../../../styles/global-functions";
+@import "../../../styles/global-placeholders";
+
+user-choice-bubble {
+    @include flex(center, center, column);
+    padding: $half-percent;
+    background-color: $light-charcoal;
+    //@extend %soft-border-radius;
+    @extend %content-box;
+    .users-name-div {
+        padding: $quarter-percent;
+        background-color: $apricot-glow;
+        border-radius: $half-percent;
+        margin: $half-percent 0;
+        @include flex(center, center, row);
+        p {
+            color: $charcoal;
+        }
+    }
+    profile-picture {
+        @include square-size($two-half-percent);
+        margin-bottom: $quarter-percent;
+    }
+}
