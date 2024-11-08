@@ -28,9 +28,6 @@
 
 -->
     <section id="intro-section">
-        <user-choice-bubble
-                [imageAsset]="tatianaRamosPicture"
-                [usersName]="'Tatiana Ramos'"/>
         <div id="intro-title-with-code">
             <div id="intro-title-div">
                 <typing-text
@@ -64,6 +61,11 @@
                 />
             </fade-in-content>
         </div>
+        <fade-in-content [animationProperties]="tatianaRamosUserBubbleFadeInAnimation">
+            <user-choice-bubble
+                    [imageAsset]="tatianaRamosPicture"
+                    [usersName]="'Tatiana Ramos'"/>
+        </fade-in-content>
     </section>
 
 
