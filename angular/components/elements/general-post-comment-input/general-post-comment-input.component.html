@@ -1,18 +1,16 @@
 <div class="general-post-comment-input-div" *ngIf="isOpened">
     <general-post-button
             [buttonType]="GeneralPostButtonType.COMMENT"
-            [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER"
+            [clickResponse]="GeneralPostButtonClickResponse.QUICK_RELEASE"
             [elementSize]="ElementSize.MEDIUM"
             [showNumberInteractions]="false"
-            (click)="sendPostToServer()">
-    </general-post-button>
+            (click)="sendPostToServer()"/>
     <general-post-button
             [buttonType]="GeneralPostButtonType.CANCEL"
-            [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER"
+            [clickResponse]="GeneralPostButtonClickResponse.QUICK_RELEASE"
             [elementSize]="ElementSize.MEDIUM"
             [showNumberInteractions]="false"
-            (click)="closeCommentInput()">
-    </general-post-button>
-    <console-textbox (textChanged)="handleTextChange($event)"></console-textbox>
+            (click)="closeCommentInput()"/>
+    <console-textbox (textChanged)="handleTextChange($event)"/>
 </div>
-<console-popup [@fade] *ngIf="postPopup" [popup]="postPopup" [elementSize]="ElementSize.SMALL"></console-popup>
+<console-popup [@fade] *ngIf="postPopup" [popup]="postPopup" [elementSize]="ElementSize.SMALL"/>
