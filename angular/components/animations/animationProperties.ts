@@ -21,3 +21,7 @@ export const homeInviteSeniorDevMessageFadeInAnimation: FadeInAnimationPropertie
     duration: '600ms',
     delay: '7500ms'
 };
+export const tatianaRamosUserBubbleFadeInAnimation: FadeInAnimationProperties = {
+    duration: '600ms',
+    delay: '11000ms'
+}
