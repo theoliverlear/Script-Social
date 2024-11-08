@@ -13,17 +13,24 @@
         @include square-size($three-percent);
     }
 }
-
+.tail-left {
+    border-radius: $one-percent $one-percent $one-percent calc($one-percent * 0.1);
+}
+.tail-right {
+    border-radius: $one-percent $one-percent calc($one-percent * 0.1) $one-percent;
+}
 message-bubble {
     box-sizing: border-box;
     @include flex(center, center, column);
     //max-width: 27.85vw;
+
     border-radius: $one-percent;
     background-color: $light-charcoal;
     padding: $half-percent;
     margin: $one-percent 0;
     width: 100%;
     color: $pristine-white;
+
     .message-headline-div {
         @include flex(center, center, row);
         profile-picture {
