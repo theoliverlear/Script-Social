@@ -49,6 +49,11 @@ home {
                 }
             }
         }
+        user-choice-bubble {
+            position: absolute;
+            bottom: 0;
+            right: $one-percent;
+        }
     }
 }
 //=================================-Imports-==================================
