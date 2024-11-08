@@ -1,4 +1,11 @@
-import {Component, Input} from "@angular/core";
+import {
+    AfterViewInit,
+    Component, EventEmitter,
+    HostBinding,
+    HostListener,
+    Input,
+    Output
+} from "@angular/core";
 
 @Component({
     selector: 'connections-list-bubble',
@@ -7,7 +14,19 @@ import {Component, Input} from "@angular/core";
 })
 export class ConnectionsListBubbleComponent {
     @Input() connectionName: string;
+    @HostBinding('class.selected') isSelected: boolean = false;
+    @Output() clickEvent: EventEmitter<void> = new EventEmitter();
     constructor() {
         console.log('ConnectionsListBubbleComponent loaded');
+    }
+    @HostListener('click')
+    handleClick() {
+        this.clickEvent.emit();
+    }
+    select() {
+        this.isSelected = true;
+    }
+    deselect() {
+        this.isSelected = false;
     }
 }
