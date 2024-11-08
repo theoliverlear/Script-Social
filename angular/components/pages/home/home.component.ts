@@ -23,7 +23,7 @@ import {
 import {
     homeInviteSeniorDevMessageFadeInAnimation,
     homeRefactorMessageFadeInAnimation,
-    promoCodeFadeInAnimation
+    promoCodeFadeInAnimation, tatianaRamosUserBubbleFadeInAnimation
 } from "../../animations/animationProperties";
 import {
     TypingTextComponent
@@ -63,4 +63,5 @@ export class HomeComponent implements AfterViewInit {
     protected readonly homeRefactorMessageFadeInAnimation = homeRefactorMessageFadeInAnimation;
     protected readonly homeInviteSeniorDevMessageFadeInAnimation = homeInviteSeniorDevMessageFadeInAnimation;
     protected readonly tatianaRamosPicture = tatianaRamosPicture;
+    protected readonly tatianaRamosUserBubbleFadeInAnimation = tatianaRamosUserBubbleFadeInAnimation;
 }
