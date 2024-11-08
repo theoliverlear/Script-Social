@@ -1,21 +1,16 @@
 <general-post-button
         [buttonType]="GeneralPostButtonType.LIKE"
-        [clickResponse]="GeneralPostButtonClickResponse.TOGGLE">
-</general-post-button>
+        [clickResponse]="GeneralPostButtonClickResponse.TOGGLE"/>
 <general-post-button
         [buttonType]="GeneralPostButtonType.COMMENT"
-        [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER"
-        (click)="emitButtonClick(GeneralPostButtonType.COMMENT)">
-</general-post-button>
+        [clickResponse]="GeneralPostButtonClickResponse.QUICK_RELEASE"
+        (click)="emitButtonClick(GeneralPostButtonType.COMMENT)"/>
 <general-post-button
         [buttonType]="GeneralPostButtonType.REPOST"
-        [clickResponse]="GeneralPostButtonClickResponse.TOGGLE">
-</general-post-button>
+        [clickResponse]="GeneralPostButtonClickResponse.TOGGLE"/>
 <general-post-button
         [buttonType]="GeneralPostButtonType.CHAT"
-        [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER">
-</general-post-button>
+        [clickResponse]="GeneralPostButtonClickResponse.QUICK_RELEASE"/>
 <general-post-button
         [buttonType]="GeneralPostButtonType.SHARE"
-        [clickResponse]="GeneralPostButtonClickResponse.QUICK_TRIGGER">
-</general-post-button>
+        [clickResponse]="GeneralPostButtonClickResponse.QUICK_RELEASE"/>
