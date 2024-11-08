@@ -3,6 +3,9 @@
 @import "../../../styles/global-functions";
 @import "../../../styles/global-placeholders";
 
+.selected {
+    border: $thinnest-border solid $alabaster-stone;
+}
 connections-list-bubble {
     @include flex(center, center, row);
     border-radius: $one-percent;
@@ -11,6 +14,7 @@ connections-list-bubble {
     margin: $half-percent 0;
     transition: box-shadow 0.3s;
     width: $twelve-percent;
+    box-sizing: border-box;
     profile-picture {
         margin: 0 $quarter-percent;
         @include square-size($two-percent);
