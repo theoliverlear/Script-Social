@@ -13,4 +13,4 @@
             (click)="closeCommentInput()"/>
     <console-textbox (textChanged)="handleTextChange($event)"/>
 </div>
-<console-popup [@fade] *ngIf="postPopup" [popup]="postPopup" [elementSize]="ElementSize.SMALL"/>
+<console-popup [@fixedFade] *ngIf="postPopup" [popup]="postPopup" [elementSize]="ElementSize.SMALL"/>
