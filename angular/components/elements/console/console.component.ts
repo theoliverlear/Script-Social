@@ -6,19 +6,18 @@ import {ConsoleInputType} from "../console-input/models/ConsoleInputType";
 import {ButtonPosition} from "../ss-button/models/ButtonPosition";
 import {ConsoleType} from "./models/ConsoleType";
 import {
-    sendLoginRequest,
-    sendSignupToServer
+    sendLoginRequest
 } from "../../../../src/main/resources/static/script/new_scripts/globalScript";
 import {AuthPopup} from "../../../models/auth/AuthPopup";
 import {ConsoleService} from "../../../services/console.service";
-import {fadeAnimation} from "../../animations/animations";
+import {fixedFadeAnimation} from "../../animations/animations";
 
 @Component({
     selector: 'console',
     templateUrl: './console.component.html',
     styleUrls: ['./console-style.component.css'],
     animations: [
-        fadeAnimation
+        fixedFadeAnimation
     ]
 })
 export class ConsoleComponent {
