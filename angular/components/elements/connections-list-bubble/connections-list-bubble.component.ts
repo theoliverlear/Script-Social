@@ -13,6 +13,7 @@ import {
     styleUrls: ['./connections-list-bubble-style.component.css']
 })
 export class ConnectionsListBubbleComponent {
+    @HostBinding("class.add-conversation-mode") isAddConversationMode: boolean = false;
     @Input() connectionName: string;
     @HostBinding('class.selected') isSelected: boolean = false;
     @Output() clickEvent: EventEmitter<void> = new EventEmitter();
