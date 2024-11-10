@@ -2,6 +2,9 @@ import {
     SideNavBarSlideAnimationProperties
 } from "./models/SideNavBarSlideAnimationProperties";
 import {FadeInAnimationProperties} from "./models/FadeInAnimationProperties";
+import {
+    FadeInOutAnimationProperties
+} from "./models/FadeInOutAnimationProperties";
 
 export const sideNavBarSlideAnimationProperties: SideNavBarSlideAnimationProperties = {
     closedWidth: 'calc((4vw + 4vh) / 2 + 1.6em)',
@@ -24,4 +27,8 @@ export const homeInviteSeniorDevMessageFadeInAnimation: FadeInAnimationPropertie
 export const tatianaRamosUserBubbleFadeInAnimation: FadeInAnimationProperties = {
     duration: '600ms',
     delay: '11000ms'
-}
+};
+export const connectionsListButtonFadeInOutAnimation: FadeInOutAnimationProperties = {
+    fadeInDuration: "100ms",
+    fadeOutDuration: "100ms"
+};
