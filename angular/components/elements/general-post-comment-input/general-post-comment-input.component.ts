@@ -11,14 +11,14 @@ import {
     ConsolePostPopup
 } from "../general-post-comment/models/ConsolePostPopup";
 import {EmptyPostService} from "../../../services/empty-post.service";
-import {fadeAnimation} from "../../animations/animations";
+import {fixedFadeAnimation} from "../../animations/animations";
 
 @Component({
     selector: 'general-post-comment-input',
     templateUrl: './general-post-comment-input.component.html',
     styleUrls: ['./general-post-comment-input-style.component.css'],
     animations: [
-        fadeAnimation
+        fixedFadeAnimation
     ]
 })
 export class GeneralPostCommentInputComponent implements OnInit {
