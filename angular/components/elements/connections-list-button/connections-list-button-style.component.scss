@@ -5,6 +5,7 @@
 
 connections-list-button {
     @include flex(center, center, row);
+    box-sizing: border-box;
     .button-div {
         @include flex(center, center, row);
         box-sizing: border-box;
