@@ -6,6 +6,10 @@
 .selected {
     border: $thinnest-border solid $alabaster-stone;
 }
+.add-conversation-mode {
+    color: $charcoal;
+    background-color: $pure-orange;
+}
 connections-list-bubble {
     @include flex(center, center, row);
     border-radius: $one-percent;
