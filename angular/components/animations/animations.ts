@@ -6,7 +6,7 @@ import {
     trigger
 } from "@angular/animations";
 import {sideNavBarSlideAnimationProperties} from "./animationProperties";
-export const fadeAnimation: AnimationTriggerMetadata = trigger('fade', [
+export const fixedFadeAnimation: AnimationTriggerMetadata = trigger('fixedFade', [
     transition(':enter', [
         style({ opacity: 0 }),
         animate('250ms', style({ opacity: 1 }))
@@ -14,6 +14,17 @@ export const fadeAnimation: AnimationTriggerMetadata = trigger('fade', [
     transition(':leave', [
         animate('250ms', style({ opacity: 0 }))
     ])
+]);
+export const fadeAnimation: AnimationTriggerMetadata = trigger('fade', [
+    state('visible', style({ opacity: 1 })),
+    state('hidden', style({ opacity: 0 })),
+    transition('visible => hidden', [
+        animate('{{ fadeOutDuration }}')
+    ], { params: { fadeOutDuration: '250ms' } }),
+
+    transition('hidden => visible', [
+        animate('{{ fadeInDuration }}')
+    ], { params: { fadeInDuration: '250ms' } })
 ]);
 export const fadeIn: AnimationTriggerMetadata = trigger('fadeIn', [
     transition(':enter', [
