@@ -1,10 +1,13 @@
 <ng-container>
     <messages-section-title
-            [titleText]="MessagesSectionTitles.CONNECTIONS"/>
-    <connections-list-button (clickEvent)="toggleConfirmButtonView()"
+            [titleText]="MessagesSectionTitle.CONNECTIONS"/>
+    <connections-list-button (clickEvent)="handleClick(ConnectionsListButtonType.ADD)"
             [buttonType]="ConnectionsListButtonType.ADD"/>
-    <messages-connections-list/>
+    <messages-connections-list
+        #messageConnectionsList
+    />
     <connections-list-button
             #confirmButton
+            (clickEvent)="handleClick(ConnectionsListButtonType.CONFIRM)"
             [buttonType]="ConnectionsListButtonType.CONFIRM"/>
 </ng-container>
