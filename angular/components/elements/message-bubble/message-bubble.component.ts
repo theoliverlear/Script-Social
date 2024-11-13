@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, Renderer2} from "@angular/core";
-import {Message} from "../../../models/Message";
+import {Message} from "../../../models/message/Message";
 import {ElementSize} from "../../../models/ElementSize";
 import {defaultAvatar, ImageAsset} from "../../../assets/imageAssets";
 import {BubbleTailSide} from "./models/BubbleTailSide";
