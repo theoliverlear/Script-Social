@@ -14,14 +14,17 @@ export class MessageService {
                 private errorHandlerService: ErrorHandlerService) {
         console.log('MessageService loaded');
     }
-    sendMessageToServer(message: ClientMessage): Observable<Message> {
-        // return this.http.post<ClientMessage>
-        return null;
-    }
+    // Websocket handles this.
+    // sendMessageToServer(message: ClientMessage): Observable<Message> {
+    //     return this.http.post<Message>('/api/messages/send', message, httpOptions)
+    //         .pipe(
+    //             catchError(this.errorHandlerService.handleError<Message>('sendMessageToServer', null))
+    //         );
+    // }
     getMessagesFromServer(userId: number): Observable<Message[]> {
         return this.http.get<Message[]>('/message/get/' + userId, httpOptions)
             .pipe(
-                map(response => this.getMessagesFromResponse(response)),
+                map((response: Message[]) => this.getMessagesFromResponse(response)),
                 catchError(this.errorHandlerService.handleError<Message[]>('getMessagesFromServer', []))
             );
     }
