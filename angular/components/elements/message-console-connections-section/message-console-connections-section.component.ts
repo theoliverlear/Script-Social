@@ -1,4 +1,4 @@
-import {Component, ViewChild} from "@angular/core";
+import {Component, QueryList, ViewChild, ViewChildren} from "@angular/core";
 import {
     MessagesSectionTitle
 } from "../messages-section-title/models/MessagesSectionTitle";
@@ -8,6 +8,9 @@ import {
 import {
     ConnectionsListButtonComponent
 } from "../connections-list-button/connections-list-button.component";
+import {
+    MessagesConnectionsListComponent
+} from "../messages-connections-list/messages-connections-list.component";
 
 @Component({
     selector: 'message-console-connections-section',
@@ -16,13 +19,24 @@ import {
 })
 export class MessageConsoleConnectionsSectionComponent {
     @ViewChild('confirmButton') confirmButton: ConnectionsListButtonComponent;
+    @ViewChild('messageConnectionsList') messageConnectionsList: MessagesConnectionsListComponent;
     constructor() {
         console.log('MessageConsoleConnectionsSectionComponent loaded');
     }
+
     toggleConfirmButtonView() {
         console.log('Toggling confirm button view');
         this.confirmButton.toggleVisibility();
     }
-    protected readonly MessagesSectionTitles = MessagesSectionTitle;
+    handleClick(buttonType: ConnectionsListButtonType) {
+        switch (buttonType) {
+            case ConnectionsListButtonType.ADD:
+            case ConnectionsListButtonType.CONFIRM:
+                this.toggleConfirmButtonView();
+                this.messageConnectionsList.toggleIsAddConversationMode();
+                break;
+        }
+    }
+    protected readonly MessagesSectionTitle = MessagesSectionTitle;
     protected readonly ConnectionsListButtonType = ConnectionsListButtonType;
 }
