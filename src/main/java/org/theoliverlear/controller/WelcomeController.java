@@ -4,10 +4,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.theoliverlear.communication.request.WelcomeCompletedRequest;
 import org.theoliverlear.communication.request.WelcomeUserRequest;
 import org.theoliverlear.communication.response.OperationSuccessfulResponse;
@@ -20,8 +20,8 @@ import org.theoliverlear.service.WelcomeService;
 
 import java.util.Optional;
 
-@Controller
-@RequestMapping("/welcome")
+@RestController
+@RequestMapping("/api/welcome")
 public class WelcomeController {
     //============================-Variables-=================================
     private User currentUser;
@@ -42,20 +42,6 @@ public class WelcomeController {
     }
     //=============================-Methods-==================================
 
-    //------------------------------Welcome-----------------------------------
-    @RequestMapping("/")
-    public String welcome(HttpSession session) {
-        boolean userInSession = this.scriptSocialService.userInSession(session);
-        if (!userInSession) {
-            return this.scriptSocialService.getRedirectAddress("authorize");
-        }
-        Optional<User> possibleSessionUser = this.scriptSocialService.getUserFromSession(session);
-        if (possibleSessionUser.isEmpty()) {
-            return this.scriptSocialService.getRedirectAddress("authorize");
-        }
-        this.currentUser = possibleSessionUser.get();
-        return "welcome";
-    }
     @Transactional
     @RequestMapping("/profile/add")
     public ResponseEntity<OperationSuccessfulResponse> addProfile(@RequestBody WelcomeUserRequest welcomeUserRequest, HttpSession session) {
@@ -76,9 +62,12 @@ public class WelcomeController {
     }
     @RequestMapping("/get/completed")
     public ResponseEntity<WelcomeCompletedResponse> getWelcomeCompleted(@RequestBody WelcomeCompletedRequest welcomeCompletedRequest) {
-        Optional<User> possibleUser = this.userService.getUserById(welcomeCompletedRequest.getUserId());
-        HttpStatus status = possibleUser.isEmpty() ? HttpStatus.BAD_REQUEST : HttpStatus.OK;
-        boolean isCompleted = possibleUser.map(User::isCompletedWelcomeSurvey).orElse(false);
+        boolean userExists = this.userService.getUserById(welcomeCompletedRequest.getUserId()).isPresent();
+        HttpStatus status = userExists ? HttpStatus.BAD_REQUEST : HttpStatus.OK;
+        if (!userExists) {
+            return new ResponseEntity<>(new WelcomeCompletedResponse(false), status);
+        }
+        boolean isCompleted = this.welcomeService.userHasCompletedWelcome(welcomeCompletedRequest);
         return new ResponseEntity<>(new WelcomeCompletedResponse(isCompleted), status);
     }
 }
