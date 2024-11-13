@@ -7,10 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.WebSocketSession;
 import org.theoliverlear.communication.request.InstantMessageRequest;
 import org.theoliverlear.communication.response.InstantMessageResponse;
@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
-@RequestMapping("/messages")
-@Controller
+@RequestMapping("/api/messages")
+@RestController
 public class MessageController {
     //============================-Variables-=================================
     private ScriptSocialService scriptSocialService;
