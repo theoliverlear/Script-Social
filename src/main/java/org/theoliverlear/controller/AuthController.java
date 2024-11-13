@@ -4,10 +4,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.theoliverlear.communication.request.AuthRequest;
 import org.theoliverlear.communication.request.SignupRequest;
 import org.theoliverlear.communication.response.AuthResponse;
@@ -17,8 +17,8 @@ import org.theoliverlear.service.AuthService;
 
 import java.util.Optional;
 
-@Controller
-@RequestMapping("/authorize")
+@RestController
+@RequestMapping("/api/authorize")
 public class AuthController {
     //============================-Variables-=================================
     private AuthService authService;
@@ -29,11 +29,6 @@ public class AuthController {
     }
     //=============================-Methods-==================================
 
-    //-----------------------------Authorize----------------------------------
-    @RequestMapping("/")
-    public String authorize() {
-        return "authorize";
-    }
     //-------------------------------Signup-----------------------------------
     @RequestMapping("/signup")
     public ResponseEntity<AuthResponse> signup(@RequestBody SignupRequest signupRequest, HttpSession session) {
