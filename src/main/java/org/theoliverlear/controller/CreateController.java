@@ -4,9 +4,9 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.theoliverlear.communication.request.CommentRequest;
 import org.theoliverlear.communication.request.PostRequest;
 import org.theoliverlear.communication.response.OperationSuccessfulResponse;
@@ -14,8 +14,8 @@ import org.theoliverlear.service.PostService;
 import org.theoliverlear.service.ScriptSocialService;
 import org.theoliverlear.service.UserService;
 
-@Controller
-@RequestMapping("/create")
+@RestController
+@RequestMapping("/api/create")
 public class CreateController {
     //============================-Variables-=================================
     private ScriptSocialService scriptSocialService;
@@ -32,11 +32,6 @@ public class CreateController {
     }
     //=============================-Methods-==================================
 
-    //-------------------------------Create-----------------------------------
-    @RequestMapping("/")
-    public String create() {
-        return "create";
-    }
     //----------------------------Create-Post---------------------------------
     @RequestMapping("/post")
     public ResponseEntity<OperationSuccessfulResponse> createPost(@RequestBody PostRequest postRequest, HttpSession session) {
