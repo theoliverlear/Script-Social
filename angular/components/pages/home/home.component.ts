@@ -16,7 +16,7 @@ import {
     homeMessageRefactorText,
     originalCodeText
 } from "../../../assets/textAssets";
-import {Message} from "../../../models/Message";
+import {Message} from "../../../models/message/Message";
 import {
     BubbleTailSide
 } from "../../elements/message-bubble/models/BubbleTailSide";
