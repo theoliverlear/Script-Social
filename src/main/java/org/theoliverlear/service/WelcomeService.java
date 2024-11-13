@@ -2,6 +2,7 @@ package org.theoliverlear.service;
 //=================================-Imports-==================================
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.theoliverlear.communication.request.WelcomeCompletedRequest;
 import org.theoliverlear.communication.request.WelcomeUserRequest;
 import org.theoliverlear.entity.user.BirthDate;
 import org.theoliverlear.entity.user.User;
@@ -23,6 +24,11 @@ public class WelcomeService {
     }
     //=============================-Methods-==================================
 
+    public boolean userHasCompletedWelcome(WelcomeCompletedRequest welcomeCompletedRequest) {
+        Optional<User> possibleUser = this.userService.getUserById(welcomeCompletedRequest.getUserId());
+        boolean isCompleted = possibleUser.map(User::isCompletedWelcomeSurvey).orElse(false);
+        return isCompleted;
+    }
     //---------------Apply-Welcome-Request-User-Parameters--------------------
     public User applyWelcomeRequestUserParameters(User user, WelcomeUserRequest welcomeUserRequest) {
 
