@@ -1,6 +1,6 @@
 import {
     AfterViewInit,
-    Component,
+    Component, EventEmitter, Output,
     QueryList,
     ViewChildren
 } from "@angular/core";
@@ -15,8 +15,19 @@ import {
 })
 export class MessagesConnectionsListComponent implements AfterViewInit {
     @ViewChildren(ConnectionsListBubbleComponent) connectionsListBubbles: QueryList<ConnectionsListBubbleComponent>;
+    isAddConversationMode: boolean = false;
     constructor() {
         console.log('MessagesConnectionsListComponent loaded');
+    }
+    toggleIsConversationMode() {
+        this.isAddConversationMode = !this.isAddConversationMode;
+    }
+    toggleIsAddConversationMode() {
+        console.log('Toggling add conversation mode');
+        this.connectionsListBubbles.forEach((bubble) => {
+            bubble.isAddConversationMode = !bubble.isAddConversationMode;
+            console.log(bubble);
+        });
     }
     ngAfterViewInit() {
         this.subscribeToBubbleClickEvents();
