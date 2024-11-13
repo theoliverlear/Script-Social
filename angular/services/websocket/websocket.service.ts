@@ -6,7 +6,7 @@ import SockJS from "sockjs-client";
 @Injectable({
     providedIn: 'root'
 })
-export abstract class WebsocketService<T> {
+export abstract class WebSocketService<T> {
     private url: string;
     private stompClient: Client;
     protected contentSubject: Subject<T>;
