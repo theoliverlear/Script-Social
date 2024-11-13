@@ -15,7 +15,7 @@ import org.theoliverlear.service.PostService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/api/post")
 public class PostController {
     //============================-Variables-=================================
     private PostService postService;
