@@ -55,16 +55,7 @@ public class MessageController {
     //=============================-Methods-==================================
 
     //------------------------------Message-----------------------------------
-    @RequestMapping("/")
-    public String message(HttpSession session) {
-        Optional<User> possibleUser = this.scriptSocialService.getUserFromSession(session);
-        if (possibleUser.isEmpty()) {
-            return "redirect:/authorize/";
-        } else {
-            this.currentUser = possibleUser.get();
-            return "messages";
-        }
-    }
+
     //----------------------------Get-Messages--------------------------------
     // TODO: Major bug here. There must be some form of validation to ensure
     //       that the requesting user is in the conversation. It will be
