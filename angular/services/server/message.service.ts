@@ -1,9 +1,10 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {ErrorHandlerService} from "../error-handler.service";
-import {Message} from "../../models/Message";
+import {Message} from "../../models/message/Message";
 import {catchError, map, Observable} from "rxjs";
 import {httpOptions} from "./httpProperties";
+import {ClientMessage} from "../../models/message/ClientMessage";
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +13,10 @@ export class MessageService {
     constructor(private http: HttpClient,
                 private errorHandlerService: ErrorHandlerService) {
         console.log('MessageService loaded');
+    }
+    sendMessageToServer(message: ClientMessage): Observable<Message> {
+        // return this.http.post<ClientMessage>
+        return null;
     }
     getMessagesFromServer(userId: number): Observable<Message[]> {
         return this.http.get<Message[]>('/message/get/' + userId, httpOptions)
