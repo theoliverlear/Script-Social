@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
 import {Message} from "../../models/message/Message";
 import {WebSocketService} from "./websocket.service";
+import {Communicative} from "../../models/message/Communicative";
 
 @Injectable({
     providedIn: 'root'
 })
-export class MessagesWebSocketService extends WebSocketService<Message> {
+export class MessagesWebSocketService extends WebSocketService<Communicative> {
     static readonly URL: string = '/messages/receiver';
     constructor() {
         super(MessagesWebSocketService.URL);
