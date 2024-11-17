@@ -1,4 +1,6 @@
-export class Message {
+import {Communicative} from "./Communicative";
+
+export class Message implements Communicative {
     id: number;
     usersName: string;
     dateSent: Date;
