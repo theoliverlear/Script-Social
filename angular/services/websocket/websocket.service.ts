@@ -7,6 +7,7 @@ import SockJS from "sockjs-client";
     providedIn: 'root'
 })
 export abstract class WebSocketService<T> {
+    static readonly receiveURL: string = '/messages/receiver';
     private url: string;
     private stompClient: Client;
     protected contentSubject: Subject<T>;
@@ -20,7 +21,7 @@ export abstract class WebSocketService<T> {
     abstract onReceive(frame: any): void;
     connect(): void {
         this.stompClient.onConnect = (): void => {
-            this.stompClient.subscribe(this.url, (frame: any): void => {
+            this.stompClient.subscribe(WebSocketService.receiveURL, (frame: any): void => {
                 this.onReceive(frame);
             });
         }
