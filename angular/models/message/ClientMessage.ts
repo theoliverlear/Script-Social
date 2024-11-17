@@ -1,4 +1,6 @@
-export class ClientMessage {
+import {Communicative} from "./Communicative";
+
+export class ClientMessage implements Communicative {
     userId: number;
     messageText: string;
     constructor(userId: number = 0,
