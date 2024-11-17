@@ -5,13 +5,18 @@ import {Message} from "../../models/message/Message";
 import {catchError, map, Observable} from "rxjs";
 import {httpOptions} from "./httpProperties";
 import {ClientMessage} from "../../models/message/ClientMessage";
+import {
+    MessagesWebSocketService
+} from "../websocket/messages-websocket.service";
+import {Communicative} from "../../models/message/Communicative";
 
 @Injectable({
     providedIn: 'root'
 })
 export class MessageService {
     constructor(private http: HttpClient,
-                private errorHandlerService: ErrorHandlerService) {
+                private errorHandlerService: ErrorHandlerService,
+                private messagesWebsocketService: MessagesWebSocketService) {
         console.log('MessageService loaded');
     }
     // Websocket handles this.
@@ -21,8 +26,14 @@ export class MessageService {
     //             catchError(this.errorHandlerService.handleError<Message>('sendMessageToServer', null))
     //         );
     // }
+    getContent(): Observable<Communicative> {
+        return this.messagesWebsocketService.getContent();
+    }
+    sendMessageToServer(clientMessage: ClientMessage) {
+        this.messagesWebsocketService.send(clientMessage);
+    }
     getMessagesFromServer(userId: number): Observable<Message[]> {
-        return this.http.get<Message[]>('/message/get/' + userId, httpOptions)
+        return this.http.get<Message[]>('/api/messages/get/' + userId, httpOptions)
             .pipe(
                 map((response: Message[]) => this.getMessagesFromResponse(response)),
                 catchError(this.errorHandlerService.handleError<Message[]>('getMessagesFromServer', []))
