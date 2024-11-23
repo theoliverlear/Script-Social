@@ -2,7 +2,7 @@ import {Directive, Input, OnInit} from "@angular/core";
 import {
     ConsoleComponent
 } from "../components/elements/console/console.component";
-import {SignupHandlerService} from "../services/signup-handler.service";
+import {SignupPopupService} from "../services/signup-popup.service";
 import {ConsoleType} from "../components/elements/console/models/ConsoleType";
 import {AuthPopup} from "../models/auth/AuthPopup";
 
@@ -11,7 +11,7 @@ import {AuthPopup} from "../models/auth/AuthPopup";
 })
 export class SignupConsoleHandlerDirective implements OnInit {
     @Input('signupConsoleHandler') consoleComponent: ConsoleComponent;
-    constructor(private signupHandlerService: SignupHandlerService) {
+    constructor(private signupHandlerService: SignupPopupService) {
         console.log('SignupConsoleHandlerDirective loaded');
     }
     ngOnInit() {
