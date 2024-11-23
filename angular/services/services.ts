@@ -13,14 +13,19 @@ import {UserService} from "./server/user.service";
 import {EmptyPostService} from "./empty-post.service";
 import {ProfilePictureService} from "./server/profile-picture.service";
 import {MessageService} from "./server/message.service";
+import {WelcomeService} from "./server/welcome.service";
+import {WelcomeRedirectService} from "./welcome-redirect.service";
+import {LoginService} from "./server/login.service";
 
 export const services = [
     // Server
+    LoginService,
     MessageService,
     PostService,
     ProfilePictureService,
     SignupService,
     UserService,
+    WelcomeService,
     // Client
     AgreeTermsService,
     ConsoleService,
@@ -31,5 +36,6 @@ export const services = [
     HashPasswordService,
     PasswordMatchService,
     SignupPopupService,
-    SwipeService
+    SwipeService,
+    WelcomeRedirectService
 ]
