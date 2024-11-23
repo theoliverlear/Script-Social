@@ -75,7 +75,8 @@
               "angular/components/pages/authorize/authorize-style.component.css",
               "angular/components/pages/home/home-style.component.css",
               "angular/components/pages/messages/messages-style.component.css",
-              "angular/components/pages/profile/profile-style.component.css"
+              "angular/components/pages/profile/profile-style.component.css",
+              "angular/components/pages/welcome/welcome-style.component.css"
             ],
             "scripts": [],
             "fileReplacements": []
