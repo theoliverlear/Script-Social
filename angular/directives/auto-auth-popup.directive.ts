@@ -13,7 +13,7 @@ import {
     PasswordMatchService
 } from '../services/password-match.service';
 import {AuthPopup} from "../models/auth/AuthPopup";
-import {SignupHandlerService} from "../services/signup-handler.service";
+import {SignupPopupService} from "../services/signup-popup.service";
 import {EmailValidatorService} from "../services/email-validator.service";
 import {FilledFieldsService} from "../services/filled-fields.service";
 
@@ -32,7 +32,7 @@ export class AutoAuthPopupDirective implements OnInit {
         private viewContainer: ViewContainerRef,
         private templateRef: TemplateRef<any>,
         private passwordMatchHandlerService: PasswordMatchService,
-        private signupHandlerService: SignupHandlerService,
+        private signupHandlerService: SignupPopupService,
         private emailValidatorService: EmailValidatorService,
         private filledFieldsService: FilledFieldsService) {}
     get consoleType(): ConsoleType {
