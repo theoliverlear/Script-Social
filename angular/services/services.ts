@@ -5,7 +5,7 @@ import {ErrorHandlerService} from "./error-handler.service";
 import {FilledFieldsService} from "./filled-fields.service";
 import {HashPasswordService} from "./hash-password.service";
 import {SignupService} from "./server/signup.service";
-import {SignupHandlerService} from "./signup-handler.service";
+import {SignupPopupService} from "./signup-popup.service";
 import {SwipeService} from "./swipe.service";
 import {PostService} from "./server/post.service";
 import {PasswordMatchService} from "./password-match.service";
@@ -30,6 +30,6 @@ export const services = [
     FilledFieldsService,
     HashPasswordService,
     PasswordMatchService,
-    SignupHandlerService,
+    SignupPopupService,
     SwipeService
 ]
