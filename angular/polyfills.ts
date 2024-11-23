@@ -9,6 +9,6 @@ import 'core-js/es/regexp';
 import 'core-js/es/set';
 import 'core-js/es/string';
 import 'core-js/es/symbol';
-import 'zone.js';  // Required for Angular
+import 'zone.js';
 
-// Add any custom polyfills below or any additional imports specific to your project requirements.
+(window as any).global = window;
