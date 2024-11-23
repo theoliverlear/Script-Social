@@ -9,6 +9,9 @@ import {
 import {
     MessagesComponent
 } from "../../components/pages/messages/messages.component";
+import {
+    WelcomeComponent
+} from "../../components/pages/welcome/welcome.component";
 
 export const homeRoute: Route = {
     path: '',
@@ -56,9 +59,19 @@ export const messagesRoute: Route = {
         }
     }
 }
+export const welcomeRoute: Route = {
+    path: 'welcome',
+    component: WelcomeComponent,
+    data: {
+        meta: {
+            title: 'Welcome | Script Social'
+        }
+    }
+}
 export const routes: Routes = [
     homeRoute,
     authorizeRoute,
     profileRoute,
-    messagesRoute
+    messagesRoute,
+    welcomeRoute
 ];
