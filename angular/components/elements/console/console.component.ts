@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import { Router } from '@angular/router';
 import {ElementSize} from "../../../models/ElementSize";
 import {ButtonText} from "../ss-button/models/ButtonText";
 import {ConsoleInputField} from "../console-input/models/ConsoleInputField";
@@ -34,7 +35,8 @@ export class ConsoleComponent {
     private _password: string = '';
     private _confirmPassword: string = '';
     private _agreeTerms: boolean = false;
-    constructor(private consoleService: ConsoleService) {
+    constructor(private consoleService: ConsoleService,
+                private router: Router) {
         console.log('ConsoleComponent loaded');
     }
     clear(): void {
@@ -234,7 +236,7 @@ export class ConsoleComponent {
         }
     }
     redirectToWelcome() {
-        window.location.href = '/welcome/';
+        this.router.navigate(['/welcome']);
     }
     sendSignupToServer() {
         console.log('Sending signup to server');
