@@ -12,6 +12,9 @@ import {
 import {AuthPopup} from "../../../models/auth/AuthPopup";
 import {ConsoleService} from "../../../services/console.service";
 import {fixedFadeAnimation} from "../../animations/animations";
+import {
+    WelcomeRedirectService
+} from "../../../services/welcome-redirect.service";
 
 @Component({
     selector: 'console',
@@ -36,7 +39,7 @@ export class ConsoleComponent {
     private _confirmPassword: string = '';
     private _agreeTerms: boolean = false;
     constructor(private consoleService: ConsoleService,
-                private router: Router) {
+                private welcomeRedirectService: WelcomeRedirectService) {
         console.log('ConsoleComponent loaded');
     }
     clear(): void {
@@ -232,11 +235,8 @@ export class ConsoleComponent {
         if (!loginApproved) {
             this.handleLoginFailed(AuthPopup.INVALID_USERNAME_OR_PASSWORD);
         } else {
-            this.redirectToWelcome();
+            this.welcomeRedirectService.checkWelcomeAndRedirect();
         }
-    }
-    redirectToWelcome() {
-        this.router.navigate(['/welcome']);
     }
     sendSignupToServer() {
         console.log('Sending signup to server');
@@ -249,7 +249,7 @@ export class ConsoleComponent {
             if (!signupApproved) {
                 this.handleSignupFailed(AuthPopup.USERNAME_OR_EMAIL_EXISTS);
             } else {
-                this.redirectToWelcome();
+                this.welcomeRedirectService.redirectToWelcome();
             }
         }, error => {
             console.error('Error: ', error);
