@@ -5,7 +5,7 @@ import {Subject} from "rxjs";
 @Injectable({
     providedIn: 'root'
 })
-export class SignupHandlerService {
+export class SignupPopupService {
     private signupFailedSubject: Subject<AuthPopup> = new Subject();
     signupFailed$ = this.signupFailedSubject.asObservable();
     constructor() {
