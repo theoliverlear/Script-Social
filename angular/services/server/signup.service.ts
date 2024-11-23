@@ -8,7 +8,7 @@ import {ErrorHandlerService} from "../error-handler.service";
     providedIn: 'root'
 })
 export class SignupService {
-    private _signupUrl: string = 'http://localhost:8080/api/authorize/signup';
+    private signupUrl: string = 'http://localhost:8080/api/authorize/signup';
     constructor(private http: HttpClient,
                 private hashPasswordService: HashPasswordService,
                 private errorHandlerService: ErrorHandlerService) {
@@ -26,7 +26,7 @@ export class SignupService {
             username: username,
             password: hashedPassword
         }
-        return this.http.post<{ authorized: boolean }>(this._signupUrl, signupInfo, httpOptions)
+        return this.http.post<{ authorized: boolean }>(this.signupUrl, signupInfo, httpOptions)
             .pipe(
                 map(response => {
                     console.log('Signup response:', response);
