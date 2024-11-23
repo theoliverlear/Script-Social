@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {PasswordMatchService} from "./password-match.service";
-import {SignupHandlerService} from "./signup-handler.service";
+import {SignupPopupService} from "./signup-popup.service";
 import {EmailValidatorService} from "./email-validator.service";
 import {ConsoleType} from "../components/elements/console/models/ConsoleType";
 import {SignupService} from "./server/signup.service";
@@ -13,7 +13,7 @@ import {AgreeTermsService} from "./agree-terms.service";
 })
 export class ConsoleService {
     constructor(private passwordMatchHandlerService: PasswordMatchService,
-                private signupHandlerService: SignupHandlerService,
+                private signupHandlerService: SignupPopupService,
                 private emailValidatorService: EmailValidatorService,
                 private signupService: SignupService,
                 private filledFieldsService: FilledFieldsService,
