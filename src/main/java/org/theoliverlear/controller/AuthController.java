@@ -34,7 +34,7 @@ public class AuthController {
     public ResponseEntity<AuthResponse> signup(@RequestBody SignupRequest signupRequest, HttpSession session) {
         boolean isAuthorized = this.authService.signup(signupRequest, session);
         HttpStatus status = isAuthorized ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-        return new ResponseEntity<>(new AuthResponse(isAuthorized, false), status);
+        return new ResponseEntity<>(new AuthResponse(isAuthorized), status);
     }
     //-------------------------------Login------------------------------------
     @Transactional
@@ -42,12 +42,7 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest authRequest, HttpSession session) {
         boolean isAuthorized = this.authService.login(authRequest, session);
         HttpStatus status = isAuthorized ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-        Optional<User> possibleUser = this.authService.getUserService().findByUsername(authRequest.getUsername());
-        boolean welcomeCompleted = false;
-        if (possibleUser.isPresent()) {
-            welcomeCompleted = possibleUser.get().isCompletedWelcomeSurvey();
-        }
-        return new ResponseEntity<>(new AuthResponse(isAuthorized, welcomeCompleted), status);
+        return new ResponseEntity<>(new AuthResponse(isAuthorized), status);
     }
     //-------------------------------Logout-----------------------------------
     @RequestMapping("/logout")
@@ -60,14 +55,7 @@ public class AuthController {
     @RequestMapping("/isloggedin")
     public ResponseEntity<AuthResponse> isLoggedIn(HttpSession session) {
         boolean isLoggedIn = this.authService.isLoggedIn(session);
-        boolean welcomeCompleted = false;
-        if (isLoggedIn) {
-            User user = (User) session.getAttribute("user");
-            if (user != null) {
-                welcomeCompleted = user.isCompletedWelcomeSurvey();
-            }
-        }
         HttpStatus status = isLoggedIn ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
-        return new ResponseEntity<>(new AuthResponse(isLoggedIn, welcomeCompleted), status);
+        return new ResponseEntity<>(new AuthResponse(isLoggedIn), status);
     }
 }
