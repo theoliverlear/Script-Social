@@ -16,6 +16,8 @@ import {MessageService} from "./server/message.service";
 import {WelcomeService} from "./server/welcome.service";
 import {WelcomeRedirectService} from "./welcome-redirect.service";
 import {LoginService} from "./server/login.service";
+import {ConfettiService} from "./confetti.service";
+import {SlideInElementService} from "./slide-in-element.service";
 
 export const services = [
     // Server
@@ -28,6 +30,7 @@ export const services = [
     WelcomeService,
     // Client
     AgreeTermsService,
+    ConfettiService,
     ConsoleService,
     EmailValidatorService,
     EmptyPostService,
@@ -36,6 +39,7 @@ export const services = [
     HashPasswordService,
     PasswordMatchService,
     SignupPopupService,
+    SlideInElementService,
     SwipeService,
     WelcomeRedirectService
 ]
