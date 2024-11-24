@@ -97,6 +97,11 @@ import {
 import {
     UserChoiceBubbleButtonsComponent
 } from "./user-choice-bubble-buttons/user-choice-bubble-buttons.component";
+import {OptionBubbleComponent} from "./option-bubble/option-bubble.component";
+import {OptionListComponent} from "./option-list/option-list.component";
+import {
+    WelcomeBannerComponent
+} from "./welcome-banner/welcome-banner.component";
 
 export const elements = [
     AuthBubbleComponent,
@@ -127,6 +132,8 @@ export const elements = [
     MessagesListComponent,
     MessagesSectionTitleComponent,
     NavBarComponent,
+    OptionBubbleComponent,
+    OptionListComponent,
     PostInputConsoleComponent,
     ProfileActivityComponent,
     ProfileBioComponent,
@@ -143,5 +150,6 @@ export const elements = [
     SsImgComponent,
     TypingTextComponent,
     UserChoiceBubbleComponent,
-    UserChoiceBubbleButtonsComponent
+    UserChoiceBubbleButtonsComponent,
+    WelcomeBannerComponent
 ]
