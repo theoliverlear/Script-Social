@@ -18,8 +18,11 @@ import {WelcomeRedirectService} from "./welcome-redirect.service";
 import {LoginService} from "./server/login.service";
 import {ConfettiService} from "./confetti.service";
 import {SlideInElementService} from "./slide-in-element.service";
+import {AuthGuard} from "./guard/auth.guard";
 
 export const services = [
+    // Guards
+    AuthGuard,
     // Server
     LoginService,
     MessageService,
