@@ -2,10 +2,10 @@ import {Component} from "@angular/core";
 
 @Component({
     selector: 'option-list',
-    templateUrl: './option-list.component.html',
-    styleUrls: ['./option-list-style.component.css']
+    templateUrl: './options-list.component.html',
+    styleUrls: ['./options-list-style.component.css']
 })
-export class OptionListComponent {
+export class OptionsListComponent {
     constructor() {
         console.log('OptionListComponent loaded');
     }
