@@ -8,13 +8,13 @@ import {httpOptions} from "./httpProperties";
     providedIn: 'root'
 })
 export class UserService {
-    private getCurrentUserIdUrl: string = 'http://localhost:8080/api/user/get/current/id';
+    static readonly GET_CURRENT_USER_URL: string = 'http://localhost:8080/api/user/get/current/id';
     constructor(private http: HttpClient,
                 private errorHandlerService: ErrorHandlerService) {
         console.log('UserService loaded');
     }
     getCurrentUserIdFromServer(): Observable<number> {
-        return this.http.get<{userId: number}>(this.getCurrentUserIdUrl, httpOptions)
+        return this.http.get<{userId: number}>(UserService.GET_CURRENT_USER_URL, httpOptions)
             .pipe(
                 map(response => {
                     return response.userId;
