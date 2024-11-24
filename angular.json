@@ -57,7 +57,7 @@
               "angular/components/elements/messages-section-title/messages-section-title-style.component.css",
               "angular/components/elements/nav-bar/nav-bar-style.component.css",
               "angular/components/elements/option-bubble/option-bubble-style.component.css",
-              "angular/components/elements/option-list/option-list-style.component.css",
+              "angular/components/elements/options-list/options-list-style.component.css",
               "angular/components/elements/post-input-console/post-input-console-style.component.css",
               "angular/components/elements/profile-activity/profile-activity-style.component.css",
               "angular/components/elements/profile-bio/profile-bio-style.component.css",
