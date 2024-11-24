@@ -12,6 +12,9 @@ import {
 import {
     WelcomeComponent
 } from "../../components/pages/welcome/welcome.component";
+import {AuthGuard} from "../../services/guard/auth.guard";
+
+const isDevelopment = true;
 
 export const homeRoute: Route = {
     path: '',
@@ -34,6 +37,7 @@ export const authorizeRoute: Route = {
 export const profileRoute: Route = {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: isDevelopment ? [] : [AuthGuard],
     data: {
         meta: {
             title: 'Profile | Script Social',
@@ -53,6 +57,7 @@ export const profileWithIdRoute: Route = {
 export const messagesRoute: Route = {
     path: 'messages',
     component: MessagesComponent,
+    canActivate: isDevelopment ? [] : [AuthGuard],
     data: {
         meta: {
             title: 'Messages | Script Social'
@@ -62,6 +67,7 @@ export const messagesRoute: Route = {
 export const welcomeRoute: Route = {
     path: 'welcome',
     component: WelcomeComponent,
+    canActivate: isDevelopment ? [] : [AuthGuard],
     data: {
         meta: {
             title: 'Welcome | Script Social'
