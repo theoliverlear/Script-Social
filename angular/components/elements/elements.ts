@@ -98,7 +98,7 @@ import {
     UserChoiceBubbleButtonsComponent
 } from "./user-choice-bubble-buttons/user-choice-bubble-buttons.component";
 import {OptionBubbleComponent} from "./option-bubble/option-bubble.component";
-import {OptionListComponent} from "./option-list/option-list.component";
+import {OptionsListComponent} from "./options-list/options-list.component";
 import {
     WelcomeBannerComponent
 } from "./welcome-banner/welcome-banner.component";
@@ -133,7 +133,7 @@ export const elements = [
     MessagesSectionTitleComponent,
     NavBarComponent,
     OptionBubbleComponent,
-    OptionListComponent,
+    OptionsListComponent,
     PostInputConsoleComponent,
     ProfileActivityComponent,
     ProfileBioComponent,
