@@ -28,6 +28,7 @@ public class ProfilePictureService {
     public ProfilePicture findByUserId(Long userId) {
         return this.profilePictureRepository.findByUserId(userId);
     }
+    //--------------------------Find-By-Username------------------------------
     @Transactional
     public ProfilePicture findByUsername(String username) {
         return this.profilePictureRepository.findByUserUsername(username);
@@ -36,9 +37,11 @@ public class ProfilePictureService {
     public boolean existsByUserId(Long userId) {
         return this.profilePictureRepository.existsByUserId(userId);
     }
+    //-------------------------Exists-By-Username-----------------------------
     public boolean existsByUsername(String username) {
         return this.profilePictureRepository.existsByUserUsername(username);
     }
+    //----------------Get-Profile-Picture-Response-Entity---------------------
     public ResponseEntity<byte[]> getProfilePictureResponseEntity(ProfilePicture profilePicture) {
         byte[] imageData = profilePicture.getFileData();
         String fileType = profilePicture.getFileType();
