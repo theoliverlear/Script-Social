@@ -25,6 +25,7 @@ public class UserService implements DatabaseAccessible<User> {
     public void save(User user) {
         this.userRepository.save(user);
     }
+    //----------------------------Update-User---------------------------------
     public User update(User user) {
         return this.userRepository.save(user);
     }
