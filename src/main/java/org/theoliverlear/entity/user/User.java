@@ -47,7 +47,8 @@ public class User {
     /*
     TODO: Add top programming languages
     TODO: Add top frameworks
-    TODO: Make Profile Class which contains information about what the user is and has displayed
+    TODO: Make Profile Class which contains information about what the user is
+          and has displayed
      */
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Profile profile;
