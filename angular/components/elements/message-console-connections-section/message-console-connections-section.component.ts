@@ -15,7 +15,7 @@ import {
 @Component({
     selector: 'message-console-connections-section',
     templateUrl: './message-console-connections-section.component.html',
-    styleUrls: ['./message-console-connections-section-style.component.css']
+    styleUrls: ['./message-console-connections-section.component.css']
 })
 export class MessageConsoleConnectionsSectionComponent {
     @ViewChild('confirmButton') confirmButton: ConnectionsListButtonComponent;

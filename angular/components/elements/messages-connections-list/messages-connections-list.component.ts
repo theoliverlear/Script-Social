@@ -11,7 +11,7 @@ import {
 @Component({
     selector: 'messages-connections-list',
     templateUrl: './messages-connections-list.component.html',
-    styleUrls: ['./messages-connections-list-style.component.css']
+    styleUrls: ['./messages-connections-list.component.css']
 })
 export class MessagesConnectionsListComponent implements AfterViewInit {
     @ViewChildren(ConnectionsListBubbleComponent) connectionsListBubbles: QueryList<ConnectionsListBubbleComponent>;

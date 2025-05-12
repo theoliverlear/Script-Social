@@ -9,7 +9,7 @@ import {
 @Component({
     selector: 'general-post-footer',
     templateUrl: './general-post-footer.component.html',
-    styleUrls: ['./general-post-footer-style.component.css']
+    styleUrls: ['./general-post-footer.component.css']
 })
 export class GeneralPostFooterComponent {
     @ViewChild(GeneralPostCommentInputComponent) commentInput: GeneralPostCommentInputComponent;

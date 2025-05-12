@@ -6,7 +6,7 @@ import {ConsoleComponent} from "../../elements/console/console.component";
 @Component({
     selector: 'authorize',
     templateUrl: './authorize.component.html',
-    styleUrls: ['./authorize-style.component.css']
+    styleUrls: ['./authorize.component.css']
 })
 export class AuthorizeComponent {
     selectedAuthType: AuthType | null = AuthType.SIGNUP;

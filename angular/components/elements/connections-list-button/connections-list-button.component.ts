@@ -17,7 +17,7 @@ import {
 @Component({
     selector: 'connections-list-button',
     templateUrl: './connections-list-button.component.html',
-    styleUrls: ['./connections-list-button-style.component.css'],
+    styleUrls: ['./connections-list-button.component.css'],
     animations: [fadeAnimation]
 })
 export class ConnectionsListButtonComponent implements AfterViewInit, AfterViewChecked {

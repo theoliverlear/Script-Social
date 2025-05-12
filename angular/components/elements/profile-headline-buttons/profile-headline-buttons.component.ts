@@ -6,7 +6,7 @@ import {
 @Component({
     selector: 'profile-headline-buttons',
     templateUrl: './profile-headline-buttons.component.html',
-    styleUrls: ['./profile-headline-buttons-style.component.css']
+    styleUrls: ['./profile-headline-buttons.component.css']
 })
 export class ProfileHeadlineButtonsComponent {
     constructor() {

@@ -9,7 +9,7 @@ import {
 @Component({
     selector: 'user-choice-bubble-buttons',
     templateUrl: './user-choice-bubble-buttons.component.html',
-    styleUrls: ['./user-choice-bubble-buttons-style.component.css']
+    styleUrls: ['./user-choice-bubble-buttons.component.css']
 })
 export class UserChoiceBubbleButtonsComponent {
     constructor() {

@@ -12,7 +12,7 @@ import {
 @Component({
     selector: 'general-post',
     templateUrl: './general-post.component.html',
-    styleUrls: ['./general-post-style.component.css']
+    styleUrls: ['./general-post.component.css']
 })
 export class GeneralPostComponent {
     @Input() postText: string;

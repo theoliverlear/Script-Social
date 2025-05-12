@@ -3,7 +3,7 @@ import {Component, Input} from "@angular/core";
 @Component({
     selector: 'profile-bio',
     templateUrl: './profile-bio.component.html',
-    styleUrls: ['./profile-bio-style.component.css']
+    styleUrls: ['./profile-bio.component.css']
 })
 export class ProfileBioComponent {
     @Input() bioText: string;

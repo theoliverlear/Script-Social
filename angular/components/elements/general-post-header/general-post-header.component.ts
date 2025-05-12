@@ -7,7 +7,7 @@ import {TextElementLink} from "../../../models/link/TextElementLink";
 @Component({
     selector: 'general-post-header',
     templateUrl: './general-post-header.component.html',
-    styleUrls: ['./general-post-header-style.component.css']
+    styleUrls: ['./general-post-header.component.css']
 })
 export class GeneralPostHeaderComponent {
     testElementLink: TextElementLink = new TextElementLink('#',

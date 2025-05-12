@@ -21,7 +21,7 @@ import {
 @Component({
     selector: 'side-nav-bar',
     templateUrl: './side-nav-bar.component.html',
-    styleUrls: ['./side-nav-bar-style.component.css'],
+    styleUrls: ['./side-nav-bar.component.css'],
     animations: [slideInOutAnimation]
 })
 export class SideNavBarComponent implements AfterViewInit {

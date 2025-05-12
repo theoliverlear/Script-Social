@@ -4,7 +4,7 @@ import {TextElementLink} from "../../../models/link/TextElementLink";
 @Component({
     selector: 'content-link',
     templateUrl: './content-link.component.html',
-    styleUrls: ['./content-link-style.component.css']
+    styleUrls: ['./content-link.component.css']
 })
 export class ContentLinkComponent {
     @Input() elementLink: TextElementLink;

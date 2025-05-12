@@ -10,7 +10,7 @@ import {ImageAsset} from "../../../assets/imageAssets";
 @Component({
     selector: 'user-choice-bubble',
     templateUrl: './user-choice-bubble.component.html',
-    styleUrls: ['./user-choice-bubble-style.component.css']
+    styleUrls: ['./user-choice-bubble.component.css']
 })
 export class UserChoiceBubbleComponent {
     @Input() imageAsset: ImageAsset;

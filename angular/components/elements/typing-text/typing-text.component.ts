@@ -11,7 +11,7 @@ import {TypeSpeed} from "../../../models/TypeSpeed";
 @Component({
     selector: 'typing-text',
     templateUrl: './typing-text.component.html',
-    styleUrls: ['./typing-text-style.component.css']
+    styleUrls: ['./typing-text.component.css']
 })
 export class TypingTextComponent implements AfterViewInit {
     @Input() tagType: TagType;

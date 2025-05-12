@@ -8,7 +8,7 @@ import {ElementSize} from "../../../models/ElementSize";
 @Component({
     selector: 'general-post-comment',
     templateUrl: './general-post-comment.component.html',
-    styleUrls: ['./general-post-comment-style.component.css']
+    styleUrls: ['./general-post-comment.component.css']
 })
 export class GeneralPostCommentComponent {
     @Input() generalPostComment: GeneralPostComment;

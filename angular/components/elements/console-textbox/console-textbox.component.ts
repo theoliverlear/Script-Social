@@ -5,7 +5,7 @@ import {ButtonPosition} from "../ss-button/models/ButtonPosition";
 @Component({
     selector: 'console-textbox',
     templateUrl: './console-textbox.component.html',
-    styleUrls: ['./console-textbox-style.component.css']
+    styleUrls: ['./console-textbox.component.css']
 })
 export class ConsoleTextboxComponent {
     @Output() textChanged: EventEmitter<string> = new EventEmitter();

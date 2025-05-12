@@ -6,7 +6,7 @@ import {
 @Component({
     selector: 'message-console-messages-section',
     templateUrl: './message-console-messages-section.component.html',
-    styleUrls: ['./message-console-messages-section-style.component.css']
+    styleUrls: ['./message-console-messages-section.component.css']
 })
 export class MessageConsoleMessagesSectionComponent {
     constructor() {

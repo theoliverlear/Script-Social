@@ -16,7 +16,7 @@ import {fixedFadeAnimation} from "../../animations/animations";
 @Component({
     selector: 'general-post-comment-input',
     templateUrl: './general-post-comment-input.component.html',
-    styleUrls: ['./general-post-comment-input-style.component.css'],
+    styleUrls: ['./general-post-comment-input.component.css'],
     animations: [
         fixedFadeAnimation
     ]

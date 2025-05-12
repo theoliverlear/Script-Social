@@ -10,7 +10,7 @@ import {
 @Component({
     selector: 'connections-list-bubble',
     templateUrl: './connections-list-bubble.component.html',
-    styleUrls: ['./connections-list-bubble-style.component.css']
+    styleUrls: ['./connections-list-bubble.component.css']
 })
 export class ConnectionsListBubbleComponent {
     @HostBinding("class.add-conversation-mode") isAddConversationMode: boolean = false;

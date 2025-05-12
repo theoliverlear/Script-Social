@@ -4,7 +4,7 @@ import {HeadlineButtonType} from "./models/HeadlineButtonType";
 @Component({
     selector: 'headline-button',
     templateUrl: './headline-button.component.html',
-    styleUrls: ['./headline-button-style.component.css']
+    styleUrls: ['./headline-button.component.css']
 })
 export class HeadlineButtonComponent {
     @Input() headlineButtonType: HeadlineButtonType;

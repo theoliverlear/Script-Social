@@ -4,7 +4,7 @@ import {Message} from "../../../models/message/Message";
 @Component({
     selector: 'messages-list',
     templateUrl: './messages-list.component.html',
-    styleUrls: ['./messages-list-style.component.css']
+    styleUrls: ['./messages-list.component.css']
 })
 export class MessagesListComponent {
     testMessage: Message = new Message(0,

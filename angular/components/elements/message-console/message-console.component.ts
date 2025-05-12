@@ -9,7 +9,7 @@ import {ClientMessage} from "../../../models/message/ClientMessage";
 @Component({
     selector: 'message-console',
     templateUrl: './message-console.component.html',
-    styleUrls: ['./message-console-style.component.css']
+    styleUrls: ['./message-console.component.css']
 })
 export class MessageConsoleComponent {
     constructor(private messagesWebsocketService: MessagesWebSocketService) {

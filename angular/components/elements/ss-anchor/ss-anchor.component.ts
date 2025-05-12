@@ -13,7 +13,7 @@ import {TextElementLink} from "../../../models/link/TextElementLink";
 @Component({
     selector: 'ss-anchor',
     templateUrl: './ss-anchor.component.html',
-    styleUrls: ['./ss-anchor-style.component.css']
+    styleUrls: ['./ss-anchor.component.css']
 })
 export class SsAnchorComponent implements OnInit {
     @Input() elementLink: TextElementLink;

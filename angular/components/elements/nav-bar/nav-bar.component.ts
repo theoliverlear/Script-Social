@@ -19,7 +19,7 @@ import {
 @Component({
   selector: 'nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar-style.component.css']
+  styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements AfterViewInit{
   navBarDisplayed: boolean = false;

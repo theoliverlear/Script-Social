@@ -7,7 +7,7 @@ import {BubbleTailSide} from "./models/BubbleTailSide";
 @Component({
     selector: 'message-bubble',
     templateUrl: './message-bubble.component.html',
-    styleUrls: ['./message-bubble-style.component.css']
+    styleUrls: ['./message-bubble.component.css']
 })
 export class MessageBubbleComponent implements OnInit {
     @Input() message: Message;

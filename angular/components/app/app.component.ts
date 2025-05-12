@@ -6,7 +6,7 @@ import {filter, map, mergeMap} from "rxjs";
     selector: 'app',
     templateUrl: './app.component.html',
     inputs: ['name'],
-    styleUrls: ['./app-style.component.css']
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
     title: string;

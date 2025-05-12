@@ -8,7 +8,7 @@ import {ElementSize} from "../../../models/ElementSize";
 @Component({
     selector: 'console-popup',
     templateUrl: './console-popup.component.html',
-    styleUrls: ['./console-popup-style.component.css']
+    styleUrls: ['./console-popup.component.css']
 })
 export class ConsolePopupComponent {
     @Input() popup: AuthPopup | ConsolePostPopup;

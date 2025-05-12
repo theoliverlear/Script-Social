@@ -19,7 +19,7 @@ import {
 @Component({
     selector: 'console',
     templateUrl: './console.component.html',
-    styleUrls: ['./console-style.component.css'],
+    styleUrls: ['./console.component.css'],
     animations: [
         fixedFadeAnimation
     ]

@@ -4,7 +4,7 @@ import {AuthType} from "../../../models/auth/AuthType";
 @Component({
     selector: 'auth-type-selector',
     templateUrl: './auth-type-selector.component.html',
-    styleUrls: ['./auth-type-selector-style.component.css']
+    styleUrls: ['./auth-type-selector.component.css']
 })
 export class AuthTypeSelectorComponent {
     selectedAuthType: AuthType | null = AuthType.SIGNUP;

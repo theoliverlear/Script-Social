@@ -10,7 +10,7 @@ import {ElementSize} from "../../../models/ElementSize";
 @Component({
     selector: 'messages-input',
     templateUrl: './messages-input.component.html',
-    styleUrls: ['./messages-input-style.component.css']
+    styleUrls: ['./messages-input.component.css']
 })
 export class MessagesInputComponent {
     constructor() {

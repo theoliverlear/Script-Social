@@ -9,7 +9,7 @@ import {
 @Component({
     selector: 'general-post-buttons',
     templateUrl: './general-post-buttons.component.html',
-    styleUrls: ['./general-post-buttons-style.component.css']
+    styleUrls: ['./general-post-buttons.component.css']
 })
 export class GeneralPostButtonsComponent {
     // TODO: Create constant assets for buttons which hold their properties

@@ -7,7 +7,7 @@ import {
 @Component({
     selector: 'profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile-style.component.css']
+    styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
     @Input() userId: number;

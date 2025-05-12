@@ -12,7 +12,7 @@ import {
 @Component({
     selector: 'welcome',
     templateUrl: './welcome.component.html',
-    styleUrls: ['./welcome-style.component.css']
+    styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements AfterViewInit {
     @ViewChild('welcomeBanner', {read: ElementRef}) welcomeBanner: ElementRef;

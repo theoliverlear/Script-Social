@@ -5,7 +5,7 @@ import {SsImgComponent} from "../ss-img/ss-img.component";
 @Component({
     selector: 'side-nav-bar-button',
     templateUrl: './side-nav-bar-button.component.html',
-    styleUrls: ['./side-nav-bar-button-style.component.css']
+    styleUrls: ['./side-nav-bar-button.component.css']
 })
 export class SideNavBarButtonComponent {
     @Input() sideNavBarButtonType: SideNavBarButtonType;

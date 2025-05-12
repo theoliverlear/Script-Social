@@ -5,7 +5,7 @@ import {ButtonText} from "../ss-button/models/ButtonText";
 @Component({
     selector: 'post-input-console',
     templateUrl: './post-input-console.component.html',
-    styleUrls: ['./post-input-console-style.component.css']
+    styleUrls: ['./post-input-console.component.css']
 })
 export class PostInputConsoleComponent {
     constructor() {

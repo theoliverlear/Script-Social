@@ -14,7 +14,7 @@ import {confirmIcon} from "../../../assets/imageAssets";
 @Component({
     selector: 'console-input',
     templateUrl: './console-input.component.html',
-    styleUrls: ['./console-input-style.component.css'],
+    styleUrls: ['./console-input.component.css'],
     providers: [{
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => ConsoleInputComponent),

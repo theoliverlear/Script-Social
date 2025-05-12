@@ -25,7 +25,7 @@ import {ElementSize} from "../../../models/ElementSize";
 @Component({
     selector: 'general-post-button',
     templateUrl: './general-post-button.component.html',
-    styleUrls: ['./general-post-button-style.component.css']
+    styleUrls: ['./general-post-button.component.css']
 })
 export class GeneralPostButtonComponent implements AfterViewInit {
     @Input() buttonType: GeneralPostButtonType;
