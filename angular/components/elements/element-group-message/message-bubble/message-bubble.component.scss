@@ -1,0 +1,71 @@
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.medium {
+    profile-picture {
+        @include square-size($two-percent);
+    }
+}
+.large {
+    profile-picture {
+        @include square-size($three-percent);
+    }
+}
+.tail-left {
+    border-radius: $one-percent $one-percent $one-percent calc($one-percent * 0.1);
+}
+.tail-right {
+    border-radius: $one-percent $one-percent calc($one-percent * 0.1) $one-percent;
+}
+message-bubble {
+    box-sizing: border-box;
+    @include flex(center, center, column);
+    //max-width: 27.85vw;
+
+    border-radius: $one-percent;
+    background-color: $light-charcoal;
+    padding: $half-percent;
+    margin: $one-percent 0;
+    width: 100%;
+    color: $pristine-white;
+
+    .message-headline-div {
+        @include flex(center, center, row);
+        profile-picture {
+            margin: 0 $half-percent 0 0;
+            @include square-size($two-percent);
+            //@extend %circle-border-radius;
+            border: none;
+            border-radius: $one-percent;
+        }
+        .message-name-and-date-div {
+            @include flex(center, center, column);
+            .message-date {
+                //margin: 0 0 0 $one-half-percent;
+                p, h6 {
+                    font-size: calc($p-font-size * 0.75);
+                    font-style: italic;
+                }
+            }
+            .message-users-name {
+                width: 100%;
+                h6, h5 {
+                    color: $pristine-white;
+                }
+            }
+        }
+
+    }
+    .message-text-div {
+        .message-text {
+            padding: $half-percent;
+            p, h6 {
+                //font-size: calc($p-font-size * 0.75);
+            }
+        }
+
+    }
+
+}

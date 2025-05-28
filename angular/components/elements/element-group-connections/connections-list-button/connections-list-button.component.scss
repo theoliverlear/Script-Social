@@ -1,0 +1,31 @@
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+connections-list-button {
+    @include flex(center, center, row);
+    box-sizing: border-box;
+    .button-div {
+        @include flex(center, center, row);
+        box-sizing: border-box;
+        border-radius: $one-percent;
+        background-color: $light-charcoal;
+        padding: $quarter-percent 0;
+        //margin: $half-percent 0;
+        margin: $quarter-percent 0;
+        width: $twelve-percent;
+        transition: box-shadow 0.3s;
+        &:hover {
+            cursor: pointer;
+            @extend %console-box-shadow;
+        }
+        &.clicked {
+            box-sizing: border-box;
+            border: $alabaster-stone solid $thinnest-border;
+        }
+    }
+    ss-img {
+        @include square-size($two-percent);
+    }
+}

@@ -1,0 +1,93 @@
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+
+
+ss-code {
+    @include flex(center, center, column);
+    @extend %console;
+
+    pre {
+        @include flex(center, center, column);
+        background-color: inherit;
+        text-indent: 0;
+        @extend %fill-container;
+        code {
+            @include flex(center, flex-start, column);
+            //flex-wrap: wrap;
+            @extend %fill-container;
+            font-size: $p-font-size;
+            color: $alabaster-stone;
+            @include basic-margin-padding(0, 0);
+            //line-height: 35px;
+            div {
+                width: 100%;
+                @include flex(flex-start, flex-start, row);
+                span {
+                    //width: 100%;
+                    //text-align: left;
+                }
+            }
+            .line {
+                @include flex(flex-start, flex-start, row);
+                min-height: $one-percent;
+                text-align: left;
+            }
+            .keyword,
+            .boolean,
+            .regex {
+                font-weight: bold;
+                color: $pure-orange;
+            }
+            .operator,
+            .selector-id {
+                color: $pure-orange;
+            }
+            .punctuation,
+            .symbol {
+                color: $light-charcoal;
+            }
+            .function,
+            .tag,
+            .selector-class {
+                color: $tangerine;
+            }
+            .variable,
+            .reference {
+                color: $soft-blue;
+            }
+            .title,
+            .property {
+                color: $bright-sunset;
+            }
+
+            .attr {
+                color: $apricot-glow;
+            }
+
+            .class,
+            .number {
+                color: $glow-purple;
+            }
+
+            .built_in,
+            .literal,
+            .string,
+            .link {
+                //color: $emerald-green;
+                color: $soft-rose;
+            }
+            .comment,
+            .doctag {
+                color: $alabaster-stone;
+            }
+            .meta {
+                color: $soft-blue;
+            }
+        }
+    }
+
+}
+

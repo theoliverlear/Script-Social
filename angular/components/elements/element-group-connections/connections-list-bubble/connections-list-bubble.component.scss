@@ -1,0 +1,52 @@
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.selected {
+    border: $thinnest-border solid $alabaster-stone;
+}
+.add-conversation-mode {
+    color: $charcoal;
+    background-color: $pure-orange;
+}
+connections-list-bubble {
+    @include flex(center, center, row);
+    border-radius: $one-percent;
+    background-color: $light-charcoal;
+    padding: $quarter-percent 0;
+    margin: $half-percent 0;
+    transition: box-shadow 0.3s;
+    width: $twelve-percent;
+    box-sizing: border-box;
+    profile-picture {
+        margin: 0 $quarter-percent;
+        @include square-size($two-percent);
+        border-radius: 50%;
+        background-color: $light-charcoal;
+        border: none;
+    }
+    .connection-name-div {
+        flex: 3;
+        padding: $quarter-percent;
+        h6 {
+            color: $pristine-white;
+        }
+    }
+    &:hover {
+        cursor: pointer;
+        @extend %console-box-shadow;
+    }
+}
+//#new-connection-list {
+//    display: none;
+//    .potential-connection {
+//        color: $charcoal;
+//        background-color: $pure-orange;
+//    }
+//    #create-conversation-button {
+//        display: none;
+//        align-items: center;
+//        justify-content: center;
+//    }
+//}

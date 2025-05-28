@@ -1,0 +1,27 @@
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+.auth-type-button {
+    background-color: $apricot-glow;
+    padding: $one-percent $two-percent;
+    border-radius: $one-percent;
+    &:hover {
+        border: $thin-border solid $pure-orange;
+    }
+}
+.selected-auth {
+    border-radius: $one-percent;
+    background-color: $apricot-glow;
+    border: $thin-border solid $alabaster-stone;
+    box-shadow: $absolute-black $quarter-percent $quarter-percent 0 0;
+}
+auth-bubble {
+    background-color: $apricot-glow;
+    padding: $one-percent $two-percent;
+    border-radius: $one-percent;
+    &:hover {
+        border: $thin-border solid $pure-orange;
+    }
+}

@@ -1,0 +1,25 @@
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
+
+messages-input {
+    @include flex(center, center, row);
+    width: 100%;
+    box-sizing: border-box;
+    height: calc($four-half-percent * 1.1);
+    background-color: $light-charcoal;
+    padding: 0 $half-percent;
+    @extend %soft-border-radius;
+    .message-input-div {
+        @include flex(space-around, center, row);
+        @extend %fill-container;
+        console-textbox {
+            width: 85%;
+            textarea {
+                width: 100%;
+                resize: none;
+            }
+        }
+    }
+}
