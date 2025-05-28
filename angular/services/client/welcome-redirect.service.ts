@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {WelcomeService} from "./server/welcome.service";
+import {WelcomeService} from "../server/http/welcome.service";
 import {Router} from "@angular/router";
 
 @Injectable({

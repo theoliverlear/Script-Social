@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {
     ConsolePostPopup
-} from "../components/elements/general-post-comment/models/ConsolePostPopup";
+} from "../../components/elements/element-group-post/element-group-general-post/general-post-comment/models/ConsolePostPopup";
 import {Observable, Subject} from "rxjs";
 
 @Injectable({

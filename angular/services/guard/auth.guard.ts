@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {LoginService} from "../server/login.service";
+import {LoginService} from "../server/http/login.service";
 import {
     ActivatedRouteSnapshot,
     CanActivate,

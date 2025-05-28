@@ -9,7 +9,7 @@ export class ConfettiService {
         y: 0.6
     }
     constructor() {
-        console.log('ConfettiService loaded');
+        
     }
     async burstEffect(particleCount: number = 100,
                       spread: number = 150,

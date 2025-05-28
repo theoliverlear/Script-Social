@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {catchError, map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {ErrorHandlerService} from "../error-handler.service";
+import {ErrorHandlerService} from "../../client/error-handler.service";
 import {httpOptions} from "./httpProperties";
 
 @Injectable({

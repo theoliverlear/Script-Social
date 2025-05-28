@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {AuthPopup} from "../models/auth/AuthPopup";
+import {AuthPopup} from "../../models/auth/AuthPopup";
 import {Subject} from "rxjs";
 
 @Injectable({

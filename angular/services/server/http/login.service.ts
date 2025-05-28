@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {ErrorHandlerService} from "../error-handler.service";
-import {HashPasswordService} from "../hash-password.service";
+import {ErrorHandlerService} from "../../client/error-handler.service";
+import {HashPasswordService} from "../../client/hash-password.service";
 import {httpOptions} from "./httpProperties";
 import {catchError, map, Observable} from "rxjs";
 

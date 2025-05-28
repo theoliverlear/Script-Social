@@ -1,14 +1,14 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {ErrorHandlerService} from "../error-handler.service";
-import {Message} from "../../models/message/Message";
+import {ErrorHandlerService} from "../../client/error-handler.service";
+import {Message} from "../../../models/message/Message";
 import {catchError, map, Observable} from "rxjs";
 import {httpOptions} from "./httpProperties";
-import {ClientMessage} from "../../models/message/ClientMessage";
+import {ClientMessage} from "../../../models/message/ClientMessage";
 import {
     MessagesWebSocketService
 } from "../websocket/messages-websocket.service";
-import {Communicative} from "../../models/message/Communicative";
+import {Communicative} from "../../../models/message/Communicative";
 
 @Injectable({
     providedIn: 'root'

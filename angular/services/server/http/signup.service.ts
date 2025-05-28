@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, map, Observable, of} from "rxjs";
-import {HashPasswordService} from "../hash-password.service";
-import {ErrorHandlerService} from "../error-handler.service";
+import {HashPasswordService} from "../../client/hash-password.service";
+import {ErrorHandlerService} from "../../client/error-handler.service";
 
 @Injectable({
     providedIn: 'root'
