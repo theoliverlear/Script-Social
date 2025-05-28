@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
-import {ConsoleType} from "../../elements/console/models/ConsoleType";
+import {ConsoleType} from "../../elements/element-group-console/console/models/ConsoleType";
 import {TagType} from "../../../models/html/TagType";
 import {
     colinFredricksonPicture,
@@ -19,7 +19,7 @@ import {
 import {Message} from "../../../models/message/Message";
 import {
     BubbleTailSide
-} from "../../elements/message-bubble/models/BubbleTailSide";
+} from "../../elements/element-group-message/message-bubble/models/BubbleTailSide";
 import {
     homeInviteSeniorDevMessageFadeInAnimation,
     homeRefactorMessageFadeInAnimation,
@@ -27,7 +27,7 @@ import {
 } from "../../animations/animationProperties";
 import {
     TypingTextComponent
-} from "../../elements/typing-text/typing-text.component";
+} from "../../elements/element-group-text/typing-text/typing-text.component";
 
 @Component({
     selector: 'home',
@@ -42,9 +42,9 @@ export class HomeComponent implements AfterViewInit {
     homeInviteSeniorDevMessage: Message = new Message(0, 'Colin Fredrickson', new Date(), homeMessageInviteSeniorDevText);
     @ViewChild('communicateYourCodeTypingText') communicateYourCodeTypingText: TypingTextComponent;
     constructor() {
-        console.log('HomeComponent loaded');
+
     }
-    ngAfterViewInit() {
+    ngAfterViewInit(): void {
         this.typeCommunicateYourCodeText();
     }
     typeCommunicateYourCodeText(): void {
