@@ -1,9 +1,9 @@
 import {Directive, Input, OnInit} from "@angular/core";
 import {
     ConsoleComponent
-} from "../components/elements/console/console.component";
-import {SignupPopupService} from "../services/signup-popup.service";
-import {ConsoleType} from "../components/elements/console/models/ConsoleType";
+} from "../components/elements/element-group-console/console/console.component";
+import {SignupPopupService} from "../services/client/signup-popup.service";
+import {ConsoleType} from "../components/elements/element-group-console/console/models/ConsoleType";
 import {AuthPopup} from "../models/auth/AuthPopup";
 
 @Directive({

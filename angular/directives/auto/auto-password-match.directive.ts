@@ -1,7 +1,7 @@
 import { Directive, Input, ViewContainerRef, TemplateRef } from '@angular/core';
 
-import { PasswordMatchHandlerDirective } from './password-match-handler.directive';
-import {ConsoleType} from "../components/elements/console/models/ConsoleType";
+import { PasswordMatchHandlerDirective } from '../validation/password-match-handler.directive';
+import {ConsoleType} from "../../components/elements/element-group-console/console/models/ConsoleType";
 
 
 @Directive({

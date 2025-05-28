@@ -1,8 +1,8 @@
 import {Directive, Input, TemplateRef, ViewContainerRef} from "@angular/core";
-import {ConsoleType} from "../components/elements/console/models/ConsoleType";
+import {ConsoleType} from "../../components/elements/element-group-console/console/models/ConsoleType";
 import {
     SignupConsoleHandlerDirective
-} from "./signup-console-handler.directive";
+} from "../signup-console-handler.directive";
 
 @Directive({
     selector: '[autoSignupConsole]'

@@ -1,9 +1,9 @@
 import {Directive, Inject, Input, OnInit} from "@angular/core";
 import {
     ConsoleComponent
-} from "../components/elements/console/console.component";
-import {FilledFieldsService} from "../services/filled-fields.service";
-import {AuthPopup} from "../models/auth/AuthPopup";
+} from "../../components/elements/element-group-console/console/console.component";
+import {FilledFieldsService} from "../../services/client/filled-fields.service";
+import {AuthPopup} from "../../models/auth/AuthPopup";
 
 @Directive({
     selector: '[filledFieldsHandler]'

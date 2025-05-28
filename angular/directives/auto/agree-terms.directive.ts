@@ -1,9 +1,9 @@
 import {Directive, Inject, Input, OnInit} from "@angular/core";
 import {
     ConsoleComponent
-} from "../components/elements/console/console.component";
-import {AgreeTermsService} from "../services/agree-terms.service";
-import {AuthPopup} from "../models/auth/AuthPopup";
+} from "../../components/elements/element-group-console/console/console.component";
+import {AgreeTermsService} from "../../services/client/agree-terms.service";
+import {AuthPopup} from "../../models/auth/AuthPopup";
 
 @Directive({
     selector: '[agreeTerms]'

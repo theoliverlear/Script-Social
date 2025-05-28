@@ -8,12 +8,12 @@ import {
 } from "@angular/core";
 import {
     GeneralPostCommentInputComponent
-} from "../components/elements/general-post-comment-input/general-post-comment-input.component";
-import {EmptyPostService} from "../services/empty-post.service";
+} from "../../components/elements/element-group-post/element-group-general-post/general-post-comment-input/general-post-comment-input.component";
+import {EmptyPostService} from "../../services/client/empty-post.service";
 import {
     ConsolePostPopup
-} from "../components/elements/general-post-comment/models/ConsolePostPopup";
-import {EmptyPostHandlerDirective} from "./empty-post-handler.directive";
+} from "../../components/elements/element-group-post/element-group-general-post/general-post-comment/models/ConsolePostPopup";
+import {EmptyPostHandlerDirective} from "../validation/empty-post-handler.directive";
 
 @Directive({
     selector: '[autoEmptyPostHandler]'

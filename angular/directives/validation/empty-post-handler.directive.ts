@@ -1,13 +1,13 @@
 import {Directive, HostListener, Inject, Input, OnInit} from "@angular/core";
 import {
     EmptyPostService
-} from "../services/empty-post.service";
+} from "../../services/client/empty-post.service";
 import {
     GeneralPostCommentInputComponent
-} from "../components/elements/general-post-comment-input/general-post-comment-input.component";
+} from "../../components/elements/element-group-post/element-group-general-post/general-post-comment-input/general-post-comment-input.component";
 import {
     ConsolePostPopup
-} from "../components/elements/general-post-comment/models/ConsolePostPopup";
+} from "../../components/elements/element-group-post/element-group-general-post/general-post-comment/models/ConsolePostPopup";
 
 @Directive({
     selector: '[emptyPostHandler]'

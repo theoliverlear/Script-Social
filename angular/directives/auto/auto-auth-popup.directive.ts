@@ -5,17 +5,17 @@ import {
     TemplateRef,
     ViewContainerRef
 } from '@angular/core';
-import {ConsoleType} from '../components/elements/console/models/ConsoleType';
+import {ConsoleType} from '../../components/elements/element-group-console/console/models/ConsoleType';
 import {
     ConsoleComponent
-} from '../components/elements/console/console.component';
+} from '../../components/elements/element-group-console/console/console.component';
 import {
     PasswordMatchService
-} from '../services/password-match.service';
-import {AuthPopup} from "../models/auth/AuthPopup";
-import {SignupPopupService} from "../services/signup-popup.service";
-import {EmailValidatorService} from "../services/email-validator.service";
-import {FilledFieldsService} from "../services/filled-fields.service";
+} from '../../services/client/password-match.service';
+import {AuthPopup} from "../../models/auth/AuthPopup";
+import {SignupPopupService} from "../../services/client/signup-popup.service";
+import {EmailValidatorService} from "../../services/client/email-validator.service";
+import {FilledFieldsService} from "../../services/client/filled-fields.service";
 
 @Directive({
     selector: '[autoAuthPopup]'

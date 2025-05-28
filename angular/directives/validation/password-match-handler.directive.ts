@@ -1,11 +1,11 @@
 import {Directive, Input, OnInit} from "@angular/core";
 import {
     ConsoleComponent
-} from "../components/elements/console/console.component";
+} from "../../components/elements/element-group-console/console/console.component";
 import {
     PasswordMatchService
-} from "../services/password-match.service";
-import {AuthPopup} from "../models/auth/AuthPopup";
+} from "../../services/client/password-match.service";
+import {AuthPopup} from "../../models/auth/AuthPopup";
 
 @Directive({
     selector: '[passwordMatchHandler]'

@@ -1,8 +1,8 @@
 import {Directive, Input, OnInit} from "@angular/core";
-import {EmailValidatorService} from "../services/email-validator.service";
+import {EmailValidatorService} from "../../services/client/email-validator.service";
 import {
     ConsoleComponent
-} from "../components/elements/console/console.component";
+} from "../../components/elements/element-group-console/console/console.component";
 
 @Directive({
     selector: '[emailValidator]'
