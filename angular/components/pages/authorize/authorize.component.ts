@@ -1,7 +1,7 @@
 import {Component, ViewChild} from "@angular/core";
-import {ConsoleType} from "../../elements/console/models/ConsoleType";
+import {ConsoleType} from "../../elements/element-group-console/console/models/ConsoleType";
 import {AuthType} from "../../../models/auth/AuthType";
-import {ConsoleComponent} from "../../elements/console/console.component";
+import {ConsoleComponent} from "../../elements/element-group-console/console/console.component";
 
 @Component({
     selector: 'authorize',
@@ -12,7 +12,7 @@ export class AuthorizeComponent {
     selectedAuthType: AuthType | null = AuthType.SIGNUP;
     @ViewChild(ConsoleComponent) consoleComponent: ConsoleComponent;
     constructor() {
-        console.log('AuthorizeComponent loaded');
+
     }
     get consoleType(): ConsoleType {
         return this.selectedAuthType === AuthType.SIGNUP ? ConsoleType.SIGNUP : ConsoleType.LOGIN;
