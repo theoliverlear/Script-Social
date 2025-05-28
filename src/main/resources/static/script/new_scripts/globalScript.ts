@@ -3,7 +3,7 @@ import * as CryptoJS from 'crypto-js';
 export function sendSignupToServer(username: string, email: string, unwashedPassword: string): boolean {
     let hashedPassword: string = hashPassword(unwashedPassword);
     let isAuthorized: boolean = false;
-    fetch('/authorize/signup', {
+    fetch('http://localhost:8080/api/authorize/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ export function sendSignupToServer(username: string, email: string, unwashedPass
 export function sendLoginRequest(username: string, password: string): boolean {
     let hashedPassword: string = hashPassword(password);
     let isAuthorized: boolean = false;
-    fetch('/authorize/login', {
+    fetch('http://localhost:8080/api/authorize/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
