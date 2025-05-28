@@ -4,10 +4,10 @@ import {
     ElementRef,
     ViewChild
 } from "@angular/core";
-import {ConfettiService} from "../../../services/confetti.service";
+import {ConfettiService} from "../../../services/client/confetti.service";
 import {
     SlideInElementService
-} from "../../../services/slide-in-element.service";
+} from "../../../services/client/slide-in-element.service";
 
 @Component({
     selector: 'welcome',
@@ -18,7 +18,7 @@ export class WelcomeComponent implements AfterViewInit {
     @ViewChild('welcomeBanner', {read: ElementRef}) welcomeBanner: ElementRef;
     constructor(private confettiService: ConfettiService,
                 private slideInElementService: SlideInElementService) {
-        console.log('WelcomeComponent loaded');
+
     }
     ngAfterViewInit(): void {
         console.log('Welcome banner element:', this.welcomeBanner);
