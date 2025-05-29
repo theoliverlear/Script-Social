@@ -8,6 +8,10 @@ public class InstantMessageRequest {
     private Long receiverId;
     private String message;
     //===========================-Constructors-===============================
+    public InstantMessageRequest() {
+        this.receiverId = 0L;
+        this.message = "";
+    }
     public InstantMessageRequest(Long receiverId, String message) {
         this.receiverId = receiverId;
         this.message = message;
