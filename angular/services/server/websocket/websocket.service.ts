@@ -1,41 +1,84 @@
+// websocket.service.ts
 import {Injectable} from "@angular/core";
-import {Client} from "@stomp/stompjs";
-import {Observable, Subject} from "rxjs";
-import SockJS from "sockjs-client";
+import {BehaviorSubject, Observable, shareReplay} from "rxjs";
+import {webSocket, WebSocketSubject} from "rxjs/webSocket";
 
 @Injectable({
     providedIn: 'root'
 })
-export abstract class WebSocketService<T> {
-    static readonly receiveURL: string = '/messages/receiver';
-    private url: string;
-    private stompClient: Client;
-    protected contentSubject: Subject<T>;
+export class WebSocketService<Send, Receive> {
+    private socket$: WebSocketSubject<Send> | undefined;
+    private messagesSubject$: BehaviorSubject<Receive> = new BehaviorSubject<Receive>(null);
+    public messages$: Observable<Receive> = this.messagesSubject$.asObservable().pipe(shareReplay(1));
+    private _isConnected: boolean = false;
+    private _url: string;
+
     constructor(url: string) {
-        this.contentSubject = new Subject<T>();
-        this.url = url;
-        this.stompClient = new Client({
-            webSocketFactory: (): WebSocket => new SockJS('/ws')
+        this._url = url;
+    }
+
+    public connect(): void {
+        if (this.isSocketUnavailable()) {
+            this.initializeSocket(this._url);
+            this.subscribeToServer();
+            this._isConnected = true;
+        }
+    }
+
+    private isSocketUnavailable(): boolean {
+        return !this.socket$ || this.socket$.closed;
+    }
+
+    private subscribeToServer(): void {
+        this.socket$.subscribe(
+            (message: Send): void => this.messagesSubject$.next(message as unknown as Receive),
+            (error: any): void => console.error('WebSocket error:', error),
+            (): boolean => this._isConnected = false
+        );
+    }
+
+    private initializeSocket(url: string): void {
+        this.socket$ = webSocket<Send>({
+            url: url,
+            serializer: (msg: Send) => JSON.stringify(msg),
+            deserializer: (event: MessageEvent<any>) => JSON.parse(event.data) as Send
         });
+
     }
-    abstract onReceive(frame: any): void;
-    connect(): void {
-        this.stompClient.onConnect = (): void => {
-            this.stompClient.subscribe(WebSocketService.receiveURL, (frame: any): void => {
-                this.onReceive(frame);
-            });
+
+    public sendMessage(message: Send): void {
+        if (this.canSendMessage()) {
+            console.log('Sending message:', message);
+            this.socket$.next(message);
+        } else {
+            console.error('WebSocket is not connected.');
         }
     }
-    disconnect(): void {
-        if (this.stompClient) {
-            this.stompClient.deactivate();
-            console.log('Disconnecting from WebSocket');
+
+    private canSendMessage(): boolean {
+        return this.socket$ && this.isConnected;
+    }
+
+    public disconnect(): void {
+        if (this.socket$) {
+            this.closeConnection();
         }
     }
-    send(content: T) {
-        this.stompClient.publish({destination: this.url, body: JSON.stringify(content)});
+
+    private closeConnection(): void {
+        this._isConnected = false;
+        this.socket$.complete();
     }
-    getContent(): Observable<T> {
-        return this.contentSubject.asObservable();
+
+    public getMessages(): Observable<Receive> {
+        return this.messages$;
+    }
+
+    get isConnected(): boolean {
+        return this._isConnected;
+    }
+
+    get url(): string {
+        return this._url;
     }
 }
