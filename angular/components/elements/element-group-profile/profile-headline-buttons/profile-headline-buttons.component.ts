@@ -1,7 +1,5 @@
 import {Component} from "@angular/core";
-import {
-    HeadlineButtonType
-} from "../../headline-button/models/HeadlineButtonType";
+import {HeadlineButtonType} from "../headline-button/models/HeadlineButtonType";
 
 @Component({
     selector: 'profile-headline-buttons',
@@ -10,7 +8,7 @@ import {
 })
 export class ProfileHeadlineButtonsComponent {
     constructor() {
-        console.log('ProfileHeadlineButtonsComponent loaded');
+
     }
 
     protected readonly HeadlineButtonType = HeadlineButtonType;
