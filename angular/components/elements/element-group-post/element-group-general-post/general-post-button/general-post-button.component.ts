@@ -1,22 +1,29 @@
 import {
     AfterViewInit,
     Component,
-    ElementRef, EventEmitter,
-    Input, Output,
+    ElementRef,
+    EventEmitter,
+    Input,
+    Output,
     Renderer2,
     ViewChild
 } from "@angular/core";
 import {
+    basicWhiteConfirmIcon,
     ImageAsset,
-    likeIcon, whiteCloseIcon,
+    likeIcon,
     whiteChatBubbleIcon,
+    whiteCloseIcon,
     whiteLikeIcon,
     whiteReplyIcon,
     whiteRepostIcon,
-    whiteShareIcon, whiteSendIcon, basicWhiteConfirmIcon
+    whiteSendIcon,
+    whiteShareIcon
 } from "../../../../../assets/imageAssets";
 import {GeneralPostButtonType} from "./models/GeneralPostButtonType";
-import {SsImgComponent} from "../../../element-group-native/ss-img/ss-img.component";
+import {
+    SsImgComponent
+} from "../../../element-group-native/ss-img/ss-img.component";
 import {
     GeneralPostButtonClickResponse
 } from "./models/GeneralPostButtonClickResponse";
@@ -37,7 +44,7 @@ export class GeneralPostButtonComponent implements AfterViewInit {
     isClicked: boolean = false;
     @ViewChild('buttonImage') buttonImage: SsImgComponent;
     constructor(private renderer: Renderer2, private element: ElementRef) {
-        console.log('GeneralPostButtonComponent loaded');
+
     }
     emitButtonClicked() {
         this.buttonClicked.emit();
