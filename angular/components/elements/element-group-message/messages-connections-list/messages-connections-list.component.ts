@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import {
     ConnectionsListBubbleComponent
-} from "../connections-list-bubble/connections-list-bubble.component";
+} from "../../element-group-connections/connections-list-bubble/connections-list-bubble.component";
 
 @Component({
     selector: 'messages-connections-list',
@@ -17,13 +17,12 @@ export class MessagesConnectionsListComponent implements AfterViewInit {
     @ViewChildren(ConnectionsListBubbleComponent) connectionsListBubbles: QueryList<ConnectionsListBubbleComponent>;
     isAddConversationMode: boolean = false;
     constructor() {
-        console.log('MessagesConnectionsListComponent loaded');
+
     }
     toggleIsConversationMode() {
         this.isAddConversationMode = !this.isAddConversationMode;
     }
     toggleIsAddConversationMode() {
-        console.log('Toggling add conversation mode');
         this.connectionsListBubbles.forEach((bubble) => {
             bubble.isAddConversationMode = !bubble.isAddConversationMode;
             console.log(bubble);
