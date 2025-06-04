@@ -3,14 +3,14 @@ import {
     MessagesSectionTitle
 } from "../messages-section-title/models/MessagesSectionTitle";
 import {
-    ConnectionsListButtonType
-} from "../connections-list-button/models/ConnectionsListButtonType";
-import {
-    ConnectionsListButtonComponent
-} from "../connections-list-button/connections-list-button.component";
-import {
     MessagesConnectionsListComponent
 } from "../messages-connections-list/messages-connections-list.component";
+import {
+    ConnectionsListButtonComponent
+} from "../../element-group-connections/connections-list-button/connections-list-button.component";
+import {
+    ConnectionsListButtonType
+} from "../../element-group-connections/connections-list-button/models/ConnectionsListButtonType";
 
 @Component({
     selector: 'message-console-connections-section',
@@ -21,11 +21,10 @@ export class MessageConsoleConnectionsSectionComponent {
     @ViewChild('confirmButton') confirmButton: ConnectionsListButtonComponent;
     @ViewChild('messageConnectionsList') messageConnectionsList: MessagesConnectionsListComponent;
     constructor() {
-        console.log('MessageConsoleConnectionsSectionComponent loaded');
+
     }
 
     toggleConfirmButtonView() {
-        console.log('Toggling confirm button view');
         this.confirmButton.toggleVisibility();
     }
     handleClick(buttonType: ConnectionsListButtonType) {
