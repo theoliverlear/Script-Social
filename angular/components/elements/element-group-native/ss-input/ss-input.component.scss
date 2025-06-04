@@ -1,25 +1,25 @@
 // ss-input.component.scss
-@import "../../../styles/global-variables";
-@import "../../../styles/global-mixins";
-@import "../../../styles/global-functions";
-@import "../../../styles/global-placeholders";
+@import "../../../../styles/global-variables";
+@import "../../../../styles/global-mixins";
+@import "../../../../styles/global-functions";
+@import "../../../../styles/global-placeholders";
 
 ss-input {
     @include flex(center, center, row);
     input {
         @extend %fill-container;
-        border: $very-thin-border $modern-green solid;
+        //border: $very-thin-border $modern-green solid;
         border-radius: $quarter-percent;
         //background-color: mix($very-faded-modern-green, $pristine-white);
-        background-image: radial-gradient(at center, $pristine-white 80%, $faded-modern-green);
+        //background-image: radial-gradient(at center, $pristine-white 80%, $faded-modern-green);
         font-size: $h6-font-size;
         padding: $quarter-percent;
         box-shadow: none;
         transition: border, background-color, box-shadow 0.25s;
         &:focus {
-            border: $thin-border $modern-green solid;
+            //border: $thin-border $modern-green solid;
             background-color: $pristine-white;
-            box-shadow: 0 $eighth-percent $half-percent $quarter-percent $faded-neutral-black;
+            //box-shadow: 0 $eighth-percent $half-percent $quarter-percent $faded-neutral-black;
         }
     }
     input[type="range"] {
@@ -47,7 +47,7 @@ ss-input {
         -webkit-appearance: none;
         appearance: none;
         @include square-size($two-percent);
-        background: $modern-green;
+        //background: $modern-green;
         border-radius: 50%;
         cursor: pointer;
         box-shadow: 0 $eighth-percent $quarter-percent rgba(0, 0, 0, 0.2);
