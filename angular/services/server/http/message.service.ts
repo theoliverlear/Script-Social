@@ -5,9 +5,6 @@ import {Message} from "../../../models/message/Message";
 import {catchError, map, Observable} from "rxjs";
 import {httpOptions} from "./httpProperties";
 import {ClientMessage} from "../../../models/message/ClientMessage";
-import {
-    MessagesWebSocketService
-} from "../websocket/messages-websocket.service";
 import {Communicative} from "../../../models/message/Communicative";
 
 @Injectable({
@@ -15,9 +12,8 @@ import {Communicative} from "../../../models/message/Communicative";
 })
 export class MessageService {
     constructor(private http: HttpClient,
-                private errorHandlerService: ErrorHandlerService,
-                private messagesWebsocketService: MessagesWebSocketService) {
-        console.log('MessageService loaded');
+                private errorHandlerService: ErrorHandlerService) {
+
     }
     // Websocket handles this.
     // sendMessageToServer(message: ClientMessage): Observable<Message> {
@@ -27,10 +23,10 @@ export class MessageService {
     //         );
     // }
     getContent(): Observable<Communicative> {
-        return this.messagesWebsocketService.getContent();
+        return null;
     }
     sendMessageToServer(clientMessage: ClientMessage) {
-        this.messagesWebsocketService.send(clientMessage);
+
     }
     getMessagesFromServer(userId: number): Observable<Message[]> {
         return this.http.get<Message[]>('/api/messages/get/' + userId, httpOptions)
