@@ -8,13 +8,10 @@ import {Message} from "../../../../models/message/Message";
 })
 export class MessagesListComponent {
     testMessage: Message = new Message(0,
-                                       'John Doe',
+                                       'Tatiana Ramos',
                                        new Date(),
-                                       `Yo Mista White. I see you got the
-                                        semicolons bitch. Finally, you stopped
-                                        the errors, like, computationally.
-                                        That's like, science, Mista White.`);
+                                       `Hey, I just wanted to loop you in on this away from the team. I want to make sure you are using JSDoc comments in your code.`);
     constructor() {
-        console.log('MessagesListComponent loaded');
+
     }
 }
