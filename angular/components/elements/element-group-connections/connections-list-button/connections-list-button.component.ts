@@ -6,13 +6,15 @@ import {
     Input, Output,
     ViewChild
 } from "@angular/core";
-import {addIcon, confirmIcon} from "../../../assets/imageAssets";
+import {addIcon, confirmIcon} from "../../../../assets/imageAssets";
 import {ConnectionsListButtonType} from "./models/ConnectionsListButtonType";
-import {SsImgComponent} from "../ss-img/ss-img.component";
-import {fadeAnimation, fixedFadeAnimation} from "../../animations/animations";
+import {fadeAnimation, fixedFadeAnimation} from "../../../animations/animations";
 import {
     connectionsListButtonFadeInOutAnimation
-} from "../../animations/animationProperties";
+} from "../../../animations/animationProperties";
+import {
+    SsImgComponent
+} from "../../element-group-native/ss-img/ss-img.component";
 
 @Component({
     selector: 'connections-list-button',
@@ -36,7 +38,7 @@ export class ConnectionsListButtonComponent implements AfterViewInit, AfterViewC
         }
     }
     constructor(private changeDetector: ChangeDetectorRef) {
-        console.log('ConnectionsListButtonComponent loaded');
+
     }
     @HostListener('click')
     handleClick() {
