@@ -5,14 +5,18 @@
 
 profile-activity {
     @include flex(center, center, column);
-    width: $thirty-percent;
+    //width: $thirty-percent;
+    max-width: 78%;
+    width: $eighty-percent;
     padding: $one-percent;
     //background-color: $light-charcoal;
     @extend %content-box;
+    background: transparent;
+    //border: none;
     //background: radial-gradient(at center 50px, $charcoal 70%, $light-charcoal);
     //background: radial-gradient(at center, $charcoal 87%, $light-charcoal);
     //background: radial-gradient(at top left, $charcoal 70%, $absolute-black);
     //background: radial-gradient(at center, $charcoal 70%, $absolute-black);
     //background: radial-gradient(at center, $apricot-glow, $charcoal 70%);
-    background: radial-gradient(at center, $absolute-black, $charcoal 80%);
+    //background: radial-gradient(at center, $absolute-black, $charcoal 80%);
 }
