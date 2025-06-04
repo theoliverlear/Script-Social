@@ -3,7 +3,7 @@
 @import "../../../../styles/global-mixins";
 @import "../../../../styles/global-functions";
 @import "../../../../styles/global-placeholders";
-@import "../../app/app-style.component";
+@import "../../../app/app.component";
 
 $nav-bar-height: calc-size(6, 4, 2);
 
@@ -22,8 +22,8 @@ nav-bar {
     //background: linear-gradient(to bottom, $apricot-glow 90%, $light-charcoal);
     height: $nav-bar-height;
     border-bottom: {
-        left-radius:  $ten-percent;
-        right-radius: $ten-percent;
+        //left-radius:  $ten-percent;
+        //right-radius: $ten-percent;
     }
     background: radial-gradient(at top, $apricot-glow 70%, $charcoal);
     header {
