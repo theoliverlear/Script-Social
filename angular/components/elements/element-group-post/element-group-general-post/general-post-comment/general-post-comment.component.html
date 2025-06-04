@@ -1,13 +1,13 @@
 <div>
+    <div>
+        <p>
+            {{ generalPostComment.commentText }}
+        </p>
+    </div>
     <ss-anchor [elementLink]="testElementLink">
         <ss-img [imageAsset]="defaultAvatar"/>
         <div class="commenter-name-div">
             <h6> {{ generalPostComment.commenterName }}</h6>
         </div>
     </ss-anchor>
-    <div>
-        <p>
-            {{ generalPostComment.commentText }}
-        </p>
-    </div>
 </div>
