@@ -13,13 +13,11 @@ import {
 })
 export class GeneralPostFooterComponent {
     @ViewChild(GeneralPostCommentInputComponent) commentInput: GeneralPostCommentInputComponent;
-    testPostComment: GeneralPostComment = new GeneralPostComment('Sarah',
+    testPostComment: GeneralPostComment = new GeneralPostComment('Sarah Coleman',
         2, 1, 1,
-        'Tremendously' +
-        ' deep post! Wow! ' +
-        'Really makes you think...');
+        'Not always true. Sometimes, dependency trees are inevitable.');
     constructor() {
-        console.log('GeneralPostFooterComponent loaded');
+
     }
     openCommentInput() {
         this.commentInput.openCommentInput();
