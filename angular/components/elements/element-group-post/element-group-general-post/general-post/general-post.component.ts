@@ -21,10 +21,9 @@ export class GeneralPostComponent {
     @Input() postedDate: Date;
     @ViewChild('generalPostFooter') generalPostFooter: GeneralPostFooterComponent;
     constructor() {
-        console.log('GeneralPostComponent loaded');
+
     }
     handleButtonClick(buttonType: GeneralPostButtonType) {
-        console.log('Button clicked: ' + buttonType);
         switch (buttonType) {
             case GeneralPostButtonType.COMMENT:
                 this.generalPostFooter.openCommentInput();
