@@ -18,7 +18,7 @@ export class ConnectionsListBubbleComponent {
     @HostBinding('class.selected') isSelected: boolean = false;
     @Output() clickEvent: EventEmitter<void> = new EventEmitter();
     constructor() {
-        console.log('ConnectionsListBubbleComponent loaded');
+
     }
     @HostListener('click')
     handleClick() {
