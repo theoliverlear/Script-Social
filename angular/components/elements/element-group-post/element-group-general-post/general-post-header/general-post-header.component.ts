@@ -13,7 +13,7 @@ export class GeneralPostHeaderComponent {
     testElementLink: TextElementLink = new TextElementLink('#',
                                                            TargetType.SELF,
                                                            true,
-                                                           'Oliver',
+                                                           'Oliver Sigwarth',
                                                            TagType.H5);
     constructor() {
         console.log('GeneralPostHeaderComponent loaded');
